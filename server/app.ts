@@ -1,6 +1,9 @@
 import express, { Express, Request, Response } from "express";
-
+import router from "./routes/api";
 const app: Express = express();
-app.listen(3001, () => {
+
+app.use("/api", router);
+
+app.listen(3002, () => {
   console.log("Server is running on port 3001");
 });

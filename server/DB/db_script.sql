@@ -1,0 +1,2 @@
+CREATE DATABASE `studio` IF NOT EXISTS;
+
