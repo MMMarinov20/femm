@@ -18,7 +18,7 @@ CREATE TABLE `reviews` (
 
 CREATE TABLE `users` (
     `uuid` VARCHAR(36) NOT NULL,
-    `role` VARCHAR(255) NOT NULL,
+    `role` VARCHAR(10) DEFAULT 'user',
     `name` VARCHAR(255) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
     `password` VARCHAR(255) NOT NULL
