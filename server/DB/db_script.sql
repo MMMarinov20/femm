@@ -24,4 +24,11 @@ CREATE TABLE `users` (
     `password` VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE `reservations` (
+    `uuid` VARCHAR(36) NOT NULL,
+    `user_uuid` VARCHAR(36) NOT NULL,
+    `date` DATETIME NOT NULL,
+    `people` INT NOT NULL,
+    `notes` VARCHAR(255) NOT NULL
+);
 INSERT INTO `users` VALUES ('6706aae5-7ca0-4915-b688-098c8644407c', 'admin', 'admin', 'example@example.com', 'admin');
