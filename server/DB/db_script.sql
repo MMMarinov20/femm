@@ -18,10 +18,11 @@ CREATE TABLE `reviews` (
 
 CREATE TABLE `users` (
     `uuid` VARCHAR(36) NOT NULL,
+    `username` VARCHAR(255) NOT NULL,
     `role` VARCHAR(10) DEFAULT 'user',
-    `name` VARCHAR(255) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
-    `password` VARCHAR(255) NOT NULL
+    `password` VARCHAR(255) NOT NULL,
+    `date` DATETIME NOT NULL
 );
 
 CREATE TABLE `reservations` (
@@ -31,4 +32,4 @@ CREATE TABLE `reservations` (
     `people` INT NOT NULL,
     `notes` VARCHAR(255) NOT NULL
 );
-INSERT INTO `users` VALUES ('6706aae5-7ca0-4915-b688-098c8644407c', 'admin', 'admin', 'example@example.com', 'admin');
+INSERT INTO `users` VALUES ('6706aae5-7ca0-4915-b688-098c8644407c', 'admin', 'admin', 'example@example.com', 'admin', '2020-01-01 00:00:00');
