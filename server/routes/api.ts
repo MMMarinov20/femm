@@ -22,39 +22,49 @@ router.post("/review", (req: Request, res: Response) => {
     }
 
     const date: string = moment().format('YYYY-MM-DD HH:mm:ss');
-    const data: any[] =  [
-        uuid.v4(),
-        req.body.name,
-        req.body.review,
-        date,
-        req.body.rating,
-    ]
-    if(data[1].length === 0) {
+    const data: Review = {
+        id: uuid.v4(),
+        name: req.body.name,
+        review: req.body.review,
+        date: date,
+        rating: req.body.rating,
+    }
+    if(data.name.length === 0) {
         console.log("Name is empty");
         res.send("Name is required")
-    } else if(data[2].length === 0) {
+    } else if(data.review.length === 0) {
         console.log("Review is empty");
         res.send("Review is required")
-    } else if(data[4].length === 0) {
+    } else if((data.rating <= 0) || (data.rating >= 5)) {
         console.log("Rating is empty");
         res.send("Rating is required")
     } else {
-        console.log(`User with USERNAME: ${data[1]} is trying to write a review`);
+        console.log(`User with USERNAME: ${data.name} is trying to write a review`);
 
-        db.query(`INSERT INTO reviews (uuid, name, review, date, rating) VALUES (?, ?, ?, ?, ?)`, data, (err: any, result: any) => {
+        db.query(`INSERT INTO reviews (uuid, name, review, date, rating) VALUES ('${data.id}', '${data.name}', '${data.review}', '${data.date}', '${data.rating}')`, (err: any, result: any) => {
             if(err) {
                 console.log(err);
-                res.send("Error writing review")
+                res.send("Error occured")
             } else {
-                console.log(`User with USERNAME: ${data[1]} has written a review`);
-                res.send("Review written successfully")
+                console.log(`User with USERNAME: ${data.name} has written a review`);
+                res.send("Review has been added")
             }
-        }
-        )
+        })
     }
+})
 
+router.get("/getAllReviews", (req: Request, res: Response) => {
+    console.log("User is trying to get all reviews");
 
-
+    db.query(`SELECT * FROM reviews`, (err: any, result: any) => {
+        if(err) {
+            console.log(err);
+            res.send("Error getting reviews")
+        } else {
+            console.log("User has successfully got all reviews");
+            res.send(result)
+        }
+    })
 })
 
 export default router;
