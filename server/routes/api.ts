@@ -75,6 +75,36 @@ router.post("/register", (req: Request, res: Response) => {
     }
 })
 
+router.post("/login", (req: Request, res: Response) => {
+    interface User {
+        username: string;
+        password: string;
+    }
+
+    const data: User = {
+        username: req.body.username,
+        password: req.body.password
+    }
+
+    db.query('SELECT * FROM users WHERE username = (?)', [data.username], (err: any, result: any) => {
+        if(err) {
+            console.log(err);
+            res.status(500).send("Internal server error");
+        } else if(result.length === 0) {
+            console.log("User does not exist");
+            res.status(400).send("User does not exist");
+        } else {
+            if(bcrypt.compareSync(data.password, result[0].password)) {
+                console.log("User logged in");
+                res.status(200).send("User logged in");
+            } else {
+                console.log("Password is incorrect");
+                res.status(400).send("Password is incorrect");
+            }
+        }
+    })
+})
+
 router.post("/review", (req: Request, res: Response) => {
     interface Review {
         id: string;
