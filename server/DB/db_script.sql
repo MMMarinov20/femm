@@ -23,7 +23,7 @@ CREATE TABLE `users` (
     `email` VARCHAR(255) UNIQUE NOT NULL,
     `password` VARCHAR(255) NOT NULL,
     `date` DATETIME NOT NULL,
-    `token` VARCHAR(255) DEFAULT NULL,
+    `token` VARCHAR(255) DEFAULT 'kur',
     PRIMARY KEY (`uuid`)
 );
 

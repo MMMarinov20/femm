@@ -1,15 +1,17 @@
-import mysql2, {Connection} from "mysql2";
+import mysql2, {Connection} from "mysql2/promise";
 import {db} from "../../dbconfig";
 export default abstract class BaseModel {
-    protected readonly _connection: Connection;
+    // @ts-ignore
+    protected _connection: Connection;
+
+    // private createConnection = async () => {
+    //     this._connection = await mysql2.createConnection(db);
+    // }
 
     protected constructor() {
-        this._connection = mysql2.createConnection(db);
-        this._connection.connect((err: any) => {
-            if(err) {
-                throw err;
-            }
-            console.log("Connected to database");
+         mysql2.createConnection(db).then((Connection) => {
+            this._connection = Connection;
+            console.log('Connection established');
         });
     }
 }
