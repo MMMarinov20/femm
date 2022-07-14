@@ -7,6 +7,7 @@ import session from "express-session";
 import randToken from "rand-token";
 import User from "../models/User";
 import { UserData } from "../types";
+import { UserLoginData } from "../types";
 import {stringify} from "flatted";
 
 const router: Router = express.Router();
@@ -61,94 +62,25 @@ router.post("/register", (req: Request, res: Response) => {
         });
     }
 
-
 })
 
-// router.post("/login", (req: Request, res: Response) => {
-//     interface User {
-//         username: string;
-//         password: string;
-//     }
-//
-//     const data: User = {
-//         username: req.body.username,
-//         password: req.body.password
-//     }
-//
-//     db.query('SELECT * FROM users WHERE username = (?)', [data.username], (err: any, result: any) => {
-//         if(err) {
-//             console.log(err);
-//             res.status(500).send("Internal server error");
-//         } else if(result.length === 0) {
-//             console.log("User does not exist");
-//             res.status(400).send("User does not exist");
-//         } else {
-//             if(bcrypt.compareSync(data.password, result[0].password)) {
-//                 console.log("User logged in");
-//                 res.status(200).send("User logged in");
-//             } else {
-//                 console.log("Password is incorrect");
-//                 res.status(400).send("Password is incorrect");
-//             }
-//         }
-//     })
-// })
-//
-// router.post("/logout", (req: Request, res: Response) => {})
-//
-// router.post("/review", (req: Request, res: Response) => {
-//     interface Review {
-//         id: string;
-//         name: string;
-//         review: string;
-//         date: string;
-//         rating: number;
-//     }
-//
-//     const date: string = moment().format('YYYY-MM-DD HH:mm:ss');
-//     const data: Review = {
-//         id: uuid.v4(),
-//         name: req.body.name,
-//         review: req.body.review,
-//         date: date,
-//         rating: req.body.rating,
-//     }
-//     if(data.name.length === 0) {
-//         console.log("Name is empty");
-//         res.send("Name is required")
-//     } else if(data.review.length === 0) {
-//         console.log("Review is empty");
-//         res.send("Review is required")
-//     } else if((data.rating <= 0) || (data.rating >= 5)) {
-//         console.log("Rating is empty");
-//         res.send("Rating is required")
-//     } else {
-//         console.log(`User with USERNAME: ${data.name} is trying to write a review`);
-//
-//         db.query(`INSERT INTO reviews (uuid, name, review, date, rating) VALUES ('${data.id}', '${data.name}', '${data.review}', '${data.date}', '${data.rating}')`, (err: any, result: any) => {
-//             if(err) {
-//                 console.log(err);
-//                 res.send("Error occurred")
-//             } else {
-//                 console.log(`User with USERNAME: ${data.name} has written a review`);
-//                 res.send("Review has been added")
-//             }
-//         })
-//     }
-// })
-//
-// router.get("/getAllReviews", (req: Request, res: Response) => {
-//     console.log("User is trying to get all reviews");
-//
-//     db.query(`SELECT * FROM reviews`, (err: any, result: any) => {
-//         if(err) {
-//             console.log(err);
-//             res.send("Error getting reviews")
-//         } else {
-//             console.log("User has successfully got all reviews");
-//             res.send(result)
-//         }
-//     })
-// })
+router.post("/login", (req: Request, res: Response) => {
+    const data: UserLoginData = {
+        username: req.body.username,
+        password: req.body.password
+    }
 
+    User.loginUser(data).then(user => {
+        if(user) {
+            console.log("User logged in");
+            res.send('User logged in');
+        } else {
+            console.log("Invalid username or password");
+            res.send("Invalid username or password");
+        }
+    }).catch(err => {
+        console.error('Invalid username or password');
+        res.send("Invalid username or password");
+    })
+})
 export default router;

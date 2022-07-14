@@ -6,3 +6,8 @@ export interface UserData {
     date: string;
     token: string;
 }
+
+export interface UserLoginData {
+    username: string;
+    password: string;
+}
