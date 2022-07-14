@@ -14,6 +14,7 @@ const router: Router = express.Router();
 
 router.use(bodyParser.json());
 
+// @ts-ignore
 router.use(session({
     secret: "loli",
     resave: false,
@@ -21,7 +22,7 @@ router.use(session({
     cookie: {
         httpOnly: false,
         maxAge: 3600000, // 1 hour
-    }
+    },
 }))
 
 router.get("/", (req: Request, res: Response) => {
@@ -33,6 +34,7 @@ router.post("/register", (req: Request, res: Response) => {
     const PASSWORD_REGEX = new RegExp(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/);
     const EMAIL_REGEX = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
     const date = moment().format('YYYY-MM-DD HH:mm:ss');
+    const token = randToken.generate(60);
 
     const data: UserData = {
         uuid: uuid.v4(),
@@ -40,7 +42,7 @@ router.post("/register", (req: Request, res: Response) => {
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password, 10),
         date: date,
-        token: ""
+        token: token
     }
 
     if(!data.username.match(USERNAME_REGEX)) {
@@ -54,6 +56,9 @@ router.post("/register", (req: Request, res: Response) => {
         res.send("Invalid email");
     } else {
         User.registerUser(data).then(() => {
+            // @ts-ignore
+            req.session.uuid = data.uuid;
+            console.log(req.session);
             console.log("User registered");
             res.send("User registered");
         }).catch(err => {
@@ -72,6 +77,8 @@ router.post("/login", (req: Request, res: Response) => {
 
     User.loginUser(data).then(user => {
         if(user) {
+            // @ts-ignore
+            req.session.uuid = user.uuid;
             console.log("User logged in");
             res.send('User logged in');
         } else {
