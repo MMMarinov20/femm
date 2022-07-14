@@ -58,7 +58,6 @@ router.post("/register", (req: Request, res: Response) => {
         User.registerUser(data).then(() => {
             // @ts-ignore
             req.session.uuid = data.uuid;
-            console.log(req.session);
             console.log("User registered");
             res.send("User registered");
         }).catch(err => {
@@ -89,5 +88,23 @@ router.post("/login", (req: Request, res: Response) => {
         console.error('Invalid username or password');
         res.send("Invalid username or password");
     })
+})
+
+router.get("/logout", (req: Request, res: Response) => {
+    // @ts-ignore
+    if(req.session.uuid) {
+        req.session.destroy(err => {
+            if(err) {
+                console.error(err);
+                res.send("Error logging out");
+            } else {
+                console.log("User logged out");
+                res.send("User logged out");
+            }
+        })
+    } else {
+        console.log("User not logged in");
+        res.send("User not logged in");
+    }
 })
 export default router;
