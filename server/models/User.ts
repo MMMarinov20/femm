@@ -32,6 +32,17 @@ class Users extends BaseModel {
             }
         }
     }
+
+    public readonly getUser = async (uuid: string) => {
+        const [rows, fields] = await this._connection.execute(`SELECT uuid, username, role, email, date FROM users WHERE uuid = ?`, [uuid]);
+        // @ts-ignore
+        if(rows.length === 0) {
+            return false;
+        } else {
+            // @ts-ignore
+            return rows[0];
+        }
+    }
 }
 
 const User = new Users();

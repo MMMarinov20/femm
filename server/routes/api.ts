@@ -150,4 +150,17 @@ router.get("/getReviews", (req: Request, res: Response) => {
         res.send("Error retrieving reviews");
     })
 })
+
+router.get("/getUser", (req: Request, res: Response) => {
+    // @ts-ignore
+    const uuid = req.session.uuid;
+    User.getUser(uuid).then((user: any) => {
+        console.log("User retrieved");
+        res.send(user);
+    }).catch((err: any) => {
+        console.error(err);
+        console.error('Error retrieving user');
+        res.send("Error retrieving user");
+    })
+})
 export default router;
