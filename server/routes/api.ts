@@ -11,6 +11,7 @@ import { UserLoginData } from "../types";
 import {stringify} from "flatted";
 import { ReviewData } from "../types";
 import Review from "../models/Review";
+import review from "../models/Review";
 const router: Router = express.Router();
 
 router.use(bodyParser.json());
@@ -137,5 +138,16 @@ router.post("/review", (req: Request, res: Response) => {
             res.send("Error adding review");
         });
     }
+})
+
+router.get("/getReviews", (req: Request, res: Response) => {
+    Review.getReviews().then((reviews: any) => {
+        console.log("Reviews retrieved");
+        res.send(reviews);
+    }).catch((err: any) => {
+        console.error(err);
+        console.error('Error retrieving reviews');
+        res.send("Error retrieving reviews");
+    })
 })
 export default router;
