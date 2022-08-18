@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/server/DB/db_script.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/server/models/Review.ts" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/server/models/User.ts" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/server/routes/api.ts" dialect="GenericSQL" />
+  </component>
+</project>

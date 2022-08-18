@@ -1,11 +1,10 @@
-import React, {useEffect} from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
+import Navigation from "./components/Navigation";
 const App: React.FC = () => {
-  useEffect(() => {
-    axios.get("http://localhost:3001/api/getAllReviews").then((res: any) => {
-        console.log(res.data);
-    })
-  }, [])
-  return <div>App</div>;
+  return (
+    <React.Fragment>
+      <Navigation />
+    </React.Fragment>
+  );
 };
 export default App;
