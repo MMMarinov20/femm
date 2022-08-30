@@ -4,7 +4,9 @@ const Navbar: React.FC = () => {
   return (
     <React.Fragment>
       <div className="flex justify-between mt-6">
-        <div className="ml-20">logo</div>
+        <div className="ml-20">
+          <img src="src/assets/logo.png" alt="" className="w-full h-24 -mt-5" />
+        </div>
         <div className="flex gap-10 justify-center">
           <Link text="HOME" active={true} />
           <Link text="GALLERY" active={false} />
