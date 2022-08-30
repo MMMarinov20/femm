@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import Navigation from "./components/Navigation";
+import Navbar from "./components/Navbar/Navbar";
 const App: React.FC = () => {
   return (
     <React.Fragment>
-      <Navigation />
+      <Navbar />
     </React.Fragment>
   );
 };
