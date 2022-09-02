@@ -1,14 +1,17 @@
 import React from "react";
 import Link from "./Link";
+import { useNavigate } from "react-router-dom";
 const Navbar: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <React.Fragment>
-      <div className="flex justify-between mt-6">
+      <div className="flex justify-between mt-10">
         <div className="hidden sm:block ml-10">
           <img
             src="src/assets/logo.png"
             alt=""
-            className="w-full sm:h-16 lg:h-20 -mt-5"
+            className="w-full sm:h-16 lg:h-20 -mt-6 xl:h-32"
           />
         </div>
         <div className="flex gap-5 justify-center ml-10 md:ml-0 lg:gap-10 xl:gap-14">
@@ -17,8 +20,13 @@ const Navbar: React.FC = () => {
           <Link text="ABOUT" active={false} />
           <Link text="PRICING" active={false} />
         </div>
-        <div className="mr-10 -mt-2 md:-mt-1">
-          <button className="font-Graphik text-white bg-[#091157] px-6 py-1 rounded-full text-[0.6rem] md:text-base lg:text-lg lg:px-8 font-semibold lg:py-2">
+        <div
+          className="mr-10 -mt-2 md:-mt-1"
+          onClick={() => {
+            navigate("/login");
+          }}
+        >
+          <button className="font-Graphik text-white bg-[#091157] px-4 py-1 rounded-full text-[0.6rem] md:text-base md:px-7 lg:text-lg lg:px-8 font-medium lg:py-2">
             Login
           </button>
         </div>

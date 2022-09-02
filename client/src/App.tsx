@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import Navbar from "./components/Navbar/Navbar";
+import Home from "./pages/Home";
 import { Routes, Route } from "react-router-dom";
 const App: React.FC = () => {
   return (
     <React.Fragment>
       <Routes>
-        <Route path="/" element={<Navbar />} />
+        <Route path="/" element={<Home />} />
         <Route path="/gallery" element={<h1>Gallery</h1>} />
         <Route path="/about" element={<h1>About</h1>} />
         <Route path="/pricing" element={<h1>Pricing</h1>} />

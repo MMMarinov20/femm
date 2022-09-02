@@ -10,7 +10,7 @@ const Link: React.FC<Props> = (props) => {
   return (
     <React.Fragment>
       <div>
-        <p className="font-Graphik text-[0.6rem] md:text-base lg:text-xl font-medium text-[#091157] hover:cursor-pointer">
+        <p className="font-Graphik text-[0.6rem] md:text-base lg:text-xl xl:text-3xl font-medium text-[#091157] hover:cursor-pointer">
           {props.text}
         </p>
         {props.active && (
