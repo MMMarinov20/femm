@@ -10,12 +10,12 @@ const Link: React.FC<Props> = (props) => {
   return (
     <React.Fragment>
       <div>
-        <p className="font-Graphik text-2xl font-medium text-[#091157]">
+        <p className="font-Graphik text-[0.6rem] md:text-base lg:text-xl font-medium text-[#091157] hover:cursor-pointer">
           {props.text}
         </p>
         {props.active && (
-          <p className="text-center flex justify-center items-center -mt-2">
-            <RiArrowDownSFill className="text-center text-3xl text-[#091157]" />
+          <p className="text-center flex justify-center items-center -mt-[0.63rem]">
+            <RiArrowDownSFill className="text-center text-2xl text-[#091157]" />
           </p>
         )}
       </div>
