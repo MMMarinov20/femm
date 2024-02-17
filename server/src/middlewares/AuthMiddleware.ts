@@ -21,4 +21,8 @@ export const AuthMiddleware = {
       res.status(500).json({ error: "Could not log in" });
     }
   },
+
+  async logout(req: Request, res: Response): Promise<void> {
+    res.status(200).json({ token: null });
+  },
 };
