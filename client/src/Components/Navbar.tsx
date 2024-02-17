@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { IoMdArrowDropdown } from "react-icons/io";
 
 const Navbar: React.FC = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -8,6 +9,14 @@ const Navbar: React.FC = () => {
 
   const handleMenu = () => {
     setShowMenu(!showMenu);
+  };
+
+  const toggleRentals = () => {
+    setShowRentals(!showRentals);
+  };
+
+  const toggleBuilds = () => {
+    setShowBuilds(!showBuilds);
   };
 
   return (
@@ -32,16 +41,45 @@ const Navbar: React.FC = () => {
 
           <div className="flex flex-col justify-center items-center font-SolidenTrialRegular gap-y-5 min-[350px]:text-xl">
             <h1>Home</h1>
-            <h1>Our Rentals</h1>
-            <h1>Builds</h1>
+            <div className="">
+              <h1
+                className="cursor-pointer inline-flex items-center"
+                onClick={toggleRentals}
+              >
+                Our Rentals <IoMdArrowDropdown />
+              </h1>
+              {showRentals && (
+                <div className="text-center text-sm min-[350px]:text-base text-gray-600 flex flex-col pt-2 gap-y-2">
+                  <h1>Option 1</h1>
+                  <h1>Option 2</h1>
+                  <h1>Option 3</h1>
+                </div>
+              )}
+            </div>
+            <div className="">
+              <h1
+                className="cursor-pointer inline-flex items-center"
+                onClick={toggleBuilds}
+              >
+                Builds <IoMdArrowDropdown />
+              </h1>
+              {showBuilds && (
+                <div className="text-center text-sm min-[350px]:text-base text-gray-600 flex flex-col pt-2 gap-y-2">
+                  <h1>Option 1</h1>
+                  <h1>Option 2</h1>
+                  <h1>Option 3</h1>
+                </div>
+              )}
+            </div>
             <h1>About us</h1>
           </div>
 
           <div className="flex flex-col justify-center items-center gap-y-5">
-            <div className="font-SolidenTrialExpanded border-[#FF6241] text-[#FF6241] border-[1px] w-[50vw] py-2 rounded-xl text-center min-[350px]:w-[55vw] min-[350px]:text-lg">
+            <div className="font-SolidenTrialExpanded border-[#FF6241] text-[#FF6241] border-[1px] w-[50vw] py-2 rounded-xl text-center min-[350px]:w-[55vw] min-[350px]:text-lg transition-colors duration-300 hover:bg-[#FF6241] hover:text-white">
               Login
             </div>
-            <div className="font-SolidenTrialExpanded text-white bg-[#FF6241] w-[50vw] py-2 rounded-xl text-center min-[350px]:w-[55vw] min-[350px]:text-lg">
+
+            <div className="font-SolidenTrialExpanded bg-[#FF6241] text-white w-[50vw] py-2 rounded-xl text-center min-[350px]:w-[55vw] min-[350px]:text-lg transition-colors duration-300 hover:bg-white hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]">
               Register
             </div>
           </div>
