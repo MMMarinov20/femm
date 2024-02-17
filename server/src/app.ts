@@ -1,11 +1,13 @@
-import express from "express";
-
-const app = express();
+import express, { Application, Request, Response, NextFunction } from "express";
+import UserRoutes from "./routes/UserRoutes";
+const app: Application = express();
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/", (req: Request, res: Response, next: NextFunction) => {
   res.send("Hello World");
 });
 
-export default app;
+app.use("/api", UserRoutes);
+
+app.listen(3000, () => console.log("Server running"));

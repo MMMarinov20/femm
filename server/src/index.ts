@@ -1,24 +1,17 @@
-import app from "./app";
-import { createConnection, ConnectionOptions } from "typeorm";
-import ormconfig from "./config/ormconfig";
+import { PrismaClient } from "@prisma/client";
 
-const port = process.env.PORT || 3000;
+const prisma = new PrismaClient();
 
-const connectToDatabase = async () => {
-  try {
-    const connectionOptions: ConnectionOptions = {
-      ...ormconfig,
-    };
+async function main() {
+  // ... you will write your Prisma Client queries here
+}
 
-    await createConnection(connectionOptions);
-    console.log("Connected to database");
-
-    app.listen(port, () => {
-      console.log(`Server is running on port ${port}`);
-    });
-  } catch (error) {
-    console.error("Error connecting to database", error);
-  }
-};
-
-connectToDatabase();
+main()
+  .then(async () => {
+    await prisma.$disconnect();
+  })
+  .catch(async (e) => {
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
+  });
