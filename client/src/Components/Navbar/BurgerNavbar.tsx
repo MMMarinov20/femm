@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdArrowDropdown } from "react-icons/io";
 
-const Navbar: React.FC = () => {
+const BurgerNavbar: React.FC = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showRentals, setShowRentals] = useState(false);
   const [showBuilds, setShowBuilds] = useState(false);
@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
             />
           </div>
 
-          <div className="flex flex-col justify-center items-center font-SolidenTrialRegular gap-y-5 min-[350px]:text-xl">
+          <div className="flex flex-col justify-center items-center font-SolidenTrialRegular gap-y-5 min-[350px]:text-xl md:text-2xl">
             <h1>Home</h1>
             <div className="">
               <h1
@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
                 Our Rentals <IoMdArrowDropdown />
               </h1>
               {showRentals && (
-                <div className="text-center text-sm min-[350px]:text-base text-gray-600 flex flex-col pt-2 gap-y-2">
+                <div className="text-center text-sm min-[350px]:text-base md:text-lg text-gray-600 flex flex-col pt-2 gap-y-2">
                   <h1>Option 1</h1>
                   <h1>Option 2</h1>
                   <h1>Option 3</h1>
@@ -64,7 +64,7 @@ const Navbar: React.FC = () => {
                 Builds <IoMdArrowDropdown />
               </h1>
               {showBuilds && (
-                <div className="text-center text-sm min-[350px]:text-base text-gray-600 flex flex-col pt-2 gap-y-2">
+                <div className="text-center text-sm min-[350px]:text-base md:text-lg text-gray-600 flex flex-col pt-2 gap-y-2">
                   <h1>Option 1</h1>
                   <h1>Option 2</h1>
                   <h1>Option 3</h1>
@@ -75,11 +75,11 @@ const Navbar: React.FC = () => {
           </div>
 
           <div className="flex flex-col justify-center items-center gap-y-5">
-            <div className="font-SolidenTrialExpanded border-[#FF6241] text-[#FF6241] border-[1px] w-[50vw] py-2 rounded-xl text-center min-[350px]:w-[55vw] min-[350px]:text-lg transition-colors duration-300 hover:bg-[#FF6241] hover:text-white">
+            <div className="font-SolidenTrialExpanded border-[#FF6241] text-[#FF6241] border-[1px] w-[50vw] py-2 rounded-xl text-center min-[350px]:w-[55vw] md:w-[30vw] min-[350px]:text-lg transition-colors duration-300 hover:bg-[#FF6241] hover:text-white">
               Login
             </div>
 
-            <div className="font-SolidenTrialExpanded bg-[#FF6241] text-white w-[50vw] py-2 rounded-xl text-center min-[350px]:w-[55vw] min-[350px]:text-lg transition-colors duration-300 hover:bg-white hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]">
+            <div className="font-SolidenTrialExpanded bg-[#FF6241] text-white w-[50vw] py-2 rounded-xl text-center min-[350px]:w-[55vw] md:w-[30vw] min-[350px]:text-lg transition-colors duration-300 hover:bg-white hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]">
               Register
             </div>
           </div>
@@ -87,7 +87,7 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Navbar */}
-      <div className="w-full h-16 bg-[#F9F3DF] flex items-center justify-between px-4 md:hidden">
+      <div className="w-full h-16 bg-[#F9F3DF] flex items-center justify-between px-4 lg:hidden">
         <div>
           <h1 className="text-2xl font-bold">Logo</h1>
         </div>
@@ -102,4 +102,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar;
+export default BurgerNavbar;
