@@ -11,3 +11,8 @@
   font-family: "SolidenTrialExpanded";
   src: url("./assets/fonts/SolidenTrial-Expanded.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: "SolidenTrialBoldExpanded";
+  src: url("./assets/fonts/SolidenTrial-BoldExpanded.ttf") format("truetype");
+}

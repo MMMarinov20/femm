@@ -6,6 +6,7 @@ export default {
       fontFamily: {
         SolidenTrialRegular: ["SolidenTrialRegular", "sans-serif"],
         SolidenTrialExpanded: ["SolidenTrialExpanded", "sans-serif"],
+        SolidenTrialBoldExpanded: ["SolidenTrialBoldExpanded", "sans-serif"],
       },
     },
   },
