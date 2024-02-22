@@ -8,6 +8,9 @@ export default {
         SolidenTrialExpanded: ["SolidenTrialExpanded", "sans-serif"],
         SolidenTrialBoldExpanded: ["SolidenTrialBoldExpanded", "sans-serif"],
       },
+      screens: {
+        "3xl": "1920px",
+      },
     },
   },
   plugins: [],
