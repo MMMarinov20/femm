@@ -15,7 +15,7 @@ const Navbar: React.FC = () => {
 
   return (
     <React.Fragment>
-      <div className="hidden w-screen lg:flex flex-row items-center justify-around py-10">
+      <div className="hidden w-screen lg:flex flex-row items-center px-[10vw] justify-between py-10">
         <div className="flex flex-row gap-x-5 xl:gap-x-10 xl:text-lg font-SolidenTrialRegular">
           <h1 className="font-black">Logo</h1>
           <h1>Home</h1>
