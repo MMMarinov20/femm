@@ -6,8 +6,8 @@ function App() {
     <React.Fragment>
       <Landing />
       <About />
-      <div className="min-h-screen bg-[#F9F2DF] px-4 py-32">
-        <div>
+      <div className="min-h-screen bg-[#F9F2DF] px-4 py-32 md:grid md:place-items-center">
+        <div className="md:max-w-xl">
           <h1 className="overflow-hidden font-SolidenTrialBoldExpanded text-2xl min-[350px]:text-3xl min-[400px]:text-4xl xl:text-5xl 3xl:text-6xl">
             We Offer <span className="text-[#FF6241]">Flexible</span> Rental
             Terms For Our Customers
@@ -25,31 +25,31 @@ function App() {
             lease.
           </h1>
         </div>
-        <div className="grid grid-rows-4 grid-cols-1 min-[380px]:grid-rows-2 min-[380px]:grid-cols-2 place-items-center gap-y-5 pt-5">
-          <div className="bg-[url('./Home/People.svg')] bg-center bg-no-repeat row-span-2 h-full w-full"></div>
+        <div className="grid grid-rows-4 grid-cols-1 min-[380px]:grid-rows-2 min-[380px]:grid-cols-2 place-items-center gap-y-5 md:gap-5 pt-5 pb-20 md:p-20">
+          <div className="bg-[url('./Home/People.svg')] md:bg-[url('./Home/PeopleBig.svg')] bg-center bg-no-repeat row-span-2 h-full w-full rounded-2xl drop-shadow-xl"></div>
 
-          <div className="row-span-1 bg-white w-fit min-h-fit rounded-2xl px-5 py-5 min-[380px]:py-4 min-[380px]:px-2">
+          <div className="row-span-1 bg-white w-fit min-h-fit rounded-2xl px-5 py-5 min-[380px]:py-4 min-[380px]:px-2 md:p-6 drop-shadow-xl">
             <img
               src="./Home/Affordable.jpg"
-              className="w-[20vw] min-[380px]:w-[10vw]"
+              className="w-[20vw] min-[380px]:w-[10vw] md:w-[5vw]"
             />
-            <h1 className="font-SolidenTrialBoldExpanded pt-3 pb-1">
+            <h1 className="font-SolidenTrialBoldExpanded pt-3 pb-1 md:text-xl">
               Affordable price
             </h1>
-            <h1 className="font-SolidenTrialRegular text-xs max-w-[10rem]">
+            <h1 className="font-SolidenTrialRegular text-xs max-w-[10rem] md:text-lg">
               Find a home that hits the sweet spot between great quality.
             </h1>
           </div>
 
-          <div className="row-span-1 bg-white w-fit min-h-fit min-[380px]:h-fit rounded-2xl px-5 py-5 min-[380px]:py-4 min-[380px]:px-2">
+          <div className="row-span-1 bg-white w-fit min-h-fit min-[380px]:h-fit rounded-2xl px-5 py-5 min-[380px]:py-4 min-[380px]:px-2 md:p-6 drop-shadow-2xl">
             <img
               src="./Home/Work.jpg"
-              className="w-[20vw] min-[380px]:w-[10vw]"
+              className="w-[20vw] min-[380px]:w-[10vw] md:w-[5vw]"
             />
-            <h1 className="font-SolidenTrialBoldExpanded pt-3 pb-1">
-              Affordable price
+            <h1 className="font-SolidenTrialBoldExpanded pt-3 pb-1 md:text-xl">
+              Less paperwork
             </h1>
-            <h1 className="font-SolidenTrialRegular text-xs max-w-[10rem]">
+            <h1 className="font-SolidenTrialRegular text-xs max-w-[10rem] md:text-lg">
               Find a home that hits the sweet spot between great quality.
             </h1>
           </div>
