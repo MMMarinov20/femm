@@ -8,9 +8,9 @@ const Landing = () => {
       <div className="w-screen min-h-fit bg-[#F9F3DF] lg:flex flex-col justify-between">
         <Navbar />
         <BurgerNavbar />
-        <div className="flex flex-col lg:flex-row items-center justify-between lg:items-start lg:justify-between pl-[10vw] w-full h-full pt-16 min-[350px]:pt-10">
+        <div className="flex flex-col lg:flex-row items-center justify-between lg:items-start lg:justify-between lg:pl-[10vw] w-full h-full pt-16 min-[350px]:pt-10">
           <div className="max-w-[80vw] min-[350px]:max-w-xs md:max-w-xl lg:max-w-md xl:max-w-xl 2xl:max-w-2xl">
-            <h1 className="font-SolidenTrialBoldExpanded text-2xl md:text-5xl 3xl:text-6xl min-[350px]:text-3xl lg:text-5xl lg:pt-[5vh] xl:pt-[10vh]">
+            <h1 className="overflow-hidden font-SolidenTrialBoldExpanded text-2xl md:text-5xl 3xl:text-6xl min-[350px]:text-3xl lg:text-5xl lg:pt-[5vh] xl:pt-[10vh]">
               Discover <span className="text-[#FF6241]">Ideal</span> Properties
               With Our Rental Platform
             </h1>
