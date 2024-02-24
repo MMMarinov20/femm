@@ -1,42 +1,58 @@
 import React from "react";
 import Landing from "./Components/Home/Landing";
+import About from "./Components/Home/About";
 function App() {
   return (
     <React.Fragment>
       <Landing />
-
-      <div className="min-h-screen w-screen pt-32 flex flex-col gap-y-32 lg:gap-0 lg:flex-row-reverse lg:justify-center lg:items-center lg:px-[10vw] xl:px-[10vw] xl:gap-x-5 2xl:gap-0">
-        <div className="px-4 md:max-w-xl lg:max-w-md xl:max-w-xl 3xl:max-w-[40rem]">
-          <h1 className="text-[#FF6241] font-SolidenTrialBoldExpanded min-[350px]:text-xl xl:text-2xl">
-            About us
-          </h1>
+      <About />
+      <div className="min-h-screen bg-[#F9F2DF] px-4 py-32">
+        <div>
           <h1 className="overflow-hidden font-SolidenTrialBoldExpanded text-2xl min-[350px]:text-3xl min-[400px]:text-4xl xl:text-5xl 3xl:text-6xl">
-            Let Us Guide You To The{" "}
-            <span className="text-[#FF6241]">Perfect</span> Apartment
+            We Offer <span className="text-[#FF6241]">Flexible</span> Rental
+            Terms For Our Customers
           </h1>
-          <h1 className="font-SolidenTrialExpanded py-3 2xl:text-base 3xl:text-lg">
-            At FEMM BULGARIA, our mission is to simplify your journey to finding
-            the perfect apartment. With a commitment to excellence and a
-            user-friendly platform, we strive to make your search for an ideal
-            rental a seamless and enjoyable experience.
+          <h1 className="font-SolidenTrialExpanded text-[#464646] py-3">
+            At FEMM BULGARIA, flexibility meets convenience. Our commitment to
+            providing exceptional service extends to offering flexible rental
+            terms tailored to suit your unique needs. Whether you're seeking
+            short-term arrangements, long-term leases, or something in between,
+            we empower you with choices.
           </h1>
-          <h1 className="font-SolidenTrialExpanded 2xl:text-base 3xl:text-lg">
-            Explore a diverse range of apartments that cater to your unique
-            preferences and lifestyle. Whether you're looking for a cozy studio,
-            a spacious family home, or a stylish urban loft, our curated
-            selection ensures that you'll find a place that feels just right.
+          <h1 className="font-SolidenTrialExpanded text-[#464646]">
+            We understand that life comes with its twists and turns. That's why
+            we prioritize your comfort and peace of mind by offering adjustable
+            lease.
           </h1>
-
-          <button className="bg-[#FF6241] text-white font-SolidenTrialExpanded text-sm xl:text-lg mt-5 py-3 xl:py-4 rounded-lg w-[60vw] min-[350px]:w-[50vw] lg:w-[20vw] xl:w-[15vw]">
-            Get Started
-          </button>
         </div>
-        <div className="px-4 lg:px-0 lg:w-full 2xl:w-9/12 overflow-hidden">
-          <img
-            src="./Home/About.svg"
-            alt=""
-            className="w-full md:w-1/2 lg:w-full object-cover 2xl:w-10/12 3xl:w-[70%]"
-          />
+        <div className="grid grid-rows-4 grid-cols-1 min-[380px]:grid-rows-2 min-[380px]:grid-cols-2 place-items-center gap-y-5 pt-5">
+          <div className="bg-[url('./Home/People.svg')] bg-center bg-no-repeat row-span-2 h-full w-full"></div>
+
+          <div className="row-span-1 bg-white w-fit min-h-fit rounded-2xl px-5 py-5 min-[380px]:py-4 min-[380px]:px-2">
+            <img
+              src="./Home/Affordable.jpg"
+              className="w-[20vw] min-[380px]:w-[10vw]"
+            />
+            <h1 className="font-SolidenTrialBoldExpanded pt-3 pb-1">
+              Affordable price
+            </h1>
+            <h1 className="font-SolidenTrialRegular text-xs max-w-[10rem]">
+              Find a home that hits the sweet spot between great quality.
+            </h1>
+          </div>
+
+          <div className="row-span-1 bg-white w-fit min-h-fit min-[380px]:h-fit rounded-2xl px-5 py-5 min-[380px]:py-4 min-[380px]:px-2">
+            <img
+              src="./Home/Work.jpg"
+              className="w-[20vw] min-[380px]:w-[10vw]"
+            />
+            <h1 className="font-SolidenTrialBoldExpanded pt-3 pb-1">
+              Affordable price
+            </h1>
+            <h1 className="font-SolidenTrialRegular text-xs max-w-[10rem]">
+              Find a home that hits the sweet spot between great quality.
+            </h1>
+          </div>
         </div>
       </div>
     </React.Fragment>
