@@ -1,6 +1,6 @@
 import React from "react";
 
-const About = () => {
+const About: React.FC = () => {
   return (
     <React.Fragment>
       <div className="min-h-screen w-screen py-32 grid place-items-center gap-y-32 lg:gap-0 lg:flex lg:flex-row-reverse lg:justify-center lg:items-center lg:px-[10vw] xl:px-[10vw] xl:gap-x-5 2xl:gap-0">

@@ -31,7 +31,7 @@ const BurgerNavbar: React.FC = () => {
             showMenu ? "visible" : "hidden"
           }`}
         >
-          <div className="px-10 flex items-center justify-between w-full py-4">
+          <div className="flex items-center justify-between w-full py-4">
             <h1 className="text-2xl font-bold">Logo</h1>
             <RxHamburgerMenu
               className="text-3xl cursor-pointer"
