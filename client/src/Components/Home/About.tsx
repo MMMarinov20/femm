@@ -3,7 +3,7 @@ import React from "react";
 const About = () => {
   return (
     <React.Fragment>
-      <div className="min-h-screen w-screen py-32 flex flex-col gap-y-32 lg:gap-0 lg:flex-row-reverse lg:justify-center lg:items-center lg:px-[10vw] xl:px-[10vw] xl:gap-x-5 2xl:gap-0">
+      <div className="min-h-screen w-screen py-32 grid place-items-center gap-y-32 lg:gap-0 lg:flex lg:flex-row-reverse lg:justify-center lg:items-center lg:px-[10vw] xl:px-[10vw] xl:gap-x-5 2xl:gap-0">
         <div className="px-4 md:max-w-xl lg:max-w-md xl:max-w-xl 3xl:max-w-[40rem]">
           <h1 className="text-[#FF6241] font-SolidenTrialBoldExpanded min-[350px]:text-xl xl:text-2xl">
             About us
@@ -25,15 +25,15 @@ const About = () => {
             selection ensures that you'll find a place that feels just right.
           </h1>
 
-          <button className="bg-[#FF6241] text-white font-SolidenTrialExpanded text-sm xl:text-lg mt-5 py-3 xl:py-4 rounded-lg w-[60vw] min-[350px]:w-[50vw] lg:w-[20vw] xl:w-[15vw]">
+          <button className="bg-[#FF6241] text-white font-SolidenTrialExpanded text-sm xl:text-lg mt-5 py-3 xl:py-4 rounded-lg w-[60vw] min-[350px]:w-[50vw] md:w-[20vw] xl:w-[15vw]">
             Get Started
           </button>
         </div>
-        <div className="px-4 lg:px-0 lg:w-full 2xl:w-9/12 overflow-hidden">
+        <div className="flex flex-row justify-center lg:block px-4 lg:px-0 w-screen lg:w-full 2xl:w-9/12 overflow-hidden">
           <img
             src="./Home/About.svg"
             alt=""
-            className="w-full md:w-1/2 lg:w-full object-cover 2xl:w-10/12 3xl:w-[70%]"
+            className="w-screen md:w-1/2 lg:w-full object-cover 2xl:w-10/12 3xl:w-[70%]"
           />
         </div>
       </div>
