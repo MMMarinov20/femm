@@ -1,15 +1,14 @@
 import React from "react";
-import Landing from "./Components/Home/Landing";
-import About from "./Components/Home/About";
-import Offer from "./Components/Home/Offer";
-import Footer from "./Components/Home/Footer";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Pages/Home";
 function App() {
   return (
     <React.Fragment>
-      <Landing />
-      <About />
-      <Offer />
-      <Footer />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </Router>
     </React.Fragment>
   );
 }
