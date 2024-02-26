@@ -20,10 +20,10 @@ const Landing = () => {
             </h1>
 
             <div className="hidden lg:flex flex-row gap-x-5">
-              <button className="flex flex-row items-center justify-center w-40 h-12 mt-5 bg-transparent border-[#FF6241] border-[1px] text-[#FF6241] rounded-lg">
+              <button className="flex flex-row items-center justify-center w-40 h-12 mt-5 bg-transparent border-[#FF6241] border-[1px] text-[#FF6241] rounded-lg transition-colors duration-300 hover:bg-[#FF6241] hover:text-white">
                 <h1 className="font-SolidenTrialExpanded text-lg">Rent</h1>
               </button>
-              <button className="flex flex-row items-center justify-center w-40 h-12 mt-5 bg-[#FF6241] text-white rounded-lg">
+              <button className="flex flex-row items-center justify-center w-40 h-12 mt-5 bg-[#FF6241] text-white rounded-lg transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]">
                 <h1 className="font-SolidenTrialExpanded text-lg">Rent</h1>
               </button>
             </div>

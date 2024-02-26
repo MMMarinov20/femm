@@ -25,7 +25,7 @@ const About: React.FC = () => {
             selection ensures that you'll find a place that feels just right.
           </h1>
 
-          <button className="bg-[#FF6241] text-white font-SolidenTrialExpanded text-sm xl:text-lg mt-5 py-3 xl:py-4 rounded-lg w-[60vw] min-[350px]:w-[50vw] md:w-[20vw] xl:w-[15vw]">
+          <button className="bg-[#FF6241] text-white font-SolidenTrialExpanded text-sm xl:text-lg mt-5 py-3 xl:py-4 rounded-lg w-[60vw] min-[350px]:w-[50vw] md:w-[20vw] xl:w-[15vw] transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]">
             Get Started
           </button>
         </div>
