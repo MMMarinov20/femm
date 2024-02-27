@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdArrowDropdown } from "react-icons/io";
 
-const BurgerNavbar: React.FC = () => {
+interface Props {
+  color: string;
+}
+
+const BurgerNavbar: React.FC<Props> = (props) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showRentals, setShowRentals] = useState(false);
   const [showBuilds, setShowBuilds] = useState(false);
@@ -86,7 +90,11 @@ const BurgerNavbar: React.FC = () => {
         </div>
       </div>
 
-      <div className="w-full h-16 bg-[#F9F3DF] flex items-center justify-between px-4 lg:hidden">
+      {/* Nav */}
+      <div
+        className="w-full h-16 flex items-center justify-between px-4 lg:hidden"
+        style={{ backgroundColor: props.color }}
+      >
         <div>
           <h1 className="text-2xl font-bold">Logo</h1>
         </div>
