@@ -19,7 +19,7 @@ const Login: React.FC = () => {
             className="w-full lg:w-1/2 text-center md:flex md:flex-col md:items-center"
             onSubmit={(e) => e.preventDefault()}
           >
-            <Header />
+            <Header heading="Don't have an account yet? " method="Sign up" />
 
             <Input
               placeholder="Email Address"

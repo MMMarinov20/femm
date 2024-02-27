@@ -19,7 +19,9 @@ const Navbar: React.FC = () => {
       <div className="hidden w-screen lg:flex flex-row items-center px-[10vw] justify-between py-10">
         <div className="flex flex-row gap-x-5 xl:gap-x-10 xl:text-lg font-SolidenTrialRegular">
           <h1 className="font-black">Logo</h1>
-          <h1>Home</h1>
+          <Link to={"/"}>
+            <h1 className="cursor-pointer">Home</h1>
+          </Link>
 
           <div
             onMouseLeave={handleRentalsDropdown}
@@ -62,14 +64,17 @@ const Navbar: React.FC = () => {
         </div>
 
         <div className="flex flex-row gap-x-5">
-          <Link to={"/Login"}>
+          <Link to={"/login"}>
             <div className="cursor-pointer border-[1px] border-[#FF6241] text-[#FF6241] font-SolidenTrialRegular w-[15vw] xl:w-[10vw] 2xl:w-[8vw] py-2 xl:py-3 rounded-xl text-center transition-colors duration-300 hover:bg-[#FF6241] hover:text-white 2xl:text-xl">
               Log in
             </div>
           </Link>
-          <div className="cursor-pointer text-white font-SolidenTrialRegular w-[15vw] xl:w-[10vw] 2xl:w-[8vw] py-2 xl:py-3 rounded-xl text-center bg-[#FF6241] transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px] 2xl:text-xl">
-            Register
-          </div>
+
+          <Link to={"/register"}>
+            <div className="cursor-pointer text-white font-SolidenTrialRegular w-[15vw] xl:w-[10vw] 2xl:w-[8vw] py-2 xl:py-3 rounded-xl text-center bg-[#FF6241] transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px] 2xl:text-xl">
+              Register
+            </div>
+          </Link>
         </div>
       </div>
     </React.Fragment>

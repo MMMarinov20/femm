@@ -45,7 +45,9 @@ const BurgerNavbar: React.FC<Props> = (props) => {
           </div>
 
           <div className="flex flex-col justify-center items-center font-SolidenTrialRegular gap-y-5 min-[350px]:text-xl md:text-2xl">
-            <h1>Home</h1>
+            <Link to={"/"}>
+              <h1 className="cursor-pointer">Home</h1>
+            </Link>
             <div className="">
               <h1
                 className="cursor-pointer inline-flex items-center"
@@ -80,15 +82,17 @@ const BurgerNavbar: React.FC<Props> = (props) => {
           </div>
 
           <div className="flex flex-col justify-center items-center gap-y-5">
-            <Link to={"/Login"}>
+            <Link to={"/login"}>
               <div className="font-SolidenTrialExpanded border-[#FF6241] text-[#FF6241] border-[1px] w-[50vw] py-2 rounded-xl text-center min-[350px]:w-[55vw] md:w-[30vw] min-[350px]:text-lg transition-colors duration-300 hover:bg-[#FF6241] hover:text-white">
                 Login
               </div>
             </Link>
 
-            <div className="font-SolidenTrialExpanded bg-[#FF6241] text-white w-[50vw] py-2 rounded-xl text-center min-[350px]:w-[55vw] md:w-[30vw] min-[350px]:text-lg transition-colors duration-300 hover:bg-white hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]">
-              Register
-            </div>
+            <Link to={"/register"}>
+              <div className="font-SolidenTrialExpanded bg-[#FF6241] text-white w-[50vw] py-2 rounded-xl text-center min-[350px]:w-[55vw] md:w-[30vw] min-[350px]:text-lg transition-colors duration-300 hover:bg-white hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]">
+                Register
+              </div>
+            </Link>
           </div>
         </div>
       </div>
