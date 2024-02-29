@@ -3,14 +3,14 @@ import Navbar from "../Components/Home/Navbar/Navbar";
 import BurgerNavbar from "../Components/Home/Navbar/BurgerNavbar";
 import { IoIosArrowBack } from "react-icons/io";
 import DescriptionContainer from "../Components/Rental/DescriptionContainer";
-import { FaLocationDot } from "react-icons/fa6";
+import SearchContainer from "../Components/Rental/SearchContainer";
 
 const Rental = () => {
   return (
     <React.Fragment>
       <Navbar />
       <BurgerNavbar color={"#FFFFFF"} />
-      <div className="min-h-screen w-screentext-2xl">
+      <div className="min-h-screen w-screen">
         <div className="px-4 lg:px-[10vw]">
           <img
             src="./Rental/Room.png"
@@ -31,58 +31,54 @@ const Rental = () => {
           </div>
         </div>
 
-        <div className="flex flex-col w-screen h-fit py-20 px-4 lg:px-[10vw] lg:flex-row gap-y-20 lg:gap-x-5">
+        <div className="flex flex-col w-screen h-fit py-32 px-4 lg:px-[10vw] lg:flex-row gap-y-20 lg:gap-x-5">
           <DescriptionContainer />
+          <SearchContainer />
+        </div>
 
-          <div className="w-full lg:w-[60%] h-fit bg-white drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] rounded-2xl p-5 flex flex-col md:text-lg">
-            <h1 className="font-GilroyBold text-2xl md:text-4xl overflow-hidden">
-              Search
+        <h1 className="font-SolidenTrialBoldExpanded text-xl lg:text-2xl lg:px-[10vw] px-4">
+          See what guests liked the most:
+        </h1>
+
+        <div className="w-screen md:w-1/2 h-fit px-4 md:pr-12 lg:px-[10vw] pt-4 pb-20">
+          <div className="w-full h-fit bg-white drop-shadow-2xl rounded-xl p-5">
+            <h1 className="font-SolidenTrialBoldExpanded text-lg">
+              James Torff
             </h1>
-            <h1 className="font-GilroyRegular">
-              Name of destination / place of accommodation.
+            <h1 className="font-SolidenTrialRegular text-xs pb-2">Bulgaria</h1>
+
+            <h1 className="font-SolidenTrialRegular">
+              "Great place, it has become our favorite and we will definitely
+              come back again.“
             </h1>
+          </div>
+        </div>
 
-            <div className="flex flex-col gap-y-5 pt-3">
-              <div className="w-[100%] h-12 border-[1px] border-[#8C8C8C] rounded-lg flex flex-row items-center px-3">
-                <FaLocationDot className="text-2xl mr-3 text-[#FF6241]" />
-                <input
-                  placeholder="Search"
-                  className="outline-none font-GilroyRegular placeholder:font-GilroyRegular w-full"
-                />
-              </div>
-              <div className="w-[100%] h-12 border-[1px] border-[#8C8C8C] rounded-lg flex flex-row items-center px-3">
-                <FaLocationDot className="text-2xl mr-3 text-[#FF6241]" />
-                <input
-                  placeholder="Search"
-                  className="outline-none font-GilroyRegular placeholder:font-GilroyRegular w-full"
-                />
-              </div>
-              <div className="w-[100%] h-12 border-[1px] border-[#8C8C8C] rounded-lg flex flex-row items-center px-3">
-                <FaLocationDot className="text-2xl mr-3 text-[#FF6241]" />
-                <input
-                  placeholder="Search"
-                  className="outline-none font-GilroyRegular placeholder:font-GilroyRegular w-full"
-                />
-              </div>
-              <div className="w-[100%] h-12 border-[1px] border-[#8C8C8C] rounded-lg flex flex-row items-center px-3">
-                <FaLocationDot className="text-2xl mr-3 text-[#FF6241]" />
-                <input
-                  placeholder="Search"
-                  className="outline-none font-GilroyRegular placeholder:font-GilroyRegular w-full"
-                />
-              </div>
-            </div>
+        <div className="w-screen md:w-1/2 h-fit px-4 md:pr-12 lg:px-[10vw] pt-4 pb-20">
+          <div className="w-full h-fit bg-white drop-shadow-2xl rounded-xl p-5">
+            <h1 className="font-SolidenTrialBoldExpanded text-lg">
+              James Torff
+            </h1>
+            <h1 className="font-SolidenTrialRegular text-xs pb-2">Bulgaria</h1>
 
-            <div>
-              <input type="checkbox" className="mt-5" />
-              <label className="font-GilroyRegular pl-2">
-                I agree to the terms and conditions.
-              </label>
-            </div>
+            <h1 className="font-SolidenTrialRegular">
+              "Great place, it has become our favorite and we will definitely
+              come back again.“
+            </h1>
+          </div>
+        </div>
 
-            <button className="w-full bg-[#FF6241] py-3 text-white font-GilroyRegular rounded-lg text-xs mt-2 md:text-base">
-              Search
-            </button>
+        <div className="w-screen md:w-1/2 h-fit px-4 md:pr-12 lg:px-[10vw] pt-4 pb-20">
+          <div className="w-full h-fit bg-white drop-shadow-2xl rounded-xl p-5">
+            <h1 className="font-SolidenTrialBoldExpanded text-lg">
+              James Torff
+            </h1>
+            <h1 className="font-SolidenTrialRegular text-xs pb-2">Bulgaria</h1>
+
+            <h1 className="font-SolidenTrialRegular">
+              "Great place, it has become our favorite and we will definitely
+              come back again.“
+            </h1>
           </div>
         </div>
       </div>
