@@ -20,3 +20,18 @@
   font-family: "SolidenTrialBoldExpanded";
   src: url("./assets/fonts/SolidenTrial-BoldExpanded.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: "GilroyRegular";
+  src: url("./assets/fonts/Gilroy-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "GilroyBold";
+  src: url("./assets/fonts/Gilroy-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "GilroyExtraBold";
+  src: url("./assets/fonts/Gilroy-ExtraBold.ttf") format("truetype");
+}
