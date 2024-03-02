@@ -6,6 +6,8 @@ import DescriptionContainer from "../Components/Rental/DescriptionContainer";
 import SearchContainer from "../Components/Rental/SearchContainer";
 import ReviewsSection from "../Components/Rental/ReviewsSection";
 import Accordion from "../Components/Rental/Accordion";
+import FaqBox from "../Components/Rental/FaqBox";
+import Footer from "../Components/Home/Footer/Footer";
 
 const Rental = () => {
   return (
@@ -26,7 +28,7 @@ const Rental = () => {
           Surroundings:
         </h1>
 
-        <div className="w-screen grid grid-rows-6 md:grid-rows-2 md:grid-cols-3 lg:px-[10vw]">
+        <div className="w-screen grid grid-rows-6 md:grid-rows-2 md:grid-cols-3 lg:px-[10vw] pb-20">
           <Accordion />
           <Accordion />
           <Accordion />
@@ -34,6 +36,20 @@ const Rental = () => {
           <Accordion />
           <Accordion />
         </div>
+
+        <div className="w-screen lg:px-[10vw] bg-[#F9F2DF] py-20">
+          <h1 className="overflow-hidden text-[#464646] text-center text-2xl min-[400px]:text-3xl md:text-4xl xl:text-5xl font-SolidenTrialBoldExpanded">
+            Frequently Asked <span className="text-[#FF6241]">Questions</span>
+          </h1>
+          <FaqBox />
+          <FaqBox />
+          <FaqBox />
+          <FaqBox />
+          <FaqBox />
+          <FaqBox />
+        </div>
+
+        <Footer />
       </div>
     </React.Fragment>
   );
