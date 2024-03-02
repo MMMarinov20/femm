@@ -23,9 +23,9 @@ const Offer: React.FC = () => {
           </h1>
         </div>
         <div className="grid grid-rows-4 grid-cols-1 min-[380px]:grid-rows-2 min-[380px]:grid-cols-2 place-items-center lg:place-items-start gap-y-5 md:gap-5 pt-5 pb-20 md:p-20 lg:p-0 lg:gap-3 2xl:p-10">
-          <div className="bg-[url('./Home/People.svg')] md:bg-[url('./Home/PeopleBig.svg')] bg-center bg-no-repeat row-span-2 h-full w-full rounded-2xl drop-shadow-xl lg:drop-shadow-none 2xl:drop-shadow-xl"></div>
+          <div className="bg-[url('./Home/People.svg')] md:bg-[url('./Home/PeopleBig.svg')] bg-center bg-no-repeat row-span-2 h-full w-full rounded-2xl drop-shadow-xl lg:shadow-none 2xl:shadow-xl"></div>
 
-          <div className="row-span-1 bg-white w-fit min-h-fit rounded-2xl px-5 py-5 min-[380px]:py-4 min-[380px]:px-2 md:p-6 drop-shadow-xl lg:drop-shadow-none 2xl:drop-shadow-xl">
+          <div className="row-span-1 bg-white w-fit min-h-fit rounded-2xl px-5 py-5 min-[380px]:py-4 min-[380px]:px-2 md:p-6 shadow-xl lg:shadow-none 2xl:shadow-xl">
             <img
               src="./Home/Affordable.jpg"
               className="w-[20vw] min-[380px]:w-[10vw] md:w-[5vw] 2xl:w-[3vw]"
@@ -38,7 +38,7 @@ const Offer: React.FC = () => {
             </h1>
           </div>
 
-          <div className="row-span-1 bg-white w-fit min-h-fit rounded-2xl px-5 py-5 min-[380px]:py-4 min-[380px]:px-2 md:p-6 drop-shadow-xl lg:drop-shadow-none 2xl:drop-shadow-xl">
+          <div className="row-span-1 bg-white w-fit min-h-fit rounded-2xl px-5 py-5 min-[380px]:py-4 min-[380px]:px-2 md:p-6 shadow-xl lg:shadow-none 2xl:shadow-xl">
             <img
               src="./Home/Work.jpg"
               className="w-[20vw] min-[380px]:w-[10vw] md:w-[5vw] 2xl:w-[3vw]"

@@ -4,7 +4,7 @@ import { FaLocationDot } from "react-icons/fa6";
 const SearchContainer: React.FC = () => {
   return (
     <React.Fragment>
-      <div className="w-full lg:w-[60%] h-fit bg-white drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] rounded-2xl p-5 flex flex-col md:text-lg">
+      <div className="w-full lg:w-[60%] h-fit bg-white shadow-2xl rounded-2xl p-5 flex flex-col md:text-lg">
         <h1 className="font-GilroyBold text-2xl md:text-4xl overflow-hidden">
           Search
         </h1>

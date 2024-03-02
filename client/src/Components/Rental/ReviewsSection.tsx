@@ -17,7 +17,7 @@ const ReviewsSection: React.FC = () => {
           <Review />
           <Review />
         </div>
-        <div className="h-fit lg:w-1/2 bg-white drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] lg:mr-[10vw] mx-4 rounded-2xl p-5 flex flex-col gap-y-3 md:text-lg">
+        <div className="h-fit lg:w-1/2 bg-white shadow-2xl lg:mr-[10vw] mx-4 rounded-2xl p-5 flex flex-col gap-y-3 md:text-lg">
           <h1 className="font-SolidenTrialBoldExpanded text-2xl md:text-4xl">
             Write a review
           </h1>

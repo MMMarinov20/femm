@@ -10,7 +10,7 @@ function Accordion() {
 
   return (
     <div className="w-full px-4 py-10">
-      <div className="bg-white rounded-lg drop-shadow-xl">
+      <div className="bg-white rounded-lg shadow-xl">
         <div
           className="flex justify-between items-center p-4 cursor-pointer"
           onClick={toggleAccordion}

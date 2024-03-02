@@ -5,7 +5,7 @@ import { GiShower } from "react-icons/gi";
 const DescriptionContainer: React.FC = () => {
   return (
     <React.Fragment>
-      <div className="w-full h-fit bg-white drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] rounded-2xl p-5 flex flex-col gap-y-3 md:text-lg">
+      <div className="w-full h-fit bg-white shadow-2xl rounded-2xl p-5 flex flex-col gap-y-3 md:text-lg">
         <h1 className="font-SolidenTrialBoldExpanded text-2xl md:text-4xl">
           Loli's beach studio
         </h1>
