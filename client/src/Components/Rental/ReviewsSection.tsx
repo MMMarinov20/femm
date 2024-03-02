@@ -10,7 +10,7 @@ const ReviewsSection: React.FC = () => {
         See what guests liked the most:
       </h1>
 
-      <div className="flex flex-col lg:flex-row py-10">
+      <div className="flex flex-col lg:flex-row pt-10 pb-32">
         <div className="flex flex-col w-full lg:w-1/2">
           <Review />
           <Review />
