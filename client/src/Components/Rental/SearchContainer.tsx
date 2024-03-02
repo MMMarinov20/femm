@@ -50,7 +50,7 @@ const SearchContainer: React.FC = () => {
           </label>
         </div>
 
-        <button className="w-full bg-[#FF6241] py-3 text-white font-GilroyRegular rounded-lg text-xs mt-2 md:text-base">
+        <button className="w-full bg-[#FF6241] py-3 text-white font-GilroyRegular rounded-lg text-xs mt-2 md:text-base transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]">
           Search
         </button>
       </div>

@@ -16,7 +16,7 @@ const DescriptionContainer: React.FC = () => {
           Bulgaria
         </h1>
 
-        <button className="w-[40%] bg-[#FF6241] py-3 text-white font-SolidenTrialRegular rounded-lg text-xs md:text-base">
+        <button className="w-[40%] bg-[#FF6241] py-3 text-white font-SolidenTrialRegular rounded-lg text-xs md:text-base transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]">
           Book a Stay
         </button>
 

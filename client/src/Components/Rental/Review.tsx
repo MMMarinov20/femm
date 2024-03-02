@@ -1,0 +1,21 @@
+import React from "react";
+
+const Review: React.FC = () => {
+  return (
+    <React.Fragment>
+      <div className="w-full h-fit px-4 py-10 lg:pb-10 pt-4 lg:pl-[10vw]">
+        <div className="w-full h-fit bg-white drop-shadow-xl rounded-xl p-5">
+          <h1 className="font-SolidenTrialBoldExpanded text-lg">James Torff</h1>
+          <h1 className="font-SolidenTrialRegular text-xs pb-2">Bulgaria</h1>
+
+          <h1 className="font-SolidenTrialRegular">
+            "Great place, it has become our favorite and we will definitely come
+            back again.“
+          </h1>
+        </div>
+      </div>
+    </React.Fragment>
+  );
+};
+
+export default Review;
