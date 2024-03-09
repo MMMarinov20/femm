@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
 
   return (
     <React.Fragment>
-      <div className="hidden w-screen lg:flex flex-row items-center px-[10vw] justify-between py-10">
+      <div className="hidden w-screen lg:flex flex-row items-center px-[10vw] justify-between h-[15vh]">
         <div className="flex flex-row gap-x-5 xl:gap-x-10 xl:text-lg font-SolidenTrialRegular">
           <h1 className="font-black">Logo</h1>
           <Link to={"/"}>
@@ -46,9 +46,11 @@ const Navbar: React.FC = () => {
             onMouseLeave={handleBuildsDropdown}
             onMouseEnter={handleBuildsDropdown}
           >
-            <h1 className="inline-flex text-center cursor-pointer">
-              Builds <IoMdArrowDropdown />
-            </h1>
+            <Link to={"/property"}>
+              <h1 className="inline-flex text-center cursor-pointer">
+                Builds <IoMdArrowDropdown />
+              </h1>
+            </Link>
 
             <div
               className={`absolute text-gray-600 flex flex-col items-center justify-center text-center gap-y-5 pt-3 ${

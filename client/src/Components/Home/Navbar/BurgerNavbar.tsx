@@ -36,7 +36,7 @@ const BurgerNavbar: React.FC<Props> = (props) => {
             showMenu ? "visible" : "hidden"
           }`}
         >
-          <div className="flex items-center justify-between w-full py-4">
+          <div className="flex items-center justify-between w-full h-[10vh]">
             <h1 className="text-2xl font-bold">Logo</h1>
             <RxHamburgerMenu
               className="text-3xl cursor-pointer"
@@ -64,12 +64,14 @@ const BurgerNavbar: React.FC<Props> = (props) => {
               )}
             </div>
             <div className="">
-              <h1
-                className="cursor-pointer inline-flex items-center"
-                onClick={toggleBuilds}
-              >
-                Builds <IoMdArrowDropdown />
-              </h1>
+              <Link to={"/property"}>
+                <h1
+                  className="cursor-pointer inline-flex items-center"
+                  onClick={toggleBuilds}
+                >
+                  Builds <IoMdArrowDropdown />
+                </h1>
+              </Link>
               {showBuilds && (
                 <div className="text-center text-sm min-[350px]:text-base md:text-lg text-gray-600 flex flex-col pt-2 gap-y-2">
                   <h1>Option 1</h1>
@@ -99,7 +101,7 @@ const BurgerNavbar: React.FC<Props> = (props) => {
 
       {/* Nav */}
       <div
-        className="w-full h-16 flex items-center justify-between px-4 lg:hidden"
+        className="w-full h-[10vh] flex items-center justify-between px-4 lg:hidden"
         style={{ backgroundColor: props.color }}
       >
         <div>

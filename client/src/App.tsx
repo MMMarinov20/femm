@@ -4,6 +4,7 @@ import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Rental from "./Pages/Rental";
+import Property from "./Pages/Property";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/rental" element={<Rental />} />
+          <Route path="/property" element={<Property />} />
         </Routes>
       </Router>
     </React.Fragment>
