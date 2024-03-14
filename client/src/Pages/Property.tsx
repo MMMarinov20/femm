@@ -2,6 +2,7 @@ import React from "react";
 import Landing from "../Components/Property/Landing";
 import Info from "../Components/Property/Info";
 import Box from "../Components/Property/Box";
+import CarouselSlider from "../Components/Property/CarouselSlider";
 
 const Property = () => {
   return (
@@ -23,6 +24,10 @@ const Property = () => {
           <Box />
           <Box />
           <Box />
+        </div>
+
+        <div className="w-screen px-0 overflow-hidden">
+          <CarouselSlider />
         </div>
       </div>
     </React.Fragment>
