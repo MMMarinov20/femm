@@ -26,21 +26,21 @@ const CarouselSlider = () => {
   return (
     <div className="w-full px-0">
       <Slider {...settings} className="overflow-hidden">
-        <div>
+        <div className="lg:px-10 focus:outline-none">
           <img
             src="./Property/SliderImage.svg"
             alt="Image 1"
             className="w-full overflow-hidden"
           />
         </div>
-        <div>
+        <div className="lg:px-10">
           <img
             src="./Property/SliderImage.svg"
             alt="Image 2"
             className="w-full overflow-hidden"
           />
         </div>
-        <div>
+        <div className="lg:px-10">
           <img
             src="./Property/SliderImage.svg"
             alt="Image 3"

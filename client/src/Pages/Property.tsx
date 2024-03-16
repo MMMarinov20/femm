@@ -3,6 +3,7 @@ import Landing from "../Components/Property/Landing";
 import Info from "../Components/Property/Info";
 import Box from "../Components/Property/Box";
 import CarouselSlider from "../Components/Property/CarouselSlider";
+import Properties from "../Components/Property/Properties";
 
 const Property = () => {
   return (
@@ -26,9 +27,14 @@ const Property = () => {
           <Box />
         </div>
 
-        <div className="w-screen px-0 overflow-hidden">
+        <div className="w-screen px-0 overflow-hidden text-center">
+          <h1 className="font-SolidenTrialBoldExpanded text-3xl pb-10 md:text-5xl 2xl:text-6xl">
+            Gallery
+          </h1>
           <CarouselSlider />
         </div>
+
+        <Properties />
       </div>
     </React.Fragment>
   );
