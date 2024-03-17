@@ -4,6 +4,8 @@ import Info from "../Components/Property/Info";
 import Box from "../Components/Property/Box";
 import CarouselSlider from "../Components/Property/CarouselSlider";
 import Properties from "../Components/Property/Properties";
+import Advantage from "../Components/Property/Advantage";
+import Footer from "./../Components/Home/Footer/Footer";
 
 const Property = () => {
   return (
@@ -35,6 +37,19 @@ const Property = () => {
         </div>
 
         <Properties />
+
+        <div className="min-h-fit pb-20">
+          <h1 className="font-SolidenTrialBoldExpanded text-3xl px-4 text-center md:text-5xl 2xl:text-6xl overflow-hidden">
+            Advantages Of Your <span className="text-[#FF6241]">New</span> Home
+          </h1>
+          <div className="w-screen py-20 px-4 grid gap-y-10 place-items-center lg:grid-cols-2 xl:grid-cols-3">
+            <Advantage />
+            <Advantage />
+            <Advantage />
+          </div>
+        </div>
+
+        <Footer />
       </div>
     </React.Fragment>
   );

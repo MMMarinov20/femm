@@ -19,6 +19,11 @@ const Properties: React.FC = () => {
               alt="Property"
               className="w-full h-full"
             />
+            <img
+              src="./Property/Property.svg"
+              alt="Property"
+              className="w-full h-full"
+            />
           </div>
         </div>
       </div>
