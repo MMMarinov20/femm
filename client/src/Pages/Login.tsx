@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Navbar from "../Components/Home/Navbar/Navbar";
 import BurgerNavbar from "../Components/Home/Navbar/BurgerNavbar";
 import { HiOutlineMail } from "react-icons/hi";
@@ -7,8 +7,25 @@ import Footer from "./../Components/Home/Footer/Footer";
 import Input from "../Components/Login/Input";
 import Icons from "../Components/Login/Icons";
 import Header from "../Components/Login/Header";
+import { handleLogin } from "../services/authService";
 
 const Login: React.FC = () => {
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const email = emailRef.current?.value || "";
+    const password = passwordRef.current?.value || "";
+
+    try {
+      await handleLogin(email, password);
+      emailRef.current!.value = passwordRef.current!.value = "";
+    } catch (error: any) {
+      alert(error.message);
+    }
+  };
+
   return (
     <React.Fragment>
       <Navbar />
@@ -17,16 +34,18 @@ const Login: React.FC = () => {
         <div className="w-full min-h-fit my-16 bg-white shadow-2xl rounded-2xl p-5 lg:p-0 lg:flex lg:flex-row lg:items-center">
           <form
             className="w-full lg:w-1/2 text-center md:flex md:flex-col md:items-center"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
           >
             <Header heading="Don't have an account yet? " method="Sign up" />
 
             <Input
+              ref={emailRef}
               placeholder="Email Address"
               type="email"
               Icon={HiOutlineMail}
             />
             <Input
+              ref={passwordRef}
               placeholder="Password"
               type="password"
               Icon={HiOutlineLockClosed}

@@ -39,3 +39,21 @@ export const handleRegister = async (
     throw new Error("Registration failed");
   }
 };
+
+export const handleLogin = async (email: string, password: string) => {
+  if (!email || !password) {
+    alert("Please enter all fields");
+    return;
+  }
+
+  try {
+    const user = await apiService.post("login", {
+      email,
+      password,
+    });
+
+    user && alert("Login successful");
+  } catch (error) {
+    throw new Error("Invalid email or password");
+  }
+};
