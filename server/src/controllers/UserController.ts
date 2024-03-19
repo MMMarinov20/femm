@@ -9,6 +9,8 @@ export const UserController = {
       const userData: UserModel.User = req.body;
       const newUser = await UserModel.createUser(userData);
       res.status(201).json(newUser);
+
+      console.log("User created:", newUser);
     } catch (error) {
       console.error("Error creating user:", error);
       res.status(500).json({ error: "Could not create user" });

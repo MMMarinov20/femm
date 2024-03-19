@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Navbar from "../Components/Home/Navbar/Navbar";
 import BurgerNavbar from "../Components/Home/Navbar/BurgerNavbar";
 import { HiOutlineMail } from "react-icons/hi";
@@ -8,8 +8,34 @@ import Footer from "./../Components/Home/Footer/Footer";
 import Input from "../Components/Login/Input";
 import Icons from "../Components/Login/Icons";
 import Header from "../Components/Login/Header";
+import { apiService } from "../services/apiService";
 
 const Register = () => {
+  const firstNameRef = useRef<HTMLInputElement>(null);
+  const lastNameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const firstName = firstNameRef.current?.value || "";
+    const lastName = lastNameRef.current?.value || "";
+    const email = emailRef.current?.value || "";
+    const password = passwordRef.current?.value || "";
+
+    await apiService.post("register", {
+      email,
+      name: `${firstName} ${lastName}`,
+      password,
+    });
+
+    firstNameRef.current!.value =
+      lastNameRef.current!.value =
+      emailRef.current!.value =
+      passwordRef.current!.value =
+        "";
+  };
+
   return (
     <React.Fragment>
       <Navbar />
@@ -18,25 +44,40 @@ const Register = () => {
         <div className="w-full min-h-fit my-16 bg-white shadow-2xl rounded-2xl p-5 lg:p-0 lg:flex lg:flex-row lg:items-center">
           <form
             className="w-full lg:w-1/2 text-center md:flex md:flex-col md:items-center"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
           >
             <Header heading="Already have an account? " method="Login" />
 
-            <Input placeholder="First Name" type="text" Icon={FaRegUser} />
-            <Input placeholder="Last Name" type="text" Icon={FaRegUser} />
             <Input
+              ref={firstNameRef}
+              placeholder="First Name"
+              type="text"
+              Icon={FaRegUser}
+            />
+            <Input
+              ref={lastNameRef}
+              placeholder="Last Name"
+              type="text"
+              Icon={FaRegUser}
+            />
+            <Input
+              ref={emailRef}
               placeholder="Email Address"
               type="email"
               Icon={HiOutlineMail}
             />
             <Input
+              ref={passwordRef}
               placeholder="Password"
               type="password"
               Icon={HiOutlineLockClosed}
             />
 
             <div className="w-full md:w-1/2 lg:w-8/12 pt-2">
-              <button className="w-full bg-[#FF6241] rounded-lg py-2 2xl:py-3 text-white font-SolidenTrialRegular transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]">
+              <button
+                type="submit"
+                className="w-full bg-[#FF6241] rounded-lg py-2 2xl:py-3 text-white font-SolidenTrialRegular transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]"
+              >
                 Register
               </button>
             </div>
