@@ -8,7 +8,7 @@ import Footer from "./../Components/Home/Footer/Footer";
 import Input from "../Components/Login/Input";
 import Icons from "../Components/Login/Icons";
 import Header from "../Components/Login/Header";
-import { apiService } from "../services/apiService";
+import { handleRegister } from "./../services/authService";
 
 const Register = () => {
   const firstNameRef = useRef<HTMLInputElement>(null);
@@ -23,17 +23,16 @@ const Register = () => {
     const email = emailRef.current?.value || "";
     const password = passwordRef.current?.value || "";
 
-    await apiService.post("register", {
-      email,
-      name: `${firstName} ${lastName}`,
-      password,
-    });
-
-    firstNameRef.current!.value =
-      lastNameRef.current!.value =
-      emailRef.current!.value =
-      passwordRef.current!.value =
-        "";
+    try {
+      await handleRegister(firstName, lastName, email, password);
+      firstNameRef.current!.value =
+        lastNameRef.current!.value =
+        emailRef.current!.value =
+        passwordRef.current!.value =
+          "";
+    } catch (error: any) {
+      console.error("Registration failed:", error.message);
+    }
   };
 
   return (
