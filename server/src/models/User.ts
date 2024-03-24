@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
 
@@ -53,10 +54,13 @@ export const getAllUsers = async () => {
 };
 
 export const login = async (email: string, password: string) => {
-  return await prisma.users.findFirst({
+  const user = await prisma.users.findUnique({
     where: {
       email: email,
-      password: password,
     },
   });
+  console.log(password);
+  console.log(user?.password);
+
+  return user && (await bcrypt.compare(password, user.password)) ? user : null;
 };

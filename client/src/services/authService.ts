@@ -40,7 +40,10 @@ export const handleRegister = async (
   }
 };
 
-export const handleLogin = async (email: string, password: string) => {
+export const handleLogin = async (
+  email: string,
+  password: string
+): Promise<void> => {
   if (!email || !password) {
     alert("Please enter all fields");
     return;

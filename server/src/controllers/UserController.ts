@@ -1,22 +1,8 @@
-// File: src/controllers/userController.ts
-
 import { Request, Response } from "express";
 import * as UserModel from "../models/User";
+import bcrypt from "bcrypt";
 
 export const UserController = {
-  async createUser(req: Request, res: Response): Promise<void> {
-    try {
-      const userData: UserModel.User = req.body;
-      const newUser = await UserModel.createUser(userData);
-      res.status(201).json(newUser);
-
-      console.log("User created:", newUser);
-    } catch (error) {
-      console.error("Error creating user:", error);
-      res.status(500).json({ error: "Could not create user" });
-    }
-  },
-
   async getUserById(req: Request, res: Response): Promise<void> {
     try {
       const userId: number = parseInt(req.params.userId, 10);

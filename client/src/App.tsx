@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
@@ -8,6 +8,13 @@ import Property from "./Pages/Property";
 import Apartament from "./Pages/Apartament";
 
 function App() {
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    console.log(token);
+
+    //get the use email from the token
+  }, []);
+
   return (
     <React.Fragment>
       <Router>
