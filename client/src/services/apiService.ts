@@ -3,8 +3,12 @@ import axios from "axios";
 const BASE_URL = "http://localhost:3000/api";
 
 export const apiService = {
-  async get(path: string) {
-    const response = await axios.get(`${BASE_URL}/${path}`);
+  async get(path: string, token: string) {
+    const response = await axios.get(`${BASE_URL}/${path}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   },
   async post(path: string, data: any) {

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import Navbar from "../Components/Home/Navbar/Navbar";
 import BurgerNavbar from "../Components/Home/Navbar/BurgerNavbar";
 import { HiOutlineMail } from "react-icons/hi";
@@ -8,19 +8,26 @@ import Input from "../Components/Login/Input";
 import Icons from "../Components/Login/Icons";
 import Header from "../Components/Login/Header";
 import { handleLogin } from "../services/authService";
+import { useUser } from "../hooks/useUser";
+import { getCookie } from "../utils/utils";
 
 const Login: React.FC = () => {
+  //const { updateUser } = useUser();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const email = emailRef.current?.value || "";
-    const password = passwordRef.current?.value || "";
+    if (!emailRef.current || !passwordRef.current) return;
+
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
 
     try {
-      await handleLogin(email, password);
-      emailRef.current!.value = passwordRef.current!.value = "";
+      const user: any = await handleLogin(email, password);
+      localStorage.setItem("token", user.token);
+
+      emailRef.current.value = passwordRef.current.value = "";
     } catch (error: any) {
       alert(error.message);
     }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { useUser } from "../../../hooks/useUser";
 
 const Navbar: React.FC = () => {
   const [dropdownRentalsMenu, setDropdownRentalsMenu] = useState(false);

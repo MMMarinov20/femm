@@ -1,5 +1,5 @@
-// authService.ts
 import { apiService } from "./apiService";
+import { jwtDecode } from "jwt-decode";
 
 export const handleRegister = async (
   firstName: string,
@@ -43,20 +43,43 @@ export const handleRegister = async (
 export const handleLogin = async (
   email: string,
   password: string
-): Promise<void> => {
+): Promise<any> => {
   if (!email || !password) {
     alert("Please enter all fields");
     return;
   }
 
   try {
-    const user = await apiService.post("login", {
+    let user = await apiService.post("login", {
       email,
       password,
     });
 
     user && alert("Login successful");
+
+    const { token } = user;
+
+    getUserInfo(token)
+      .then((userInfo) => {
+        //console.log("User Info:", userInfo);
+        user = userInfo;
+      })
+      .catch((error) => {
+        console.error("Error fetching user information:", error);
+      });
+    return user;
   } catch (error) {
     throw new Error("Invalid email or password");
+  }
+};
+
+export const getUserInfo = async (token: string) => {
+  try {
+    const decodedToken: any = jwtDecode(token);
+    const id: number = decodedToken.id;
+    const response = await apiService.get(`users/${id}`, token);
+    return response;
+  } catch (error) {
+    throw new Error("Error fetching user information");
   }
 };

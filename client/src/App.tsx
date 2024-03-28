@@ -8,13 +8,6 @@ import Property from "./Pages/Property";
 import Apartament from "./Pages/Apartament";
 
 function App() {
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    console.log(token);
-
-    //get the use email from the token
-  }, []);
-
   return (
     <React.Fragment>
       <Router>
