@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import * as UserModel from "../models/User";
 import { User } from "../models/User";
 import bcrypt from "bcrypt";
+import Cookies from "js-cookie";
 
 const JWT_SECRET = process.env.JWT_SECRET || "";
 
@@ -71,11 +72,7 @@ export const AuthMiddleware = {
           expiresIn: "30m",
         });
 
-        res.cookie("token", token, {
-          httpOnly: true,
-          secure: true,
-          sameSite: "strict",
-        });
+        Cookies.set("token", token, { expires: 30 });
 
         res.status(201).json({ token });
       } else res.status(400).json({ error: "Could not create user" });

@@ -9,10 +9,8 @@ import Icons from "../Components/Login/Icons";
 import Header from "../Components/Login/Header";
 import { handleLogin } from "../services/authService";
 import { useUser } from "../hooks/useUser";
-import { getCookie } from "../utils/utils";
 
 const Login: React.FC = () => {
-  //const { updateUser } = useUser();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
@@ -24,9 +22,7 @@ const Login: React.FC = () => {
     const password = passwordRef.current.value;
 
     try {
-      const user: any = await handleLogin(email, password);
-      localStorage.setItem("token", user.token);
-
+      await handleLogin(email, password);
       emailRef.current.value = passwordRef.current.value = "";
     } catch (error: any) {
       alert(error.message);

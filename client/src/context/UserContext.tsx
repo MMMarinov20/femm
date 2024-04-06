@@ -1,6 +1,6 @@
 import React, { createContext, useState, ReactNode, useEffect } from "react";
 import { getUserInfo } from "../services/authService";
-
+import Cookies from "js-cookie";
 interface User {
   id: number | null;
   username: string;
@@ -9,7 +9,7 @@ interface User {
 
 interface UserContextType {
   user: User;
-  //updateUser: (id: number | null, username: string, email: string) => void;
+  updateUser: (id: number | null, username: string, email: string) => void;
 }
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -21,41 +21,43 @@ interface UserProviderProps {
 }
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
-  const [token, setToken] = useState<string>("");
   const [user, setUser] = useState<User>({
     id: null,
     username: "",
     email: "",
   });
 
-  // const updateUser = (id: number | null, username: string, email: string) => {
-  //   setUser({
-  //     ...user,
-  //     id,
-  //     username,
-  //     email,
-  //   });
-  // };
-
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = Cookies.get("token");
+
     if (token) {
-      setToken(token);
+      getUserInfo(token)
+        .then((userInfo) => {
+          const { id, username, email } = userInfo;
+          setUser({
+            id,
+            username,
+            email,
+          });
+        })
+        .catch((error) => {
+          console.error("Error fetching user information:", error);
+        });
     }
   }, []);
 
-  useEffect(() => {
-    if (token == "") return;
-    getUserInfo(token)
-      .then((userInfo) => {
-        setUser(userInfo);
-      })
-      .catch((error) => {
-        console.error("Error fetching user information:", error);
-      });
-  }, [token]);
+  const updateUser = (id: number | null, username: string, email: string) => {
+    setUser({
+      ...user,
+      id,
+      username,
+      email,
+    });
+  };
 
   return (
-    <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ user, updateUser }}>
+      {children}
+    </UserContext.Provider>
   );
 };

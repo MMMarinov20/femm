@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useUser } from "../../../hooks/useUser";
 
 const Navbar: React.FC = () => {
+  const { user } = useUser();
   const [dropdownRentalsMenu, setDropdownRentalsMenu] = useState(false);
   const [dropdownBuildsMenu, setDropdownBuildsMenu] = useState(false);
 
@@ -21,7 +22,9 @@ const Navbar: React.FC = () => {
         <div className="flex flex-row gap-x-5 xl:gap-x-10 xl:text-lg font-SolidenTrialRegular">
           <h1 className="font-black">Logo</h1>
           <Link to={"/"}>
-            <h1 className="cursor-pointer">Home</h1>
+            <h1 className="cursor-pointer">
+              {user.email ? user.email : "Home"}
+            </h1>
           </Link>
 
           <div
