@@ -30,11 +30,7 @@ export const AuthMiddleware = {
           expiresIn: "30m",
         });
 
-        res.cookie("token", token, {
-          httpOnly: true,
-          secure: true,
-          sameSite: "strict",
-        });
+        res.cookie("token", token, { httpOnly: true, secure: true });
 
         res.status(200).json({ token });
       } else res.status(401).json({ error: "Invalid email or password" });

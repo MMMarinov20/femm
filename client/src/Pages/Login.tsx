@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import Navbar from "../Components/Home/Navbar/Navbar";
 import BurgerNavbar from "../Components/Home/Navbar/BurgerNavbar";
 import { HiOutlineMail } from "react-icons/hi";
@@ -8,7 +8,7 @@ import Input from "../Components/Login/Input";
 import Icons from "../Components/Login/Icons";
 import Header from "../Components/Login/Header";
 import { handleLogin } from "../services/authService";
-import { useUser } from "../hooks/useUser";
+import Cookies from "js-cookie";
 
 const Login: React.FC = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -22,7 +22,11 @@ const Login: React.FC = () => {
     const password = passwordRef.current.value;
 
     try {
-      await handleLogin(email, password);
+      const token = await handleLogin(email, password);
+      if (token) {
+        Cookies.set("token", token["token"]);
+        window.location.href = "/";
+      }
       emailRef.current.value = passwordRef.current.value = "";
     } catch (error: any) {
       alert(error.message);

@@ -1,5 +1,6 @@
 import { apiService } from "./apiService";
 import { jwtDecode } from "jwt-decode";
+import Cookies from "js-cookie";
 
 export const handleRegister = async (
   firstName: string,
@@ -81,5 +82,17 @@ export const getUserInfo = async (token: string) => {
     return response;
   } catch (error) {
     throw new Error("Error fetching user information");
+  }
+};
+
+export const handleLogout = async (token: string) => {
+  try {
+    await apiService.post("logout", null, token);
+    alert("Logged out");
+    Cookies.remove("token");
+
+    window.location.href = "/login";
+  } catch (error) {
+    throw new Error("Error logging out");
   }
 };
