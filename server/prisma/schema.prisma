@@ -15,22 +15,20 @@ model Users {
   email   String   @unique
   name    String
   password String
+  nationality String @default("Unknown")
 }
 
 model Rentals {
   id      Int      @id @default(autoincrement())
   title   String
-  price   Int
   location String
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
 
 model Reviews {
   id      Int      @id @default(autoincrement())
-  title   String
+  text   String
   rentalId Int
   rating  Int
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }

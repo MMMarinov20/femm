@@ -8,6 +8,7 @@ export interface User {
   email: string;
   name: string;
   password: string;
+  nationality: string;
 }
 
 export const createUser = async (user: User) => {
@@ -59,8 +60,6 @@ export const login = async (email: string, password: string) => {
       email: email,
     },
   });
-  console.log(password);
-  console.log(user?.password);
 
   return user && (await bcrypt.compare(password, user.password)) ? user : null;
 };

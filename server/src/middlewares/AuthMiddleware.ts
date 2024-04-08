@@ -52,11 +52,12 @@ export const AuthMiddleware = {
 
   async register(req: Request, res: Response): Promise<void> {
     try {
-      const { email, name, password } = req.body;
+      const { email, name, password, nationality } = req.body;
       const userObj: User = {
         email,
         name,
         password,
+        nationality,
       };
 
       const saltRounds = 10;

@@ -6,6 +6,7 @@ interface User {
   id: number | null;
   username: string;
   email: string;
+  nationality: string;
 }
 
 interface UserContextType {
@@ -14,7 +15,8 @@ interface UserContextType {
     token: string,
     id: number | null,
     username: string,
-    email: string
+    email: string,
+    nationality: string
   ) => void;
 }
 
@@ -32,12 +34,12 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     id: null,
     username: "",
     email: "",
+    nationality: "",
   });
 
   useEffect(() => {
     const token = Cookies.get("token");
     console.log("Token:", token);
-    console.log(user);
     if (token) {
       getUserInfo(token)
         .then((userInfo) => {
@@ -47,6 +49,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
             id,
             username,
             email,
+            nationality: "",
           });
         })
         .catch((error) => {
@@ -58,6 +61,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         id: null,
         username: "",
         email: "",
+        nationality: "",
       });
     }
   }, []);
@@ -66,7 +70,8 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     token: string,
     id: number | null,
     username: string,
-    email: string
+    email: string,
+    nationality: string
   ) => {
     setUser({
       ...user,
@@ -74,6 +79,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
       id,
       username,
       email,
+      nationality,
     });
   };
 
