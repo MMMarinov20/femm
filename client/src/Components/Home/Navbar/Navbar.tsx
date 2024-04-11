@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
             onMouseLeave={handleRentalsDropdown}
             onMouseEnter={handleRentalsDropdown}
           >
-            <Link to={"/rental"}>
+            <Link to={"/rental/1/Loli's beach studio"}>
               <h1 className="inline-flex text-center cursor-pointer">
                 Our Rentals <IoMdArrowDropdown />
               </h1>

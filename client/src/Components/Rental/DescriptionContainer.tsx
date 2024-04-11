@@ -1,13 +1,13 @@
 import React from "react";
 import { FaLocationDot } from "react-icons/fa6";
 import { GiShower } from "react-icons/gi";
-
+import rentals from "../../data/rentals.json";
 const DescriptionContainer: React.FC = () => {
   return (
     <React.Fragment>
       <div className="w-full h-fit bg-white shadow-2xl rounded-2xl p-5 flex flex-col gap-y-3 md:text-lg">
         <h1 className="font-SolidenTrialBoldExpanded text-2xl md:text-4xl">
-          Loli's beach studio
+          {rentals.rentals[0].title}
         </h1>
 
         <h1 className="inline-flex">

@@ -8,6 +8,7 @@ import ReviewsSection from "../Components/Rental/ReviewsSection";
 import Accordion from "../Components/Rental/Accordion";
 import FaqBox from "../Components/Rental/FaqBox";
 import Footer from "../Components/Home/Footer/Footer";
+import rentals from "../data/rentals.json";
 
 const Rental = () => {
   return (
