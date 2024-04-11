@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../Components/Home/Navbar/Navbar";
 import BurgerNavbar from "../Components/Home/Navbar/BurgerNavbar";
 import GallerySlider from "../Components/Rental/GallerySlider";
@@ -11,6 +11,14 @@ import Footer from "../Components/Home/Footer/Footer";
 import rentals from "../data/rentals.json";
 
 const Rental = () => {
+  const [data, setData] = useState<any>(null);
+
+  useEffect(() => {
+    const id = window.location.pathname.split("/")[2];
+
+    const data = rentals.rentals.find((rental) => rental.id === parseInt(id));
+    setData(data);
+  }, []);
   return (
     <React.Fragment>
       <Navbar />
@@ -19,7 +27,13 @@ const Rental = () => {
         <GallerySlider />
 
         <div className="flex flex-col w-screen h-fit py-32 px-4 lg:px-[10vw] lg:flex-row gap-y-20 lg:gap-x-5">
-          <DescriptionContainer />
+          <DescriptionContainer
+            title={data.title}
+            location={data.location}
+            features={data.features}
+            description={data.description}
+            rating={data.rating}
+          />
           <SearchContainer />
         </div>
 
