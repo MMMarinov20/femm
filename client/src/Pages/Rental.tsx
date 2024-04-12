@@ -10,14 +10,40 @@ import FaqBox from "../Components/Rental/FaqBox";
 import Footer from "../Components/Home/Footer/Footer";
 import rentals from "../data/rentals.json";
 
+interface RentalData {
+  id: number;
+  title: string;
+  location: string;
+  features: string[];
+  description: string;
+  rating: number;
+  surroundings: {
+    [key: string]: { building: string }[];
+  };
+  faq: {
+    [key: string]: string;
+  };
+}
+
 const Rental = () => {
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<RentalData>({
+    id: 0,
+    title: "",
+    location: "",
+    features: [],
+    description: "",
+    rating: 0,
+    surroundings: {},
+    faq: {},
+  });
 
   useEffect(() => {
     const id = window.location.pathname.split("/")[2];
 
-    const data = rentals.rentals.find((rental) => rental.id === parseInt(id));
-    setData(data);
+    const rental = rentals.rentals.find((rental) => rental.id === parseInt(id));
+    if (!rental) return;
+
+    setData(rental);
   }, []);
   return (
     <React.Fragment>
@@ -44,24 +70,19 @@ const Rental = () => {
         </h1>
 
         <div className="w-screen grid grid-rows-6 md:grid-rows-2 md:grid-cols-3 lg:px-[10vw] pb-20">
-          <Accordion />
-          <Accordion />
-          <Accordion />
-          <Accordion />
-          <Accordion />
-          <Accordion />
+          <Accordion surrounding={data.surroundings} />
+          <Accordion surrounding={data.surroundings} />
+          <Accordion surrounding={data.surroundings} />
+          <Accordion surrounding={data.surroundings} />
+          <Accordion surrounding={data.surroundings} />
+          <Accordion surrounding={data.surroundings} />
         </div>
 
         <div className="w-screen lg:px-[10vw] bg-[#F9F2DF] py-20">
           <h1 className="overflow-hidden text-[#464646] text-center text-2xl min-[400px]:text-3xl md:text-4xl xl:text-5xl font-SolidenTrialBoldExpanded">
             Frequently Asked <span className="text-[#FF6241]">Questions</span>
           </h1>
-          <FaqBox />
-          <FaqBox />
-          <FaqBox />
-          <FaqBox />
-          <FaqBox />
-          <FaqBox />
+          <FaqBox faq={data.faq} />
         </div>
 
         <Footer />
