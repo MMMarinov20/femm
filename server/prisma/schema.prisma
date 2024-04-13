@@ -11,24 +11,29 @@ datasource db {
 }
 
 model Users {
-  id      Int      @id @default(autoincrement())
-  email   String   @unique
-  name    String
-  password String
-  nationality String @default("Unknown")
+  id           Int       @id @default(autoincrement())
+  email        String    @unique
+  name         String
+  password     String
+  nationality  String    @default("Unknown")
+  reviews    Reviews[]
 }
 
 model Rentals {
-  id      Int      @id @default(autoincrement())
-  title   String
-  location String
-  createdAt DateTime @default(now())
+  id           Int       @id @default(autoincrement())
+  title        String
+  location     String
+  createdAt    DateTime  @default(now())
+  reviews      Reviews[] 
 }
 
 model Reviews {
-  id      Int      @id @default(autoincrement())
-  text   String
-  rentalId Int
-  rating  Int
-  createdAt DateTime @default(now())
+  id           Int       @id @default(autoincrement())
+  text         String
+  rental       Rentals   @relation(fields: [rentalId], references: [id])
+  rentalId     Int
+  user         Users     @relation(fields: [userId], references: [id])
+  userId       Int
+  rating       Int
+  createdAt    DateTime  @default(now())
 }

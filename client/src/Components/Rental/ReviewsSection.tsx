@@ -2,8 +2,10 @@ import React from "react";
 import Review from "./Review";
 import { MdRateReview } from "react-icons/md";
 import StarRating from "./StarRating";
+import { useUser } from "../../hooks/useUser";
 
 const ReviewsSection: React.FC = () => {
+  const { user } = useUser();
   return (
     <React.Fragment>
       <h1 className="font-SolidenTrialBoldExpanded text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl lg:px-[10vw] px-4">
@@ -27,6 +29,14 @@ const ReviewsSection: React.FC = () => {
           </h1>
 
           <div className="flex flex-col gap-y-5 pt-3">
+            <div className="w-[100%] h-12 border-[1px] border-[#8C8C8C] rounded-lg flex flex-row items-center px-3">
+              <MdRateReview className="text-2xl mr-3 text-[#FF6241]" />
+              <select className="outline-none font-GilroyRegular w-full h-full">
+                <option value="0">Select your reservation</option>
+              </select>
+            </div>
+          </div>
+          <div className="flex flex-col gap-y-5 pt-3">
             <div className="w-[100%] h-[15vh] border-[1px] border-[#8C8C8C] rounded-lg flex flex-row items-start p-3">
               <MdRateReview className="text-2xl mr-3 text-[#FF6241]" />
               <textarea
@@ -38,7 +48,7 @@ const ReviewsSection: React.FC = () => {
           <StarRating />
 
           <button className="bg-[#FF6241] text-white font-SolidenTrialRegular text-lg rounded-lg py-3 transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]">
-            Submit
+            {user.id ? "Submit" : "Sign in to submit"}
           </button>
         </div>
       </div>
