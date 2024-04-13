@@ -9,6 +9,7 @@ import Accordion from "../Components/Rental/Accordion";
 import FaqBox from "../Components/Rental/FaqBox";
 import Footer from "../Components/Home/Footer/Footer";
 import rentals from "../data/rentals.json";
+import Availability from "../Components/Rental/Availability";
 
 interface RentalData {
   id: number;
@@ -64,6 +65,8 @@ const Rental = () => {
         </div>
 
         <ReviewsSection />
+
+        <Availability />
 
         <h1 className="font-SolidenTrialBoldExpanded text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl lg:px-[10vw] px-4">
           Surroundings:
