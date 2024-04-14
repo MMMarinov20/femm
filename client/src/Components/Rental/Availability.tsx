@@ -61,8 +61,33 @@ const Availability: React.FC = () => {
               <option>1 Room</option>
             </select>
 
-            <button className="w-[80%] lg:w-[50%] bg-[#FF6241] rounded-lg p-2 focus:outline-none font-SolidenTrialExpanded text-xs min-[350px]:text-base lg:text-xs text-white">
+            <button className="w-[80%] lg:w-[50%] bg-[#FF6241] rounded-lg p-2 focus:outline-none font-SolidenTrialExpanded text-xs min-[350px]:text-base lg:text-xs xl:text-base text-white">
               Check Availability
+            </button>
+          </div>
+        </div>
+        <div className="w-full bg-[#F2F2F2] my-5 pb-5 md:pb-20 rounded-xl">
+          <div className="font-SolidenTrialBoldExpanded text-xs min-[350px]:text-base w-full xl:text-xl text-white bg-[#FF6241] flex flex-row px-4 md:py-3 md:gap-x-5 lg:gap-x-10 rounded-t-xl">
+            <h1>Type of accommodation</h1>
+            <h1>Number of Guests</h1>
+          </div>
+
+          <div className="grid grid-cols-2 grid-rows-2 lg:grid-cols-3 lg:grid-rows-1 xl:w-[60%] gap-x-3 gap-y-3 px-4 pt-5">
+            <div className="bg-white w-full rounded-lg p-1">
+              <h1 className="font-GilroyBold text-[#4C76B2] underline">
+                1 bedroom studio
+              </h1>
+              <h1 className="font-GilroyRegular">1 double bed</h1>
+            </div>
+            <div className="bg-white w-full rounded-lg p-1">
+              <h1 className="font-GilroyBold text-[#4C76B2] underline">
+                1 bedroom studio
+              </h1>
+              <h1 className="font-GilroyRegular">1 double bed</h1>
+            </div>
+            <button className="bg-[#FF6241] w-full text-white rounded-lg p-2 focus:outline-none font-SolidenTrialExpanded text-base">
+              {" "}
+              Show Price
             </button>
           </div>
         </div>
