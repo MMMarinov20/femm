@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { format } from "date-fns";
 import { DateRange, DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 
-const Availability: React.FC = () => {
+interface Props {
+  date: DateRange;
+  adults: number;
+}
+
+const Availability: React.FC<Props> = (props) => {
   const [range, setRange] = useState<DateRange | undefined>();
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+
+  useEffect(() => {
+    setRange(props.date);
+  }, [props.date]);
 
   let footer = <p>Check-in date - departure date</p>;
   if (range?.from) {
@@ -21,7 +30,7 @@ const Availability: React.FC = () => {
   }
 
   return (
-    <div className="px-4 pb-32 w-full lg:px-[10vw]">
+    <div className="px-4 pb-32 w-full lg:px-[10vw]" id="availability">
       <div className="py-5 shadow-2xl w-full px-4 rounded-xl">
         <h1 className="font-SolidenTrialBoldExpanded text-4xl pb-3">
           Availability
@@ -30,6 +39,7 @@ const Availability: React.FC = () => {
           <input
             type="text"
             placeholder={footer.props.children}
+            value={footer.props.children}
             className="w-full bg-white border-[#464646] border-[1px] rounded-lg p-2 focus:outline-none placeholder:font-GilroyRegular"
             onClick={() => setIsCalendarOpen(!isCalendarOpen)}
           />
@@ -46,7 +56,10 @@ const Availability: React.FC = () => {
             </div>
           )}
           <div className="flex flex-row justify-between gap-x-10 py-5 lg:p-0 lg:gap-x-5 lg:px-5 lg:w-full">
-            <select className="w-[80%] lg:w-[50%] bg-white border-[#464646] border-[1px] rounded-lg p-2 focus:outline-none font-GilroyRegular">
+            <select
+              value={props.adults != 0 ? props.adults : 1}
+              className="w-[80%] lg:w-[50%] bg-white border-[#464646] border-[1px] rounded-lg p-2 focus:outline-none font-GilroyRegular"
+            >
               <option value={1}>1 Adult</option>
               <option value={2}>2 Adults</option>
             </select>

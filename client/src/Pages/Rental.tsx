@@ -10,6 +10,7 @@ import FaqBox from "../Components/Rental/FaqBox";
 import Footer from "../Components/Home/Footer/Footer";
 import rentals from "../data/rentals.json";
 import Availability from "../Components/Rental/Availability";
+import { DateRange } from "react-day-picker";
 
 interface RentalData {
   id: number;
@@ -26,6 +27,11 @@ interface RentalData {
   };
 }
 
+export interface ReservationData {
+  range: DateRange;
+  adults: number;
+}
+
 const Rental = () => {
   const [data, setData] = useState<RentalData>({
     id: 0,
@@ -37,6 +43,15 @@ const Rental = () => {
     surroundings: {},
     faq: {},
   });
+
+  const [reservationData, setReservationData] = useState<ReservationData>({
+    range: { from: new Date(), to: new Date() },
+    adults: 0,
+  });
+
+  const receiveReservationData = (data: ReservationData) => {
+    setReservationData(data);
+  };
 
   useEffect(() => {
     const id = window.location.pathname.split("/")[2];
@@ -61,12 +76,15 @@ const Rental = () => {
             description={data.description}
             rating={data.rating}
           />
-          <SearchContainer />
+          <SearchContainer setReservationData={receiveReservationData} />
         </div>
 
         <ReviewsSection />
 
-        <Availability />
+        <Availability
+          date={reservationData.range}
+          adults={reservationData.adults}
+        />
 
         <h1 className="font-SolidenTrialBoldExpanded text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl lg:px-[10vw] px-4">
           Surroundings:
