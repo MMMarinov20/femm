@@ -17,6 +17,7 @@ model Users {
   password     String
   nationality  String    @default("Unknown")
   reviews    Reviews[]
+  bookings   Bookings[]
 }
 
 model Rentals {
@@ -25,6 +26,7 @@ model Rentals {
   location     String
   createdAt    DateTime  @default(now())
   reviews      Reviews[] 
+  bookings     Bookings[]
 }
 
 model Reviews {
@@ -35,5 +37,16 @@ model Reviews {
   user         Users     @relation(fields: [userId], references: [id])
   userId       Int
   rating       Int
+  createdAt    DateTime  @default(now())
+}
+
+model Bookings {
+  id           Int       @id @default(autoincrement())
+  rental       Rentals   @relation(fields: [rentalId], references: [id])
+  rentalId     Int
+  user         Users     @relation(fields: [userId], references: [id])
+  userId       Int
+  startDate    DateTime
+  endDate      DateTime
   createdAt    DateTime  @default(now())
 }

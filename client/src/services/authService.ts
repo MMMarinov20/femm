@@ -29,7 +29,7 @@ export const handleRegister = async (
   }
 
   try {
-    await apiService.post("register", {
+    await apiService.post("auth/register", {
       email,
       name: `${firstName} ${lastName}`,
       password,
@@ -51,7 +51,7 @@ export const handleLogin = async (
   }
 
   try {
-    let user = await apiService.post("login", {
+    let user = await apiService.post("auth/login", {
       email,
       password,
     });
