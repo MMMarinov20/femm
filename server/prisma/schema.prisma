@@ -48,5 +48,6 @@ model Bookings {
   userId       Int
   startDate    DateTime
   endDate      DateTime
+  adults       Int
   createdAt    DateTime  @default(now())
 }
