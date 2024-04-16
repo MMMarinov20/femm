@@ -5,16 +5,21 @@ export const createBooking = async (
   userId: number,
   startDate: Date,
   endDate: Date,
-  adults: number
+  adults: number,
+  token: string
 ) => {
   try {
-    await apiService.post("createBooking", {
-      rentalId,
-      userId,
-      startDate,
-      endDate,
-      adults,
-    });
+    await apiService.post(
+      "createBooking",
+      {
+        rentalId,
+        userId,
+        startDate,
+        endDate,
+        adults,
+      },
+      token
+    );
     alert("Booking successful");
   } catch (error) {
     throw new Error("Booking failed");

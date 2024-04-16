@@ -8,6 +8,7 @@ export interface Booking {
   rentalId: number;
   startDate: Date;
   endDate: Date;
+  adults: number;
   createdAt: Date;
 }
 

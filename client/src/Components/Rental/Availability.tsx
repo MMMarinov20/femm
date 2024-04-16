@@ -2,21 +2,31 @@ import React, { useState, useEffect, useRef } from "react";
 import { format } from "date-fns";
 import { DateRange, DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
-
+import { createBooking } from "../../services/bookingService";
+import { useUser } from "../../hooks/useUser";
 interface Props {
   date: DateRange;
   adults: number;
 }
 
 const Availability: React.FC<Props> = (props) => {
+  const { user } = useUser();
+
   const [range, setRange] = useState<DateRange | undefined>();
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const [rentalId, setRentalId] = useState<number>(1);
 
   const adults = useRef<HTMLSelectElement>(null);
+  const bookButton = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     setRange(props.date);
   }, [props.date]);
+
+  useEffect(() => {
+    const rentalId = parseInt(window.location.pathname.split("/")[2]);
+    setRentalId(rentalId);
+  }, []);
 
   let footer = <p>Check-in date - departure date</p>;
   if (range?.from) {
@@ -41,6 +51,36 @@ const Availability: React.FC<Props> = (props) => {
       console.log("Error: End date cannot be earlier than start date");
       return;
     }
+
+    if (bookButton.current) bookButton.current.style.visibility = "visible";
+  };
+
+  const handleBooking = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!user.id) return alert("Please login to book");
+
+    const adultsValue = adults.current?.value;
+    const startDate = range?.from;
+    const endDate = range?.to;
+
+    if (endDate && startDate && endDate <= startDate) {
+      console.log("Error: End date cannot be earlier than start date");
+      return;
+    }
+
+    try {
+      await createBooking(
+        rentalId,
+        user.id,
+        startDate!,
+        endDate!,
+        parseInt(adultsValue!),
+        user.token
+      );
+      alert("Booking successful");
+    } catch (error) {
+      alert("Booking failed");
+    }
   };
 
   return (
@@ -61,7 +101,7 @@ const Availability: React.FC<Props> = (props) => {
             {isCalendarOpen && (
               <div className="absolute z-50 lg:mt-16 lg:w-fit bg-white rounded-lg shadow-lg">
                 <DayPicker
-                  defaultMonth={new Date(2022, 8)}
+                  // defaultMonth={new Date(2022, 8)}
                   mode="range"
                   selected={range}
                   onSelect={setRange}
@@ -105,7 +145,7 @@ const Availability: React.FC<Props> = (props) => {
               <h1>Number of Guests</h1>
             </div>
 
-            <div className="grid grid-cols-2 grid-rows-2 lg:grid-cols-3 lg:grid-rows-1 xl:w-[60%] gap-x-3 gap-y-3 px-4 pt-5">
+            <div className="grid grid-cols-2 grid-rows-2 lg:grid-cols-4 lg:grid-rows-1 xl:w-[60%] gap-x-3 gap-y-3 px-4 pt-5">
               <div className="bg-white w-full rounded-lg p-1">
                 <h1 className="font-GilroyBold text-[#4C76B2] underline">
                   1 bedroom studio
@@ -125,6 +165,16 @@ const Availability: React.FC<Props> = (props) => {
               >
                 {" "}
                 Show Price
+              </button>
+              <button
+                type="submit"
+                onClick={handleBooking}
+                ref={bookButton}
+                className="bg-[#FF6241] w-full text-white rounded-lg p-2 focus:outline-none font-SolidenTrialExpanded text-base"
+                style={{ visibility: "hidden" }}
+              >
+                {" "}
+                Book
               </button>
             </div>
           </div>
