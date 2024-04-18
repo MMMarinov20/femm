@@ -4,8 +4,9 @@ import { DateRange, DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import { createBooking } from "../../services/bookingService";
 import { useUser } from "../../hooks/useUser";
+import { Booking } from "../../models/Booking";
 interface Props {
-  date: DateRange;
+  date: DateRange | undefined;
   adults: number;
 }
 
@@ -68,15 +69,16 @@ const Availability: React.FC<Props> = (props) => {
       return;
     }
 
+    const booking: Booking = {
+      userId: user.id,
+      rentalId: rentalId,
+      startDate: startDate!,
+      endDate: endDate!,
+      adults: parseInt(adultsValue!),
+    };
+
     try {
-      await createBooking(
-        rentalId,
-        user.id,
-        startDate!,
-        endDate!,
-        parseInt(adultsValue!),
-        user.token
-      );
+      await createBooking(booking, user.token);
       alert("Booking successful");
     } catch (error) {
       alert("Booking failed");
@@ -101,7 +103,7 @@ const Availability: React.FC<Props> = (props) => {
             {isCalendarOpen && (
               <div className="absolute z-50 lg:mt-16 lg:w-fit bg-white rounded-lg shadow-lg">
                 <DayPicker
-                  // defaultMonth={new Date(2022, 8)}
+                  defaultMonth={range?.from || new Date()}
                   mode="range"
                   selected={range}
                   onSelect={setRange}

@@ -1,25 +1,8 @@
 import { apiService } from "./apiService";
-
-export const createBooking = async (
-  rentalId: number,
-  userId: number,
-  startDate: Date,
-  endDate: Date,
-  adults: number,
-  token: string
-) => {
+import { Booking } from "../models/Booking";
+export const createBooking = async (Booking: Booking, token: string) => {
   try {
-    await apiService.post(
-      "createBooking",
-      {
-        rentalId,
-        userId,
-        startDate,
-        endDate,
-        adults,
-      },
-      token
-    );
+    await apiService.post("createBooking", Booking, token);
     alert("Booking successful");
   } catch (error) {
     throw new Error("Booking failed");

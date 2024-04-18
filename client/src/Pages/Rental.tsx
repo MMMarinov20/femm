@@ -28,7 +28,7 @@ interface RentalData {
 }
 
 export interface ReservationData {
-  range: DateRange;
+  range: DateRange | undefined;
   adults: number;
 }
 
@@ -45,7 +45,7 @@ const Rental = () => {
   });
 
   const [reservationData, setReservationData] = useState<ReservationData>({
-    range: { from: new Date(), to: new Date() },
+    range: undefined,
     adults: 0,
   });
 
