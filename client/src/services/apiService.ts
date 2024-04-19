@@ -3,7 +3,7 @@ import axios from "axios";
 const BASE_URL = "http://localhost:3000/api";
 
 export const apiService = {
-  async get(path: string, token: string) {
+  async get(path: string, token?: string) {
     const response = await axios.get(`${BASE_URL}/${path}`, {
       headers: {
         Authorization: `Bearer ${token}`,

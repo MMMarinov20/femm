@@ -5,6 +5,7 @@ import "react-day-picker/dist/style.css";
 import { createBooking } from "../../services/bookingService";
 import { useUser } from "../../hooks/useUser";
 import { Booking } from "../../models/Booking";
+import { getAllBookings } from "../../services/bookingService";
 interface Props {
   date: DateRange | undefined;
   adults: number;
@@ -16,6 +17,10 @@ const Availability: React.FC<Props> = (props) => {
   const [range, setRange] = useState<DateRange | undefined>();
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [rentalId, setRentalId] = useState<number>(1);
+  const [bookings, setBookings] = useState<any[]>([]);
+  const [excludedDates, setExcludedDates] = useState<Set<Date>>(
+    new Set([new Date()])
+  );
 
   const adults = useRef<HTMLSelectElement>(null);
   const bookButton = useRef<HTMLButtonElement>(null);
@@ -25,7 +30,28 @@ const Availability: React.FC<Props> = (props) => {
   }, [props.date]);
 
   useEffect(() => {
+    const newExcludedDates = new Set<Date>(excludedDates);
+
+    bookings.forEach((booking: any) => {
+      const startDate = new Date(booking.startDate);
+      const endDate = new Date(booking.endDate);
+      if (endDate < new Date()) return;
+
+      const currentDate = new Date(startDate);
+      while (currentDate <= endDate) {
+        newExcludedDates.add(new Date(currentDate));
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+    });
+
+    setExcludedDates(newExcludedDates);
+  }, [bookings]);
+
+  useEffect(() => {
     const rentalId = parseInt(window.location.pathname.split("/")[2]);
+    const bookings = getAllBookings().then((bookings) => {
+      setBookings(bookings);
+    });
     setRentalId(rentalId);
   }, []);
 
@@ -109,6 +135,7 @@ const Availability: React.FC<Props> = (props) => {
                   onSelect={setRange}
                   footer={footer}
                   className="overflow-auto"
+                  disabled={[...excludedDates]}
                 />
               </div>
             )}
