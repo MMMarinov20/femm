@@ -8,15 +8,48 @@ import { getAllBookings } from "../../services/bookingService";
 import "react-day-picker/dist/style.css";
 
 interface Props {
-  range: DateRange | undefined;
+  date: DateRange | undefined;
+  updateRange: (range: DateRange | undefined) => void;
 }
 
 const Calendar: React.FC<Props> = (props) => {
   const [range, setRange] = useState<DateRange | undefined>();
+  const [bookings, setBookings] = useState<any[]>([]);
+  const [excludedDates, setExcludedDates] = useState<Set<Date>>(
+    new Set([new Date()])
+  );
 
   useEffect(() => {
-    setRange(props.range);
-  }, [props.range]);
+    setRange(props.date);
+  }, [props.date]);
+
+  useEffect(() => {
+    getAllBookings().then((bookings) => {
+      setBookings(bookings);
+    });
+  }, []);
+
+  useEffect(() => {
+    props.updateRange(range);
+  }, [range]);
+
+  useEffect(() => {
+    const newExcludedDates = new Set<Date>(excludedDates);
+
+    bookings.forEach((booking: any) => {
+      const startDate = new Date(booking.startDate);
+      const endDate = new Date(booking.endDate);
+      if (endDate < new Date()) return;
+
+      const currentDate = new Date(startDate);
+      while (currentDate <= endDate) {
+        newExcludedDates.add(new Date(currentDate));
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+    });
+
+    setExcludedDates(newExcludedDates);
+  }, [bookings]);
 
   return (
     <React.Fragment>

@@ -39,7 +39,6 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
 
   useEffect(() => {
     const token = Cookies.get("token");
-    console.log("Token:", token);
     if (token) {
       getUserInfo(token)
         .then((userInfo) => {
@@ -53,7 +52,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
           });
         })
         .catch((error) => {
-          console.error("Error fetching user information:", error);
+          Cookies.remove("token");
         });
     } else {
       setUser({

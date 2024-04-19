@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { format } from "date-fns";
-import { DateRange, DayPicker } from "react-day-picker";
+import { DateRange } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import { createBooking } from "../../services/bookingService";
 import { useUser } from "../../hooks/useUser";
 import { Booking } from "../../models/Booking";
-import { getAllBookings } from "../../services/bookingService";
+import Calendar from "./Calendar";
 interface Props {
   date: DateRange | undefined;
   adults: number;
@@ -17,10 +17,6 @@ const Availability: React.FC<Props> = (props) => {
   const [range, setRange] = useState<DateRange | undefined>();
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [rentalId, setRentalId] = useState<number>(1);
-  const [bookings, setBookings] = useState<any[]>([]);
-  const [excludedDates, setExcludedDates] = useState<Set<Date>>(
-    new Set([new Date()])
-  );
 
   const adults = useRef<HTMLSelectElement>(null);
   const bookButton = useRef<HTMLButtonElement>(null);
@@ -30,43 +26,13 @@ const Availability: React.FC<Props> = (props) => {
   }, [props.date]);
 
   useEffect(() => {
-    const newExcludedDates = new Set<Date>(excludedDates);
-
-    bookings.forEach((booking: any) => {
-      const startDate = new Date(booking.startDate);
-      const endDate = new Date(booking.endDate);
-      if (endDate < new Date()) return;
-
-      const currentDate = new Date(startDate);
-      while (currentDate <= endDate) {
-        newExcludedDates.add(new Date(currentDate));
-        currentDate.setDate(currentDate.getDate() + 1);
-      }
-    });
-
-    setExcludedDates(newExcludedDates);
-  }, [bookings]);
-
-  useEffect(() => {
     const rentalId = parseInt(window.location.pathname.split("/")[2]);
-    const bookings = getAllBookings().then((bookings) => {
-      setBookings(bookings);
-    });
     setRentalId(rentalId);
   }, []);
 
-  let footer = <p>Check-in date - departure date</p>;
-  if (range?.from) {
-    if (!range.to) {
-      footer = <p>{format(range.from, "PPP")}</p>;
-    } else if (range.to) {
-      footer = (
-        <p>
-          {format(range.from, "PPP")}–{format(range.to, "PPP")}
-        </p>
-      );
-    }
-  }
+  const updateRange = (range: DateRange | undefined) => {
+    setRange(range);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -121,22 +87,20 @@ const Availability: React.FC<Props> = (props) => {
           <div className="overflow-hidden lg:flex lg:flex-row lg:justify-between">
             <input
               type="text"
-              placeholder={footer.props.children}
-              value={footer.props.children}
+              value={
+                range
+                  ? `${format(
+                      range.from ?? new Date(),
+                      "MM/dd/yyyy"
+                    )} - ${format(range.to ?? new Date(), "MM/dd/yyyy")}`
+                  : "Check-in - Check-out"
+              }
               className="w-full bg-white border-[#464646] border-[1px] rounded-lg p-2 focus:outline-none placeholder:font-GilroyRegular"
               onClick={() => setIsCalendarOpen(!isCalendarOpen)}
             />
             {isCalendarOpen && (
               <div className="absolute z-50 lg:mt-16 lg:w-fit bg-white rounded-lg shadow-lg">
-                <DayPicker
-                  defaultMonth={range?.from || new Date()}
-                  mode="range"
-                  selected={range}
-                  onSelect={setRange}
-                  footer={footer}
-                  className="overflow-auto"
-                  disabled={[...excludedDates]}
-                />
+                <Calendar date={range} updateRange={updateRange} />
               </div>
             )}
             <div className="flex flex-row justify-between gap-x-10 py-5 lg:p-0 lg:gap-x-5 lg:px-5 lg:w-full">
