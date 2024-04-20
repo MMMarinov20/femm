@@ -1,12 +1,17 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { FaRegStar } from "react-icons/fa";
 
-function StarRating() {
+interface Props {
+  updateRating: (rating: number) => void;
+}
+
+const StarRating: React.FC<Props> = (props) => {
   const [rating, setRating] = useState<number>(0);
   const [hoverIndex, setHoverIndex] = useState<number>(-1);
 
   const handleStarClick = (index: number) => {
     setRating(index + 1);
+    props.updateRating(index + 1);
   };
 
   const handleStarHover = (index: number) => {
@@ -36,6 +41,6 @@ function StarRating() {
       ))}
     </div>
   );
-}
+};
 
 export default StarRating;

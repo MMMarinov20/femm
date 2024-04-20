@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Review from "./Review";
 import { MdRateReview } from "react-icons/md";
 import StarRating from "./StarRating";
 import { useUser } from "../../hooks/useUser";
+import { submitReview } from "./../../services/reviewService";
+import { Review as ReviewModel } from "../../models/Review";
 
 interface Props {
   rentalId: number;
@@ -12,6 +14,13 @@ interface Props {
 const ReviewsSection: React.FC<Props> = (props) => {
   const { user } = useUser();
   const [bookings, setBookings] = useState<any[]>([]);
+  const [rating, setRating] = useState<number>(0);
+
+  const reservationRef = useRef<HTMLSelectElement>(null);
+  const reviewRef = useRef<HTMLTextAreaElement>(null);
+
+  const updateRating = (rating: number) => setRating(rating);
+
   useEffect(() => {
     if (user.id) {
       const bookings = user.bookings.filter(
@@ -20,6 +29,27 @@ const ReviewsSection: React.FC<Props> = (props) => {
       setBookings(bookings);
     }
   }, [user.bookings, user.id, props.rentalId]);
+
+  const handleReviewSubmission = async () => {
+    if (!user.id) return;
+
+    const reservationId = reservationRef.current?.value;
+    const review = reviewRef.current?.value;
+
+    if (reservationId == "0" || !review || !rating) return;
+    const newReview: ReviewModel = {
+      text: review,
+      rating,
+      userId: user.id,
+      rentalId: props.rentalId,
+    };
+
+    try {
+      await submitReview(newReview, user.token);
+    } catch (error) {
+      alert("Failed to submit review");
+    }
+  };
 
   return (
     <React.Fragment>
@@ -46,7 +76,10 @@ const ReviewsSection: React.FC<Props> = (props) => {
           <div className="flex flex-col gap-y-5 pt-3">
             <div className="w-[100%] h-12 border-[1px] border-[#8C8C8C] rounded-lg flex flex-row items-center px-3">
               <MdRateReview className="text-2xl mr-3 text-[#FF6241]" />
-              <select className="outline-none font-GilroyRegular w-full h-full">
+              <select
+                ref={reservationRef}
+                className="outline-none font-GilroyRegular w-full h-full"
+              >
                 <option value="0">Select your reservation</option>
                 {bookings.map((booking) => (
                   <option key={booking.id} value={booking.id}>
@@ -62,14 +95,18 @@ const ReviewsSection: React.FC<Props> = (props) => {
             <div className="w-[100%] h-[15vh] border-[1px] border-[#8C8C8C] rounded-lg flex flex-row items-start p-3">
               <MdRateReview className="text-2xl mr-3 text-[#FF6241]" />
               <textarea
+                ref={reviewRef}
                 placeholder="Write a review"
                 className="outline-none font-GilroyRegular placeholder:font-GilroyRegular w-full h-full resize-none"
               />
             </div>
           </div>
-          <StarRating />
+          <StarRating updateRating={updateRating} />
 
-          <button className="bg-[#FF6241] text-white font-SolidenTrialRegular text-lg rounded-lg py-3 transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]">
+          <button
+            onClick={handleReviewSubmission}
+            className="bg-[#FF6241] text-white font-SolidenTrialRegular text-lg rounded-lg py-3 transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]"
+          >
             {user.id ? "Submit" : "Sign in to submit"}
           </button>
         </div>
