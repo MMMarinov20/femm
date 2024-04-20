@@ -58,7 +58,6 @@ const Calendar: React.FC<Props> = (props) => {
         mode="range"
         selected={range}
         onSelect={setRange}
-        // footer={footer}
         className="overflow-auto"
         disabled={[...excludedDates]}
       />

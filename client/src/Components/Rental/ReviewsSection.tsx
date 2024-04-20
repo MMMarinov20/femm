@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Review from "./Review";
 import { MdRateReview } from "react-icons/md";
 import StarRating from "./StarRating";
 import { useUser } from "../../hooks/useUser";
 
-const ReviewsSection: React.FC = () => {
+interface Props {
+  rentalId: number;
+  name: string;
+}
+
+const ReviewsSection: React.FC<Props> = (props) => {
   const { user } = useUser();
+  const [bookings, setBookings] = useState<any[]>([]);
+  useEffect(() => {
+    if (user.id) {
+      const bookings = user.bookings.filter(
+        (booking) => booking.rentalId === props.rentalId
+      );
+      setBookings(bookings);
+    }
+  }, [user.bookings, user.id, props.rentalId]);
+
   return (
     <React.Fragment>
       <h1 className="font-SolidenTrialBoldExpanded text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl lg:px-[10vw] px-4">
@@ -33,6 +48,13 @@ const ReviewsSection: React.FC = () => {
               <MdRateReview className="text-2xl mr-3 text-[#FF6241]" />
               <select className="outline-none font-GilroyRegular w-full h-full">
                 <option value="0">Select your reservation</option>
+                {bookings.map((booking) => (
+                  <option key={booking.id} value={booking.id}>
+                    {props.name} from{" "}
+                    {new Date(booking.startDate).toDateString()} to{" "}
+                    {new Date(booking.endDate).toDateString()}
+                  </option>
+                ))}
               </select>
             </div>
           </div>

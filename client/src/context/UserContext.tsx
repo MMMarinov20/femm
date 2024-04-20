@@ -1,12 +1,14 @@
 import React, { createContext, useState, ReactNode, useEffect } from "react";
 import { getUserInfo } from "../services/authService";
 import Cookies from "js-cookie";
+import { getBookingsByUserId } from "../services/bookingService";
 interface User {
   token: string;
   id: number | null;
   username: string;
   email: string;
   nationality: string;
+  bookings: any[];
 }
 
 interface UserContextType {
@@ -16,7 +18,8 @@ interface UserContextType {
     id: number | null,
     username: string,
     email: string,
-    nationality: string
+    nationality: string,
+    bookings: any[]
   ) => void;
 }
 
@@ -35,20 +38,24 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     username: "",
     email: "",
     nationality: "",
+    bookings: [],
   });
 
   useEffect(() => {
     const token = Cookies.get("token");
     if (token) {
       getUserInfo(token)
-        .then((userInfo) => {
+        .then(async (userInfo) => {
           const { id, username, email } = userInfo;
+          const userBookings = await getBookingsByUserId(id, token);
+          console.log(userBookings);
           setUser({
             token,
             id,
             username,
             email,
             nationality: "",
+            bookings: userBookings,
           });
         })
         .catch((error) => {
@@ -61,6 +68,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         username: "",
         email: "",
         nationality: "",
+        bookings: [],
       });
     }
   }, []);
@@ -70,7 +78,8 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     id: number | null,
     username: string,
     email: string,
-    nationality: string
+    nationality: string,
+    bookings: any[]
   ) => {
     setUser({
       ...user,
@@ -79,6 +88,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
       username,
       email,
       nationality,
+      bookings,
     });
   };
 

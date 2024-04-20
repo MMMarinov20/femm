@@ -36,12 +36,12 @@ const Availability: React.FC<Props> = (props) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const adultsValue = adults.current?.value;
     const startDate = range?.from;
     const endDate = range?.to;
 
-    if (endDate && startDate && endDate <= startDate) {
-      console.log("Error: End date cannot be earlier than start date");
+    if (!endDate || !startDate) return;
+    if (endDate <= startDate) {
+      alert("Invalid date range");
       return;
     }
 
@@ -55,11 +55,6 @@ const Availability: React.FC<Props> = (props) => {
     const adultsValue = adults.current?.value;
     const startDate = range?.from;
     const endDate = range?.to;
-
-    if (endDate && startDate && endDate <= startDate) {
-      console.log("Error: End date cannot be earlier than start date");
-      return;
-    }
 
     const booking: Booking = {
       userId: user.id,
@@ -87,6 +82,7 @@ const Availability: React.FC<Props> = (props) => {
           <div className="overflow-hidden lg:flex lg:flex-row lg:justify-between">
             <input
               type="text"
+              readOnly
               value={
                 range
                   ? `${format(

@@ -79,7 +79,7 @@ const Rental = () => {
           <SearchContainer setReservationData={receiveReservationData} />
         </div>
 
-        <ReviewsSection />
+        <ReviewsSection rentalId={data.id} name={data.title} />
 
         <Availability
           date={reservationData.range}

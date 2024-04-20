@@ -16,3 +16,11 @@ export const getAllBookings = async () => {
     throw new Error("Failed to get bookings");
   }
 };
+
+export const getBookingsByUserId = async (userId: number, token: string) => {
+  try {
+    return await apiService.get(`bookings/user/${userId}`, token);
+  } catch (error) {
+    throw new Error("Failed to get bookings");
+  }
+};
