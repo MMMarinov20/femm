@@ -7,6 +7,12 @@ import Properties from "../Components/Property/Properties";
 import Advantage from "../Components/Property/Advantage";
 import Footer from "./../Components/Home/Footer/Footer";
 
+const src = [
+  "./Property/SliderImage.svg",
+  "./Property/SliderImage.svg",
+  "./Property/SliderImage.svg",
+];
+
 const Property = () => {
   return (
     <React.Fragment>
@@ -33,7 +39,7 @@ const Property = () => {
           <h1 className="font-SolidenTrialBoldExpanded text-3xl pb-10 md:text-5xl 2xl:text-6xl">
             Gallery
           </h1>
-          <CarouselSlider />
+          <CarouselSlider src={src} centerPadding="25%" />
         </div>
 
         <Properties />
