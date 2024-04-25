@@ -8,8 +8,10 @@ import Cookies from "js-cookie";
 const JWT_SECRET = process.env.JWT_SECRET || "";
 
 export const AuthMiddleware = {
-  authenticate: (req: any, res: Response, next: Function) => {
-    const token = req.headers.authorization?.split(" ")[1];
+  authenticate: (req: Request, res: Response, next: Function) => {
+    //const token = req.headers.authorization?.split(" ")[1];
+    console.log("Cookies:", req.headers.cookie);
+    const token = req.headers.cookie?.split("=")[1];
     if (!token) return res.status(401).json({ error: "Unauthorized" });
 
     jwt.verify(token, JWT_SECRET, (err: any, decoded: any) => {
@@ -69,7 +71,8 @@ export const AuthMiddleware = {
           expiresIn: "30m",
         });
 
-        Cookies.set("token", token, { expires: 30 });
+        //Cookies.set("token", token, { expires: 30 });
+        res.cookie("token", token, { httpOnly: true, secure: true });
 
         res.status(201).json({ token });
       } else res.status(400).json({ error: "Could not create user" });

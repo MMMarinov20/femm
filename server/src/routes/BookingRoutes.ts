@@ -8,8 +8,8 @@ router.get("/bookings", BookingController.getBookings);
 
 router.use("/bookings", AuthMiddleware.authenticate);
 router.post("/bookings/createBooking", BookingController.createBooking);
-router.get("/bookings/:bookingId", BookingController.getBookingById);
-router.get("/bookings/user/:userId", BookingController.getBookingsByUserId);
+//router.get("/bookings/:bookingId", BookingController.getBookingById);
+router.get("/bookings/user", BookingController.getBookingsByUserId);
 router.get(
   "/bookings/rental/:rentalId",
   BookingController.getBookingsByRentalId

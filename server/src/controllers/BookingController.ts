@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import * as BookingModel from "../models/Booking";
+import { jwtDecode } from "jwt-decode";
 
 export const BookingController = {
   async createBooking(req: Request, res: Response): Promise<void> {
@@ -12,26 +13,30 @@ export const BookingController = {
       res.status(500).json({ error: "Could not create booking" });
     }
   },
-  async getBookingById(req: Request, res: Response): Promise<void> {
-    try {
-      const bookingId: number = parseInt(req.params.bookingId, 10);
-      const booking = await BookingModel.getBookingById(bookingId);
-      if (booking) {
-        res.status(200).json(booking);
-      } else {
-        res.status(404).json({ error: "Booking not found" });
-      }
-    } catch (error) {
-      console.error("Error fetching booking:", error);
-      res.status(500).json({ error: "Could not fetch booking" });
-    }
-  },
+  // async getBookingById(req: Request, res: Response): Promise<void> {
+  //   try {
+  //     const bookingId: number = parseInt(req.params.bookingId, 10);
+  //     const booking = await BookingModel.getBookingById(bookingId);
+  //     if (booking) {
+  //       res.status(200).json(booking);
+  //     } else {
+  //       res.status(404).json({ error: "Booking not found" });
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching booking:", error);
+  //     res.status(500).json({ error: "Could not fetch booking" });
+  //   }
+  // },
 
   async getBookingsByUserId(req: Request, res: Response): Promise<void> {
     try {
-      const userId: number = parseInt(req.params.userId, 10);
-      const bookings = await BookingModel.getBookingsByUserId(userId);
-      res.status(200).json(bookings);
+      const cookie = req.headers.cookie;
+      const token = cookie?.split("=")[1];
+      if (token) {
+        const userId: number = (jwtDecode(token) as { id: number }).id;
+        const bookings = await BookingModel.getBookingsByUserId(userId);
+        res.status(200).json(bookings);
+      }
     } catch (error) {
       console.error("Error fetching bookings:", error);
       res.status(500).json({ error: "Could not fetch bookings" });

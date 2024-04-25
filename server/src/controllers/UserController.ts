@@ -1,16 +1,18 @@
 import { Request, Response } from "express";
 import * as UserModel from "../models/User";
-import bcrypt from "bcrypt";
+import { jwtDecode } from "jwt-decode";
 
 export const UserController = {
   async getUserById(req: Request, res: Response): Promise<void> {
     try {
-      const userId: number = parseInt(req.params.userId, 10);
-      const user = await UserModel.findUserById(userId);
-      if (user) {
-        res.status(200).json(user);
-      } else {
-        res.status(404).json({ error: "User not found" });
+      const cookie = req.headers.cookie;
+      const token = cookie?.split("=")[1];
+      if (token) {
+        const id: number = (jwtDecode(token) as { id: number }).id;
+        const user = await UserModel.findUserById(id);
+        user
+          ? res.status(200).json(user)
+          : res.status(404).json({ error: "User not found" });
       }
     } catch (error) {
       console.error("Error fetching user:", error);
