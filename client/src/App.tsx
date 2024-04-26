@@ -9,6 +9,11 @@ import Apartament from "./Pages/Apartament";
 import { useUser } from "./hooks/useUser";
 
 function App() {
+  useEffect(() => {
+    const userLanguage = navigator.language;
+    console.log(userLanguage);
+  }, []);
+
   const { user } = useUser();
   return (
     <React.Fragment>

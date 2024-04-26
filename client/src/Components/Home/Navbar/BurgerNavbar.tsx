@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { Link } from "react-router-dom";
-
+import { useUser } from "../../../hooks/useUser";
+import { handleLogout } from "../../../services/authService";
 interface Props {
   color: string;
 }
 
 const BurgerNavbar: React.FC<Props> = (props) => {
+  const { user, updateUser } = useUser();
   const [showMenu, setShowMenu] = useState(false);
   const [showRentals, setShowRentals] = useState(false);
   const [showBuilds, setShowBuilds] = useState(false);
@@ -22,6 +24,14 @@ const BurgerNavbar: React.FC<Props> = (props) => {
 
   const toggleBuilds = () => {
     setShowBuilds(!showBuilds);
+  };
+
+  const handleLogoutSubmission = async () => {
+    const response: any = await handleLogout();
+    if (response) {
+      window.location.href = "/";
+      updateUser(false, null, "", "", "", []);
+    }
   };
 
   return (
@@ -49,19 +59,22 @@ const BurgerNavbar: React.FC<Props> = (props) => {
               <h1 className="cursor-pointer">Home</h1>
             </Link>
             <div className="">
-              <h1
-                className="cursor-pointer inline-flex items-center"
-                onClick={toggleRentals}
-              >
-                Our Rentals <IoMdArrowDropdown />
-              </h1>
-              {showRentals && (
+              <Link to={"/rental/1/Loli's beach studio"}>
+                <h1
+                  className="cursor-pointer inline-flex items-center"
+                  //onClick={toggleRentals}
+                >
+                  {/* Our Rentals <IoMdArrowDropdown /> */}
+                  Loli's beach studio
+                </h1>
+              </Link>
+              {/* {showRentals && (
                 <div className="text-center text-sm min-[350px]:text-base md:text-lg text-gray-600 flex flex-col pt-2 gap-y-2">
                   <h1>Option 1</h1>
                   <h1>Option 2</h1>
                   <h1>Option 3</h1>
                 </div>
-              )}
+              )} */}
             </div>
             <div className="">
               <Link to={"/property"}>
@@ -84,15 +97,26 @@ const BurgerNavbar: React.FC<Props> = (props) => {
           </div>
 
           <div className="flex flex-col justify-center items-center gap-y-5">
-            <Link to={"/login"}>
-              <div className="font-SolidenTrialExpanded border-[#FF6241] text-[#FF6241] border-[1px] w-[50vw] py-2 rounded-xl text-center min-[350px]:w-[55vw] md:w-[30vw] min-[350px]:text-lg transition-colors duration-300 hover:bg-[#FF6241] hover:text-white">
-                Login
-              </div>
-            </Link>
+            {!user.id && (
+              <Link to={"/login"}>
+                <div className="font-SolidenTrialExpanded border-[#FF6241] text-[#FF6241] border-[1px] w-[50vw] py-2 rounded-xl text-center min-[350px]:w-[55vw] md:w-[30vw] min-[350px]:text-lg transition-colors duration-300 hover:bg-[#FF6241] hover:text-white">
+                  Login
+                </div>
+              </Link>
+            )}
 
-            <Link to={"/register"}>
-              <div className="font-SolidenTrialExpanded bg-[#FF6241] text-white w-[50vw] py-2 rounded-xl text-center min-[350px]:w-[55vw] md:w-[30vw] min-[350px]:text-lg transition-colors duration-300 hover:bg-white hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]">
-                Register
+            <Link to={user.id ? "/" : "/register"}>
+              <div
+                className="font-SolidenTrialExpanded bg-[#FF6241] text-white w-[50vw] py-2 rounded-xl text-center min-[350px]:w-[55vw] md:w-[30vw] min-[350px]:text-lg transition-colors duration-300 hover:bg-white hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]"
+                onClick={
+                  user.id
+                    ? handleLogoutSubmission
+                    : () => {
+                        return;
+                      }
+                }
+              >
+                {user.id ? "Logout" : "Sign up"}
               </div>
             </Link>
           </div>

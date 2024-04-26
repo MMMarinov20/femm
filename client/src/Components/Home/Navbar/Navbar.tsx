@@ -35,12 +35,13 @@ const Navbar: React.FC = () => {
           </Link>
 
           <div
-            onMouseLeave={handleRentalsDropdown}
-            onMouseEnter={handleRentalsDropdown}
+          //onMouseLeave={handleRentalsDropdown}
+          //onMouseEnter={handleRentalsDropdown}
           >
             <Link to={"/rental/1/Loli's beach studio"}>
               <h1 className="inline-flex text-center cursor-pointer">
-                Our Rentals <IoMdArrowDropdown />
+                {/* Our Rentals <IoMdArrowDropdown /> */}
+                Loli's beach studio
               </h1>
             </Link>
 
@@ -56,8 +57,8 @@ const Navbar: React.FC = () => {
           </div>
 
           <div
-            onMouseLeave={handleBuildsDropdown}
-            onMouseEnter={handleBuildsDropdown}
+          //onMouseLeave={handleBuildsDropdown}
+          //onMouseEnter={handleBuildsDropdown}
           >
             <Link to={"/property"}>
               <h1 className="inline-flex text-center cursor-pointer">
@@ -87,7 +88,7 @@ const Navbar: React.FC = () => {
             </Link>
           )}
 
-          <Link to={user ? "/" : "/register"}>
+          <Link to={user.id ? "/" : "/register"}>
             <div
               className="cursor-pointer text-white font-SolidenTrialRegular w-[15vw] xl:w-[10vw] 2xl:w-[8vw] py-2 xl:py-3 rounded-xl text-center bg-[#FF6241] transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px] 2xl:text-xl"
               onClick={
