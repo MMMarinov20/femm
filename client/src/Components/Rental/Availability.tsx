@@ -65,7 +65,7 @@ const Availability: React.FC<Props> = (props) => {
     };
 
     try {
-      await createBooking(booking, user.token);
+      await createBooking(booking);
       alert("Booking successful");
     } catch (error) {
       alert("Booking failed");

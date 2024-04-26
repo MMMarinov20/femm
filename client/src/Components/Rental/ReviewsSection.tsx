@@ -45,7 +45,7 @@ const ReviewsSection: React.FC<Props> = (props) => {
     };
 
     try {
-      await submitReview(newReview, user.token);
+      await submitReview(newReview);
     } catch (error) {
       alert("Failed to submit review");
     }

@@ -1,5 +1,4 @@
 import { apiService } from "./apiService";
-import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
 
 export const handleRegister = async (
@@ -51,43 +50,30 @@ export const handleLogin = async (
   }
 
   try {
-    let user = await apiService.post("auth/login", {
+    const user = await apiService.post("auth/login", {
       email,
       password,
     });
 
     user && alert("Login successful");
-
-    const { token } = user;
-
-    getUserInfo(token)
-      .then((userInfo) => {
-        //console.log("User Info:", userInfo);
-        user = userInfo;
-      })
-      .catch((error) => {
-        console.error("Error fetching user information:", error);
-      });
     return user;
   } catch (error) {
     throw new Error("Invalid email or password");
   }
 };
 
-export const getUserInfo = async (token: string) => {
+export const getUserInfo = async () => {
   try {
-    const decodedToken: any = jwtDecode(token);
-    const id: number = decodedToken.id;
-    const response = await apiService.get(`users/${id}`, token);
+    const response = await apiService.get(`users/getInfo`);
     return response;
   } catch (error) {
     throw new Error("Error fetching user information");
   }
 };
 
-export const handleLogout = async (token: string) => {
+export const handleLogout = async () => {
   try {
-    await apiService.post("logout", null, token);
+    await apiService.post("logout", null);
     alert("Logged out");
     Cookies.remove("token");
 

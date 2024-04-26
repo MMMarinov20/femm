@@ -5,7 +5,7 @@ import { useUser } from "../../../hooks/useUser";
 import { handleLogout } from "../../../services/authService";
 
 const Navbar: React.FC = () => {
-  const { user } = useUser();
+  const { user, updateUser } = useUser();
   const [dropdownRentalsMenu, setDropdownRentalsMenu] = useState(false);
   const [dropdownBuildsMenu, setDropdownBuildsMenu] = useState(false);
 
@@ -15,6 +15,14 @@ const Navbar: React.FC = () => {
 
   const handleBuildsDropdown = () => {
     setDropdownBuildsMenu(!dropdownBuildsMenu);
+  };
+
+  const handleLogoutSubmission = async () => {
+    const response: any = await handleLogout();
+    if (response) {
+      window.location.href = "/";
+      updateUser(false, null, "", "", "", []);
+    }
   };
 
   return (
@@ -84,7 +92,7 @@ const Navbar: React.FC = () => {
               className="cursor-pointer text-white font-SolidenTrialRegular w-[15vw] xl:w-[10vw] 2xl:w-[8vw] py-2 xl:py-3 rounded-xl text-center bg-[#FF6241] transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px] 2xl:text-xl"
               onClick={
                 user.id
-                  ? () => handleLogout(user.token)
+                  ? handleLogoutSubmission
                   : () => {
                       return;
                     }

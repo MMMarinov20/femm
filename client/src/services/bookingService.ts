@@ -1,8 +1,8 @@
 import { apiService } from "./apiService";
 import { Booking } from "../models/Booking";
-export const createBooking = async (Booking: Booking, token: string) => {
+export const createBooking = async (Booking: Booking) => {
   try {
-    await apiService.post("bookings/createBooking", Booking, token);
+    await apiService.post("bookings/createBooking", Booking);
     alert("Booking successful");
   } catch (error) {
     throw new Error("Booking failed");
@@ -17,9 +17,9 @@ export const getAllBookings = async () => {
   }
 };
 
-export const getBookingsByUserId = async (userId: number, token: string) => {
+export const getBookingsByUserId = async () => {
   try {
-    return await apiService.get(`bookings/user/${userId}`, token);
+    return await apiService.get(`bookings/user`);
   } catch (error) {
     throw new Error("Failed to get bookings");
   }

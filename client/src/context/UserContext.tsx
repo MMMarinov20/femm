@@ -3,7 +3,7 @@ import { getUserInfo } from "../services/authService";
 import Cookies from "js-cookie";
 import { getBookingsByUserId } from "../services/bookingService";
 interface User {
-  token: string;
+  isLogged: boolean;
   id: number | null;
   username: string;
   email: string;
@@ -14,7 +14,7 @@ interface User {
 interface UserContextType {
   user: User;
   updateUser: (
-    token: string,
+    isLogged: boolean,
     id: number | null,
     username: string,
     email: string,
@@ -33,7 +33,7 @@ interface UserProviderProps {
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User>({
-    token: "",
+    isLogged: false,
     id: null,
     username: "",
     email: "",
@@ -42,39 +42,26 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   });
 
   useEffect(() => {
-    const token = Cookies.get("token");
-    if (token) {
-      getUserInfo(token)
-        .then(async (userInfo) => {
-          const { id, username, email } = userInfo;
-          const userBookings = await getBookingsByUserId(id, token);
-          console.log(userBookings);
-          setUser({
-            token,
-            id,
-            username,
-            email,
-            nationality: "",
-            bookings: userBookings,
-          });
-        })
-        .catch((error) => {
-          Cookies.remove("token");
+    getUserInfo()
+      .then(async (userInfo) => {
+        const { id, username, email } = userInfo;
+        const userBookings = await getBookingsByUserId();
+        setUser({
+          isLogged: true,
+          id,
+          username,
+          email,
+          nationality: "",
+          bookings: userBookings,
         });
-    } else {
-      setUser({
-        token: "",
-        id: null,
-        username: "",
-        email: "",
-        nationality: "",
-        bookings: [],
+      })
+      .catch((error) => {
+        console.error(error);
       });
-    }
-  }, []);
+  }, [user.isLogged]);
 
   const updateUser = (
-    token: string,
+    isLogged: boolean,
     id: number | null,
     username: string,
     email: string,
@@ -83,7 +70,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   ) => {
     setUser({
       ...user,
-      token,
+      isLogged,
       id,
       username,
       email,
