@@ -1,9 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import { format } from "date-fns";
+import React, { useState, useEffect } from "react";
 import { DateRange, DayPicker } from "react-day-picker";
-import { createBooking } from "../../services/bookingService";
-import { useUser } from "../../hooks/useUser";
-import { Booking } from "../../models/Booking";
 import { getAllBookings } from "../../services/bookingService";
 import "react-day-picker/dist/style.css";
 

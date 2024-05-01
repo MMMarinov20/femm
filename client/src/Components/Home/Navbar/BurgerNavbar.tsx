@@ -11,20 +11,20 @@ interface Props {
 const BurgerNavbar: React.FC<Props> = (props) => {
   const { user, updateUser } = useUser();
   const [showMenu, setShowMenu] = useState(false);
-  const [showRentals, setShowRentals] = useState(false);
-  const [showBuilds, setShowBuilds] = useState(false);
+  // const [showRentals, setShowRentals] = useState(false);
+  // const [showBuilds, setShowBuilds] = useState(false);
 
   const handleMenu = () => {
     setShowMenu(!showMenu);
   };
 
-  const toggleRentals = () => {
-    setShowRentals(!showRentals);
-  };
+  // const toggleRentals = () => {
+  //   setShowRentals(!showRentals);
+  // };
 
-  const toggleBuilds = () => {
-    setShowBuilds(!showBuilds);
-  };
+  // const toggleBuilds = () => {
+  //   setShowBuilds(!showBuilds);
+  // };
 
   const handleLogoutSubmission = async () => {
     const response: any = await handleLogout();
@@ -80,18 +80,18 @@ const BurgerNavbar: React.FC<Props> = (props) => {
               <Link to={"/property"}>
                 <h1
                   className="cursor-pointer inline-flex items-center"
-                  onClick={toggleBuilds}
+                  // onClick={toggleBuilds}
                 >
                   Builds <IoMdArrowDropdown />
                 </h1>
               </Link>
-              {showBuilds && (
+              {/* {showBuilds && (
                 <div className="text-center text-sm min-[350px]:text-base md:text-lg text-gray-600 flex flex-col pt-2 gap-y-2">
                   <h1>Option 1</h1>
                   <h1>Option 2</h1>
                   <h1>Option 3</h1>
                 </div>
-              )}
+              )} */}
             </div>
             <h1>About us</h1>
           </div>

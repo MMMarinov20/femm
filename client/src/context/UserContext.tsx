@@ -1,6 +1,5 @@
 import React, { createContext, useState, ReactNode, useEffect } from "react";
 import { getUserInfo } from "../services/authService";
-import Cookies from "js-cookie";
 import { getBookingsByUserId } from "../services/bookingService";
 interface User {
   isLogged: boolean;

@@ -8,7 +8,6 @@ import Input from "../Components/Login/Input";
 import Icons from "../Components/Login/Icons";
 import Header from "../Components/Login/Header";
 import { handleLogin } from "../services/authService";
-import Cookies from "js-cookie";
 import { useUser } from "./../hooks/useUser";
 
 const Login: React.FC = () => {

@@ -1,5 +1,4 @@
 import React from "react";
-import { IoIosArrowBack } from "react-icons/io";
 import CarouselSlider from "../Property/CarouselSlider";
 const GallerySlider: React.FC = () => {
   return (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useUser } from "../../../hooks/useUser";
@@ -6,16 +6,16 @@ import { handleLogout } from "../../../services/authService";
 
 const Navbar: React.FC = () => {
   const { user, updateUser } = useUser();
-  const [dropdownRentalsMenu, setDropdownRentalsMenu] = useState(false);
-  const [dropdownBuildsMenu, setDropdownBuildsMenu] = useState(false);
+  // const [dropdownRentalsMenu, setDropdownRentalsMenu] = useState(false);
+  // const [dropdownBuildsMenu, setDropdownBuildsMenu] = useState(false);
 
-  const handleRentalsDropdown = () => {
-    setDropdownRentalsMenu(!dropdownRentalsMenu);
-  };
+  // const handleRentalsDropdown = () => {
+  //   setDropdownRentalsMenu(!dropdownRentalsMenu);
+  // };
 
-  const handleBuildsDropdown = () => {
-    setDropdownBuildsMenu(!dropdownBuildsMenu);
-  };
+  // const handleBuildsDropdown = () => {
+  //   setDropdownBuildsMenu(!dropdownBuildsMenu);
+  // };
 
   const handleLogoutSubmission = async () => {
     const response: any = await handleLogout();
@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
               </h1>
             </Link>
 
-            <div
+            {/* <div
               className={`absolute text-gray-600 flex flex-col items-center justify-center text-center gap-y-5 pt-3 ${
                 dropdownRentalsMenu ? "visible" : "hidden"
               }`}
@@ -53,7 +53,7 @@ const Navbar: React.FC = () => {
               <h1 className="cursor-pointer">Option 1</h1>
               <h1 className="cursor-pointer">Option 2</h1>
               <h1 className="cursor-pointer">Option 3</h1>
-            </div>
+            </div> */}
           </div>
 
           <div
@@ -66,7 +66,7 @@ const Navbar: React.FC = () => {
               </h1>
             </Link>
 
-            <div
+            {/* <div
               className={`absolute text-gray-600 flex flex-col items-center justify-center text-center gap-y-5 pt-3 ${
                 dropdownBuildsMenu ? "visible" : "hidden"
               }`}
@@ -74,7 +74,7 @@ const Navbar: React.FC = () => {
               <h1 className="cursor-pointer">Option 1</h1>
               <h1 className="cursor-pointer">Option 2</h1>
               <h1 className="cursor-pointer">Option 3</h1>
-            </div>
+            </div> */}
           </div>
           <h1>About Us</h1>
         </div>

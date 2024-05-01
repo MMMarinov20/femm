@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { FaLocationDot } from "react-icons/fa6";
 import { ReservationData } from "../../Pages/Rental";
 interface Props {
