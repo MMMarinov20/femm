@@ -1,12 +1,7 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React from "react";
 import { FaLocationDot } from "react-icons/fa6";
-import { LuKeySquare } from "react-icons/lu";
-import { GiResize, GiShower } from "react-icons/gi";
-import { IoWifiOutline, IoLogoNoSmoking } from "react-icons/io5";
-import { MdOutlinePool, MdBalcony } from "react-icons/md";
-import { GrOverview } from "react-icons/gr";
-import { TbAirConditioning } from "react-icons/tb";
 import { IconType } from "react-icons";
+
 interface Props {
   title: string;
   location: string;
