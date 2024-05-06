@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { FaLocationDot } from "react-icons/fa6";
-import { GiShower } from "react-icons/gi";
-
+import { LuKeySquare } from "react-icons/lu";
+import { GiResize, GiShower } from "react-icons/gi";
+import { IoWifiOutline, IoLogoNoSmoking } from "react-icons/io5";
+import { MdOutlinePool, MdBalcony } from "react-icons/md";
+import { GrOverview } from "react-icons/gr";
+import { TbAirConditioning } from "react-icons/tb";
+import { IconType } from "react-icons";
 interface Props {
   title: string;
   location: string;
-  features: string[];
+  features: { Icon: IconType; Feature: string }[][];
   description: string;
   rating: number;
 }
@@ -28,30 +33,14 @@ const DescriptionContainer: React.FC<Props> = (props) => {
         </button>
 
         <div className="flex flex-col gap-y-3 py-2">
-          <h1 className="inline-flex">
-            <GiShower className="text-xl mr-1 text-[#FF6241]" />
-            {props.features[0]}
-          </h1>
-          <h1 className="inline-flex">
-            <GiShower className="text-xl mr-1 text-[#FF6241]" />
-            {props.features[0]}
-          </h1>
-          <h1 className="inline-flex">
-            <GiShower className="text-xl mr-1 text-[#FF6241]" />
-            {props.features[0]}
-          </h1>
-          <h1 className="inline-flex">
-            <GiShower className="text-xl mr-1 text-[#FF6241]" />
-            {props.features[0]}
-          </h1>
-          <h1 className="inline-flex">
-            <GiShower className="text-xl mr-1 text-[#FF6241]" />
-            {props.features[0]}
-          </h1>
-          <h1 className="inline-flex">
-            <GiShower className="text-xl mr-1 text-[#FF6241]" />
-            {props.features[0]}
-          </h1>
+          {props.features[0].map((feature, index) => (
+            <React.Fragment key={index}>
+              <h1 className="inline-flex">
+                <feature.Icon className="text-xl mr-2 text-[#FF6241]" />
+                {feature.Feature}
+              </h1>
+            </React.Fragment>
+          ))}
         </div>
 
         <h1 className="font-GilroyRegular">{props.description}</h1>

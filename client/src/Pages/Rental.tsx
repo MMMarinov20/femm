@@ -8,15 +8,16 @@ import ReviewsSection from "../Components/Rental/ReviewsSection";
 import Accordion from "../Components/Rental/Accordion";
 import FaqBox from "../Components/Rental/FaqBox";
 import Footer from "../Components/Home/Footer/Footer";
-import rentals from "../data/rentals.json";
+import rentalsData from "../data/rentals";
 import Availability from "../Components/Rental/Availability";
 import { DateRange } from "react-day-picker";
+import { IconType } from "react-icons";
 
 interface RentalData {
   id: number;
   title: string;
   location: string;
-  features: string[];
+  features: { Icon: IconType; Feature: string }[][];
   description: string;
   rating: number;
   surroundings: {
@@ -56,9 +57,11 @@ const Rental = () => {
   useEffect(() => {
     const id = window.location.pathname.split("/")[2];
 
-    const rental = rentals.rentals.find((rental) => rental.id === parseInt(id));
+    const rental = rentalsData.rentals.find(
+      (rental) => rental.id === parseInt(id)
+    );
     if (!rental) return;
-
+    console.log(rental.features[0][0]);
     setData(rental);
   }, []);
   return (
