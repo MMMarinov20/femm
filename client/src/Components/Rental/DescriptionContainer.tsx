@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FaLocationDot } from "react-icons/fa6";
 import { IconType } from "react-icons";
+
+type Feature = {
+  Icon: IconType;
+  Feature: string;
+};
 
 interface Props {
   title: string;
   location: string;
-  features: { Icon: IconType; Feature: string }[][];
+  features: Feature[][];
   description: string;
   rating: number;
 }
 
 const DescriptionContainer: React.FC<Props> = (props) => {
+  const [features, setFeatures] = useState<Feature[][]>([]);
+  useEffect(() => {
+    if (props.features.length != 0) setFeatures([...props.features]);
+  }, [props.features]);
   return (
     <React.Fragment>
       <div className="w-full h-fit bg-white shadow-2xl rounded-2xl p-5 flex flex-col gap-y-3 md:text-lg">
@@ -28,14 +37,16 @@ const DescriptionContainer: React.FC<Props> = (props) => {
         </button>
 
         <div className="flex flex-col gap-y-3 py-2">
-          {props.features[0].map((feature, index) => (
-            <React.Fragment key={index}>
-              <h1 className="inline-flex">
-                <feature.Icon className="text-xl mr-2 text-[#FF6241]" />
-                {feature.Feature}
-              </h1>
-            </React.Fragment>
-          ))}
+          {features.map((feature) =>
+            feature.map((item, index) => (
+              <React.Fragment key={index}>
+                <h1 className="inline-flex">
+                  <item.Icon className="text-xl mr-2 text-[#FF6241]" />
+                  {item.Feature}
+                </h1>
+              </React.Fragment>
+            ))
+          )}
         </div>
 
         <h1 className="font-GilroyRegular">{props.description}</h1>
