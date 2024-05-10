@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "api.femmbulgaria.com/api";
+const BASE_URL = "https://api.femmbulgaria.com/api";
 
 export const apiService = {
   async get(path: string) {
