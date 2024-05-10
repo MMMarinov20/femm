@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://femmbulgaria-server.vercel.app/api";
+const BASE_URL = "api.femmbulgaria.com/api";
 
 export const apiService = {
   async get(path: string) {
