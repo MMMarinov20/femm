@@ -6,7 +6,8 @@ import { createBooking } from "../../services/bookingService";
 import { useUser } from "../../hooks/useUser";
 import { Booking } from "../../models/Booking";
 import Calendar from "./Calendar";
-import { Bounce, ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import { errorToast, infoToast, successToast } from "../../utils/utils";
 import "react-toastify/dist/ReactToastify.css";
 
 interface Props {
@@ -42,55 +43,21 @@ const Availability: React.FC<Props> = (props) => {
     const startDate = range?.from;
     const endDate = range?.to;
 
-    //if it is before today return
     if (
       (startDate && startDate < new Date()) ||
       (endDate && endDate < new Date())
     ) {
-      //alert("Invalid date range");
-      toast.error("Invalid date range", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Bounce,
-      });
+      errorToast("Invalid date range", 2000);
       setRange(undefined);
       return;
     }
     if (!endDate || !startDate) {
-      //alert("Please select a date range");
-      toast.error("Please select a date range", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Bounce,
-      });
+      errorToast("Please select a date range", 2000);
       setRange(undefined);
       return;
     }
     if (endDate <= startDate) {
-      //alert("Invalid date range");
-      toast.error("Invalid date range", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Bounce,
-      });
+      errorToast("Invalid date range", 2000);
       setRange(undefined);
       return;
     }
@@ -99,34 +66,13 @@ const Availability: React.FC<Props> = (props) => {
   };
 
   const handleBooking = async (e: React.FormEvent) => {
-    toast.info(
+    infoToast(
       "We are still working on our payment system. You can find us on Airbnb/Booking! We apologize for the inconvenience.",
-      {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Bounce,
-      }
+      5000
     );
     e.preventDefault();
     return;
-    if (!user.id)
-      return toast.error("Please login to book", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Bounce,
-      });
+    if (!user.id) errorToast("Please login to book", 2000);
 
     const adultsValue = adults.current?.value;
     const startDate = range?.from;
@@ -142,31 +88,9 @@ const Availability: React.FC<Props> = (props) => {
 
     try {
       await createBooking(booking);
-      //alert("Booking successful");
-      toast.success("Booking successful!", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Bounce,
-      });
+      successToast("Booking successful!", 2000);
     } catch (error) {
-      //alert("Booking failed");
-      toast.error("Booking failed", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Bounce,
-      });
+      errorToast("Booking failed", 2000);
     }
   };
 

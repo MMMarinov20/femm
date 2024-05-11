@@ -2,26 +2,11 @@ import React from "react";
 import { FaFacebookF } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { FaApple } from "react-icons/fa";
-import { Bounce, ToastContainer, toast } from "react-toastify";
+import { infoToast } from "../../utils/utils";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Icons = () => {
-  const notify = () => {
-    toast.info(
-      "This functionality is still in development. Please be patient!",
-      {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Bounce,
-      }
-    );
-  };
   return (
     <React.Fragment>
       <div className="flex items-center md:w-1/2 lg:w-8/12 justify-center my-3">
@@ -34,19 +19,19 @@ const Icons = () => {
 
       <div className="flex items-center justify-center gap-x-5">
         <div
-          onClick={notify}
+          onClick={() => infoToast("Feature coming soon", 2000)}
           className="flex items-center justify-center w-10 h-10 bg-[#3B5998] rounded-full cursor-pointer"
         >
           <FaFacebookF className="text-white text-lg" />
         </div>
         <div
-          onClick={notify}
+          onClick={() => infoToast("Feature coming soon", 2000)}
           className="flex items-center justify-center w-10 h-10 bg-[#000000] rounded-full cursor-pointer"
         >
           <FaApple className="text-white text-lg" />
         </div>
         <div
-          onClick={notify}
+          onClick={() => infoToast("Feature coming soon", 2000)}
           className="flex items-center justify-center w-10 h-10 bg-[#DB4437] rounded-full cursor-pointer"
         >
           <FaGoogle className="text-white text-lg" />

@@ -1,8 +1,7 @@
 import { apiService } from "./apiService";
 import Cookies from "js-cookie";
-import { toast } from "react-toastify";
-import { Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { errorToast, successToast } from "../utils/utils";
 
 export const handleRegister = async (
   firstName: string,
@@ -11,18 +10,7 @@ export const handleRegister = async (
   password: string
 ) => {
   if (!firstName || !lastName) {
-    //alert("Please enter all fields");
-    toast.error("Please enter all fields", {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-      transition: Bounce,
-    });
+    errorToast("Please enter all fields", 2000);
     return;
   }
 
@@ -30,38 +18,14 @@ export const handleRegister = async (
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
   if (!emailRegex.test(email)) {
-    //alert("Please enter a valid email address");
-    toast.error("Please enter a valid email address", {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-      transition: Bounce,
-    });
+    errorToast("Please enter a valid email address", 2000);
     return;
   }
 
   if (!passwordRegex.test(password)) {
-    // alert(
-    //   "Password must be at least 8 characters long and contain at least one letter and one number"
-    // );
-    toast.error(
+    errorToast(
       "Password must be at least 8 characters long and contain at least one letter and one number",
-      {
-        position: "top-right",
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Bounce,
-      }
+      2000
     );
     return;
   }
@@ -72,19 +36,7 @@ export const handleRegister = async (
       name: `${firstName} ${lastName}`,
       password,
     });
-
-    //alert("Registration successful");
-    toast.success("Registration successful!", {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-      transition: Bounce,
-    });
+    successToast("Registration successful", 2000);
 
     setTimeout(() => {
       window.location.href = "/login";
@@ -99,18 +51,7 @@ export const handleLogin = async (
   password: string
 ): Promise<any> => {
   if (!email || !password) {
-    //alert("Please enter all fields");
-    toast.error("Please enter all fields", {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-      transition: Bounce,
-    });
+    errorToast("Please enter all fields", 2000);
     return;
   }
 
@@ -120,18 +61,7 @@ export const handleLogin = async (
       password,
     });
 
-    user &&
-      toast.success("Logged in successfully!", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Bounce,
-      });
+    user && successToast("Logged in successfully!", 2000);
     return user;
   } catch (error) {
     throw new Error("Invalid email or password");
@@ -150,19 +80,7 @@ export const getUserInfo = async () => {
 export const handleLogout = async () => {
   try {
     await apiService.post("logout", null);
-    //alert("Logged out");
-    toast.success("Logged out successfully!", {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-      transition: Bounce,
-    });
-
+    successToast("Logged out successfully!", 2000);
     setTimeout(() => {
       window.location.href = "/login";
       Cookies.remove("token");

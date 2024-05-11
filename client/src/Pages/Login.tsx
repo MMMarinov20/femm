@@ -9,7 +9,8 @@ import Icons from "../Components/Login/Icons";
 import Header from "../Components/Login/Header";
 import { handleLogin } from "../services/authService";
 import { useUser } from "./../hooks/useUser";
-import { Bounce, ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import { errorToast } from "../utils/utils";
 import "react-toastify/dist/ReactToastify.css";
 
 const Login: React.FC = () => {
@@ -34,17 +35,7 @@ const Login: React.FC = () => {
       }
       emailRef.current.value = passwordRef.current.value = "";
     } catch (error: any) {
-      toast.error(error.message, {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Bounce,
-      });
+      errorToast(error.message, 2000);
     }
   };
 
