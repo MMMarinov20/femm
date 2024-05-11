@@ -6,6 +6,9 @@ import { createBooking } from "../../services/bookingService";
 import { useUser } from "../../hooks/useUser";
 import { Booking } from "../../models/Booking";
 import Calendar from "./Calendar";
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 interface Props {
   date: DateRange | undefined;
   adults: number;
@@ -39,9 +42,56 @@ const Availability: React.FC<Props> = (props) => {
     const startDate = range?.from;
     const endDate = range?.to;
 
-    if (!endDate || !startDate) return;
+    //if it is before today return
+    if (
+      (startDate && startDate < new Date()) ||
+      (endDate && endDate < new Date())
+    ) {
+      //alert("Invalid date range");
+      toast.error("Invalid date range", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
+      setRange(undefined);
+      return;
+    }
+    if (!endDate || !startDate) {
+      //alert("Please select a date range");
+      toast.error("Please select a date range", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
+      setRange(undefined);
+      return;
+    }
     if (endDate <= startDate) {
-      alert("Invalid date range");
+      //alert("Invalid date range");
+      toast.error("Invalid date range", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
+      setRange(undefined);
       return;
     }
 
@@ -49,15 +99,41 @@ const Availability: React.FC<Props> = (props) => {
   };
 
   const handleBooking = async (e: React.FormEvent) => {
+    toast.info(
+      "We are still working on our payment system. You can find us on Airbnb/Booking! We apologize for the inconvenience.",
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      }
+    );
     e.preventDefault();
-    if (!user.id) return alert("Please login to book");
+    return;
+    if (!user.id)
+      return toast.error("Please login to book", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
 
     const adultsValue = adults.current?.value;
     const startDate = range?.from;
     const endDate = range?.to;
 
     const booking: Booking = {
-      userId: user.id,
+      userId: user.id!,
       rentalId: rentalId,
       startDate: startDate!,
       endDate: endDate!,
@@ -66,9 +142,31 @@ const Availability: React.FC<Props> = (props) => {
 
     try {
       await createBooking(booking);
-      alert("Booking successful");
+      //alert("Booking successful");
+      toast.success("Booking successful!", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
     } catch (error) {
-      alert("Booking failed");
+      //alert("Booking failed");
+      toast.error("Booking failed", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
     }
   };
 
@@ -165,6 +263,7 @@ const Availability: React.FC<Props> = (props) => {
                 {" "}
                 Book
               </button>
+              <ToastContainer />
             </div>
           </div>
         </form>

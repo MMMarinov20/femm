@@ -9,6 +9,8 @@ import Icons from "../Components/Login/Icons";
 import Header from "../Components/Login/Header";
 import { handleLogin } from "../services/authService";
 import { useUser } from "./../hooks/useUser";
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login: React.FC = () => {
   const { updateUser } = useUser();
@@ -25,12 +27,24 @@ const Login: React.FC = () => {
     try {
       const token = await handleLogin(email, password);
       if (token) {
-        updateUser(true, null, "", "", "", []);
-        window.location.href = "/";
+        setTimeout(() => {
+          updateUser(true, null, "", "", "", []);
+          window.location.href = "/";
+        }, 2000);
       }
       emailRef.current.value = passwordRef.current.value = "";
     } catch (error: any) {
-      alert(error.message);
+      toast.error(error.message, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
     }
   };
 
@@ -63,6 +77,7 @@ const Login: React.FC = () => {
               <button className="w-full bg-[#FF6241] rounded-lg py-2 2xl:py-3 text-white font-SolidenTrialRegular transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]">
                 Login
               </button>
+              <ToastContainer />
             </div>
 
             <Icons />

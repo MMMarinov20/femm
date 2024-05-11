@@ -3,6 +3,8 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useUser } from "../../../hooks/useUser";
 import { handleLogout } from "../../../services/authService";
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Navbar: React.FC = () => {
   const { user, updateUser } = useUser();
@@ -20,7 +22,6 @@ const Navbar: React.FC = () => {
   const handleLogoutSubmission = async () => {
     const response: any = await handleLogout();
     if (response) {
-      window.location.href = "/";
       updateUser(false, null, "", "", "", []);
     }
   };
@@ -102,6 +103,7 @@ const Navbar: React.FC = () => {
               {user.id ? "Logout" : "Sign up"}
             </div>
           </Link>
+          <ToastContainer />
         </div>
       </div>
     </React.Fragment>
