@@ -3,7 +3,7 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useUser } from "../../../hooks/useUser";
 import { handleLogout } from "../../../services/authService";
-import { Bounce, ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Navbar: React.FC = () => {

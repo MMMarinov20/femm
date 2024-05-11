@@ -9,7 +9,7 @@ import Input from "../Components/Login/Input";
 import Icons from "../Components/Login/Icons";
 import Header from "../Components/Login/Header";
 import { handleRegister } from "./../services/authService";
-import { Bounce, ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
