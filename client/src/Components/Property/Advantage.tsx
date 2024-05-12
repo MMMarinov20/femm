@@ -3,7 +3,7 @@ import React from "react";
 const Advantage: React.FC = () => {
   return (
     <React.Fragment>
-      <div className="w-full md:w-1/2 lg:w-[80%] 2xl:w-[70%] h-fit bg-white shadow-2xl px-5 py-10 rounded-xl 2xl:rounded-3xl flex flex-col gap-y-3">
+      <div className="hover:scale-105 transition-transform duration-300 ease-in-out w-full md:w-1/2 lg:w-[80%] 2xl:w-[70%] h-fit bg-white shadow-2xl px-5 py-10 rounded-xl 2xl:rounded-3xl flex flex-col gap-y-3">
         <img
           src="/Property/Icon.svg"
           alt="advantages"
