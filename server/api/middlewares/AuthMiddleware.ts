@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken";
 import * as UserModel from "../models/User";
 import { User } from "../models/User";
 import bcrypt from "bcrypt";
-import Cookies from "js-cookie";
 
 const JWT_SECRET = process.env.JWT_SECRET || "";
 
@@ -53,7 +52,21 @@ export const AuthMiddleware = {
   },
 
   async register(req: Request, res: Response): Promise<void> {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
     try {
+      if (!emailRegex.test(req.body.email)) {
+        res.status(400).json({ error: "Invalid email" });
+        return;
+      }
+      if (!passwordRegex.test(req.body.password)) {
+        res.status(400).json({
+          error:
+            "Password must be at least 8 characters long and contain at least one letter and one number",
+        });
+        return;
+      }
       const { email, name, password, nationality } = req.body;
       const userObj: User = {
         email,
