@@ -9,7 +9,49 @@ interface Props {
   centerPadding: string;
 }
 
+const modalDiv = (src: string) => {
+  return `
+  <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 flex justify-center items-center z-50">
+        <img src=${src} alt="Image" className="w-full h-full object-contain" />
+  </div>`;
+};
+
 const CarouselSlider: React.FC<Props> = (props) => {
+  const createImageModal = (src: string) => {
+    const modal = document.createElement("div");
+    modal.classList.add(
+      "fixed",
+      "top-0",
+      "left-0",
+      "w-full",
+      "h-full",
+      "bg-black",
+      "bg-opacity-70",
+      "flex",
+      "justify-center",
+      "items-center",
+      "z-50"
+    );
+
+    const img = document.createElement("img");
+    img.src = src;
+    img.classList.add(
+      "w-full",
+      "h-full",
+      "object-contain",
+      "lg:w-1/2",
+      "lg:h-1/2"
+    );
+
+    img.addEventListener("click", () => {
+      document.body.removeChild(modal);
+    });
+
+    modal.appendChild(img);
+    document.body.appendChild(modal);
+    //const modal = modalDiv(src);
+  };
+
   const [index, setIndex] = useState(0);
   const sliderRef = useRef<Slider>(null);
 
@@ -55,51 +97,54 @@ const CarouselSlider: React.FC<Props> = (props) => {
   };
 
   return (
-    <div className="w-full px-4 lg:px-[10vw]">
-      <Slider
-        {...settings}
-        className="overflow-hidden"
-        afterChange={(current) => setIndex(current)}
-        ref={sliderRef}
-      >
-        {props.src.map((src, i) => (
-          <div key={i} className="md:px-10 focus:outline-none z-0">
-            <img
-              src={src}
-              alt={`Image ${i + 1}`}
-              className="w-full overflow-hidden"
-            />
-          </div>
-        ))}
-      </Slider>
-      <div className="flex flex-row justify-center gap-x-5 z-10 items-center">
-        <IoIosArrowBack
-          className="mt-5 cursor-pointer lg:text-2xl 2xl:text-4xl"
-          onClick={goToPrevSlide}
-        />
-        <div className="flex gap-x-5">
+    <React.Fragment>
+      <div className="w-full px-4 lg:px-[10vw]">
+        <Slider
+          {...settings}
+          className="overflow-hidden"
+          afterChange={(current) => setIndex(current)}
+          ref={sliderRef}
+        >
           {props.src.map((src, i) => (
-            <div
-              key={i}
-              className={`w-20 h-20 lg:w-32 lg:h-32 border-[3px] border-[#FF6241] rounded-xl bg-[url(${src})] bg-center bg-no-repeat bg-cover ${
-                index === i
-                  ? "border-[#FF6241] rounded-xl"
-                  : "border-white rounded-xl"
-              }`}
-              style={{
-                backgroundImage: `url(${src})`,
-              }}
-              onClick={() => handleBoxClick(i)}
-            ></div>
+            <div key={i} className="md:px-10 focus:outline-none z-0">
+              <img
+                src={src}
+                alt={`Image ${i + 1}`}
+                className="w-full overflow-hidden"
+                onClick={() => createImageModal(src)}
+              />
+            </div>
           ))}
-        </div>
+        </Slider>
+        <div className="flex flex-row justify-center gap-x-5 z-10 items-center">
+          <IoIosArrowBack
+            className="mt-5 cursor-pointer lg:text-2xl 2xl:text-4xl"
+            onClick={goToPrevSlide}
+          />
+          <div className="flex gap-x-5">
+            {props.src.map((src, i) => (
+              <div
+                key={i}
+                className={`w-20 h-20 lg:w-32 lg:h-32 border-[3px] border-[#FF6241] rounded-xl bg-[url(${src})] bg-center bg-no-repeat bg-cover ${
+                  index === i
+                    ? "border-[#FF6241] rounded-xl"
+                    : "border-white rounded-xl"
+                }`}
+                style={{
+                  backgroundImage: `url(${src})`,
+                }}
+                onClick={() => handleBoxClick(i)}
+              ></div>
+            ))}
+          </div>
 
-        <IoIosArrowForward
-          className="mt-5 cursor-pointer lg:text-2xl 2xl:text-4xl"
-          onClick={goToNextSlide}
-        />
+          <IoIosArrowForward
+            className="mt-5 cursor-pointer lg:text-2xl 2xl:text-4xl"
+            onClick={goToNextSlide}
+          />
+        </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

@@ -70,7 +70,7 @@ const Rental = () => {
       <BurgerNavbar color={"#FFFFFF"} />
       <div className="min-h-screen w-screen">
         <GallerySlider />
-        <div className="flex flex-col w-screen h-fit py-32 px-4 lg:px-[10vw] lg:flex-row gap-y-20 lg:gap-x-5">
+        <div className="flex flex-col w-screen h-fit pb-32 pt-10 lg:py-32 px-4 lg:px-[10vw] lg:flex-row gap-y-20 lg:gap-x-5">
           <DescriptionContainer
             title={data.title}
             location={data.location}
