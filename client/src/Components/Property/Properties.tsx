@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Properties: React.FC = () => {
   return (
@@ -9,21 +10,27 @@ const Properties: React.FC = () => {
             Properties
           </h1>
           <div className="flex flex-col gap-y-10 px-4 lg:flex-row lg:justify-between lg:px-[10vw] lg:gap-x-10 w-full">
-            <img
-              src="./Property/Property.svg"
-              alt="Property"
-              className="w-full h-full"
-            />
-            <img
-              src="./Property/Property.svg"
-              alt="Property"
-              className="w-full h-full"
-            />
-            <img
-              src="./Property/Property.svg"
-              alt="Property"
-              className="w-full h-full"
-            />
+            <Link to={"/property/1"} className="w-full">
+              <img
+                src="./Property/Property.svg"
+                alt="Property"
+                className="w-full h-full"
+              />
+            </Link>
+            <Link to={"/property/1"} className="w-full">
+              <img
+                src="./Property/Property.svg"
+                alt="Property"
+                className="w-full h-full"
+              />
+            </Link>
+            <Link to={"/property/1"} className="w-full">
+              <img
+                src="./Property/Property.svg"
+                alt="Property"
+                className="w-full h-full"
+              />
+            </Link>
           </div>
         </div>
       </div>
