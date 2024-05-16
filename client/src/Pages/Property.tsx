@@ -2,7 +2,7 @@ import React from "react";
 import Landing from "../Components/Property/Landing";
 import Info from "../Components/Property/Info";
 import Box from "../Components/Property/Box";
-import CarouselSlider from "../Components/Property/CarouselSlider";
+// import CarouselSlider from "../Components/Property/CarouselSlider";
 import Properties from "../Components/Property/Properties";
 import Advantage from "../Components/Property/Advantage";
 import Footer from "./../Components/Home/Footer/Footer";

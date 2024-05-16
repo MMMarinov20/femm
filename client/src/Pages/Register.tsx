@@ -4,6 +4,7 @@ import BurgerNavbar from "../Components/Home/Navbar/BurgerNavbar";
 import { HiOutlineMail } from "react-icons/hi";
 import { HiOutlineLockClosed } from "react-icons/hi2";
 import { FaRegUser } from "react-icons/fa6";
+import { CiMap } from "react-icons/ci";
 import Footer from "./../Components/Home/Footer/Footer";
 import Input from "../Components/Login/Input";
 import Icons from "../Components/Login/Icons";
@@ -73,6 +74,7 @@ const Register = () => {
               type="password"
               Icon={HiOutlineLockClosed}
             />
+            <Input type="select" Icon={CiMap} />
 
             <div className="w-full md:w-1/2 lg:w-8/12 pt-2">
               <button
