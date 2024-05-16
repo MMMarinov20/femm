@@ -1,7 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 // import CarouselSlider from "../Property/CarouselSlider";
-
-// import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -13,6 +11,12 @@ interface Props {
   src: string[];
 }
 const GallerySlider: React.FC<Props> = (props: Props) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeModal = (e: any) => {
+    if (e.target.tagName === "IMG") return;
+    setIsOpen(false);
+  };
   return (
     <React.Fragment>
       {/* <div className="w-screen px-0 overflow-hidden text-center">
@@ -46,7 +50,7 @@ const GallerySlider: React.FC<Props> = (props: Props) => {
           loop={true}
           autoplay={{
             delay: 2000,
-            disableOnInteraction: false,
+            disableOnInteraction: true,
           }}
           pagination={{
             clickable: true,
@@ -54,14 +58,79 @@ const GallerySlider: React.FC<Props> = (props: Props) => {
           }}
           navigation={true}
           modules={[Autoplay, Pagination, Navigation, A11y]}
-          className="overflow-hidden w-full h-full"
+          className="overflow-hidden w-full h-full z-0"
         >
           {props.src.map((src, index) => (
-            <SwiperSlide key={index}>
-              <img src={src} alt="" className="w-full rounded-xl" />
+            <SwiperSlide key={index} className="pb-10">
+              <img
+                src={src}
+                alt=""
+                className="w-full rounded-xl z-0"
+                onClick={() => setIsOpen(true)}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
+
+        <div
+          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-90 z-100"
+          style={{ display: isOpen ? "block" : "none" }}
+          onClick={closeModal}
+        >
+          <button className="absolute top-5 right-5 z-50">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-10 w-10 text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+
+          <Swiper
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 30,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 40,
+              },
+            }}
+            spaceBetween={50}
+            centeredSlides={true}
+            loop={true}
+            autoplay={{
+              delay: 2000,
+              disableOnInteraction: true,
+            }}
+            pagination={{
+              clickable: true,
+              dynamicBullets: true,
+            }}
+            navigation={true}
+            modules={[Autoplay, Pagination, Navigation, A11y]}
+            className="overflow-hidden w-screen h-screen relative top-1/3"
+          >
+            {props.src.map((src, index) => (
+              <SwiperSlide key={index}>
+                <img src={src} alt="" className="w-full rounded-xl z-0" />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </React.Fragment>
   );
