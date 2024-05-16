@@ -68,48 +68,56 @@ const Rental = () => {
     <React.Fragment>
       <Navbar />
       <BurgerNavbar color={"#FFFFFF"} />
-      <div className="min-h-screen w-screen">
-        <GallerySlider />
-        <div className="flex flex-col w-screen h-fit pb-32 pt-10 lg:py-32 px-4 lg:px-[10vw] lg:flex-row gap-y-20 lg:gap-x-5">
-          <DescriptionContainer
-            title={data.title}
-            location={data.location}
-            features={data.features}
-            description={data.description}
-            rating={data.rating}
-          />
-          <SearchContainer setReservationData={receiveReservationData} />
-        </div>
-
-        <ReviewsSection rentalId={data.id} name={data.title} />
-
-        <Availability
-          date={reservationData.range}
-          adults={reservationData.adults}
+      {/* <div className="w-screen">
+      </div> */}
+      <GallerySlider
+        src={[
+          "../../Rental/Room1.jpg",
+          "../../Rental/Room1.jpg",
+          "../../Rental/Room1.jpg",
+          "../../Rental/Room1.jpg",
+          "../../Rental/Room1.jpg",
+        ]}
+      />
+      <div className="flex flex-col w-screen h-fit pb-32 pt-10 lg:py-32 px-4 lg:px-[10vw] lg:flex-row gap-y-20 lg:gap-x-5">
+        <DescriptionContainer
+          title={data.title}
+          location={data.location}
+          features={data.features}
+          description={data.description}
+          rating={data.rating}
         />
-
-        <h1 className="font-SolidenTrialBoldExpanded text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl lg:px-[10vw] px-4">
-          Surroundings:
-        </h1>
-
-        <div className="w-screen grid grid-rows-6 md:grid-rows-2 md:grid-cols-3 lg:px-[10vw] pb-20">
-          <Accordion surrounding={data.surroundings} />
-          <Accordion surrounding={data.surroundings} />
-          <Accordion surrounding={data.surroundings} />
-          <Accordion surrounding={data.surroundings} />
-          <Accordion surrounding={data.surroundings} />
-          <Accordion surrounding={data.surroundings} />
-        </div>
-
-        <div className="w-screen lg:px-[10vw] bg-[#F9F2DF] py-20">
-          <h1 className="overflow-hidden text-[#464646] text-center text-2xl min-[400px]:text-3xl md:text-4xl xl:text-5xl font-SolidenTrialBoldExpanded">
-            Frequently Asked <span className="text-[#FF6241]">Questions</span>
-          </h1>
-          <FaqBox faq={data.faq} />
-        </div>
-
-        <Footer />
+        <SearchContainer setReservationData={receiveReservationData} />
       </div>
+
+      <ReviewsSection rentalId={data.id} name={data.title} />
+
+      <Availability
+        date={reservationData.range}
+        adults={reservationData.adults}
+      />
+
+      <h1 className="font-SolidenTrialBoldExpanded text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl lg:px-[10vw] px-4">
+        Surroundings:
+      </h1>
+
+      <div className="w-screen grid grid-rows-6 md:grid-rows-2 md:grid-cols-3 lg:px-[10vw] pb-20">
+        <Accordion surrounding={data.surroundings} />
+        <Accordion surrounding={data.surroundings} />
+        <Accordion surrounding={data.surroundings} />
+        <Accordion surrounding={data.surroundings} />
+        <Accordion surrounding={data.surroundings} />
+        <Accordion surrounding={data.surroundings} />
+      </div>
+
+      <div className="w-screen lg:px-[10vw] bg-[#F9F2DF] py-20">
+        <h1 className="overflow-hidden text-[#464646] text-center text-2xl min-[400px]:text-3xl md:text-4xl xl:text-5xl font-SolidenTrialBoldExpanded">
+          Frequently Asked <span className="text-[#FF6241]">Questions</span>
+        </h1>
+        <FaqBox faq={data.faq} />
+      </div>
+
+      <Footer />
     </React.Fragment>
   );
 };

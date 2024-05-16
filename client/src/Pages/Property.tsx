@@ -6,8 +6,10 @@ import CarouselSlider from "../Components/Property/CarouselSlider";
 import Properties from "../Components/Property/Properties";
 import Advantage from "../Components/Property/Advantage";
 import Footer from "./../Components/Home/Footer/Footer";
+import GallerySlider from "../Components/Rental/GallerySlider";
 
 const src = [
+  "./Property/SliderImage.svg",
   "./Property/SliderImage.svg",
   "./Property/SliderImage.svg",
   "./Property/SliderImage.svg",
@@ -39,7 +41,8 @@ const Property = () => {
           <h1 className="font-SolidenTrialBoldExpanded text-3xl pb-10 md:text-5xl 2xl:text-6xl">
             Gallery
           </h1>
-          <CarouselSlider src={src} centerPadding="25%" />
+          {/* <CarouselSlider src={src} centerPadding="25%" /> */}
+          <GallerySlider src={src} />
         </div>
 
         <Properties />
