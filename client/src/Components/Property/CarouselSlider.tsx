@@ -9,12 +9,12 @@ interface Props {
   centerPadding: string;
 }
 
-const modalDiv = (src: string) => {
-  return `
-  <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 flex justify-center items-center z-50">
-        <img src=${src} alt="Image" className="w-full h-full object-contain" />
-  </div>`;
-};
+// const modalDiv = (src: string) => {
+//   return `
+//   <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 flex justify-center items-center z-50">
+//         <img src=${src} alt="Image" className="w-full h-full object-contain" />
+//   </div>`;
+// };
 
 const CarouselSlider: React.FC<Props> = (props) => {
   const createImageModal = (src: string) => {
