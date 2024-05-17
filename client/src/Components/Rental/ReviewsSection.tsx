@@ -5,6 +5,8 @@ import StarRating from "./StarRating";
 import { useUser } from "../../hooks/useUser";
 import { submitReview } from "./../../services/reviewService";
 import { Review as ReviewModel } from "../../models/Review";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 interface Props {
   rentalId: number;
@@ -30,6 +32,10 @@ const ReviewsSection: React.FC<Props> = (props) => {
     }
   }, [user.bookings, user.id, props.rentalId]);
 
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   const handleReviewSubmission = async () => {
     if (!user.id) return;
 
@@ -53,7 +59,10 @@ const ReviewsSection: React.FC<Props> = (props) => {
 
   return (
     <React.Fragment>
-      <h1 className="font-SolidenTrialBoldExpanded text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl lg:px-[10vw] px-4">
+      <h1
+        className="font-SolidenTrialBoldExpanded text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl lg:px-[10vw] px-4"
+        data-aos="fade-right"
+      >
         See what guests liked the most:
       </h1>
 
@@ -64,7 +73,10 @@ const ReviewsSection: React.FC<Props> = (props) => {
           <Review />
           <Review />
         </div>
-        <div className="h-fit lg:w-1/2 bg-white shadow-2xl lg:mr-[10vw] mx-4 rounded-2xl p-5 flex flex-col gap-y-3 md:text-lg">
+        <div
+          className="h-fit lg:w-1/2 bg-white shadow-2xl lg:mr-[10vw] mx-4 rounded-2xl p-5 flex flex-col gap-y-3 md:text-lg"
+          data-aos="fade-left"
+        >
           <h1 className="font-SolidenTrialBoldExpanded text-2xl md:text-4xl">
             Write a review
           </h1>

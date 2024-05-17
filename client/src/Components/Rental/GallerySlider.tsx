@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import CarouselSlider from "../Property/CarouselSlider";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/css";
 import "swiper/css/pagination";
-
 import { Autoplay, Pagination, Navigation, A11y } from "swiper/modules";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 interface Props {
   src: string[];
 }
 const GallerySlider: React.FC<Props> = (props: Props) => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const closeModal = (e: any) => {
@@ -29,7 +33,7 @@ const GallerySlider: React.FC<Props> = (props: Props) => {
           centerPadding="20%"
         />
       </div> */}
-      <div className="w-full px-[10vw] overflow-hidden">
+      <div className="w-full px-[10vw] overflow-hidden" data-aos="fade-right">
         <Swiper
           breakpoints={{
             640: {

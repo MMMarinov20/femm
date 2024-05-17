@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Offer: React.FC = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <React.Fragment>
       <div className="min-h-screen bg-[#F9F2DF] px-4 py-32 md:grid md:place-items-center lg:flex lg:flex-row lg:justify-between lg:px-[10vw] lg:p-0">
-        <div className="md:max-w-xl lg:max-w-sm xl:max-w-xl">
+        <div
+          className="md:max-w-xl lg:max-w-sm xl:max-w-xl"
+          data-aos="fade-right"
+        >
           <h1 className="overflow-hidden font-SolidenTrialBoldExpanded text-2xl min-[350px]:text-3xl min-[400px]:text-4xl xl:text-5xl 3xl:text-6xl">
             We Offer <span className="text-[#FF6241]">Flexible</span> Rental
             Terms For Our Customers
@@ -22,7 +31,10 @@ const Offer: React.FC = () => {
             lease.
           </h1>
         </div>
-        <div className="grid grid-rows-4 grid-cols-1 min-[380px]:grid-rows-2 min-[380px]:grid-cols-2 place-items-center lg:place-items-start gap-y-5 md:gap-5 pt-5 pb-20 md:p-20 lg:p-0 lg:gap-3 2xl:p-10">
+        <div
+          className="grid grid-rows-4 grid-cols-1 min-[380px]:grid-rows-2 min-[380px]:grid-cols-2 place-items-center lg:place-items-start gap-y-5 md:gap-5 pt-5 pb-20 md:p-20 lg:p-0 lg:gap-3 2xl:p-10"
+          data-aos="fade-left"
+        >
           <div className="bg-[url('../Home/People.svg')] md:bg-[url('../Home/PeopleBig.svg')] bg-center bg-no-repeat row-span-2 h-full w-full rounded-2xl drop-shadow-xl lg:shadow-none 2xl:shadow-xl"></div>
 
           <div className="row-span-1 bg-white w-fit min-h-fit rounded-2xl px-5 py-5 min-[380px]:py-4 min-[380px]:px-2 md:p-6 shadow-xl lg:shadow-none 2xl:shadow-xl">

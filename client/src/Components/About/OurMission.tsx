@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Box from "./Box";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const OurMission: React.FC = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <React.Fragment>
       <div className="w-screen px-4 py-20 space-y-10 lg:flex lg:justify-between lg:items-center lg:px-[10vw]">
-        <div className="space-y-5 lg:w-1/2">
+        <div className="space-y-5 lg:w-1/2" data-aos="fade-right">
           <h1 className="font-SolidenTrialBoldExpanded text-4xl xl:text-5xl">
             Our Mission
           </h1>

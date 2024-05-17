@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Info: React.FC = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <React.Fragment>
       <div className="min-h-screen px-4 py-20 flex flex-col lg:flex-row-reverse lg:px-[10vw] lg:gap-x-5 lg:items-center 2xl:gap-x-20">
-        <div className="flex flex-col gap-y-5 2xl:gap-y-10 lg:w-1/2">
+        <div
+          className="flex flex-col gap-y-5 2xl:gap-y-10 lg:w-1/2"
+          data-aos="fade-left"
+        >
           <img src="./Property/Logo.svg" className="w-10/12 2xl:w-7/12" />
           <h1 className="font-GilroyRegular md:text-lg lg:text-base xl:text-lg 3xl:text-xl">
             Atlantis Aria is a residential complex located in Horizont district,
@@ -46,6 +55,7 @@ const Info: React.FC = () => {
         <img
           src="./Property/Building.svg"
           className="w-full pt-5 lg:pt-0 2xl:w-1/2"
+          data-aos="fade-right"
         />
       </div>
     </React.Fragment>

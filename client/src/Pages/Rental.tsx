@@ -12,6 +12,8 @@ import rentalsData from "../data/rentals";
 import Availability from "../Components/Rental/Availability";
 import { DateRange } from "react-day-picker";
 import { IconType } from "react-icons";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 interface RentalData {
   id: number;
@@ -55,6 +57,8 @@ const Rental = () => {
   };
 
   useEffect(() => {
+    AOS.init();
+    window.scrollTo(0, 0);
     const id = window.location.pathname.split("/")[2];
 
     const rental = rentalsData.rentals.find(
@@ -96,11 +100,17 @@ const Rental = () => {
           adults={reservationData.adults}
         />
 
-        <h1 className="font-SolidenTrialBoldExpanded text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl lg:px-[10vw] px-4">
+        <h1
+          className="font-SolidenTrialBoldExpanded text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl lg:px-[10vw] px-4"
+          data-aos="fade-right"
+        >
           Surroundings:
         </h1>
 
-        <div className="w-screen grid grid-rows-6 md:grid-rows-2 md:grid-cols-3 lg:px-[10vw] pb-20">
+        <div
+          className="w-screen grid grid-rows-6 md:grid-rows-2 md:grid-cols-3 lg:px-[10vw] pb-20"
+          data-aos="fade-up"
+        >
           <Accordion surrounding={data.surroundings} />
           <Accordion surrounding={data.surroundings} />
           <Accordion surrounding={data.surroundings} />
@@ -110,9 +120,15 @@ const Rental = () => {
         </div>
 
         <div className="w-screen lg:px-[10vw] bg-[#F9F2DF] py-20">
-          <h1 className="overflow-hidden text-[#464646] text-center text-2xl min-[400px]:text-3xl md:text-4xl xl:text-5xl font-SolidenTrialBoldExpanded">
+          <h1
+            className="overflow-hidden text-[#464646] text-center text-2xl min-[400px]:text-3xl md:text-4xl xl:text-5xl font-SolidenTrialBoldExpanded"
+            data-aos="fade-right"
+          >
             Frequently Asked <span className="text-[#FF6241]">Questions</span>
           </h1>
+          <FaqBox faq={data.faq} />
+          <FaqBox faq={data.faq} />
+          <FaqBox faq={data.faq} />
           <FaqBox faq={data.faq} />
         </div>
 

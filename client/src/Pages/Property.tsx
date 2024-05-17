@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Landing from "../Components/Property/Landing";
 import Info from "../Components/Property/Info";
 import Box from "../Components/Property/Box";
@@ -7,6 +7,8 @@ import Properties from "../Components/Property/Properties";
 import Advantage from "../Components/Property/Advantage";
 import Footer from "./../Components/Home/Footer/Footer";
 import GallerySlider from "../Components/Rental/GallerySlider";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const src = [
   "./Property/Carousel/1.jpg",
@@ -18,16 +20,27 @@ const src = [
 ];
 
 const Property = () => {
+  useEffect(() => {
+    AOS.init();
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <React.Fragment>
       <div className="overflow-hidden">
         <Landing />
         <Info />
         <div className="min-h-screen flex flex-col items-center px-4 lg:px-[10vw]">
-          <h1 className="font-SolidenTrialBoldExpanded text-3xl pb-2 md:text-5xl 2xl:text-6xl">
+          <h1
+            className="font-SolidenTrialBoldExpanded text-3xl pb-2 md:text-5xl 2xl:text-6xl"
+            data-aos="fade-right"
+          >
             Facilities
           </h1>
-          <h1 className="font-SolidenTrialRegular text-center md:text-xl">
+          <h1
+            className="font-SolidenTrialRegular text-center md:text-xl"
+            data-aos="fade-right"
+          >
             Like all complexes of Atlantis Bulgaria, the complex will provide a
             number of amenities to its customers
           </h1>
@@ -41,7 +54,10 @@ const Property = () => {
           </div>
 
           <div className="w-screen px-0 overflow-hidden text-center">
-            <h1 className="font-SolidenTrialBoldExpanded text-3xl pb-10 md:text-5xl 2xl:text-6xl">
+            <h1
+              className="font-SolidenTrialBoldExpanded text-3xl pb-10 md:text-5xl 2xl:text-6xl"
+              data-aos="fade-right"
+            >
               Gallery
             </h1>
             {/* <CarouselSlider src={src} centerPadding="25%" /> */}
@@ -51,11 +67,17 @@ const Property = () => {
           <Properties />
 
           <div className="min-h-fit pb-20">
-            <h1 className="font-SolidenTrialBoldExpanded text-3xl px-4 text-center md:text-5xl 2xl:text-6xl overflow-hidden">
+            <h1
+              className="font-SolidenTrialBoldExpanded text-3xl px-4 text-center md:text-5xl 2xl:text-6xl overflow-hidden"
+              data-aos="fade-right"
+            >
               Advantages Of Your <span className="text-[#FF6241]">New</span>{" "}
               Home
             </h1>
-            <div className="w-screen py-20 px-4 grid gap-y-10 place-items-center lg:grid-cols-2 xl:grid-cols-3">
+            <div
+              className="w-screen py-20 px-4 grid gap-y-10 place-items-center lg:grid-cols-2 xl:grid-cols-3"
+              data-aos="fade-up"
+            >
               <Advantage />
               <Advantage />
               <Advantage />

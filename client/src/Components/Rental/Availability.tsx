@@ -9,6 +9,8 @@ import Calendar from "./Calendar";
 import { ToastContainer } from "react-toastify";
 import { errorToast, infoToast, successToast } from "../../utils/utils";
 import "react-toastify/dist/ReactToastify.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 interface Props {
   date: DateRange | undefined;
@@ -30,6 +32,7 @@ const Availability: React.FC<Props> = (props) => {
   }, [props.date]);
 
   useEffect(() => {
+    AOS.init();
     const rentalId = parseInt(window.location.pathname.split("/")[2]);
     setRentalId(rentalId);
   }, []);
@@ -95,7 +98,11 @@ const Availability: React.FC<Props> = (props) => {
   };
 
   return (
-    <div className="px-4 pb-32 w-full lg:px-[10vw]" id="availability">
+    <div
+      className="px-4 pb-32 w-full lg:px-[10vw]"
+      id="availability"
+      data-aos="fade-right"
+    >
       <div className="py-5 shadow-2xl w-full px-4 rounded-xl">
         <h1 className="font-SolidenTrialBoldExpanded text-4xl pb-3">
           Availability

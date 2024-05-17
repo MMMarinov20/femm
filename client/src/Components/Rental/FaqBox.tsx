@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoIosArrowDown } from "react-icons/io";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 interface Props {
   faq: { [key: string]: string };
 }
 
 const FaqBox: React.FC<Props> = (props) => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleAccordion = () => {
@@ -16,7 +22,7 @@ const FaqBox: React.FC<Props> = (props) => {
   const faqValue = props.faq[faqKey];
 
   return (
-    <div className="w-full px-4 py-8">
+    <div className="w-full px-4 py-8" data-aos="fade-up">
       <div className="bg-white rounded-lg shadow-xl">
         <div
           className="flex justify-between items-center p-10 cursor-pointer"
