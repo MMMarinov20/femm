@@ -93,7 +93,9 @@ const BurgerNavbar: React.FC<Props> = (props) => {
                 </div>
               )} */}
             </div>
-            <h1>About us</h1>
+            <Link to={"/about"}>
+              <h1>About us</h1>
+            </Link>
           </div>
 
           <div className="flex flex-col justify-center items-center gap-y-5">

@@ -9,8 +9,8 @@ const Landing: React.FC = () => {
         <Navbar />
       </div>
       <BurgerNavbar color="#F9F2DF" />
-      <div className="w-screen h-[90vh] lg:h-fit lg:pl-[10vw] lg:pt-10 bg-[#F9F2DF] flex flex-col lg:flex-row justify-between">
-        <div className="px-4 pt-5 lg:px-0 lg:max-w-[20rem] xl:max-w-md 2xl:max-w-xl">
+      <div className="w-screen h-[90vh] lg:h-fit lg:pl-[10vw] lg:pt-10 2xl:pt-0 bg-[#F9F2DF] flex flex-col lg:flex-row justify-between 2xl:items-center">
+        <div className="px-4 pt-5 lg:px-0 lg:max-w-[20rem] xl:max-w-md 2xl:max-w-xl lg:pb-[10vw]">
           <h1 className="text-[#FF6241] font-SolidenTrialBoldExpanded text-xl min-[370px]:text-2xl md:text-3xl lg:text-2xl">
             Atlantis Aria
           </h1>
@@ -26,7 +26,7 @@ const Landing: React.FC = () => {
             Call to Action
           </button>
         </div>
-        <img src="./Property/Background.png" className="w-full 2xl:w-[55%]" />
+        <img src="./Property/Building.png" className="w-full lg:w-[55%]" />
       </div>
     </React.Fragment>
   );

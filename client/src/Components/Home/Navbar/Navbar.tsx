@@ -77,7 +77,9 @@ const Navbar: React.FC = () => {
               <h1 className="cursor-pointer">Option 3</h1>
             </div> */}
           </div>
-          <h1>About Us</h1>
+          <Link to={"/about"}>
+            <h1 className="cursor-pointer">About Us</h1>
+          </Link>
         </div>
 
         <div className="flex flex-row gap-x-5">

@@ -9,10 +9,12 @@ import Footer from "./../Components/Home/Footer/Footer";
 import GallerySlider from "../Components/Rental/GallerySlider";
 
 const src = [
-  "./Property/SliderImage.svg",
-  "./Property/SliderImage.svg",
-  "./Property/SliderImage.svg",
-  "./Property/SliderImage.svg",
+  "./Property/Carousel/1.jpg",
+  "./Property/Carousel/2.jpg",
+  "./Property/Carousel/3.JPG",
+  "./Property/Carousel/4.JPG",
+  "./Property/Carousel/5.JPG",
+  "./Property/Carousel/6.jpg",
 ];
 
 const Property = () => {
