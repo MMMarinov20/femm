@@ -6,10 +6,12 @@ import Footer from "../Components/Home/Footer/Footer";
 function Home() {
   return (
     <React.Fragment>
-      <Landing />
-      <About />
-      <Offer />
-      <Footer />
+      <div className="overflow-hidden">
+        <Landing />
+        <About />
+        <Offer />
+        <Footer />
+      </div>
     </React.Fragment>
   );
 }
