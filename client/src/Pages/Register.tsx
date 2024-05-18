@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Navbar from "../Components/Home/Navbar/Navbar";
 import BurgerNavbar from "../Components/Home/Navbar/BurgerNavbar";
 import { HiOutlineMail } from "react-icons/hi";
@@ -12,12 +12,36 @@ import Header from "../Components/Login/Header";
 import { handleRegister } from "./../services/authService";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useSearchParams } from "react-router-dom";
+import { RegisterInterface } from "../data/lang/en/Register/Register";
 
 const Register = () => {
+  const [searchParams] = useSearchParams();
+  const [registerData, setRegisterData] = useState<RegisterInterface | null>(
+    null
+  );
+
+  useEffect(() => {
+    const loadRegisterData = async () => {
+      try {
+        const RegisterModule = await import(
+          `../data/lang/${searchParams.get("lang")}/Register/Register.json`
+        );
+        setRegisterData(RegisterModule.default);
+      } catch (error) {
+        console.error("Error loading the Register data:", error);
+      }
+    };
+
+    loadRegisterData();
+  }, [searchParams]);
+
   const firstNameRef = useRef<HTMLInputElement>(null);
   const lastNameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+
+  if (!registerData) return <div>Loading...</div>;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,29 +73,32 @@ const Register = () => {
               className="w-full lg:w-1/2 text-center md:flex md:flex-col md:items-center"
               onSubmit={handleSubmit}
             >
-              <Header heading="Already have an account? " method="Login" />
+              <Header
+                heading={registerData.Title}
+                subheading={registerData.Subtitle}
+              />
 
               <Input
                 ref={firstNameRef}
-                placeholder="First Name"
+                placeholder={registerData.FirstNamePlaceholder}
                 type="text"
                 Icon={FaRegUser}
               />
               <Input
                 ref={lastNameRef}
-                placeholder="Last Name"
+                placeholder={registerData.LastNamePlaceholder}
                 type="text"
                 Icon={FaRegUser}
               />
               <Input
                 ref={emailRef}
-                placeholder="Email Address"
+                placeholder={registerData.EmailPlaceholder}
                 type="email"
                 Icon={HiOutlineMail}
               />
               <Input
                 ref={passwordRef}
-                placeholder="Password"
+                placeholder={registerData.PasswordPlaceholder}
                 type="password"
                 Icon={HiOutlineLockClosed}
               />
@@ -82,7 +109,7 @@ const Register = () => {
                   type="submit"
                   className="w-full bg-[#FF6241] rounded-lg py-2 2xl:py-3 text-white font-SolidenTrialRegular transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]"
                 >
-                  Register
+                  {registerData.Button}
                 </button>
                 <ToastContainer />
               </div>

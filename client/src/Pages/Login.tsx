@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Navbar from "../Components/Home/Navbar/Navbar";
 import BurgerNavbar from "../Components/Home/Navbar/BurgerNavbar";
 import { HiOutlineMail } from "react-icons/hi";
@@ -12,12 +12,33 @@ import { useUser } from "./../hooks/useUser";
 import { ToastContainer } from "react-toastify";
 import { errorToast } from "../utils/utils";
 import "react-toastify/dist/ReactToastify.css";
+import { useSearchParams } from "react-router-dom";
+import { LoginInterface } from "../data/lang/en/Login/Login";
 
 const Login: React.FC = () => {
+  const [searchParams] = useSearchParams();
+  const [loginData, setLoginData] = useState<LoginInterface | null>(null);
+
+  useEffect(() => {
+    const loadLoginData = async () => {
+      try {
+        const LoginModule = await import(
+          `../data/lang/${searchParams.get("lang")}/Login/Login.json`
+        );
+        setLoginData(LoginModule.default);
+      } catch (error) {
+        console.error("Error loading the Login data:", error);
+      }
+    };
+
+    loadLoginData();
+  }, [searchParams]);
+
   const { updateUser } = useUser();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
+  if (!loginData) return <div>Loading...</div>;
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!emailRef.current || !passwordRef.current) return;
@@ -50,24 +71,27 @@ const Login: React.FC = () => {
               className="w-full lg:w-1/2 text-center md:flex md:flex-col md:items-center"
               onSubmit={handleSubmit}
             >
-              <Header heading="Don't have an account yet? " method="Sign up" />
+              <Header
+                heading={loginData.Title}
+                subheading={loginData.Subtitle}
+              />
 
               <Input
                 ref={emailRef}
-                placeholder="Email Address"
+                placeholder={loginData.EmailPlaceholder}
                 type="email"
                 Icon={HiOutlineMail}
               />
               <Input
                 ref={passwordRef}
-                placeholder="Password"
+                placeholder={loginData.PasswordPlaceholder}
                 type="password"
                 Icon={HiOutlineLockClosed}
               />
 
               <div className="w-full md:w-1/2 lg:w-8/12 pt-2">
                 <button className="w-full bg-[#FF6241] rounded-lg py-2 2xl:py-3 text-white font-SolidenTrialRegular transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]">
-                  Login
+                  {loginData.Button}
                 </button>
                 <ToastContainer />
               </div>
