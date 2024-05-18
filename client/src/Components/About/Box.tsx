@@ -2,7 +2,12 @@ import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-const Box: React.FC = () => {
+interface Props {
+  title: string;
+  description: string;
+}
+
+const Box: React.FC<Props> = (props) => {
   useEffect(() => {
     AOS.init();
   }, []);
@@ -15,10 +20,10 @@ const Box: React.FC = () => {
       >
         <img src="../About/Icon.svg" alt="Icon" />
         <h1 className="font-SolidenTrialBoldExpanded text-xl xl:text-2xl">
-          Empowering Choices
+          {props.title}
         </h1>
         <h1 className="font-SolidenTrialRegular max-w-xs xl:text-lg">
-          Find a home that hits the sweet spot between great quality.
+          {props.description}
         </h1>
       </div>
     </React.Fragment>

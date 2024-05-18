@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState } from "react";
 import Landing from "../Components/Home/Landing";
 import About from "../Components/Home/About";
 import Offer from "../Components/Home/Offer";

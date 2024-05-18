@@ -2,7 +2,15 @@ import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-const WhatWeDo: React.FC = () => {
+interface Props {
+  Data: {
+    Title: string;
+    DescriptionFirst: string;
+    DescriptionSecond: string;
+  };
+}
+
+const WhatWeDo: React.FC<Props> = ({ Data }) => {
   useEffect(() => {
     AOS.init();
   }, []);
@@ -16,22 +24,15 @@ const WhatWeDo: React.FC = () => {
         >
           <div className="space-y-5">
             <h1 className="font-SolidenTrialBoldExpanded text-4xl xl:text-5xl">
-              What We Do
+              {Data.Title}
             </h1>
 
             <h1 className="font-SolidenTrialRegular xl:text-lg xl:max-w-lg">
-              At FEMM BULGARIA, our mission is to simplify your journey to
-              finding the perfect apartment. With a commitment to excellence and
-              a user-friendly platform, we strive to make your search for an
-              ideal rental a seamless and enjoyable experience.
+              {Data.DescriptionFirst}
             </h1>
 
             <h1 className="font-SolidenTrialRegular xl:text-lg xl:max-w-lg">
-              Explore a diverse range of apartments that cater to your unique
-              preferences and lifestyle. Whether you're looking for a cozy
-              studio, a spacious family home, or a stylish urban loft, our
-              curated selection ensures that you'll find a place that feels just
-              right.
+              {Data.DescriptionSecond}
             </h1>
           </div>
 

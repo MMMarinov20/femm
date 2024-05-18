@@ -1,49 +1,49 @@
 import React from "react";
 
-const WhoWeAre: React.FC = () => {
+interface Props {
+  Data: {
+    Title: string;
+    DescriptionFirst: string;
+    SubTitleFirst: string;
+    DescriptionSecond: string;
+    SubTitleSecond: string;
+    DescriptionThird: string;
+    SubTitleThird: string;
+    DescriptionFourth: string;
+  };
+}
+
+const WhoWeAre: React.FC<Props> = ({ Data }) => {
   return (
     <React.Fragment>
       <div className="px-4 lg:px-[10vw] pb-32 w-screen flex flex-col justify-center items-center lg:flex-row-reverse lg:justify-between lg:gap-x-5">
         <div className="py-32 flex flex-col gap-y-5 lg:gap-y-3 lg:w-1/2">
           <h1 className="font-SolidenTrialBoldExpanded text-4xl xl:text-5xl overflow-hidden">
-            Who We Are
+            {Data.Title}
           </h1>
           <h1 className="font-SolidenTrialRegular 2xl:text-lg">
-            At FEMM BULGARIA, we specialize in connecting individuals with their
-            ideal living spaces. Our platform is designed to simplify the rental
-            process, offering a comprehensive range of services to ensure a
-            seamless and enjoyable experience for both tenants and property
-            owners.
+            {Data.DescriptionFirst}
           </h1>
 
           <h1 className="font-SolidenTrialBoldExpanded text-2xl">
-            Curated Selection
+            {Data.SubTitleFirst}
           </h1>
           <h1 className="font-SolidenTrialRegular 2xl:text-lg">
-            Explore a carefully curated selection of rental properties, ranging
-            from cozy apartments to spacious homes. We handpick properties that
-            meet high-quality standards, ensuring that you have access to the
-            best options available.
+            {Data.DescriptionSecond}
           </h1>
 
           <h1 className="font-SolidenTrialBoldExpanded text-2xl">
-            User-Friendly Platform
+            {Data.SubTitleSecond}
           </h1>
           <h1 className="font-SolidenTrialRegular 2xl:text-lg">
-            Our intuitive and user-friendly platform makes the search for your
-            perfect rental a breeze. With advanced filtering options, you can
-            easily narrow down your choices based on location, amenities, and
-            other preferences, saving you time and effort.
+            {Data.DescriptionThird}
           </h1>
 
           <h1 className="font-SolidenTrialBoldExpanded text-2xl">
-            Flexible Rental Terms
+            {Data.SubTitleThird}
           </h1>
           <h1 className="font-SolidenTrialRegular 2xl:text-lg">
-            Our intuitive and user-friendly platform makes the search for your
-            perfect rental a breeze. With advanced filtering options, you can
-            easily narrow down your choices based on location, amenities, and
-            other preferences, saving you time and effort.
+            {Data.DescriptionFourth}
           </h1>
         </div>
         <img
