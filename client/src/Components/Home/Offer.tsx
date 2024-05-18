@@ -2,7 +2,23 @@ import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-const Offer: React.FC = () => {
+interface Props {
+  Data: {
+    Title: string;
+    DescriptionFirst: string;
+    DescriptionSecond: string;
+    BoxFirst: {
+      Title: string;
+      Description: string;
+    };
+    BoxSecond: {
+      Title: string;
+      Description: string;
+    };
+  };
+}
+
+const Offer: React.FC<Props> = ({ Data }) => {
   useEffect(() => {
     AOS.init();
   }, []);
@@ -14,21 +30,15 @@ const Offer: React.FC = () => {
           className="md:max-w-xl lg:max-w-sm xl:max-w-xl"
           data-aos="fade-right"
         >
-          <h1 className="overflow-hidden font-SolidenTrialBoldExpanded text-2xl min-[350px]:text-3xl min-[400px]:text-4xl xl:text-5xl 3xl:text-6xl">
-            We Offer <span className="text-[#FF6241]">Flexible</span> Rental
-            Terms For Our Customers
-          </h1>
+          <h1
+            dangerouslySetInnerHTML={{ __html: Data.Title }}
+            className="overflow-hidden font-SolidenTrialBoldExpanded text-2xl min-[350px]:text-3xl min-[400px]:text-4xl xl:text-5xl 3xl:text-6xl"
+          ></h1>
           <h1 className="font-SolidenTrialExpanded text-[#464646] py-3">
-            At FEMM BULGARIA, flexibility meets convenience. Our commitment to
-            providing exceptional service extends to offering flexible rental
-            terms tailored to suit your unique needs. Whether you're seeking
-            short-term arrangements, long-term leases, or something in between,
-            we empower you with choices.
+            {Data.DescriptionFirst}
           </h1>
           <h1 className="font-SolidenTrialExpanded text-[#464646]">
-            We understand that life comes with its twists and turns. That's why
-            we prioritize your comfort and peace of mind by offering adjustable
-            lease.
+            {Data.DescriptionSecond}
           </h1>
         </div>
         <div
@@ -43,10 +53,10 @@ const Offer: React.FC = () => {
               className="w-[20vw] min-[380px]:w-[10vw] md:w-[5vw] 2xl:w-[3vw]"
             />
             <h1 className="font-SolidenTrialBoldExpanded pt-3 pb-1 md:text-xl lg:text-lg 2xl:text-2xl">
-              Affordable price
+              {Data.BoxFirst.Title}
             </h1>
             <h1 className="font-SolidenTrialRegular text-xs max-w-[10rem] md:text-lg lg:text-xs 2xl:text-base 2xl:max-w-[15rem]">
-              Find a home that hits the sweet spot between great quality.
+              {Data.BoxFirst.Description}
             </h1>
           </div>
 
@@ -56,10 +66,10 @@ const Offer: React.FC = () => {
               className="w-[20vw] min-[380px]:w-[10vw] md:w-[5vw] 2xl:w-[3vw]"
             />
             <h1 className="font-SolidenTrialBoldExpanded pt-3 pb-1 md:text-xl lg:text-lg 2xl:text-2xl">
-              Affordable price
+              {Data.BoxSecond.Title}
             </h1>
             <h1 className="font-SolidenTrialRegular text-xs max-w-[10rem] md:text-lg lg:text-xs 2xl:text-base 2xl:max-w-[15rem]">
-              Find a home that hits the sweet spot between great quality.
+              {Data.BoxSecond.Description}
             </h1>
           </div>
         </div>
