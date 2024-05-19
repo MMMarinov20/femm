@@ -4,7 +4,7 @@ const Form: React.FC = () => {
   return (
     <React.Fragment>
       <div className="px-4 py-20 w-screen lg:px-[10vw]">
-        <div className="w-full shadow-2xl bg-white p-7 lg:flex lg:flex-row lg:gap-x-10">
+        <div className="w-full shadow-2xl bg-white rounded-2xl p-7 lg:flex lg:flex-row lg:gap-x-10">
           <div className="flex flex-col md:justify-center md:items-center lg:items-start 2xl:justify-start lg:w-1/2">
             <h1 className="font-SolidenTrialBoldExpanded text-4xl 2xl:text-5xl text-center pt-5 overflow-hidden">
               Make a request

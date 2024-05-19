@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../Components/Home/Navbar/Navbar";
 import BurgerNavbar from "../Components/Home/Navbar/BurgerNavbar";
 import Landing from "../Components/Apartament/Landing";
@@ -9,6 +9,10 @@ import Footer from "../Components/Home/Footer/Footer";
 import Box from "../Components/Property/Box";
 
 const Apartament = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <React.Fragment>
       <div className="overflow-hidden">

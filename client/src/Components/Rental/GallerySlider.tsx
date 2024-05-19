@@ -69,7 +69,7 @@ const GallerySlider: React.FC<Props> = (props: Props) => {
               <img
                 src={src}
                 alt=""
-                className="w-full rounded-xl z-0"
+                className="w-full rounded-xl z-0 cursor-pointer"
                 onClick={() => setIsOpen(true)}
               />
             </SwiperSlide>
@@ -77,7 +77,7 @@ const GallerySlider: React.FC<Props> = (props: Props) => {
         </Swiper>
 
         <div
-          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-90 z-100"
+          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-90 z-100 overflow-hidden z-50"
           style={{ display: isOpen ? "block" : "none" }}
           onClick={closeModal}
         >
@@ -126,11 +126,15 @@ const GallerySlider: React.FC<Props> = (props: Props) => {
             }}
             navigation={true}
             modules={[Autoplay, Pagination, Navigation, A11y]}
-            className="overflow-hidden w-screen h-screen relative top-[20%]"
+            className="overflow-hidden w-full h-full z-0"
           >
             {props.src.map((src, index) => (
               <SwiperSlide key={index}>
-                <img src={src} alt="" className="w-full rounded-xl z-0" />
+                <img
+                  src={src}
+                  alt=""
+                  className="w-full h-full rounded-2xl z-0"
+                />
               </SwiperSlide>
             ))}
           </Swiper>

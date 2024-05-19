@@ -2,7 +2,10 @@ import React from "react";
 import Benefit from "./Benefit";
 import { IoBedOutline } from "react-icons/io5";
 import { FaEuroSign } from "react-icons/fa";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import "swiper/css";
+import "swiper/css/pagination";
+import "aos/dist/aos.css";
+import Carousel from "./Carousel";
 
 const Landing: React.FC = () => {
   return (
@@ -10,16 +13,7 @@ const Landing: React.FC = () => {
       <div className="w-screen lg:px-[10vw]">
         <div className="flex flex-col gap-y-10 lg:flex-row lg:justify-center px-4 lg:px-0">
           <div className="w-full 2xl:w-[50%] h-full flex flex-col justify-between">
-            <div className="bg-[url('../Apartament/Image.svg')] w-full h-[70vh] md:h-[60vh] xl:h-[55vh] rounded-xl bg-cover bg-center bg-no-repeat"></div>
-            <div className="flex justify-center items-center gap-x-3 mt-5">
-              <IoIosArrowBack className="text-3xl" />
-              <div className="w-20 h-20 lg:w-28 lg:h-28 xl:w-32 xl:h-32 bg-[url('../Apartament/Image.svg')] bg-center bg-cover bg-no-repeat rounded-xl"></div>
-              <div className="w-20 h-20 lg:w-28 lg:h-28 xl:w-32 xl:h-32 bg-[url('../Apartament/Image.svg')] bg-center bg-cover bg-no-repeat rounded-xl"></div>
-              <div className="w-20 h-20 lg:w-28 lg:h-28 xl:w-32 xl:h-32 bg-[url('../Apartament/Image.svg')] bg-center bg-cover bg-no-repeat rounded-xl"></div>
-              <div className="hidden xl:block w-20 h-20 lg:w-28 lg:h-28 xl:w-32 xl:h-32 bg-[url('../Apartament/Image.svg')] bg-center bg-cover bg-no-repeat rounded-xl"></div>
-              <div className="hidden xl:block w-20 h-20 lg:w-28 lg:h-28 xl:w-32 xl:h-32 bg-[url('../Apartament/Image.svg')] bg-center bg-cover bg-no-repeat rounded-xl"></div>
-              <IoIosArrowForward className="text-3xl" />
-            </div>
+            <Carousel />
 
             <div className="lg:flex lg:flex-row items-center xl:justify-between gap-x-6">
               <div className="flex flex-row gap-x-6 py-5">
