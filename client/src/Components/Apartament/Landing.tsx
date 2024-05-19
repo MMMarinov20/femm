@@ -6,8 +6,13 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "aos/dist/aos.css";
 import Carousel from "./Carousel";
+import { ApartamentInterface } from "../../data/Apartament";
 
-const Landing: React.FC = () => {
+interface Props {
+  Data: ApartamentInterface;
+}
+
+const Landing: React.FC<Props> = ({ Data }) => {
   return (
     <React.Fragment>
       <div className="w-screen lg:px-[10vw]">
@@ -43,11 +48,12 @@ const Landing: React.FC = () => {
             </div>
           </div>
 
-          <div className="w-full xl:w-[70%] 2xl:w-[30%] flex flex-col items-center px-7 lg:px-10">
-            <div className="p-2 md:h-[60vh] xl:h-[55vh] rounded-xl w-full md:w-1/2 lg:w-full shadow-2xl">
+          <div className="w-full xl:w-[70%] 2xl:w-[27%] flex flex-col items-center px-7 lg:px-10">
+            <div className="p-2 h-fit rounded-xl w-full md:w-1/2 lg:w-full shadow-2xl">
               <div className="border-[1px] border-[#FF6241] px-2 py-4 grid place-items-center h-full w-full font-GilroyExtraBold gap-y-3 rounded-xl">
-                {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
-                  <Benefit key={item} />
+                {Object.keys(Data).map((key, value) => (
+                  //@ts-expect-error test
+                  <Benefit Title={key} Subtitle={Data[key]} />
                 ))}
               </div>
             </div>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../Components/Home/Navbar/Navbar";
 import BurgerNavbar from "../Components/Home/Navbar/BurgerNavbar";
 import Landing from "../Components/Apartament/Landing";
@@ -7,18 +7,38 @@ import Advantage from "../Components/Property/Advantage";
 import Form from "../Components/Apartament/Form";
 import Footer from "../Components/Home/Footer/Footer";
 import Box from "../Components/Property/Box";
+import { ApartamentInterface } from "../data/Apartament";
 
 const Apartament = () => {
+  const [apartamentData, setApartamentData] =
+    useState<ApartamentInterface | null>(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    const id = window.location.pathname.split("/")[2];
+    const findApartament = async () => {
+      try {
+        const ApartamentModule = await import(`../data/apartments.json`);
+        const apartment = ApartamentModule.default.apartaments.find(
+          (apartament) => apartament.id === parseInt(id)
+        );
+        if (!apartment) return;
+        setApartamentData(apartment.apartment);
+      } catch (error) {
+        console.error("Error loading the Apartament data:", error);
+      }
+    };
+    findApartament();
   }, []);
+
+  if (!apartamentData) return <div>Loading...</div>;
 
   return (
     <React.Fragment>
       <div className="overflow-hidden">
         <Navbar />
         <BurgerNavbar color="#FFFFFF" />
-        <Landing />
+        <Landing Data={apartamentData} />
         <Info />
 
         <div className="min-h-screen flex flex-col items-center px-4 lg:px-[10vw]">
