@@ -8,7 +8,7 @@ import ReviewsSection from "../Components/Rental/ReviewsSection";
 import Accordion from "../Components/Rental/Accordion";
 import FaqBox from "../Components/Rental/FaqBox";
 import Footer from "../Components/Home/Footer/Footer";
-import rentalsData from "../data/rentals";
+import rentalsData from "../data/lang/en/Rental/rentals";
 import Availability from "../Components/Rental/Availability";
 import { DateRange } from "react-day-picker";
 import { IconType } from "react-icons";

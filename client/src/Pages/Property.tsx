@@ -11,12 +11,12 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const src = [
-  "./Property/Carousel/1.jpg",
-  "./Property/Carousel/2.jpg",
-  "./Property/Carousel/3.JPG",
-  "./Property/Carousel/4.JPG",
-  "./Property/Carousel/5.JPG",
-  "./Property/Carousel/6.jpg",
+  "./Property/Carousel/1.svg",
+  "./Property/Carousel/2.svg",
+  "./Property/Carousel/3.svg",
+  "./Property/Carousel/4.svg",
+  "./Property/Carousel/5.svg",
+  "./Property/Carousel/6.svg",
 ];
 
 const Property = () => {
