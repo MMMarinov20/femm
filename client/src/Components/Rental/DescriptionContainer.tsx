@@ -13,6 +13,7 @@ interface Props {
   features: Feature[][];
   description: string;
   rating: number;
+  buttonText: string;
 }
 
 const DescriptionContainer: React.FC<Props> = (props) => {
@@ -33,7 +34,7 @@ const DescriptionContainer: React.FC<Props> = (props) => {
         </h1>
 
         <button className="w-[40%] bg-[#FF6241] py-3 text-white font-SolidenTrialRegular rounded-lg text-xs md:text-base transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]">
-          Book a Stay
+          {props.buttonText}
         </button>
 
         <div className="flex flex-col gap-y-3 py-2">

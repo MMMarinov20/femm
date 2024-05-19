@@ -33,7 +33,7 @@ const GallerySlider: React.FC<Props> = (props: Props) => {
           centerPadding="20%"
         />
       </div> */}
-      <div className="w-full px-[10vw] overflow-hidden" data-aos="fade-right">
+      <div className="w-full px-[10vw] overflow-hidden">
         <Swiper
           breakpoints={{
             640: {
@@ -126,7 +126,7 @@ const GallerySlider: React.FC<Props> = (props: Props) => {
             }}
             navigation={true}
             modules={[Autoplay, Pagination, Navigation, A11y]}
-            className="overflow-hidden w-screen h-screen relative top-1/3"
+            className="overflow-hidden w-screen h-screen relative top-[20%]"
           >
             {props.src.map((src, index) => (
               <SwiperSlide key={index}>

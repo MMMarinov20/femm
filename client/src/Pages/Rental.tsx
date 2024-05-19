@@ -14,6 +14,8 @@ import { DateRange } from "react-day-picker";
 import { IconType } from "react-icons";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useSearchParams } from "react-router-dom";
+import { RentalInterface } from "../data/lang/en/Rental/Rental";
 
 interface RentalData {
   id: number;
@@ -36,6 +38,24 @@ export interface ReservationData {
 }
 
 const Rental = () => {
+  const [searchParams] = useSearchParams();
+  const [rentalData, setRentalData] = useState<RentalInterface | null>(null);
+
+  useEffect(() => {
+    const loadRentalData = async () => {
+      try {
+        const RentalModule = await import(
+          `../data/lang/${searchParams.get("lang")}/Rental/Rental.json`
+        );
+        setRentalData(RentalModule.default);
+      } catch (error) {
+        console.error("Error loading the Rental data:", error);
+      }
+    };
+
+    loadRentalData();
+  }, [searchParams]);
+
   const [data, setData] = useState<RentalData>({
     id: 0,
     title: "",
@@ -68,6 +88,8 @@ const Rental = () => {
     console.log(rental.features[0][0]);
     setData(rental);
   }, []);
+
+  if (!rentalData) return <div>Loading...</div>;
   return (
     <React.Fragment>
       <div className="overflow-hidden">
@@ -89,22 +111,32 @@ const Rental = () => {
             features={data.features}
             description={data.description}
             rating={data.rating}
+            buttonText={rentalData.DescriptionContainer.Button}
           />
-          <SearchContainer setReservationData={receiveReservationData} />
+          <SearchContainer
+            setReservationData={receiveReservationData}
+            Data={rentalData.SearchContainer}
+          />
         </div>
 
-        <ReviewsSection rentalId={data.id} name={data.title} />
+        <ReviewsSection
+          heading={rentalData.Reviews.Heading}
+          rentalId={data.id}
+          name={data.title}
+          Data={rentalData.ReviewContainer}
+        />
 
         <Availability
           date={reservationData.range}
           adults={reservationData.adults}
+          Data={rentalData.Availability}
         />
 
         <h1
           className="font-SolidenTrialBoldExpanded text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl lg:px-[10vw] px-4"
           data-aos="fade-right"
         >
-          Surroundings:
+          {rentalData.Surroundings.Heading}
         </h1>
 
         <div
@@ -121,11 +153,10 @@ const Rental = () => {
 
         <div className="w-screen lg:px-[10vw] bg-[#F9F2DF] py-20">
           <h1
+            dangerouslySetInnerHTML={{ __html: rentalData.FAQ.Heading }}
             className="overflow-hidden text-[#464646] text-center text-2xl min-[400px]:text-3xl md:text-4xl xl:text-5xl font-SolidenTrialBoldExpanded"
             data-aos="fade-right"
-          >
-            Frequently Asked <span className="text-[#FF6241]">Questions</span>
-          </h1>
+          ></h1>
           <FaqBox faq={data.faq} />
           <FaqBox faq={data.faq} />
           <FaqBox faq={data.faq} />

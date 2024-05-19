@@ -3,6 +3,12 @@ import { FaLocationDot } from "react-icons/fa6";
 import { ReservationData } from "../../Pages/Rental";
 interface Props {
   setReservationData: (data: ReservationData) => void;
+  Data: {
+    Title: string;
+    SubTitle: string;
+    Check: string;
+    Button: string;
+  };
 }
 
 const SearchContainer: React.FC<Props> = (props) => {
@@ -47,11 +53,9 @@ const SearchContainer: React.FC<Props> = (props) => {
     <React.Fragment>
       <div className="w-full lg:w-[60%] h-fit bg-white shadow-2xl rounded-2xl p-5 flex flex-col md:text-lg">
         <h1 className="font-GilroyBold text-2xl md:text-4xl overflow-hidden">
-          Search
+          {props.Data.Title}
         </h1>
-        <h1 className="font-GilroyRegular">
-          Name of destination / place of accommodation.
-        </h1>
+        <h1 className="font-GilroyRegular">{props.Data.SubTitle}</h1>
         <form>
           <div className="flex flex-col gap-y-5 pt-3">
             <div className="w-[100%] h-12 border-[1px] border-[#8C8C8C] rounded-lg flex flex-row items-center px-3">
@@ -95,7 +99,7 @@ const SearchContainer: React.FC<Props> = (props) => {
           <div>
             <input type="checkbox" className="mt-5" required />
             <label className="font-GilroyRegular pl-2">
-              I agree to the terms and conditions.
+              {props.Data.Check}
             </label>
           </div>
 
@@ -104,7 +108,7 @@ const SearchContainer: React.FC<Props> = (props) => {
             onClick={handleSearch}
             className="w-full bg-[#FF6241] py-3 text-white font-GilroyRegular rounded-lg text-xs mt-2 md:text-base 2xl:text-lg transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]"
           >
-            Search
+            {props.Data.Button}
           </button>
         </form>
       </div>

@@ -15,6 +15,17 @@ import "aos/dist/aos.css";
 interface Props {
   date: DateRange | undefined;
   adults: number;
+  Data: {
+    Heading: string;
+    NumberOfGuests: string[];
+    NumberOfRooms: string;
+    CheckButton: string;
+    SubHeading: string;
+    SubHeading2: string;
+    TypeOfAccommodation: string[];
+    PriceButton: string;
+    BookButton: string;
+  };
 }
 
 const Availability: React.FC<Props> = (props) => {
@@ -105,7 +116,7 @@ const Availability: React.FC<Props> = (props) => {
     >
       <div className="py-5 shadow-2xl w-full px-4 rounded-xl">
         <h1 className="font-SolidenTrialBoldExpanded text-4xl pb-3">
-          Availability
+          {props.Data.Heading}
         </h1>
         <form>
           <div className="overflow-hidden lg:flex lg:flex-row lg:justify-between">
@@ -134,18 +145,18 @@ const Availability: React.FC<Props> = (props) => {
                 ref={adults}
                 className="w-[80%] lg:w-[50%] bg-white border-[#464646] border-[1px] rounded-lg p-2 focus:outline-none font-GilroyRegular"
               >
-                <option value={1}>1 Adult</option>
-                <option value={2}>2 Adults</option>
+                <option value={1}>1 {props.Data.NumberOfGuests[0]}</option>
+                <option value={2}>2 {props.Data.NumberOfGuests[1]}</option>
               </select>
 
               <select className="w-[80%] lg:w-[50%] bg-white border-[#464646] border-[1px] rounded-lg p-2 focus:outline-none font-GilroyRegular">
-                <option>Adults</option>
+                <option>{props.Data.NumberOfGuests[1]}</option>
               </select>
             </div>
 
             <div className="flex flex-row justify-between gap-x-10 lg:gap-x-5 lg:w-full">
               <select className="w-[80%] lg:w-[50%] bg-white border-[#464646] border-[1px] rounded-lg p-2 focus:outline-none font-GilroyRegular">
-                <option>1 Room</option>
+                <option>1 {props.Data.NumberOfRooms}</option>
               </select>
 
               <button
@@ -153,28 +164,32 @@ const Availability: React.FC<Props> = (props) => {
                 onClick={handleSubmit}
                 className="w-[80%] lg:w-[50%] bg-[#FF6241] rounded-lg p-2 focus:outline-none font-SolidenTrialExpanded text-xs min-[350px]:text-base lg:text-xs xl:text-base text-white"
               >
-                Check Availability
+                {props.Data.CheckButton}
               </button>
             </div>
           </div>
           <div className="w-full bg-[#F2F2F2] my-5 pb-5 md:pb-20 rounded-xl">
             <div className="font-SolidenTrialBoldExpanded text-xs min-[350px]:text-base w-full xl:text-xl text-white bg-[#FF6241] flex flex-row px-4 md:py-3 md:gap-x-5 lg:gap-x-10 rounded-t-xl">
-              <h1>Type of accommodation</h1>
-              <h1>Number of Guests</h1>
+              <h1>{props.Data.SubHeading}</h1>
+              <h1>{props.Data.SubHeading2}</h1>
             </div>
 
             <div className="grid grid-cols-2 grid-rows-2 lg:grid-cols-4 lg:grid-rows-1 xl:w-[60%] gap-x-3 gap-y-3 px-4 pt-5">
               <div className="bg-white w-full rounded-lg p-1">
                 <h1 className="font-GilroyBold text-[#4C76B2] underline">
-                  1 bedroom studio
+                  1 {props.Data.TypeOfAccommodation[0]}
                 </h1>
-                <h1 className="font-GilroyRegular">1 double bed</h1>
+                <h1 className="font-GilroyRegular">
+                  1 {props.Data.TypeOfAccommodation[1]}
+                </h1>
               </div>
               <div className="bg-white w-full rounded-lg p-1">
                 <h1 className="font-GilroyBold text-[#4C76B2] underline">
-                  1 bedroom studio
+                  {props.Data.TypeOfAccommodation[0]}
                 </h1>
-                <h1 className="font-GilroyRegular">1 double bed</h1>
+                <h1 className="font-GilroyRegular">
+                  1 {props.Data.TypeOfAccommodation[1]}
+                </h1>
               </div>
               <button
                 type="submit"
@@ -182,7 +197,7 @@ const Availability: React.FC<Props> = (props) => {
                 className="bg-[#FF6241] w-full text-white rounded-lg p-2 focus:outline-none font-SolidenTrialExpanded text-base"
               >
                 {" "}
-                Show Price
+                {props.Data.PriceButton}
               </button>
               <button
                 type="submit"
@@ -192,7 +207,7 @@ const Availability: React.FC<Props> = (props) => {
                 style={{ visibility: "hidden" }}
               >
                 {" "}
-                Book
+                {props.Data.BookButton}
               </button>
               <ToastContainer />
             </div>
