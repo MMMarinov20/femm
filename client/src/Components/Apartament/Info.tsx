@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ApartmentDetails } from "../../data/Apartament";
+import { ApartmentDetails } from "../../data/lang/en/Property/Apartament";
 import AOS from "aos";
 import "aos/dist/aos.css";
 

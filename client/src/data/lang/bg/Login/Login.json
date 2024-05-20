@@ -1,0 +1,7 @@
+{
+  "Title": "Welcome",
+  "Subtitle": "Don't have an account yet? <span style=\"color: #FF6241; text-decoration: underline; cursor: pointer;\">Sign up</span>",
+  "EmailPlaceholder": "Email",
+  "PasswordPlaceholder": "Password",
+  "Button": "Login"
+}

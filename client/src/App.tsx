@@ -16,12 +16,12 @@ function App() {
 
   useEffect(() => {
     if (!lang) {
-      let language = navigator.language.split("-")[0];
-      if (language !== "en") language = "en";
+      const language = navigator.language.split("-")[0];
+      // if (language !== "en") language = "en";
       searchParams.set("lang", language);
       setSearchParams(searchParams, { replace: true });
     }
-  }, [lang]);
+  }, [lang, searchParams, setSearchParams]);
 
   const { user } = useUser();
   return (

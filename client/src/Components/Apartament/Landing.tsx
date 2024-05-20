@@ -9,7 +9,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "aos/dist/aos.css";
 import Carousel from "./Carousel";
-import { ApartmentDetails } from "../../data/Apartament";
+import { ApartmentDetails } from "../../data/lang/en/Property/Apartament";
 
 interface Props {
   Data: ApartmentDetails;

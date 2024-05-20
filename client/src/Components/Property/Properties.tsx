@@ -26,10 +26,12 @@ const Properties: React.FC = () => {
                 to={`/property/${property}/${index + 1}`}
                 className="w-full"
                 data-aos="fade-right"
+                key={index}
               >
                 <img
                   src={`../../Property/Properties/${index + 1}.svg`}
                   alt="Property"
+                  key={index}
                   className="w-full h-full rounded-2xl shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300 ease-in-out"
                 />
               </Link>

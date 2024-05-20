@@ -7,10 +7,15 @@ import Advantage from "../Components/Property/Advantage";
 import Form from "../Components/Apartament/Form";
 import Footer from "../Components/Home/Footer/Footer";
 // import Box from "../Components/Property/Box";
-import { Apartment, AdvantageInterface } from "../data/Apartament";
+import {
+  Apartment,
+  AdvantageInterface,
+} from "../data/lang/en/Property/Apartament.ts";
 import Properties from "../Components/Property/Properties.tsx";
+import { useSearchParams } from "react-router-dom";
 
 const Apartament = () => {
+  const [searchParams] = useSearchParams();
   const [apartamentData, setApartamentData] = useState<Apartment | undefined>(
     undefined
   );
@@ -22,11 +27,13 @@ const Apartament = () => {
     const id = window.location.pathname.split("/")[3];
     const findApartament = async () => {
       try {
-        const { properties } = await import(`../data/Properties.ts`);
+        const { properties } = await import(
+          `../data/lang/${searchParams.get("lang")}/Property/Properties.ts`
+        );
 
         const obj = properties[property];
         const apartament: Apartment = obj.apartaments.find(
-          (apartament) => apartament.id === parseInt(id)
+          (apartament: any) => apartament.id === parseInt(id)
         )!;
 
         if (apartament) setApartamentData(apartament);
@@ -36,7 +43,7 @@ const Apartament = () => {
       }
     };
     findApartament();
-  }, []);
+  }, [searchParams]);
 
   useEffect(() => {
     console.log(apartamentData);

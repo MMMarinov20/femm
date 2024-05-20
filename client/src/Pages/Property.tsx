@@ -9,7 +9,8 @@ import Footer from "./../Components/Home/Footer/Footer";
 import GallerySlider from "../Components/Rental/GallerySlider";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { AdvantageInterface } from "../data/Apartament";
+import { AdvantageInterface } from "../data/lang/en/Property/Apartament.ts";
+import { useSearchParams } from "react-router-dom";
 
 const src = [
   "../Property/Carousel/1.svg",
@@ -21,6 +22,7 @@ const src = [
 ];
 
 const Property = () => {
+  const [searchParams] = useSearchParams();
   const [advantages, setAdvantages] = useState<AdvantageInterface[]>([]);
 
   useEffect(() => {
@@ -30,7 +32,9 @@ const Property = () => {
     const property = window.location.pathname.split("/")[2];
     const findAdvantages = async () => {
       try {
-        const { properties } = await import(`../data/Properties.ts`);
+        const { properties } = await import(
+          `../data/lang/${searchParams.get("lang")}/Property/Properties.ts`
+        );
 
         const obj = properties[property];
         setAdvantages(obj.advantages);
@@ -39,7 +43,7 @@ const Property = () => {
       }
     };
     findAdvantages();
-  }, []);
+  }, [searchParams]);
 
   return (
     <React.Fragment>
