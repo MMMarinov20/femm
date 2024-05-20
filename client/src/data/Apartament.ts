@@ -4,6 +4,7 @@ export interface ApartamentInterface {
   Floor: number;
   Floors: number;
   Bedrooms: number;
+  Bathrooms: number;
   Kitchen: string;
   Area: number;
   Parking: string;
