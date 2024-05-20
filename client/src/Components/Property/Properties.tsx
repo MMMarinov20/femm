@@ -20,7 +20,7 @@ const Properties: React.FC = () => {
           >
             Properties
           </h1>
-          <div className="flex flex-col gap-y-10 px-4 lg:flex-row lg:justify-between lg:px-[10vw] lg:gap-x-10 w-full">
+          <div className="flex flex-col gap-y-10 px-4 md:grid md:grid-rows-2 md:grid-cols-2 xl:grid-cols-3 lg:px-[10vw] lg:gap-x-10 w-full">
             {[...Array(4)].map((_, index) => (
               <Link
                 to={`/property/${property}/${index + 1}`}

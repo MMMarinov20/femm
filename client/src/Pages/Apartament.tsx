@@ -10,7 +10,9 @@ import Box from "../Components/Property/Box";
 import { Apartment, AdvantageInterface } from "../data/Apartament";
 
 const Apartament = () => {
-  const [apartamentData, setApartamentData] = useState<Apartment | null>(null);
+  const [apartamentData, setApartamentData] = useState<Apartment | undefined>(
+    undefined
+  );
   const [advantages, setAdvantages] = useState<AdvantageInterface[]>([]);
 
   useEffect(() => {
@@ -19,13 +21,14 @@ const Apartament = () => {
     const id = window.location.pathname.split("/")[3];
     const findApartament = async () => {
       try {
-        const ApartamentModule = (await import(`../data/apartments.json`))
-          .default;
+        const { properties } = await import(`../data/Properties.ts`);
 
-        //@ts-expect-error cantfix
-        const obj = ApartamentModule[property];
+        const obj = properties[property];
+        const apartament: Apartment = obj.apartaments.find(
+          (apartament) => apartament.id === parseInt(id)
+        )!;
 
-        setApartamentData(obj.apartaments[parseInt(id) - 1].apartment);
+        if (apartament) setApartamentData(apartament);
         setAdvantages(obj.advantages);
       } catch (error) {
         console.error("Error loading the Apartament data:", error);
@@ -34,6 +37,10 @@ const Apartament = () => {
     findApartament();
   }, []);
 
+  useEffect(() => {
+    console.log(apartamentData);
+  }, [apartamentData]);
+
   if (!apartamentData || !advantages) return <div>Loading...</div>;
 
   return (
@@ -41,8 +48,8 @@ const Apartament = () => {
       <div className="overflow-hidden">
         <Navbar />
         <BurgerNavbar color="#FFFFFF" />
-        <Landing Data={apartamentData} />
-        <Info Data={apartamentData} />
+        <Landing Data={apartamentData.apartment} />
+        <Info Data={apartamentData.apartment} />
 
         <div className="min-h-screen flex flex-col items-center px-4 lg:px-[10vw]">
           <h1 className="font-SolidenTrialBoldExpanded text-3xl pb-2 md:text-5xl 2xl:text-6xl">

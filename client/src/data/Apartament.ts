@@ -21,3 +21,12 @@ export interface Apartment {
   id: number;
   apartment: ApartmentDetails;
 }
+
+export interface PropertyInterface {
+  apartaments: Apartment[];
+  advantages: AdvantageInterface[];
+}
+
+export interface PropertiesInterface {
+  [key: string]: PropertyInterface;
+}

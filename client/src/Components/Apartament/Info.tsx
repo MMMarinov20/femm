@@ -1,7 +1,7 @@
 import React from "react";
-import { ApartamentInterface } from "../../data/Apartament";
+import { ApartmentDetails } from "../../data/Apartament";
 interface Props {
-  Data: ApartamentInterface;
+  Data: ApartmentDetails;
 }
 
 const temp = ["fitst", "second", "third", "fourth"];
@@ -27,7 +27,7 @@ const Info: React.FC<Props> = ({ Data }) => {
 
         <h1 className="font-SolidenTrialBoldExpanded text-xl xl:text-2xl 3xl:text-3xl">
           The apartment is located on the {temp[Data.Floor - 1]} floor. Area{" "}
-          <span className="font-GilroyExtraBold">{Data.Area}</span> sq.m.
+          <span className="font-GilroyExtraBold">{Data.Area}</span>&sup2; sq.m.
           Consists of:
         </h1>
 
