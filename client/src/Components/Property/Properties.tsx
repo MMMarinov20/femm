@@ -18,27 +18,19 @@ const Properties: React.FC = () => {
             Properties
           </h1>
           <div className="flex flex-col gap-y-10 px-4 lg:flex-row lg:justify-between lg:px-[10vw] lg:gap-x-10 w-full">
-            <Link to={"/property/1"} className="w-full" data-aos="fade-right">
-              <img
-                src="./Property/Property1.svg"
-                alt="Property"
-                className="w-full h-full rounded-2xl shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300 ease-in-out"
-              />
-            </Link>
-            <Link to={"/property/1"} className="w-full" data-aos="fade-up">
-              <img
-                src="./Property/Property1.svg"
-                alt="Property"
-                className="w-full h-full rounded-2xl shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300 ease-in-out"
-              />
-            </Link>
-            <Link to={"/property/1"} className="w-full" data-aos="fade-left">
-              <img
-                src="./Property/Property1.svg"
-                alt="Property"
-                className="w-full h-full rounded-2xl shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300 ease-in-out"
-              />
-            </Link>
+            {[...Array(4)].map((_, index) => (
+              <Link
+                to={`/property/${index + 1}`}
+                className="w-full"
+                data-aos="fade-right"
+              >
+                <img
+                  src={`./Property/Properties/${index + 1}.svg`}
+                  alt="Property"
+                  className="w-full h-full rounded-2xl shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300 ease-in-out"
+                />
+              </Link>
+            ))}
           </div>
         </div>
       </div>
