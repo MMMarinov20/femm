@@ -6,8 +6,9 @@ import Info from "../Components/Apartament/Info";
 import Advantage from "../Components/Property/Advantage";
 import Form from "../Components/Apartament/Form";
 import Footer from "../Components/Home/Footer/Footer";
-import Box from "../Components/Property/Box";
+// import Box from "../Components/Property/Box";
 import { Apartment, AdvantageInterface } from "../data/Apartament";
+import Properties from "../Components/Property/Properties.tsx";
 
 const Apartament = () => {
   const [apartamentData, setApartamentData] = useState<Apartment | undefined>(
@@ -52,7 +53,7 @@ const Apartament = () => {
         <Info Data={apartamentData.apartment} />
 
         <div className="min-h-screen flex flex-col items-center px-4 lg:px-[10vw]">
-          <h1 className="font-SolidenTrialBoldExpanded text-3xl pb-2 md:text-5xl 2xl:text-6xl">
+          {/* <h1 className="font-SolidenTrialBoldExpanded text-3xl pb-2 md:text-5xl 2xl:text-6xl">
             Facilities
           </h1>
           <h1 className="font-SolidenTrialRegular text-center md:text-xl">
@@ -66,7 +67,7 @@ const Apartament = () => {
             <Box />
             <Box />
             <Box />
-          </div>
+          </div> */}
 
           <div className="min-h-fit pb-20">
             <h1 className="font-SolidenTrialBoldExpanded text-3xl px-4 text-center md:text-5xl 2xl:text-6xl overflow-hidden">
@@ -79,12 +80,13 @@ const Apartament = () => {
                   key={index}
                   title={advantage.title}
                   description={advantage.description}
+                  icon={advantage.icon}
                 />
               ))}
             </div>
           </div>
         </div>
-
+        <Properties />
         <Form />
         <Footer />
       </div>

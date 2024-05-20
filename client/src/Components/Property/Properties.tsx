@@ -28,7 +28,7 @@ const Properties: React.FC = () => {
                 data-aos="fade-right"
               >
                 <img
-                  src={`../Property/Properties/${index + 1}.svg`}
+                  src={`../../Property/Properties/${index + 1}.svg`}
                   alt="Property"
                   className="w-full h-full rounded-2xl shadow-xl hover:scale-105 hover:shadow-2xl transition-transform duration-300 ease-in-out"
                 />

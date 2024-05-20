@@ -1,4 +1,10 @@
 import { PropertiesInterface } from "./Apartament";
+import { FaLocationArrow } from "react-icons/fa";
+import { FaBuilding } from "react-icons/fa";
+import { MdDesignServices } from "react-icons/md";
+import { CgSmartphoneChip } from "react-icons/cg";
+import { MdPrivacyTip } from "react-icons/md";
+import { PiLightningFill } from "react-icons/pi";
 
 export const properties: PropertiesInterface = {
   urbannature: {
@@ -73,28 +79,34 @@ export const properties: PropertiesInterface = {
         title: "Top location",
         description:
           "The building is located in Rousse's central district, close to the city's main street and the Danube river.",
+        icon: FaLocationArrow,
       },
       {
         title: "Innovative building",
         description:
           "The building is designed and built with the latest technologies and materials.",
+        icon: FaBuilding,
       },
       {
         title: "Modern design",
         description: "The building has a modern and stylish design.",
+        icon: MdDesignServices,
       },
       {
         title: "Smart home ready",
         description: "The building is ready for smart home installations.",
+        icon: CgSmartphoneChip,
       },
       {
         title: "Privacy matters",
         description:
           "The building is designed to provide maximum privacy for its residents with a private elevator.",
+        icon: MdPrivacyTip,
       },
       {
         title: "Energy efficient",
         description: "The building is designed to be energy efficient.",
+        icon: PiLightningFill,
       },
     ],
   },

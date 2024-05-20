@@ -30,11 +30,9 @@ const Property = () => {
     const property = window.location.pathname.split("/")[2];
     const findAdvantages = async () => {
       try {
-        const ApartamentModule = (await import(`../data/apartments.json`))
-          .default;
+        const { properties } = await import(`../data/Properties.ts`);
 
-        //@ts-expect-error cantfix
-        const obj = ApartamentModule[property];
+        const obj = properties[property];
         setAdvantages(obj.advantages);
       } catch (error) {
         console.error("Error loading the Apartament data:", error);
@@ -95,6 +93,7 @@ const Property = () => {
                   key={index}
                   title={advantage.title}
                   description={advantage.description}
+                  icon={advantage.icon}
                 />
               ))}
             </div>

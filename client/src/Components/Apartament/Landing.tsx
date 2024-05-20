@@ -53,7 +53,7 @@ const Landing: React.FC<Props> = ({ Data }) => {
 
           <div className="w-full xl:w-[70%] 2xl:w-[33%] 3xl:w-[27%] flex flex-col items-center px-7 lg:px-10">
             <div className="p-2 h-fit rounded-xl w-full md:w-1/2 lg:w-full shadow-2xl">
-              <div className="border-[1px] border-[#FF6241] px-2 py-4 grid place-items-center h-full w-full font-GilroyExtraBold gap-y-3 rounded-xl">
+              <div className="border-[1px] border-[#FF6241] px-5 py-4 grid place-items-center h-full w-full font-GilroyExtraBold gap-y-3 rounded-xl">
                 {Object.keys(Data).map((key) => (
                   //@ts-expect-error test
                   <Benefit Title={key} Subtitle={Data[key]} />
