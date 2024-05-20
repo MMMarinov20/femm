@@ -14,7 +14,7 @@ const Info: React.FC = () => {
           className="flex flex-col gap-y-5 2xl:gap-y-10 lg:w-1/2"
           data-aos="fade-left"
         >
-          <img src="./Property/Logo.svg" className="w-10/12 2xl:w-7/12" />
+          <img src="../Property/Logo.svg" className="w-10/12 2xl:w-7/12" />
           <h1 className="font-GilroyRegular md:text-lg lg:text-base xl:text-lg 3xl:text-xl">
             Atlantis Aria is a residential complex located in Horizont district,
             the newest residential area of the city of Burgas, located next to
@@ -53,7 +53,7 @@ const Info: React.FC = () => {
         </div>
 
         <img
-          src="./Property/Building.svg"
+          src="../Property/Building.svg"
           className="w-full pt-5 lg:pt-0 2xl:w-1/2"
           data-aos="fade-right"
         />

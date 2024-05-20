@@ -41,7 +41,7 @@ const Carousel: React.FC = () => {
           {[0, 1, 2, 3, 4, 5].map((item) => (
             <SwiperSlide key={item} className="rounded-2xl pb-10">
               <img
-                src={`../Property/Carousel/${item + 1}.svg`}
+                src={`../../Property/Carousel/${item + 1}.svg`}
                 alt="Property"
                 key={item}
                 className="rounded-2xl cursor-pointer"
@@ -107,7 +107,7 @@ const Carousel: React.FC = () => {
           {[0, 1, 2, 3, 4, 5].map((item) => (
             <SwiperSlide key={item} className="rounded-2xl">
               <img
-                src={`../Property/Carousel/${item + 1}.svg`}
+                src={`../../Property/Carousel/${item + 1}.svg`}
                 alt="Property"
                 key={item}
                 className="rounded-2xl w-full h-full"

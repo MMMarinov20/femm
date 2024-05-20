@@ -29,8 +29,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/rental/:id/:property" element={<Rental />} />
-        <Route path="/property" element={<Property />} />
-        <Route path="/property/:id" element={<Apartament />} />
+        <Route path="/property/:name" element={<Property />} />
+        <Route path="/property/:name/:id" element={<Apartament />} />
         <Route path="/about" element={<About />} />
         {!user.id && <Route path="/login" element={<Login />} />}
         {!user.id && <Route path="/register" element={<Register />} />}

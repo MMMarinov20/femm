@@ -7,23 +7,28 @@ import Advantage from "../Components/Property/Advantage";
 import Form from "../Components/Apartament/Form";
 import Footer from "../Components/Home/Footer/Footer";
 import Box from "../Components/Property/Box";
-import { ApartamentInterface } from "../data/Apartament";
+import { Apartment, AdvantageInterface } from "../data/Apartament";
 
 const Apartament = () => {
-  const [apartamentData, setApartamentData] =
-    useState<ApartamentInterface | null>(null);
+  const [apartamentData, setApartamentData] = useState<Apartment | null>(null);
+  const [advantages, setAdvantages] = useState<AdvantageInterface[]>([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const id = window.location.pathname.split("/")[2];
+    const property = window.location.pathname.split("/")[2];
+    const id = window.location.pathname.split("/")[3];
     const findApartament = async () => {
       try {
-        const ApartamentModule = await import(`../data/apartments.json`);
-        const apartment = ApartamentModule.default.apartaments.find(
-          (apartament) => apartament.id === parseInt(id)
-        );
-        if (!apartment) return;
-        setApartamentData(apartment.apartment);
+        const ApartamentModule = (await import(`../data/apartments.json`))
+          .default;
+        //@ts-expect-error asd
+        // const apartment = ApartamentModule[property].apartaments.find(
+        //   (apartament: Apartment) => apartament.id === parseInt(id)
+        // );
+        const obj = ApartamentModule[property];
+
+        setApartamentData(obj.apartaments[parseInt(id) - 1].apartment);
+        setAdvantages(obj.advantages);
       } catch (error) {
         console.error("Error loading the Apartament data:", error);
       }
@@ -31,7 +36,7 @@ const Apartament = () => {
     findApartament();
   }, []);
 
-  if (!apartamentData) return <div>Loading...</div>;
+  if (!apartamentData || !advantages) return <div>Loading...</div>;
 
   return (
     <React.Fragment>
@@ -39,7 +44,7 @@ const Apartament = () => {
         <Navbar />
         <BurgerNavbar color="#FFFFFF" />
         <Landing Data={apartamentData} />
-        <Info />
+        <Info Data={apartamentData} />
 
         <div className="min-h-screen flex flex-col items-center px-4 lg:px-[10vw]">
           <h1 className="font-SolidenTrialBoldExpanded text-3xl pb-2 md:text-5xl 2xl:text-6xl">

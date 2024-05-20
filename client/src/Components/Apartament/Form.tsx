@@ -50,7 +50,7 @@ const Form: React.FC = () => {
           </div>
 
           <div
-            className="hidden lg:block lg:w-1/2 rounded-xl bg-[url('../Apartament/Form.svg')] bg-cover bg-center bg-no-repeat
+            className="hidden lg:block lg:w-1/2 rounded-xl bg-[url('../../Apartament/Form.svg')] bg-cover bg-center bg-no-repeat
           "
           ></div>
         </div>

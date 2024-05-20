@@ -26,7 +26,7 @@ const Landing: React.FC = () => {
             Call to Action
           </button>
         </div>
-        <img src="./Property/Building.png" className="w-full lg:w-[55%]" />
+        <img src="../Property/Building.png" className="w-full lg:w-[55%]" />
       </div>
     </React.Fragment>
   );

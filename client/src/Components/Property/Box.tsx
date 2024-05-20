@@ -12,7 +12,7 @@ const Box: React.FC = () => {
       data-aos="fade-up"
     >
       <img
-        src="../Property/Icon.svg"
+        src="../../Property/Icon.svg"
         className="w-[30%] lg:w-[35%]"
         alt="Icon"
       />

@@ -77,7 +77,7 @@ const BurgerNavbar: React.FC<Props> = (props) => {
               )} */}
             </div>
             <div className="">
-              <Link to={"/property"}>
+              <Link to={"/property/urbannature"}>
                 <h1
                   className="cursor-pointer inline-flex items-center"
                   // onClick={toggleBuilds}

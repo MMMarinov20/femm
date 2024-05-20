@@ -1,11 +1,19 @@
 import React from "react";
+import { ApartamentInterface } from "../../data/Apartament";
+interface Props {
+  Data: ApartamentInterface;
+}
 
-const Info: React.FC = () => {
+const temp = ["fitst", "second", "third", "fourth"];
+
+const Info: React.FC<Props> = ({ Data }) => {
   return (
     <React.Fragment>
       <div className="w-screen px-4 lg:px-[10vw] py-20 flex flex-col gap-y-5">
         <h1 className="font-SolidenTrialBoldExpanded text-4xl xl:text-5xl 3xl:text-6xl overflow-hidden max-w-[80vw]">
-          Two-bedroom Apartment With Southern Exposure In Atlantis Aria
+          {Data.Bedrooms == 1 ? "One-bedroom" : "Two-bedroom"} Apartment With
+          Southern Exposure In{" "}
+          <span className="underline text-green-600">{Data.Building}</span>
         </h1>
         <h1 className="font-SolidenTrialRegular xl:text-lg">
           I Estates offers to your attention a beautiful two-bedroom apartment
@@ -18,17 +26,18 @@ const Info: React.FC = () => {
         </h1>
 
         <h1 className="font-SolidenTrialBoldExpanded text-xl xl:text-2xl 3xl:text-3xl">
-          The apartment is located on the sixth floor. Area{" "}
-          <span className="font-GilroyExtraBold">102.74</span> sq.m. Consists
-          of:
+          The apartment is located on the {temp[Data.Floor - 1]} floor. Area{" "}
+          <span className="font-GilroyExtraBold">{Data.Area}</span> sq.m.
+          Consists of:
         </h1>
 
         <ul className="font-SolidenTrialRegular list-disc list-inside xl:text-lg">
           <li>Corridor</li>
           <li>Living room with kitchenette</li>
-          <li>Two bedrooms</li>
-          <li>Bathroom with toilet</li>
-          <li>Separate toilet</li>
+          <li>{Data.Bedrooms == 1 ? "One bedroom" : "Two bedrooms"}</li>
+          <li>
+            {Data.Bathrooms == 1 ? "One bathroom" : "Two bathroom"} with toilet
+          </li>
           <li>Two terraces</li>
         </ul>
 
@@ -45,7 +54,7 @@ const Info: React.FC = () => {
           <li>Close to schools, kindergartens, shops, etc.</li>
         </ul>
 
-        <h1 className="font-SolidenTrialBoldExpanded text-xl xl:text-2xl 3xl:text-3xl">
+        {/* <h1 className="font-SolidenTrialBoldExpanded text-xl xl:text-2xl 3xl:text-3xl">
           Facilities in the complex:
         </h1>
 
@@ -56,7 +65,7 @@ const Info: React.FC = () => {
           <li>Security</li>
           <li>Landscaped courtyard</li>
           <li>Underground parking</li>
-        </ul>
+        </ul> */}
       </div>
     </React.Fragment>
   );

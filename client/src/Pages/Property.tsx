@@ -11,12 +11,12 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const src = [
-  "./Property/Carousel/1.svg",
-  "./Property/Carousel/2.svg",
-  "./Property/Carousel/3.svg",
-  "./Property/Carousel/4.svg",
-  "./Property/Carousel/5.svg",
-  "./Property/Carousel/6.svg",
+  "../Property/Carousel/1.svg",
+  "../Property/Carousel/2.svg",
+  "../Property/Carousel/3.svg",
+  "../Property/Carousel/4.svg",
+  "../Property/Carousel/5.svg",
+  "../Property/Carousel/6.svg",
 ];
 
 const Property = () => {
@@ -78,6 +78,9 @@ const Property = () => {
               className="w-screen py-20 px-4 grid gap-y-10 place-items-center lg:grid-cols-2 xl:grid-cols-3"
               data-aos="fade-up"
             >
+              <Advantage />
+              <Advantage />
+              <Advantage />
               <Advantage />
               <Advantage />
               <Advantage />

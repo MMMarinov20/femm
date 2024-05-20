@@ -61,7 +61,7 @@ const Navbar: React.FC = () => {
           //onMouseLeave={handleBuildsDropdown}
           //onMouseEnter={handleBuildsDropdown}
           >
-            <Link to={"/property"}>
+            <Link to={"/property/urbannature"}>
               <h1 className="inline-flex text-center cursor-pointer">
                 Builds <IoMdArrowDropdown />
               </h1>
