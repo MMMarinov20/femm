@@ -1,6 +1,6 @@
 export interface AdvantageInterface {
   title: string;
-  icon: string;
+  description: string;
 }
 
 export interface ApartmentDetails {

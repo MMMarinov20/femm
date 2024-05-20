@@ -21,10 +21,8 @@ const Apartament = () => {
       try {
         const ApartamentModule = (await import(`../data/apartments.json`))
           .default;
-        //@ts-expect-error asd
-        // const apartment = ApartamentModule[property].apartaments.find(
-        //   (apartament: Apartment) => apartament.id === parseInt(id)
-        // );
+
+        //@ts-expect-error cantfix
         const obj = ApartamentModule[property];
 
         setApartamentData(obj.apartaments[parseInt(id) - 1].apartment);
@@ -68,10 +66,14 @@ const Apartament = () => {
               Advantages Of Your <span className="text-[#FF6241]">New</span>{" "}
               Home
             </h1>
-            <div className="w-screen py-20 px-4 lg:px-[10vw] flex flex-col gap-y-10 items-center lg:flex-row lg:gap-x-10 xl:gap-x-20 2xl:gap-x-32">
-              <Advantage />
-              <Advantage />
-              <Advantage />
+            <div className="w-screen py-20 px-4 lg:px-[10vw] flex flex-col gap-y-10 items-center lg:grid lg:grid-rows-2 lg:grid-cols-3 lg:place-items-center">
+              {advantages.map((advantage, index) => (
+                <Advantage
+                  key={index}
+                  title={advantage.title}
+                  description={advantage.description}
+                />
+              ))}
             </div>
           </div>
         </div>

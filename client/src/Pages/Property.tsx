@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Landing from "../Components/Property/Landing";
 import Info from "../Components/Property/Info";
 import Box from "../Components/Property/Box";
@@ -9,6 +9,7 @@ import Footer from "./../Components/Home/Footer/Footer";
 import GallerySlider from "../Components/Rental/GallerySlider";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { AdvantageInterface } from "../data/Apartament";
 
 const src = [
   "../Property/Carousel/1.svg",
@@ -20,9 +21,26 @@ const src = [
 ];
 
 const Property = () => {
+  const [advantages, setAdvantages] = useState<AdvantageInterface[]>([]);
+
   useEffect(() => {
     AOS.init();
     window.scrollTo(0, 0);
+
+    const property = window.location.pathname.split("/")[2];
+    const findAdvantages = async () => {
+      try {
+        const ApartamentModule = (await import(`../data/apartments.json`))
+          .default;
+
+        //@ts-expect-error cantfix
+        const obj = ApartamentModule[property];
+        setAdvantages(obj.advantages);
+      } catch (error) {
+        console.error("Error loading the Apartament data:", error);
+      }
+    };
+    findAdvantages();
   }, []);
 
   return (
@@ -67,23 +85,18 @@ const Property = () => {
           <Properties />
 
           <div className="min-h-fit pb-20">
-            <h1
-              className="font-SolidenTrialBoldExpanded text-3xl px-4 text-center md:text-5xl 2xl:text-6xl overflow-hidden"
-              data-aos="fade-right"
-            >
+            <h1 className="font-SolidenTrialBoldExpanded text-3xl px-4 text-center md:text-5xl 2xl:text-6xl overflow-hidden">
               Advantages Of Your <span className="text-[#FF6241]">New</span>{" "}
               Home
             </h1>
-            <div
-              className="w-screen py-20 px-4 grid gap-y-10 place-items-center lg:grid-cols-2 xl:grid-cols-3"
-              data-aos="fade-up"
-            >
-              <Advantage />
-              <Advantage />
-              <Advantage />
-              <Advantage />
-              <Advantage />
-              <Advantage />
+            <div className="w-screen py-20 px-4 lg:px-[10vw] flex flex-col gap-y-10 items-center lg:grid lg:grid-rows-2 lg:grid-cols-3 lg:place-items-center">
+              {advantages.map((advantage, index) => (
+                <Advantage
+                  key={index}
+                  title={advantage.title}
+                  description={advantage.description}
+                />
+              ))}
             </div>
           </div>
 
