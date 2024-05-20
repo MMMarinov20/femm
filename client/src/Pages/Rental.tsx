@@ -25,11 +25,12 @@ interface RentalData {
   description: string;
   rating: number;
   surroundings: {
-    [key: string]: { building: string }[];
+    [key: string]: { title: string; distance: string }[];
   };
   faq: {
-    [key: string]: string;
-  };
+    question: string;
+    answer: string;
+  }[];
 }
 
 export interface ReservationData {
@@ -64,7 +65,7 @@ const Rental = () => {
     description: "",
     rating: 0,
     surroundings: {},
-    faq: {},
+    faq: [],
   });
 
   const [reservationData, setReservationData] = useState<ReservationData>({
@@ -85,11 +86,11 @@ const Rental = () => {
       (rental) => rental.id === parseInt(id)
     );
     if (!rental) return;
-    console.log(rental.features[0][0]);
     setData(rental);
   }, []);
 
-  if (!rentalData) return <div>Loading...</div>;
+  if (!rentalData || !data) return <div>Loading...</div>;
+
   return (
     <React.Fragment>
       <div className="overflow-hidden">
@@ -143,12 +144,13 @@ const Rental = () => {
           className="w-screen grid grid-rows-6 md:grid-rows-2 md:grid-cols-3 lg:px-[10vw] pb-20"
           data-aos="fade-up"
         >
-          <Accordion surrounding={data.surroundings} />
-          <Accordion surrounding={data.surroundings} />
-          <Accordion surrounding={data.surroundings} />
-          <Accordion surrounding={data.surroundings} />
-          <Accordion surrounding={data.surroundings} />
-          <Accordion surrounding={data.surroundings} />
+          {Object.keys(data.surroundings).map((key, index) => (
+            <Accordion
+              key={index}
+              title={key}
+              surrounding={data.surroundings[key]}
+            />
+          ))}
         </div>
 
         <div className="w-screen lg:px-[10vw] bg-[#F9F2DF] py-20">
@@ -157,10 +159,9 @@ const Rental = () => {
             className="overflow-hidden text-[#464646] text-center text-2xl min-[400px]:text-3xl md:text-4xl xl:text-5xl font-SolidenTrialBoldExpanded"
             data-aos="fade-right"
           ></h1>
-          <FaqBox faq={data.faq} />
-          <FaqBox faq={data.faq} />
-          <FaqBox faq={data.faq} />
-          <FaqBox faq={data.faq} />
+          {data.faq.map((faq, index) => (
+            <FaqBox key={index} question={faq.question} answer={faq.answer} />
+          ))}
         </div>
 
         <Footer />

@@ -4,7 +4,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 interface Props {
-  faq: { [key: string]: string };
+  question: string;
+  answer: string;
 }
 
 const FaqBox: React.FC<Props> = (props) => {
@@ -18,9 +19,6 @@ const FaqBox: React.FC<Props> = (props) => {
     setIsOpen(!isOpen);
   };
 
-  const faqKey = Object.keys(props.faq)[0];
-  const faqValue = props.faq[faqKey];
-
   return (
     <div className="w-full px-4 py-8" data-aos="fade-up">
       <div className="bg-white rounded-lg shadow-xl">
@@ -28,7 +26,9 @@ const FaqBox: React.FC<Props> = (props) => {
           className="flex justify-between items-center p-10 cursor-pointer"
           onClick={toggleAccordion}
         >
-          <h2 className="text-lg font-SolidenTrialBoldExpanded">{faqKey}</h2>
+          <h2 className="text-lg font-SolidenTrialBoldExpanded">
+            {props.question}
+          </h2>
           <IoIosArrowDown
             className={`h-6 w-6 transition-transform transform ${
               isOpen ? "rotate-180 text-[#FF6241]" : "rotate-0"
@@ -38,7 +38,7 @@ const FaqBox: React.FC<Props> = (props) => {
         {isOpen && (
           <div className="px-10 pb-6">
             <div className="flex flex-row w-full justify-between font-SolidenTrialRegular">
-              <h1>{faqValue}</h1>
+              <h1>{props.answer}</h1>
             </div>
           </div>
         )}
