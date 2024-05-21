@@ -15,6 +15,7 @@ import "aos/dist/aos.css";
 import { AdvantageInterface } from "../data/lang/en/Property/Apartament.ts";
 import { useSearchParams } from "react-router-dom";
 import LoadingSpinner from "../Components/LoadingSpinner.tsx";
+import { PropertyInterface } from "../data/lang/en/Property/Property.ts";
 // import CarouselSlider from "../Components/Property/CarouselSlider";
 
 const src = [
@@ -29,6 +30,9 @@ const src = [
 const Property = () => {
   const [searchParams] = useSearchParams();
   const [advantages, setAdvantages] = useState<AdvantageInterface[]>([]);
+  const [propertyData, setPropertyData] = useState<PropertyInterface | null>(
+    null
+  );
 
   useEffect(() => {
     AOS.init();
@@ -41,7 +45,11 @@ const Property = () => {
           `../data/lang/${searchParams.get("lang")}/Property/Properties.ts`
         );
 
+        const data = await import(
+          `../data/lang/${searchParams.get("lang")}/Property/property.json`
+        );
         const obj = properties[property];
+        setPropertyData(data.default[property]);
         setAdvantages(obj.advantages);
       } catch (error) {
         console.error("Error loading the Apartament data:", error);
@@ -50,12 +58,13 @@ const Property = () => {
     findAdvantages();
   }, [searchParams]);
 
+  if (!propertyData) return <LoadingSpinner />;
   return (
     <React.Fragment>
       <Suspense fallback={<LoadingSpinner />}>
         <div className="overflow-hidden">
-          <Landing />
-          <Info />
+          <Landing Data={propertyData.Landing} />
+          <Info Data={propertyData.Info} />
           <div className="min-h-screen flex flex-col items-center px-4 lg:px-[10vw]">
             <h1
               className="font-SolidenTrialBoldExpanded text-3xl pb-2 md:text-5xl 2xl:text-6xl"
