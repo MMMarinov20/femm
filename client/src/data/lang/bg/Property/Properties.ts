@@ -13,7 +13,7 @@ export const properties: PropertiesInterface = {
         id: 1,
         apartment: {
           Building: "Urban Nature",
-          Address: "Angel Kanchev 32",
+          Address: "Ангел Кънчев 32, Русе",
           Floor: 1,
           Floors: 2,
           Bedrooms: 1,
@@ -29,15 +29,15 @@ export const properties: PropertiesInterface = {
         id: 2,
         apartment: {
           Building: "Urban Nature",
-          Address: "Angel Kanchev 32",
+          Address: "Ангел Кънчев 32, Русе",
           Floor: 2,
           Floors: 1,
           Bedrooms: 2,
           Bathrooms: 1,
-          Kitchen: "Yes",
+          Kitchen: "Да",
           Area: 78.01,
-          Parking: "No",
-          Exposure: "South",
+          Parking: "Не",
+          Exposure: "Северен",
           Garage: "No",
         },
       },
@@ -45,7 +45,7 @@ export const properties: PropertiesInterface = {
         id: 3,
         apartment: {
           Building: "Urban Nature",
-          Address: "Angel Kanchev 32",
+          Address: "Ангел Кънчев 32, Русе",
           Floor: 3,
           Floors: 1,
           Bedrooms: 2,
@@ -61,7 +61,7 @@ export const properties: PropertiesInterface = {
         id: 4,
         apartment: {
           Building: "Urban Nature",
-          Address: "Angel Kanchev 32",
+          Address: "Ангел Кънчев 32, Русе",
           Floor: 4,
           Floors: 2,
           Bedrooms: 2,
@@ -76,36 +76,37 @@ export const properties: PropertiesInterface = {
     ],
     advantages: [
       {
-        title: "Top location",
+        title: "Топ локация",
         description:
-          "The building is located in Rousse's central district, close to the city's main street and the Danube river.",
+          "Сградата се намира в централния район на Русе, близо до главната улица на града и река Дунав.",
         icon: FaLocationArrow,
       },
       {
-        title: "Innovative building",
+        title: "Иновативно строителство",
         description:
-          "The building is designed and built with the latest technologies and materials.",
+          "Сградата е проектирана и построена с най-новите технологии и материали.",
         icon: FaBuilding,
       },
       {
-        title: "Modern design",
-        description: "The building has a modern and stylish design.",
+        title: "Модерен дизайн",
+        description:
+          "Сградата има модерен дизайн и високо качество на строителство.",
         icon: MdDesignServices,
       },
       {
-        title: "Smart home ready",
-        description: "The building is ready for smart home installations.",
+        title: "Смарт хоум готовност",
+        description: "Сградата е готова за инсталация на смарт хоум системи.",
         icon: CgSmartphoneChip,
       },
       {
-        title: "Privacy matters",
+        title: "Максимална поверителност",
         description:
-          "The building is designed to provide maximum privacy for its residents with a private elevator.",
+          "Сградата е проектирана с максимална поверителност и сигурност за живущите в нея, като разполага и с частен асансьор.",
         icon: MdPrivacyTip,
       },
       {
-        title: "Energy efficient",
-        description: "The building is designed to be energy efficient.",
+        title: "Енергийно ефективен",
+        description: "Сградата притежава клас А на енергийна ефективност.",
         icon: PiLightningFill,
       },
     ],

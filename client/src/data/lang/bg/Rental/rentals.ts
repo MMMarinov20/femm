@@ -12,44 +12,44 @@ const rentalsData = {
       id: 1,
       title: "Loli's beach studio",
       location:
-        '16"Manastirska" str, building B B-09A, Sarafovo, Sarafovo, Burgas, Bulgaria',
+        "ул. Манастирска 16, вход B ап. B-09A, Сарафово, Бургас, България",
       features: [
         [
           {
             Icon: LuKeySquare,
-            Feature: "Whole studio",
+            Feature: "Цяло студио",
           },
           {
             Icon: GiResize,
-            Feature: "24m² size",
+            Feature: "24m² големина",
           },
           {
             Icon: IoWifiOutline,
-            Feature: "Free WiFi",
+            Feature: "Безплатен WiFi",
           },
           {
             Icon: IoLogoNoSmoking,
-            Feature: "Non-smoking rooms",
+            Feature: "Студио за непушачи",
           },
           {
             Icon: MdOutlinePool,
-            Feature: "Outdoor pool",
+            Feature: "Външен басейн",
           },
           {
             Icon: GrOverview,
-            Feature: "Lovely view",
+            Feature: "Уникална гледка",
           },
           {
             Icon: TbAirConditioning,
-            Feature: "Air conditioner",
+            Feature: "Климатик",
           },
           {
             Icon: GiShower,
-            Feature: "Shower",
+            Feature: "Душ",
           },
           {
             Icon: MdBalcony,
-            Feature: "Balcony",
+            Feature: "Балкон",
           },
         ],
       ],

@@ -1,15 +1,4 @@
 import React, { useEffect, useState, Suspense } from "react";
-// import Navbar from "../Components/Home/Navbar/Navbar";
-// import BurgerNavbar from "../Components/Home/Navbar/BurgerNavbar";
-// import GallerySlider from "../Components/Rental/GallerySlider";
-// import DescriptionContainer from "../Components/Rental/DescriptionContainer";
-// import SearchContainer from "../Components/Rental/SearchContainer";
-// import ReviewsSection from "../Components/Rental/ReviewsSection";
-// import Accordion from "../Components/Rental/Accordion";
-// import FaqBox from "../Components/Rental/FaqBox";
-// import Footer from "../Components/Home/Footer/Footer";
-// import Availability from "../Components/Rental/Availability";
-import rentalsData from "../data/lang/en/Rental/rentals";
 const Navbar = React.lazy(() => import("../Components/Home/Navbar/Navbar"));
 const BurgerNavbar = React.lazy(
   () => import("../Components/Home/Navbar/BurgerNavbar")
@@ -68,10 +57,19 @@ const Rental = () => {
   useEffect(() => {
     const loadRentalData = async () => {
       try {
+        const id = parseInt(window.location.pathname.split("/")[2]);
         const RentalModule = await import(
           `../data/lang/${searchParams.get("lang")}/Rental/Rental.json`
         );
+        const currentRental = await import(
+          `../data/lang/${searchParams.get("lang")}/Rental/rentals.ts`
+        );
+        const rental = currentRental.default.rentals.find(
+          (rental: any) => rental.id === id
+        );
+
         setRentalData(RentalModule.default);
+        setData(rental);
       } catch (error) {
         console.error("Error loading the Rental data:", error);
       }
@@ -103,13 +101,6 @@ const Rental = () => {
   useEffect(() => {
     AOS.init();
     window.scrollTo(0, 0);
-    const id = window.location.pathname.split("/")[2];
-
-    const rental = rentalsData.rentals.find(
-      (rental) => rental.id === parseInt(id)
-    );
-    if (!rental) return;
-    setData(rental);
   }, []);
 
   if (!rentalData || !data) return <LoadingSpinner />;
