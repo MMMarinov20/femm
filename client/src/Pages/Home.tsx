@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
-import Landing from "../Components/Home/Landing";
-import About from "../Components/Home/About";
-import Offer from "../Components/Home/Offer";
-import Footer from "../Components/Home/Footer/Footer";
+import React, { useEffect, useState, Suspense } from "react";
+const Landing = React.lazy(() => import("../Components/Home/Landing"));
+const About = React.lazy(() => import("../Components/Home/About"));
+const Offer = React.lazy(() => import("../Components/Home/Offer"));
+const Footer = React.lazy(() => import("../Components/Home/Footer/Footer"));
 import { useSearchParams } from "react-router-dom";
 import { HomeInterface } from "../data/lang/en/Home/Home";
+import LoadingSpinner from "../Components/LoadingSpinner";
 
 const Home = () => {
   const [searchParams] = useSearchParams();
@@ -29,16 +30,18 @@ const Home = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  if (!homeData) return <div>Loading...</div>;
+  if (!homeData) return <LoadingSpinner />;
 
   return (
     <React.Fragment>
-      <div className="overflow-hidden">
-        <Landing Data={homeData.Landing} />
-        <About Data={homeData.About} />
-        <Offer Data={homeData.Offer} />
-        <Footer />
-      </div>
+      <Suspense fallback={<LoadingSpinner />}>
+        <div className="overflow-hidden">
+          <Landing Data={homeData.Landing} />
+          <About Data={homeData.About} />
+          <Offer Data={homeData.Offer} />
+          <Footer />
+        </div>
+      </Suspense>
     </React.Fragment>
   );
 };

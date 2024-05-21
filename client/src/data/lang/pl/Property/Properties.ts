@@ -1,4 +1,4 @@
-import { PropertiesInterface } from "./lang/en/Property/Apartament";
+import { PropertiesInterface } from "./Apartament";
 import { FaLocationArrow } from "react-icons/fa";
 import { FaBuilding } from "react-icons/fa";
 import { MdDesignServices } from "react-icons/md";

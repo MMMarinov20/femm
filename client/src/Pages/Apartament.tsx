@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from "react";
-import Navbar from "../Components/Home/Navbar/Navbar";
-import BurgerNavbar from "../Components/Home/Navbar/BurgerNavbar";
-import Landing from "../Components/Apartament/Landing";
-import Info from "../Components/Apartament/Info";
-import Advantage from "../Components/Property/Advantage";
-import Form from "../Components/Apartament/Form";
-import Footer from "../Components/Home/Footer/Footer";
+import React, { useEffect, useState, Suspense } from "react";
+const Navbar = React.lazy(() => import("../Components/Home/Navbar/Navbar"));
+const BurgerNavbar = React.lazy(
+  () => import("../Components/Home/Navbar/BurgerNavbar")
+);
+const Landing = React.lazy(() => import("../Components/Apartament/Landing"));
+const Info = React.lazy(() => import("../Components/Apartament/Info"));
+const Advantage = React.lazy(() => import("../Components/Property/Advantage"));
+const Form = React.lazy(() => import("../Components/Apartament/Form"));
+const Footer = React.lazy(() => import("../Components/Home/Footer/Footer"));
+const Properties = React.lazy(
+  () => import("../Components/Property/Properties.tsx")
+);
 // import Box from "../Components/Property/Box";
 import {
   Apartment,
   AdvantageInterface,
 } from "../data/lang/en/Property/Apartament.ts";
-import Properties from "../Components/Property/Properties.tsx";
 import { useSearchParams } from "react-router-dom";
+import LoadingSpinner from "../Components/LoadingSpinner.tsx";
 
 const Apartament = () => {
   const [searchParams] = useSearchParams();
@@ -49,18 +54,19 @@ const Apartament = () => {
     console.log(apartamentData);
   }, [apartamentData]);
 
-  if (!apartamentData || !advantages) return <div>Loading...</div>;
+  if (!apartamentData || !advantages) return <LoadingSpinner />;
 
   return (
     <React.Fragment>
-      <div className="overflow-hidden">
-        <Navbar />
-        <BurgerNavbar color="#FFFFFF" />
-        <Landing Data={apartamentData.apartment} />
-        <Info Data={apartamentData.apartment} />
+      <Suspense fallback={<LoadingSpinner />}>
+        <div className="overflow-hidden">
+          <Navbar />
+          <BurgerNavbar color="#FFFFFF" />
+          <Landing Data={apartamentData.apartment} />
+          <Info Data={apartamentData.apartment} />
 
-        <div className="min-h-screen flex flex-col items-center px-4 lg:px-[10vw]">
-          {/* <h1 className="font-SolidenTrialBoldExpanded text-3xl pb-2 md:text-5xl 2xl:text-6xl">
+          <div className="min-h-screen flex flex-col items-center px-4 lg:px-[10vw]">
+            {/* <h1 className="font-SolidenTrialBoldExpanded text-3xl pb-2 md:text-5xl 2xl:text-6xl">
             Facilities
           </h1>
           <h1 className="font-SolidenTrialRegular text-center md:text-xl">
@@ -76,27 +82,28 @@ const Apartament = () => {
             <Box />
           </div> */}
 
-          <div className="min-h-fit pb-20">
-            <h1 className="font-SolidenTrialBoldExpanded text-3xl px-4 text-center md:text-5xl 2xl:text-6xl overflow-hidden">
-              Advantages Of Your <span className="text-[#FF6241]">New</span>{" "}
-              Home
-            </h1>
-            <div className="w-screen py-20 px-4 lg:px-[10vw] flex flex-col gap-y-10 items-center lg:grid lg:grid-rows-2 lg:grid-cols-3 lg:place-items-center">
-              {advantages.map((advantage, index) => (
-                <Advantage
-                  key={index}
-                  title={advantage.title}
-                  description={advantage.description}
-                  icon={advantage.icon}
-                />
-              ))}
+            <div className="min-h-fit pb-20">
+              <h1 className="font-SolidenTrialBoldExpanded text-3xl px-4 text-center md:text-5xl 2xl:text-6xl overflow-hidden">
+                Advantages Of Your <span className="text-[#FF6241]">New</span>{" "}
+                Home
+              </h1>
+              <div className="w-screen py-20 px-4 lg:px-[10vw] flex flex-col gap-y-10 items-center lg:grid lg:grid-rows-2 lg:grid-cols-3 lg:place-items-center">
+                {advantages.map((advantage, index) => (
+                  <Advantage
+                    key={index}
+                    title={advantage.title}
+                    description={advantage.description}
+                    icon={advantage.icon}
+                  />
+                ))}
+              </div>
             </div>
           </div>
+          <Properties />
+          <Form />
+          <Footer />
         </div>
-        <Properties />
-        <Form />
-        <Footer />
-      </div>
+      </Suspense>
     </React.Fragment>
   );
 };
