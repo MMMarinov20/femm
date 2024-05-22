@@ -89,7 +89,7 @@ const Landing: React.FC<Props> = ({ Data, LangData }) => {
             </div>
 
             <div className="flex flex-col gap-y-3 w-full justify-center items-center mt-5">
-              {Object.keys(LangData.Buttons).map((key, i) => (
+              {Object.keys(LangData.Buttons).map((key) => (
                 <button
                   key={key}
                   className="font-SolidenTrialExpanded bg-[#FF6241] rounded-lg py-3 text-white text-xs 2xl:text-base w-[90%]"

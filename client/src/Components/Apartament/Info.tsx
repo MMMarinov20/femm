@@ -17,7 +17,7 @@ interface Props {
   SubDescription: string;
 }
 
-const temp = ["fitst", "second", "third", "fourth"];
+// const temp = ["fitst", "second", "third", "fourth"];
 
 const Info: React.FC<Props> = ({
   Data,
