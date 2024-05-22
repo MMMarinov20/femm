@@ -17,6 +17,8 @@ export interface ApartmentDetails {
   Parking: string;
   Exposure: string;
   Garage: string;
+  Description: string;
+  SubDescription: string;
 }
 
 export interface Apartment {
@@ -27,6 +29,7 @@ export interface Apartment {
 export interface PropertyInterface {
   apartaments: Apartment[];
   advantages: AdvantageInterface[];
+  Description: string;
 }
 
 export interface PropertiesInterface {

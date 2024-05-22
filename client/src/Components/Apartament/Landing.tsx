@@ -13,9 +13,17 @@ import { ApartmentDetails } from "../../data/lang/en/Property/Apartament";
 
 interface Props {
   Data: ApartmentDetails;
+  LangData: {
+    Info: string[];
+    Buttons: {
+      First: string;
+      Second: string;
+      Third: string;
+    };
+  };
 }
 
-const Landing: React.FC<Props> = ({ Data }) => {
+const Landing: React.FC<Props> = ({ Data, LangData }) => {
   return (
     <React.Fragment>
       <div className="w-screen lg:px-[10vw]">
@@ -54,23 +62,42 @@ const Landing: React.FC<Props> = ({ Data }) => {
           <div className="w-full xl:w-[70%] 2xl:w-[33%] 3xl:w-[27%] flex flex-col items-center px-7 lg:px-10">
             <div className="p-2 h-fit rounded-xl w-full md:w-1/2 lg:w-full shadow-2xl">
               <div className="border-[1px] border-[#FF6241] px-5 py-4 grid place-items-center h-full w-full font-GilroyExtraBold gap-y-3 rounded-xl">
-                {Object.keys(Data).map((key) => (
-                  //@ts-expect-error test
-                  <Benefit Title={key} Subtitle={Data[key]} />
-                ))}
+                {/* {Object.keys(Data).map(
+                  (key, i) =>
+                    i !== Object.keys(Data).length - 1 && (
+                      <Benefit
+                        key={key}
+                        Title={LangData.Info[i]}
+                        // @ts-expect-error test
+                        Subtitle={Data[key]}
+                      />
+                    )
+                )} */}
+                {Object.keys(Data).map((key, i) => {
+                  if (i == Object.keys(Data).length - 1) return;
+                  if (i == Object.keys(Data).length - 2) return;
+                  return (
+                    <Benefit
+                      key={key}
+                      Title={LangData.Info[i]}
+                      // @ts-expect-error test
+                      Subtitle={Data[key]}
+                    />
+                  );
+                })}
               </div>
             </div>
 
             <div className="flex flex-col gap-y-3 w-full justify-center items-center mt-5">
-              <button className="font-SolidenTrialExpanded bg-[#FF6241] rounded-lg py-3 text-white text-xs 2xl:text-base w-[90%]">
-                Download Property Presentation
-              </button>
-              <button className="font-SolidenTrialExpanded bg-[#FF6241] rounded-lg py-3 text-white text-xs 2xl:text-base w-[90%]">
-                Download Property Presentation
-              </button>
-              <button className="font-SolidenTrialExpanded bg-[#FF6241] rounded-lg py-3 text-white text-xs 2xl:text-base w-[90%]">
-                Download Property Presentation
-              </button>
+              {Object.keys(LangData.Buttons).map((key, i) => (
+                <button
+                  key={key}
+                  className="font-SolidenTrialExpanded bg-[#FF6241] rounded-lg py-3 text-white text-xs 2xl:text-base w-[90%]"
+                >
+                  {/* @ts-expect-error test */}
+                  {LangData.Buttons[key]}
+                </button>
+              ))}
             </div>
           </div>
         </div>

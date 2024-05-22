@@ -16,15 +16,18 @@ import {
   Apartment,
   AdvantageInterface,
 } from "../data/lang/en/Property/Apartament.ts";
+import { ApartmentInterface } from "../data/lang/en/Apartment/Apartment.ts";
 import { useSearchParams } from "react-router-dom";
 import LoadingSpinner from "../Components/LoadingSpinner.tsx";
 
 const Apartament = () => {
   const [searchParams] = useSearchParams();
+  const [pageData, setPageData] = useState<ApartmentInterface | null>(null);
   const [apartamentData, setApartamentData] = useState<Apartment | undefined>(
     undefined
   );
   const [advantages, setAdvantages] = useState<AdvantageInterface[]>([]);
+  const [propertyDescription, setPropertyDescription] = useState<string>("");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -36,13 +39,19 @@ const Apartament = () => {
           `../data/lang/${searchParams.get("lang")}/Property/Properties.ts`
         );
 
+        const data = await import(
+          `../data/lang/${searchParams.get("lang")}/Apartment/apartment.json`
+        );
+
         const obj = properties[property];
         const apartament: Apartment = obj.apartaments.find(
           (apartament: any) => apartament.id === parseInt(id)
         )!;
 
         if (apartament) setApartamentData(apartament);
+        setPageData(data.default);
         setAdvantages(obj.advantages);
+        setPropertyDescription(obj.Description);
       } catch (error) {
         console.error("Error loading the Apartament data:", error);
       }
@@ -50,11 +59,7 @@ const Apartament = () => {
     findApartament();
   }, [searchParams]);
 
-  useEffect(() => {
-    console.log(apartamentData);
-  }, [apartamentData]);
-
-  if (!apartamentData || !advantages) return <LoadingSpinner />;
+  if (!apartamentData || !advantages || !pageData) return <LoadingSpinner />;
 
   return (
     <React.Fragment>
@@ -62,8 +67,17 @@ const Apartament = () => {
         <div className="overflow-hidden">
           <Navbar />
           <BurgerNavbar color="#FFFFFF" />
-          <Landing Data={apartamentData.apartment} />
-          <Info Data={apartamentData.apartment} />
+          <Landing
+            LangData={pageData.Landing}
+            Data={apartamentData.apartment}
+          />
+          <Info
+            PageLang={pageData.Description}
+            Advantages={advantages}
+            Data={apartamentData.apartment}
+            Description={propertyDescription}
+            SubDescription={apartamentData.apartment.SubDescription}
+          />
 
           <div className="min-h-screen flex flex-col items-center px-4 lg:px-[10vw]">
             {/* <h1 className="font-SolidenTrialBoldExpanded text-3xl pb-2 md:text-5xl 2xl:text-6xl">
@@ -83,10 +97,10 @@ const Apartament = () => {
           </div> */}
 
             <div className="min-h-fit pb-20">
-              <h1 className="font-SolidenTrialBoldExpanded text-3xl px-4 text-center md:text-5xl 2xl:text-6xl overflow-hidden">
-                Advantages Of Your <span className="text-[#FF6241]">New</span>{" "}
-                Home
-              </h1>
+              <h1
+                dangerouslySetInnerHTML={{ __html: pageData.Advantages.title }}
+                className="font-SolidenTrialBoldExpanded text-3xl px-4 text-center md:text-5xl 2xl:text-6xl overflow-hidden"
+              ></h1>
               <div className="w-screen py-20 px-4 lg:px-[10vw] flex flex-col gap-y-10 items-center lg:grid lg:grid-rows-2 lg:grid-cols-3 lg:place-items-center">
                 {advantages.map((advantage, index) => (
                   <Advantage

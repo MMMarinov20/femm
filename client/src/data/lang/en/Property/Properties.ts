@@ -23,6 +23,10 @@ export const properties: PropertiesInterface = {
           Parking: "No",
           Exposure: "South",
           Garage: "Yes",
+          Description:
+            "One bedroom apartment with a large terrace and a big basement in ",
+          SubDescription:
+            'The apartment is located on the first floor. Area <span style="font-family: GilroyRegular;">105.99</span> m². Consists of:',
         },
       },
       {
@@ -39,6 +43,9 @@ export const properties: PropertiesInterface = {
           Parking: "No",
           Exposure: "South",
           Garage: "No",
+          Description: "Two bedroom apartment with a south exposure ",
+          SubDescription:
+            'The apartment is located on the second floor. Area <span style="font-family: GilroyRegular;">78.01</span> m². Consists of:',
         },
       },
       {
@@ -55,6 +62,9 @@ export const properties: PropertiesInterface = {
           Parking: "No",
           Exposure: "South",
           Garage: "No",
+          Description: "Two bedroom apartment with a south exposure ",
+          SubDescription:
+            'The apartment is located on the second floor. Area <span style="font-family: GilroyRegular;">78.01</span> m². Consists of:',
         },
       },
       {
@@ -71,6 +81,10 @@ export const properties: PropertiesInterface = {
           Parking: "No",
           Exposure: "South",
           Garage: "No",
+          Description:
+            "A two story penthouse with two bedrooms and a big terrace in ",
+          SubDescription:
+            'The apartment is located on the fourth floor. Area <span style="font-family: GilroyRegular;">161.35</span> m² sq.m. Consists of:',
         },
       },
     ],
@@ -109,5 +123,7 @@ export const properties: PropertiesInterface = {
         icon: PiLightningFill,
       },
     ],
+    Description:
+      "FEMM offers to your attention a beautiful two-bedroom apartment in the Atlantis Aria complex. The complex is located in the Izgrev district, in close proximity to the main roads of the city, the largest sports complex in Bulgaria - Arena Burgas, hypermarkets Kaufland, Lidl, Technopolis, Metro, shopping and business centers, a bus stop, schools, kindergartens , university, cafes and restaurants, fitness centers, etc.",
   },
 };
