@@ -1,33 +1,51 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-const Form: React.FC = () => {
+interface Props {
+  Data: {
+    title: string;
+    name: string;
+    email: string;
+    reason: string;
+    phone: string;
+    message: string;
+    agree: string;
+    button: string;
+  };
+}
+
+const Form: React.FC<Props> = ({ Data }) => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
     <React.Fragment>
-      <div className="px-4 py-20 w-screen lg:px-[10vw]">
+      <div className="px-4 py-20 w-screen lg:px-[10vw]" data-aos="fade-up">
         <div className="w-full shadow-2xl bg-white rounded-2xl p-7 lg:flex lg:flex-row lg:gap-x-10">
           <div className="flex flex-col md:justify-center md:items-center lg:items-start 2xl:justify-start lg:w-1/2">
             <h1 className="font-SolidenTrialBoldExpanded text-4xl 2xl:text-5xl text-center pt-5 overflow-hidden">
-              Make a request
+              {Data.title}
             </h1>
             <input
-              placeholder="Name"
+              placeholder={Data.name}
               className="border-[1px] border-[#2A2A2A] focus:outline-none rounded-lg w-full md:w-1/2 lg:w-full p-4 my-4 font-SolidenTrialRegular placeholder:font-SolidenTrialRegular"
             />
             <input
-              placeholder="Email"
+              placeholder={Data.email}
               type="email"
               className="border-[1px] border-[#2A2A2A] focus:outline-none rounded-lg w-full md:w-1/2 lg:w-full p-4 my-4 font-SolidenTrialRegular placeholder:font-SolidenTrialRegular"
             />
             <input
-              placeholder="Reason for request"
+              placeholder={Data.reason}
               className="border-[1px] border-[#2A2A2A] focus:outline-none rounded-lg w-full md:w-1/2 lg:w-full p-4 my-4 font-SolidenTrialRegular placeholder:font-SolidenTrialRegular"
             />
             <input
-              placeholder="Phone"
+              placeholder={Data.phone}
               className="border-[1px] border-[#2A2A2A] focus:outline-none rounded-lg w-full md:w-1/2 lg:w-full p-4 my-4 font-SolidenTrialRegular placeholder:font-SolidenTrialRegular"
             />
             <textarea
-              placeholder="Your Message"
+              placeholder={Data.message}
               className="border-[1px] border-[#2A2A2A] focus:outline-none rounded-lg w-full md:w-1/2 lg:w-full p-4 my-4 font-SolidenTrialRegular placeholder:font-SolidenTrialRegular min-h-[20vh]"
             />
 
@@ -40,12 +58,12 @@ const Form: React.FC = () => {
               />
               <label className="font-SolidenTrialRegular text-[#2A2A2A]">
                 {" "}
-                I agree to the terms and conditions
+                {Data.agree}
               </label>
             </div>
 
             <button className="bg-[#FF6241] font-SolidenTrialExpanded text-white rounded-lg py-3 w-[60%] md:w-1/3 lg:w-1/2">
-              Submit
+              {Data.button}
             </button>
           </div>
 

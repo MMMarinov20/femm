@@ -1,6 +1,8 @@
-export interface RentalInterface {
+export interface IRentalPage {
   DescriptionContainer: {
     Button: string;
+    Grade: string;
+    Footer: string;
   };
   SearchContainer: {
     Title: string;

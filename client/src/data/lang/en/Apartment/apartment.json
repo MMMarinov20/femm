@@ -23,9 +23,19 @@
     "title": "Advantages of your new home",
     "type": ["One Bedroom", "Two Bedrooms"],
     "bathrooms": ["One Bathroom with toilet", "Two Bathrooms with toilet"],
-    "consists": ["Corridor", "Living room with kitchen", "Balcony"]
+    "consists": ["Corridor", "Living room with kitchen", "Balcony", "Basement"]
   },
   "Advantages": {
     "title": "Advantages of your <span style=\"color: #FF6241;\">New</span> Home"
+  },
+  "Form": {
+    "title": "Make a request",
+    "name": "Name",
+    "email": "Email",
+    "reason": "Reason for request",
+    "phone": "Phone",
+    "message": "Your Message",
+    "agree": "I agree to the terms and conditions",
+    "button": "Submit"
   }
 }

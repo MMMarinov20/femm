@@ -14,6 +14,8 @@ interface Props {
   description: string;
   rating: number;
   buttonText: string;
+  grade: string;
+  footer: string;
 }
 
 const DescriptionContainer: React.FC<Props> = (props) => {
@@ -53,9 +55,8 @@ const DescriptionContainer: React.FC<Props> = (props) => {
         <h1 className="font-GilroyRegular">{props.description}</h1>
 
         <h1 className="font-GilroyExtraBold md:text-xl">
-          Couples Love The Location - They Rate It{" "}
-          <span className="text-[#FF6241]">{props.rating}</span> For a Trip For
-          Two.
+          {props.grade}
+          <span className="text-[#FF6241]">{props.rating}</span>
         </h1>
 
         <h1 className="font-GilroyRegular">

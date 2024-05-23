@@ -11,4 +11,10 @@ export interface IPropertyPage {
     degree: string;
     properties: string;
   };
+  Gallery: {
+    title: string;
+  };
+  Advantages: {
+    title: string;
+  };
 }

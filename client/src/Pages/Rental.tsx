@@ -26,7 +26,7 @@ import { IconType } from "react-icons";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useSearchParams } from "react-router-dom";
-import { RentalInterface } from "../data/lang/en/Rental/Rental";
+import { IRentalPage } from "../data/Interfaces/IRentalPage";
 import LoadingSpinner from "../Components/LoadingSpinner";
 
 interface RentalData {
@@ -52,7 +52,7 @@ export interface ReservationData {
 
 const Rental = () => {
   const [searchParams] = useSearchParams();
-  const [rentalData, setRentalData] = useState<RentalInterface | null>(null);
+  const [rentalData, setRentalData] = useState<IRentalPage | null>(null);
 
   useEffect(() => {
     const loadRentalData = async () => {
@@ -126,7 +126,9 @@ const Rental = () => {
               location={data.location}
               features={data.features}
               description={data.description}
+              grade={rentalData.DescriptionContainer.Grade}
               rating={data.rating}
+              footer={rentalData.DescriptionContainer.Footer}
               buttonText={rentalData.DescriptionContainer.Button}
             />
             <SearchContainer

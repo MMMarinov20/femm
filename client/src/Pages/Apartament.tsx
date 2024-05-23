@@ -119,7 +119,7 @@ const Apartament = () => {
           </div>
           <Properties />
           <Location />
-          <Form />
+          <Form Data={pageLangData.Form} />
           <Footer />
         </div>
       </Suspense>

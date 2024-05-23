@@ -1,6 +1,8 @@
 {
   "DescriptionContainer": {
-    "Button": "Book a stay"
+    "Button": "Book a stay",
+    "Grade": "Couples Love The Location - They Rate it Excellent For a Trip For Two - ",
+    "Footer": "Distance in accommodation descriptions is calculated using © OpenStreetMap"
   },
   "SearchContainer": {
     "Title": "Search",

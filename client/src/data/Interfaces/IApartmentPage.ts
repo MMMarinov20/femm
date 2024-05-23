@@ -16,4 +16,14 @@ export interface IApartmentPage {
   Advantages: {
     title: string;
   };
+  Form: {
+    title: string;
+    name: string;
+    email: string;
+    reason: string;
+    phone: string;
+    message: string;
+    agree: string;
+    button: string;
+  };
 }

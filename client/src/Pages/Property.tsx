@@ -91,19 +91,20 @@ const Property = () => {
                 className="font-SolidenTrialBoldExpanded text-3xl pb-10 md:text-5xl 2xl:text-6xl"
                 data-aos="fade-right"
               >
-                Gallery
+                {pageLangData.Gallery.title}
               </h1>
-              {/* <CarouselSlider src={src} centerPadding="25%" /> */}
               <GallerySlider src={src} />
             </div>
 
             <Properties />
 
             <div className="min-h-fit pb-20">
-              <h1 className="font-SolidenTrialBoldExpanded text-3xl px-4 text-center md:text-5xl 2xl:text-6xl overflow-hidden">
-                Advantages Of Your <span className="text-[#FF6241]">New</span>{" "}
-                Home
-              </h1>
+              <h1
+                dangerouslySetInnerHTML={{
+                  __html: pageLangData.Advantages.title,
+                }}
+                className="font-SolidenTrialBoldExpanded text-3xl px-4 text-center md:text-5xl 2xl:text-6xl overflow-hidden"
+              ></h1>
               <div className="w-screen py-20 px-4 lg:px-[10vw] flex flex-col gap-y-10 items-center lg:grid lg:grid-rows-2 lg:grid-cols-3 lg:place-items-center">
                 {advantages.map((advantage, index) => (
                   <Advantage
