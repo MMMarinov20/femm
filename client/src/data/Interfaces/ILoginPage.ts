@@ -1,8 +1,6 @@
-export interface RegisterInterface {
+export interface ILoginPage {
   Title: string;
   Subtitle: string;
-  FirstNamePlaceholder: string;
-  LastNamePlaceholder: string;
   EmailPlaceholder: string;
   PasswordPlaceholder: string;
   Button: string;

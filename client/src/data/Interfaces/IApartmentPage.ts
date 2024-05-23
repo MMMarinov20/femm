@@ -1,4 +1,4 @@
-export interface ApartmentInterface {
+export interface IApartmentPage {
   Landing: {
     Info: string[];
     Buttons: {

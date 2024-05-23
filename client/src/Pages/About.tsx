@@ -9,12 +9,12 @@ const WhoWeAre = React.lazy(() => import("../Components/About/WhoWeAre"));
 const WhatWeDo = React.lazy(() => import("../Components/About/WhatWeDo"));
 const OurMission = React.lazy(() => import("../Components/About/OurMission"));
 import { useSearchParams } from "react-router-dom";
-import { AboutInterface } from "../data/lang/en/About/About";
+import { IAboutPage } from "../data/Interfaces/IAboutPage";
 import LoadingSpinner from "../Components/LoadingSpinner";
 
 const About = () => {
   const [searchParams] = useSearchParams();
-  const [aboutData, setAboutData] = useState<AboutInterface | null>(null);
+  const [pageLangData, setPageLangData] = useState<IAboutPage | null>(null);
 
   useEffect(() => {
     const loadAboutData = async () => {
@@ -22,7 +22,7 @@ const About = () => {
         const AboutModule = await import(
           `../data/lang/${searchParams.get("lang")}/About/About.json`
         );
-        setAboutData(AboutModule.default);
+        setPageLangData(AboutModule.default);
       } catch (error) {
         console.error("Error loading the About data:", error);
       }
@@ -35,7 +35,7 @@ const About = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  if (!aboutData) return <LoadingSpinner />;
+  if (!pageLangData) return <LoadingSpinner />;
 
   return (
     <React.Fragment>
@@ -46,13 +46,13 @@ const About = () => {
           </div>
           <BurgerNavbar color="#F9F2DF" />
 
-          <Hero Data={aboutData.Landing} />
+          <Hero Data={pageLangData.Landing} />
 
-          <WhoWeAre Data={aboutData.WhoWeAre} />
+          <WhoWeAre Data={pageLangData.WhoWeAre} />
 
-          <WhatWeDo Data={aboutData.WhatWeDo} />
+          <WhatWeDo Data={pageLangData.WhatWeDo} />
 
-          <OurMission Data={aboutData.Mission} />
+          <OurMission Data={pageLangData.Mission} />
 
           <Footer />
         </div>

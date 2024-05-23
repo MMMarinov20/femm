@@ -1,4 +1,4 @@
-export interface PropertyInterface {
+export interface IPropertyPage {
   Landing: {
     title: string;
     subtitle: string;

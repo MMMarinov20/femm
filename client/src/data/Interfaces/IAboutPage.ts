@@ -3,7 +3,7 @@ interface Box {
   description: string;
 }
 
-export interface AboutInterface {
+export interface IAboutPage {
   Landing: {
     Hero: string;
     SubHero: string;

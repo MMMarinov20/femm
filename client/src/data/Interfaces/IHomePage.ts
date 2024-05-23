@@ -1,4 +1,4 @@
-export interface HomeInterface {
+export interface IHomePage {
   Landing: {
     Hero: string;
     SubHero: string;

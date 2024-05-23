@@ -15,14 +15,14 @@ const Properties = React.lazy(
 import {
   Apartment,
   AdvantageInterface,
-} from "../data/lang/en/Property/Apartament.ts";
-import { ApartmentInterface } from "../data/lang/en/Apartment/Apartment.ts";
+} from "../data/Interfaces/IApartmentData.ts";
+import { IApartmentPage } from "../data/Interfaces/IApartmentPage.ts";
 import { useSearchParams } from "react-router-dom";
 import LoadingSpinner from "../Components/LoadingSpinner.tsx";
 
 const Apartament = () => {
   const [searchParams] = useSearchParams();
-  const [pageData, setPageData] = useState<ApartmentInterface | null>(null);
+  const [pageLangData, setPageLangData] = useState<IApartmentPage | null>(null);
   const [apartamentData, setApartamentData] = useState<Apartment | undefined>(
     undefined
   );
@@ -49,7 +49,7 @@ const Apartament = () => {
         )!;
 
         if (apartament) setApartamentData(apartament);
-        setPageData(data.default);
+        setPageLangData(data.default);
         setAdvantages(obj.advantages);
         setPropertyDescription(obj.Description);
       } catch (error) {
@@ -59,7 +59,8 @@ const Apartament = () => {
     findApartament();
   }, [searchParams]);
 
-  if (!apartamentData || !advantages || !pageData) return <LoadingSpinner />;
+  if (!apartamentData || !advantages || !pageLangData)
+    return <LoadingSpinner />;
 
   return (
     <React.Fragment>
@@ -68,11 +69,11 @@ const Apartament = () => {
           <Navbar />
           <BurgerNavbar color="#FFFFFF" />
           <Landing
-            LangData={pageData.Landing}
+            LangData={pageLangData.Landing}
             Data={apartamentData.apartment}
           />
           <Info
-            PageLang={pageData.Description}
+            PageLang={pageLangData.Description}
             Advantages={advantages}
             Data={apartamentData.apartment}
             Description={propertyDescription}
@@ -98,7 +99,9 @@ const Apartament = () => {
 
             <div className="min-h-fit pb-20">
               <h1
-                dangerouslySetInnerHTML={{ __html: pageData.Advantages.title }}
+                dangerouslySetInnerHTML={{
+                  __html: pageLangData.Advantages.title,
+                }}
                 className="font-SolidenTrialBoldExpanded text-3xl px-4 text-center md:text-5xl 2xl:text-6xl overflow-hidden"
               ></h1>
               <div className="w-screen py-20 px-4 lg:px-[10vw] flex flex-col gap-y-10 items-center lg:grid lg:grid-rows-2 lg:grid-cols-3 lg:place-items-center">

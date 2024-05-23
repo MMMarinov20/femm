@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { ApartmentDetails } from "../../data/lang/en/Property/Apartament";
-import { AdvantageInterface } from "../../data/lang/en/Property/Apartament";
+import { ApartmentDetails } from "../../data/Interfaces/IApartmentData";
+import { AdvantageInterface } from "../../data/Interfaces/IApartmentData";
 import AOS from "aos";
 import "aos/dist/aos.css";
 

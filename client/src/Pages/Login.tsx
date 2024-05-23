@@ -15,12 +15,12 @@ import { ToastContainer } from "react-toastify";
 import { errorToast } from "../utils/utils";
 import "react-toastify/dist/ReactToastify.css";
 import { useSearchParams } from "react-router-dom";
-import { LoginInterface } from "../data/lang/en/Login/Login";
+import { ILoginPage } from "../data/Interfaces/ILoginPage";
 import LoadingSpinner from "../Components/LoadingSpinner";
 
 const Login: React.FC = () => {
   const [searchParams] = useSearchParams();
-  const [loginData, setLoginData] = useState<LoginInterface | null>(null);
+  const [pageLangData, setPageLangData] = useState<ILoginPage | null>(null);
 
   useEffect(() => {
     const loadLoginData = async () => {
@@ -28,7 +28,7 @@ const Login: React.FC = () => {
         const LoginModule = await import(
           `../data/lang/${searchParams.get("lang")}/Login/Login.json`
         );
-        setLoginData(LoginModule.default);
+        setPageLangData(LoginModule.default);
       } catch (error) {
         console.error("Error loading the Login data:", error);
       }
@@ -41,7 +41,7 @@ const Login: React.FC = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
-  if (!loginData) return <LoadingSpinner />;
+  if (!pageLangData) return <LoadingSpinner />;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -77,26 +77,26 @@ const Login: React.FC = () => {
                 onSubmit={handleSubmit}
               >
                 <Header
-                  heading={loginData.Title}
-                  subheading={loginData.Subtitle}
+                  heading={pageLangData.Title}
+                  subheading={pageLangData.Subtitle}
                 />
 
                 <Input
                   ref={emailRef}
-                  placeholder={loginData.EmailPlaceholder}
+                  placeholder={pageLangData.EmailPlaceholder}
                   type="email"
                   Icon={HiOutlineMail}
                 />
                 <Input
                   ref={passwordRef}
-                  placeholder={loginData.PasswordPlaceholder}
+                  placeholder={pageLangData.PasswordPlaceholder}
                   type="password"
                   Icon={HiOutlineLockClosed}
                 />
 
                 <div className="w-full md:w-1/2 lg:w-8/12 pt-2">
                   <button className="w-full bg-[#FF6241] rounded-lg py-2 2xl:py-3 text-white font-SolidenTrialRegular transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]">
-                    {loginData.Button}
+                    {pageLangData.Button}
                   </button>
                   <ToastContainer />
                 </div>
