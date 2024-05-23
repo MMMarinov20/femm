@@ -1,0 +1,31 @@
+{
+  "Landing": {
+    "Info": [
+      "Building",
+      "Address",
+      "Floor",
+      "Floors",
+      "Bedrooms",
+      "Bathrooms",
+      "Kitchen",
+      "Area",
+      "Parking",
+      "Exposure",
+      "Basement"
+    ],
+    "Buttons": {
+      "First": "Download Property Presentation",
+      "Second": "Download Property Presentation",
+      "Third": "Download Property Presentation"
+    }
+  },
+  "Description": {
+    "title": "Advantages of your new home",
+    "type": ["One Bedroom", "Two Bedrooms"],
+    "bathrooms": ["One Bathroom with toilet", "Two Bathrooms with toilet"],
+    "consists": ["Corridor", "Living room with kitchen", "Balcony"]
+  },
+  "Advantages": {
+    "title": "Advantages of your <span style=\"color: #FF6241;\">New</span> Home"
+  }
+}

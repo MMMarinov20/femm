@@ -23,6 +23,10 @@ export const properties: PropertiesInterface = {
           Parking: "No",
           Exposure: "South",
           Garage: "Yes",
+          Description:
+            "One bedroom apartment with a large terrace and a big basement in ",
+          SubDescription:
+            'The apartment is located on the first floor. Area <span style="font-family: GilroyRegular;">105.99</span> m². Consists of:',
         },
       },
       {
@@ -39,6 +43,9 @@ export const properties: PropertiesInterface = {
           Parking: "No",
           Exposure: "South",
           Garage: "No",
+          Description: "Two bedroom apartment with a south exposure ",
+          SubDescription:
+            'The apartment is located on the second floor. Area <span style="font-family: GilroyRegular;">78.01</span> m². Consists of:',
         },
       },
       {
@@ -55,6 +62,9 @@ export const properties: PropertiesInterface = {
           Parking: "No",
           Exposure: "South",
           Garage: "No",
+          Description: "Two bedroom apartment with a south exposure ",
+          SubDescription:
+            'The apartment is located on the second floor. Area <span style="font-family: GilroyRegular;">78.01</span> m². Consists of:',
         },
       },
       {
@@ -71,44 +81,49 @@ export const properties: PropertiesInterface = {
           Parking: "No",
           Exposure: "South",
           Garage: "No",
+          Description:
+            "A two story penthouse with two bedrooms and a big terrace in ",
+          SubDescription:
+            'The apartment is located on the fourth floor. Area <span style="font-family: GilroyRegular;">161.35</span> m² sq.m. Consists of:',
         },
       },
     ],
     advantages: [
       {
-        title: "Топ локация",
+        title: "Top location",
         description:
-          "Сградата се намира в централния район на Русе, близо до главната улица на града и река Дунав.",
+          "The building is located in Rousse's central district, close to the city's main street and the Danube river.",
         icon: FaLocationArrow,
       },
       {
-        title: "Иновативно строителство",
+        title: "Innovative building",
         description:
-          "Сградата е проектирана и построена с най-новите технологии и материали.",
+          "The building is designed and built with the latest technologies and materials.",
         icon: FaBuilding,
       },
       {
-        title: "Модерен дизайн",
-        description:
-          "Сградата има модерен дизайн и високо качество на строителство.",
+        title: "Modern design",
+        description: "The building has a modern and stylish design.",
         icon: MdDesignServices,
       },
       {
-        title: "Смарт хоум готовност",
-        description: "Сградата е готова за инсталация на смарт хоум системи.",
+        title: "Smart home ready",
+        description: "The building is ready for smart home installations.",
         icon: CgSmartphoneChip,
       },
       {
-        title: "Максимална поверителност",
+        title: "Privacy matters",
         description:
-          "Сградата е проектирана с максимална поверителност и сигурност за живущите в нея, като разполага и с частен асансьор.",
+          "The building is designed to provide maximum privacy for its residents with a private elevator.",
         icon: MdPrivacyTip,
       },
       {
-        title: "Енергийно ефективен",
-        description: "Сградата притежава клас А на енергийна ефективност.",
+        title: "Energy efficient",
+        description: "The building is designed to be energy efficient.",
         icon: PiLightningFill,
       },
     ],
+    Description:
+      "FEMM offers to your attention a beautiful two-bedroom apartment in the Atlantis Aria complex. The complex is located in the Izgrev district, in close proximity to the main roads of the city, the largest sports complex in Bulgaria - Arena Burgas, hypermarkets Kaufland, Lidl, Technopolis, Metro, shopping and business centers, a bus stop, schools, kindergartens , university, cafes and restaurants, fitness centers, etc.",
   },
 };
