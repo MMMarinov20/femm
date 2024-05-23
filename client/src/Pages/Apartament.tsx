@@ -11,6 +11,7 @@ const Footer = React.lazy(() => import("../Components/Home/Footer/Footer"));
 const Properties = React.lazy(
   () => import("../Components/Property/Properties.tsx")
 );
+const Location = React.lazy(() => import("../Components/Property/Location"));
 // import Box from "../Components/Property/Box";
 import {
   Apartment,
@@ -117,6 +118,7 @@ const Apartament = () => {
             </div>
           </div>
           <Properties />
+          <Location />
           <Form />
           <Footer />
         </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Suspense } from "react";
 const Landing = React.lazy(() => import("../Components/Property/Landing"));
 const Info = React.lazy(() => import("../Components/Property/Info"));
-const Box = React.lazy(() => import("../Components/Property/Box"));
+// const Box = React.lazy(() => import("../Components/Property/Box"));
 const Properties = React.lazy(
   () => import("../Components/Property/Properties")
 );
@@ -10,13 +10,13 @@ const Footer = React.lazy(() => import("../Components/Home/Footer/Footer"));
 const GallerySlider = React.lazy(
   () => import("../Components/Rental/GallerySlider")
 );
+const Location = React.lazy(() => import("../Components/Property/Location"));
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { AdvantageInterface } from "../data/Interfaces/IApartmentData.ts";
 import { useSearchParams } from "react-router-dom";
-import LoadingSpinner from "../Components/LoadingSpinner.tsx";
 import { IPropertyPage } from "../data/Interfaces/IPropertyPage.ts";
-// import CarouselSlider from "../Components/Property/CarouselSlider";
+import LoadingSpinner from "../Components/LoadingSpinner.tsx";
 
 const src = [
   "../Property/Carousel/1.svg",
@@ -116,6 +116,7 @@ const Property = () => {
               </div>
             </div>
 
+            <Location />
             <Footer />
           </div>
         </div>
