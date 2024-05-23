@@ -130,11 +130,9 @@ const GallerySlider: React.FC<Props> = (props: Props) => {
           >
             {props.src.map((src, index) => (
               <SwiperSlide key={index}>
-                <img
-                  src={src}
-                  alt=""
-                  className="w-full h-full rounded-2xl z-0"
-                />
+                <div className="fixed top-1/4">
+                  <img src={src} alt="" className="rounded-2xl z-0" />
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>

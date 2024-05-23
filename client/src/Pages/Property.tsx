@@ -64,7 +64,7 @@ const Property = () => {
           <Landing Data={pageLangData.Landing} />
           <Info Data={pageLangData.Info} />
           <div className="min-h-screen flex flex-col items-center px-4 lg:px-[10vw]">
-            <h1
+            {/* <h1
               className="font-SolidenTrialBoldExpanded text-3xl pb-2 md:text-5xl 2xl:text-6xl"
               data-aos="fade-right"
             >
@@ -84,7 +84,7 @@ const Property = () => {
               <Box />
               <Box />
               <Box />
-            </div>
+            </div> */}
 
             <div className="w-screen px-0 overflow-hidden text-center">
               <h1
