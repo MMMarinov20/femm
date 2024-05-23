@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import LoadingSpinner from "../LoadingSpinner";
+import { useSearchParams } from "react-router-dom";
 import Navbar from "./Navbar/Navbar";
 import BurgerNavbar from "./Navbar/BurgerNavbar";
+import { INavbarData } from "../../data/Interfaces/INavbarData";
 
 interface Props {
   Data: {
@@ -12,11 +15,27 @@ interface Props {
 }
 
 const Landing: React.FC<Props> = ({ Data }) => {
+  const [searchParams] = useSearchParams();
+
+  const [pageLangData, setPageLangData] = useState<INavbarData | null>(null);
+
+  useEffect(() => {
+    const loadData = async () => {
+      const data = await import(
+        `../../data/lang/${searchParams.get("lang")}/Navbar/navbar.json`
+      );
+      setPageLangData(data.default);
+    };
+    loadData();
+  }, [searchParams]);
+
+  if (!pageLangData) return <LoadingSpinner />;
+
   return (
     <React.Fragment>
       <div className="w-screen min-h-fit bg-[#F9F3DF] lg:flex flex-col justify-between">
-        <Navbar />
-        <BurgerNavbar color={"#F9F3DF"} />
+        <Navbar Data={pageLangData} />
+        <BurgerNavbar Data={pageLangData} color={"#F9F3DF"} />
         <div className="flex flex-col lg:flex-row items-center justify-between lg:items-start lg:justify-between lg:pl-[10vw] w-full h-full pt-16 min-[350px]:pt-10">
           <div className="max-w-[80vw] min-[350px]:max-w-xs md:max-w-xl lg:max-w-md xl:max-w-xl 2xl:max-w-2xl">
             <h1

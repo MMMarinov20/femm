@@ -28,6 +28,7 @@ import "aos/dist/aos.css";
 import { useSearchParams } from "react-router-dom";
 import { IRentalPage } from "../data/Interfaces/IRentalPage";
 import LoadingSpinner from "../Components/LoadingSpinner";
+import { INavbarData } from "../data/Interfaces/INavbarData";
 
 interface RentalData {
   id: number;
@@ -52,7 +53,8 @@ export interface ReservationData {
 
 const Rental = () => {
   const [searchParams] = useSearchParams();
-  const [rentalData, setRentalData] = useState<IRentalPage | null>(null);
+  const [pageLangData, setPageLangData] = useState<IRentalPage | null>(null);
+  const [navbarData, setNavbarData] = useState<INavbarData | null>(null);
 
   useEffect(() => {
     const loadRentalData = async () => {
@@ -64,11 +66,17 @@ const Rental = () => {
         const currentRental = await import(
           `../data/lang/${searchParams.get("lang")}/Rental/rentals.ts`
         );
+
+        const NavbarModule = await import(
+          `../data/lang/${searchParams.get("lang")}/Navbar/navbar.json`
+        );
+
         const rental = currentRental.default.rentals.find(
           (rental: any) => rental.id === id
         );
 
-        setRentalData(RentalModule.default);
+        setNavbarData(NavbarModule.default);
+        setPageLangData(RentalModule.default);
         setData(rental);
       } catch (error) {
         console.error("Error loading the Rental data:", error);
@@ -103,14 +111,14 @@ const Rental = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  if (!rentalData || !data) return <LoadingSpinner />;
+  if (!pageLangData || !data || !navbarData) return <LoadingSpinner />;
 
   return (
     <React.Fragment>
       <Suspense fallback={<LoadingSpinner />}>
         <div className="overflow-hidden">
-          <Navbar />
-          <BurgerNavbar color={"#FFFFFF"} />
+          <Navbar Data={navbarData} />
+          <BurgerNavbar Data={navbarData} color={"#FFFFFF"} />
           <GallerySlider
             src={[
               "../../Rental/Room1.jpg",
@@ -126,35 +134,35 @@ const Rental = () => {
               location={data.location}
               features={data.features}
               description={data.description}
-              grade={rentalData.DescriptionContainer.Grade}
+              grade={pageLangData.DescriptionContainer.Grade}
               rating={data.rating}
-              footer={rentalData.DescriptionContainer.Footer}
-              buttonText={rentalData.DescriptionContainer.Button}
+              footer={pageLangData.DescriptionContainer.Footer}
+              buttonText={pageLangData.DescriptionContainer.Button}
             />
             <SearchContainer
               setReservationData={receiveReservationData}
-              Data={rentalData.SearchContainer}
+              Data={pageLangData.SearchContainer}
             />
           </div>
 
           <ReviewsSection
-            heading={rentalData.Reviews.Heading}
+            heading={pageLangData.Reviews.Heading}
             rentalId={data.id}
             name={data.title}
-            Data={rentalData.ReviewContainer}
+            Data={pageLangData.ReviewContainer}
           />
 
           <Availability
             date={reservationData.range}
             adults={reservationData.adults}
-            Data={rentalData.Availability}
+            Data={pageLangData.Availability}
           />
 
           <h1
             className="font-SolidenTrialBoldExpanded text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl lg:px-[10vw] px-4"
             data-aos="fade-right"
           >
-            {rentalData.Surroundings.Heading}
+            {pageLangData.Surroundings.Heading}
           </h1>
 
           <div
@@ -172,7 +180,7 @@ const Rental = () => {
 
           <div className="w-screen lg:px-[10vw] bg-[#F9F2DF] py-20">
             <h1
-              dangerouslySetInnerHTML={{ __html: rentalData.FAQ.Heading }}
+              dangerouslySetInnerHTML={{ __html: pageLangData.FAQ.Heading }}
               className="overflow-hidden text-[#464646] text-center text-2xl min-[400px]:text-3xl md:text-4xl xl:text-5xl font-SolidenTrialBoldExpanded"
               data-aos="fade-right"
             ></h1>

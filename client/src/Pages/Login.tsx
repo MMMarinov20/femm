@@ -17,10 +17,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { useSearchParams } from "react-router-dom";
 import { ILoginPage } from "../data/Interfaces/ILoginPage";
 import LoadingSpinner from "../Components/LoadingSpinner";
+import { INavbarData } from "../data/Interfaces/INavbarData";
 
 const Login: React.FC = () => {
   const [searchParams] = useSearchParams();
   const [pageLangData, setPageLangData] = useState<ILoginPage | null>(null);
+  const [navbarData, setNavbarData] = useState<INavbarData | null>(null);
 
   useEffect(() => {
     const loadLoginData = async () => {
@@ -28,7 +30,12 @@ const Login: React.FC = () => {
         const LoginModule = await import(
           `../data/lang/${searchParams.get("lang")}/Login/Login.json`
         );
+
+        const NavbarModule = await import(
+          `../data/lang/${searchParams.get("lang")}/Navbar/navbar.json`
+        );
         setPageLangData(LoginModule.default);
+        setNavbarData(NavbarModule.default);
       } catch (error) {
         console.error("Error loading the Login data:", error);
       }
@@ -41,7 +48,7 @@ const Login: React.FC = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
-  if (!pageLangData) return <LoadingSpinner />;
+  if (!pageLangData || !navbarData) return <LoadingSpinner />;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -68,8 +75,8 @@ const Login: React.FC = () => {
     <React.Fragment>
       <Suspense fallback={<LoadingSpinner />}>
         <div className="overflow-hidden">
-          <Navbar />
-          <BurgerNavbar color={"#FFFFFF"} />
+          <Navbar Data={navbarData} />
+          <BurgerNavbar Data={navbarData} color={"#FFFFFF"} />
           <div className="w-screen min-h-fit px-4 lg:px-[10vw]">
             <div className="w-full min-h-fit my-16 bg-white shadow-2xl rounded-2xl p-5 lg:p-0 lg:flex lg:flex-row lg:items-center">
               <form

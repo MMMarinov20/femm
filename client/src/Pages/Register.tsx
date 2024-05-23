@@ -17,12 +17,14 @@ import "react-toastify/dist/ReactToastify.css";
 import { useSearchParams } from "react-router-dom";
 import { RegisterInterface } from "../data/lang/en/Register/Register";
 import LoadingSpinner from "../Components/LoadingSpinner";
+import { INavbarData } from "../data/Interfaces/INavbarData";
 
 const Register = () => {
   const [searchParams] = useSearchParams();
-  const [registerData, setRegisterData] = useState<RegisterInterface | null>(
+  const [pageLangData, setPageLangData] = useState<RegisterInterface | null>(
     null
   );
+  const [navbarData, setNavbarData] = useState<INavbarData | null>(null);
 
   useEffect(() => {
     const loadRegisterData = async () => {
@@ -30,7 +32,13 @@ const Register = () => {
         const RegisterModule = await import(
           `../data/lang/${searchParams.get("lang")}/Register/Register.json`
         );
-        setRegisterData(RegisterModule.default);
+
+        const NavbarModule = await import(
+          `../data/lang/${searchParams.get("lang")}/Navbar/navbar.json`
+        );
+
+        setNavbarData(NavbarModule.default);
+        setPageLangData(RegisterModule.default);
       } catch (error) {
         console.error("Error loading the Register data:", error);
       }
@@ -44,7 +52,7 @@ const Register = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
-  if (!registerData) return <LoadingSpinner />;
+  if (!pageLangData || !navbarData) return <LoadingSpinner />;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -69,8 +77,8 @@ const Register = () => {
     <React.Fragment>
       <Suspense fallback={<LoadingSpinner />}>
         <div className="overflow-hidden">
-          <Navbar />
-          <BurgerNavbar color={"#FFFFFF"} />
+          <Navbar Data={navbarData} />
+          <BurgerNavbar Data={navbarData} color={"#FFFFFF"} />
           <div className="w-screen min-h-fit px-4 lg:px-[10vw]">
             <div className="w-full min-h-fit my-16 bg-white shadow-2xl rounded-2xl p-5 lg:p-0 lg:flex lg:flex-row lg:items-center">
               <form
@@ -78,31 +86,31 @@ const Register = () => {
                 onSubmit={handleSubmit}
               >
                 <Header
-                  heading={registerData.Title}
-                  subheading={registerData.Subtitle}
+                  heading={pageLangData.Title}
+                  subheading={pageLangData.Subtitle}
                 />
 
                 <Input
                   ref={firstNameRef}
-                  placeholder={registerData.FirstNamePlaceholder}
+                  placeholder={pageLangData.FirstNamePlaceholder}
                   type="text"
                   Icon={FaRegUser}
                 />
                 <Input
                   ref={lastNameRef}
-                  placeholder={registerData.LastNamePlaceholder}
+                  placeholder={pageLangData.LastNamePlaceholder}
                   type="text"
                   Icon={FaRegUser}
                 />
                 <Input
                   ref={emailRef}
-                  placeholder={registerData.EmailPlaceholder}
+                  placeholder={pageLangData.EmailPlaceholder}
                   type="email"
                   Icon={HiOutlineMail}
                 />
                 <Input
                   ref={passwordRef}
-                  placeholder={registerData.PasswordPlaceholder}
+                  placeholder={pageLangData.PasswordPlaceholder}
                   type="password"
                   Icon={HiOutlineLockClosed}
                 />
@@ -113,7 +121,7 @@ const Register = () => {
                     type="submit"
                     className="w-full bg-[#FF6241] rounded-lg py-2 2xl:py-3 text-white font-SolidenTrialRegular transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]"
                   >
-                    {registerData.Button}
+                    {pageLangData.Button}
                   </button>
                   <ToastContainer />
                 </div>

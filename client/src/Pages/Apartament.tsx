@@ -20,6 +20,7 @@ import {
 import { IApartmentPage } from "../data/Interfaces/IApartmentPage.ts";
 import { useSearchParams } from "react-router-dom";
 import LoadingSpinner from "../Components/LoadingSpinner.tsx";
+import { INavbarData } from "../data/Interfaces/INavbarData.ts";
 
 const Apartament = () => {
   const [searchParams] = useSearchParams();
@@ -27,6 +28,7 @@ const Apartament = () => {
   const [apartamentData, setApartamentData] = useState<Apartment | undefined>(
     undefined
   );
+  const [navbarData, setNavbarData] = useState<INavbarData | null>(null);
   const [advantages, setAdvantages] = useState<AdvantageInterface[]>([]);
   const [propertyDescription, setPropertyDescription] = useState<string>("");
 
@@ -44,12 +46,18 @@ const Apartament = () => {
           `../data/lang/${searchParams.get("lang")}/Apartment/apartment.json`
         );
 
+        const navbarData = await import(
+          `../data/lang/${searchParams.get("lang")}/Navbar/navbar.json`
+        );
+
         const obj = properties[property];
         const apartament: Apartment = obj.apartaments.find(
           (apartament: any) => apartament.id === parseInt(id)
         )!;
 
         if (apartament) setApartamentData(apartament);
+
+        setNavbarData(navbarData.default);
         setPageLangData(data.default);
         setAdvantages(obj.advantages);
         setPropertyDescription(obj.Description);
@@ -60,15 +68,15 @@ const Apartament = () => {
     findApartament();
   }, [searchParams]);
 
-  if (!apartamentData || !advantages || !pageLangData)
+  if (!apartamentData || !advantages || !pageLangData || !navbarData)
     return <LoadingSpinner />;
 
   return (
     <React.Fragment>
       <Suspense fallback={<LoadingSpinner />}>
         <div className="overflow-hidden">
-          <Navbar />
-          <BurgerNavbar color="#FFFFFF" />
+          <Navbar Data={navbarData} />
+          <BurgerNavbar Data={navbarData} color="#FFFFFF" />
           <Landing
             LangData={pageLangData.Landing}
             Data={apartamentData.apartment}

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../Home/Navbar/Navbar";
 import BurgerNavbar from "../Home/Navbar/BurgerNavbar";
-
+import { INavbarData } from "./../../data/Interfaces/INavbarData";
 interface Props {
   Data: {
     title: string;
@@ -12,12 +12,31 @@ interface Props {
 }
 
 const Landing: React.FC<Props> = ({ Data }) => {
+  const [navbarData, setNavbarData] = useState<INavbarData | null>(null);
+
+  useEffect(() => {
+    const loadNavbarData = async () => {
+      try {
+        const NavbarModule = await import(
+          `../../data/lang/${localStorage.getItem("lang")}/Navbar/navbar.json`
+        );
+        setNavbarData(NavbarModule.default);
+      } catch (error) {
+        console.error("Error loading the Navbar data:", error);
+      }
+    };
+
+    loadNavbarData();
+  }, []);
+
+  if (!navbarData) return null;
+
   return (
     <React.Fragment>
       <div className="bg-[#F9F2DF]">
-        <Navbar />
+        <Navbar Data={navbarData} />
       </div>
-      <BurgerNavbar color="#F9F2DF" />
+      <BurgerNavbar Data={navbarData} color="#F9F2DF" />
       <div className="w-screen h-[90vh] lg:h-fit lg:pl-[10vw] lg:pt-10 2xl:pt-0 bg-[#F9F2DF] flex flex-col lg:flex-row justify-between 2xl:items-center">
         <div className="px-4 pt-5 lg:px-0 lg:max-w-[20rem] xl:max-w-md 2xl:max-w-xl lg:pb-[10vw]">
           <h1 className="text-[#FF6241] font-SolidenTrialBoldExpanded text-xl min-[370px]:text-2xl md:text-3xl lg:text-2xl">

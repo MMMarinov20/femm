@@ -11,10 +11,12 @@ const OurMission = React.lazy(() => import("../Components/About/OurMission"));
 import { useSearchParams } from "react-router-dom";
 import { IAboutPage } from "../data/Interfaces/IAboutPage";
 import LoadingSpinner from "../Components/LoadingSpinner";
+import { INavbarData } from "../data/Interfaces/INavbarData";
 
 const About = () => {
   const [searchParams] = useSearchParams();
   const [pageLangData, setPageLangData] = useState<IAboutPage | null>(null);
+  const [navbarData, setNavbarData] = useState<INavbarData | null>(null);
 
   useEffect(() => {
     const loadAboutData = async () => {
@@ -22,6 +24,10 @@ const About = () => {
         const AboutModule = await import(
           `../data/lang/${searchParams.get("lang")}/About/About.json`
         );
+        const NavbarModule = await import(
+          `../data/lang/${searchParams.get("lang")}/Navbar/navbar.json`
+        );
+        setNavbarData(NavbarModule.default);
         setPageLangData(AboutModule.default);
       } catch (error) {
         console.error("Error loading the About data:", error);
@@ -35,16 +41,16 @@ const About = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  if (!pageLangData) return <LoadingSpinner />;
+  if (!pageLangData || !navbarData) return <LoadingSpinner />;
 
   return (
     <React.Fragment>
       <Suspense fallback={<LoadingSpinner />}>
         <div className="overflow-hidden">
           <div className="bg-[#F9F2DF]">
-            <Navbar />
+            <Navbar Data={navbarData} />
           </div>
-          <BurgerNavbar color="#F9F2DF" />
+          <BurgerNavbar Data={navbarData} color="#F9F2DF" />
 
           <Hero Data={pageLangData.Landing} />
 

@@ -1,12 +1,17 @@
 import React from "react";
-import { IoMdArrowDropdown } from "react-icons/io";
+// import { IoMdArrowDropdown } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useUser } from "../../../hooks/useUser";
 import { handleLogout } from "../../../services/authService";
 import { ToastContainer } from "react-toastify";
+import { INavbarData } from "../../../data/Interfaces/INavbarData";
 import "react-toastify/dist/ReactToastify.css";
 
-const Navbar: React.FC = () => {
+interface Props {
+  Data: INavbarData;
+}
+
+const Navbar: React.FC<Props> = ({ Data }) => {
   const { user, updateUser } = useUser();
   // const [dropdownRentalsMenu, setDropdownRentalsMenu] = useState(false);
   // const [dropdownBuildsMenu, setDropdownBuildsMenu] = useState(false);
@@ -32,7 +37,7 @@ const Navbar: React.FC = () => {
         <div className="flex flex-row gap-x-5 xl:gap-x-10 xl:text-lg font-SolidenTrialRegular">
           <h1 className="font-black">Logo</h1>
           <Link to={"/"}>
-            <h1 className="cursor-pointer">Home</h1>
+            <h1 className="cursor-pointer">{Data.home}</h1>
           </Link>
 
           <div
@@ -63,7 +68,8 @@ const Navbar: React.FC = () => {
           >
             <Link to={"/property/urbannature"}>
               <h1 className="inline-flex text-center cursor-pointer">
-                Builds <IoMdArrowDropdown />
+                Urban Nature
+                {/* <IoMdArrowDropdown /> */}
               </h1>
             </Link>
 
@@ -78,7 +84,7 @@ const Navbar: React.FC = () => {
             </div> */}
           </div>
           <Link to={"/about"}>
-            <h1 className="cursor-pointer">About Us</h1>
+            <h1 className="cursor-pointer">{Data.about}</h1>
           </Link>
         </div>
 
@@ -86,7 +92,7 @@ const Navbar: React.FC = () => {
           {!user.id && (
             <Link to={"/login"}>
               <div className="cursor-pointer border-[1px] border-[#FF6241] text-[#FF6241] font-SolidenTrialRegular w-[15vw] xl:w-[10vw] 2xl:w-[8vw] py-2 xl:py-3 rounded-xl text-center transition-colors duration-300 hover:bg-[#FF6241] hover:text-white 2xl:text-xl">
-                Log in
+                {Data.login}
               </div>
             </Link>
           )}
@@ -102,7 +108,7 @@ const Navbar: React.FC = () => {
                     }
               }
             >
-              {user.id ? "Logout" : "Sign up"}
+              {user.id ? Data.logout : Data.signup}
             </div>
           </Link>
           <ToastContainer />

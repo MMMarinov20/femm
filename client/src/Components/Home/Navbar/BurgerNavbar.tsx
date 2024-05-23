@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { INavbarData } from "../../../data/Interfaces/INavbarData";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { IoMdArrowDropdown } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useUser } from "../../../hooks/useUser";
 import { handleLogout } from "../../../services/authService";
 interface Props {
   color: string;
+  Data: INavbarData;
 }
 
 const BurgerNavbar: React.FC<Props> = (props) => {
@@ -37,7 +38,7 @@ const BurgerNavbar: React.FC<Props> = (props) => {
   return (
     <React.Fragment>
       <div
-        className={`fixed top-0 right-0 h-full bg-opacity-75 bg-white z-50 ${
+        className={`fixed top-0 right-0 h-full bg-opacity-95 bg-white z-50 ${
           showMenu ? "w-full" : "w-0"
         } transition-width duration-300 ease-in-out`}
       >
@@ -56,7 +57,7 @@ const BurgerNavbar: React.FC<Props> = (props) => {
 
           <div className="flex flex-col justify-center items-center font-SolidenTrialRegular gap-y-5 min-[350px]:text-xl md:text-2xl">
             <Link to={"/"}>
-              <h1 className="cursor-pointer">Home</h1>
+              <h1 className="cursor-pointer">{props.Data.home}</h1>
             </Link>
             <div className="">
               <Link to={"/rental/1/Loli's beach studio"}>
@@ -82,7 +83,8 @@ const BurgerNavbar: React.FC<Props> = (props) => {
                   className="cursor-pointer inline-flex items-center"
                   // onClick={toggleBuilds}
                 >
-                  Builds <IoMdArrowDropdown />
+                  Urban Nature
+                  {/* <IoMdArrowDropdown /> */}
                 </h1>
               </Link>
               {/* {showBuilds && (
@@ -94,7 +96,7 @@ const BurgerNavbar: React.FC<Props> = (props) => {
               )} */}
             </div>
             <Link to={"/about"}>
-              <h1>About us</h1>
+              <h1>{props.Data.about}</h1>
             </Link>
           </div>
 
@@ -102,7 +104,7 @@ const BurgerNavbar: React.FC<Props> = (props) => {
             {!user.id && (
               <Link to={"/login"}>
                 <div className="font-SolidenTrialExpanded border-[#FF6241] text-[#FF6241] border-[1px] w-[50vw] py-2 rounded-xl text-center min-[350px]:w-[55vw] md:w-[30vw] min-[350px]:text-lg transition-colors duration-300 hover:bg-[#FF6241] hover:text-white">
-                  Login
+                  {props.Data.login}
                 </div>
               </Link>
             )}
@@ -118,7 +120,7 @@ const BurgerNavbar: React.FC<Props> = (props) => {
                       }
                 }
               >
-                {user.id ? "Logout" : "Sign up"}
+                {user.id ? props.Data.logout : props.Data.signup}
               </div>
             </Link>
           </div>
