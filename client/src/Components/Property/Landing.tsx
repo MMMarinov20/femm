@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Home/Navbar/Navbar";
 import BurgerNavbar from "../Home/Navbar/BurgerNavbar";
 import { INavbarData } from "./../../data/Interfaces/INavbarData";
+import LoadingSpinner from "../LoadingSpinner";
+import { useSearchParams } from "react-router-dom";
 interface Props {
   Data: {
     title: string;
@@ -12,13 +14,14 @@ interface Props {
 }
 
 const Landing: React.FC<Props> = ({ Data }) => {
+  const [searchParams] = useSearchParams();
   const [navbarData, setNavbarData] = useState<INavbarData | null>(null);
 
   useEffect(() => {
     const loadNavbarData = async () => {
       try {
         const NavbarModule = await import(
-          `../../data/lang/${localStorage.getItem("lang")}/Navbar/navbar.json`
+          `../../data/lang/${searchParams.get("lang")}/Navbar/navbar.json`
         );
         setNavbarData(NavbarModule.default);
       } catch (error) {
@@ -27,9 +30,9 @@ const Landing: React.FC<Props> = ({ Data }) => {
     };
 
     loadNavbarData();
-  }, []);
+  }, [searchParams]);
 
-  if (!navbarData) return null;
+  if (!navbarData) return <LoadingSpinner />;
 
   return (
     <React.Fragment>
