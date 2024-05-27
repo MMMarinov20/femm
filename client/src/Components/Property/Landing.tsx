@@ -4,7 +4,6 @@ import BurgerNavbar from "../Home/Navbar/BurgerNavbar";
 import { INavbarData } from "./../../data/Interfaces/INavbarData";
 import LoadingSpinner from "../LoadingSpinner";
 import { useSearchParams } from "react-router-dom";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 
 interface Props {
   Data: {

@@ -11,7 +11,6 @@ import "aos/dist/aos.css";
 import Carousel from "./Carousel";
 import { ApartmentDetails } from "../../data/Interfaces/IApartmentData";
 import { apiService } from "../../services/apiService";
-import axios from "axios";
 
 interface Props {
   Data: ApartmentDetails;
