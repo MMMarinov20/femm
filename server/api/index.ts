@@ -6,6 +6,7 @@ import RentalsRoutes from "./routes/RentalsRoutes";
 import BookingRoutes from "./routes/BookingRoutes";
 import AuthenticationRoutes from "./routes/AuthenticationRoutes";
 import ReviewRoutes from "./routes/ReviewRoutes";
+import FileRoutes from "./routes/FileRoutes";
 
 const app: Application = express();
 
@@ -39,6 +40,7 @@ app.use("/api", RentalsRoutes);
 app.use("/api", UserRoutes);
 app.use("/api", BookingRoutes);
 app.use("/api", ReviewRoutes);
+app.use("/api", FileRoutes);
 
 app.listen(8080, () => console.log("Server running on port 3000!"));
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "https://api.femmbulgaria.com/api";
-//const BASE_URL = "http://localhost:8080/api";
+//const BASE_URL = "https://api.femmbulgaria.com/api";
+const BASE_URL = "http://localhost:8080/api";
 
 export const apiService = {
   async get(path: string) {
@@ -28,6 +28,13 @@ export const apiService = {
   async delete(path: string) {
     const response = await axios.delete(`${BASE_URL}/${path}`, {
       withCredentials: true,
+    });
+    return response.data;
+  },
+
+  async download(path: string) {
+    const response = await axios.get(`${BASE_URL}/${path}`, {
+      responseType: "blob",
     });
     return response.data;
   },

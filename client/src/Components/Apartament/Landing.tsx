@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Benefit from "./Benefit";
 import { IoBedOutline } from "react-icons/io5";
 import { LuBath } from "react-icons/lu";
@@ -10,6 +10,8 @@ import "swiper/css/pagination";
 import "aos/dist/aos.css";
 import Carousel from "./Carousel";
 import { ApartmentDetails } from "../../data/Interfaces/IApartmentData";
+import { apiService } from "../../services/apiService";
+import axios from "axios";
 
 interface Props {
   Data: ApartmentDetails;
@@ -24,6 +26,34 @@ interface Props {
 }
 
 const Landing: React.FC<Props> = ({ Data, LangData }) => {
+  const [apartmentNumber, setApartmentNumber] = useState<string>("1");
+  const handleDownload = async (file: string) => {
+    try {
+      const res: any = apiService.download(`file/download/${file}`);
+
+      const url = window.URL.createObjectURL(new Blob([res.data]));
+      const link = document.createElement("a");
+      link.href = url;
+
+      link.setAttribute("download", file);
+
+      document.body.appendChild(link);
+
+      link.click();
+
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Error downloading file:", error);
+    }
+  };
+
+  useEffect(() => {
+    const url = window.location.href;
+    const apartmentNumber = url.split("/")[5].split("?")[0];
+    setApartmentNumber(apartmentNumber);
+  }, []);
+
   return (
     <React.Fragment>
       <div className="w-screen lg:px-[10vw]">
@@ -78,15 +108,24 @@ const Landing: React.FC<Props> = ({ Data, LangData }) => {
             </div>
 
             <div className="flex flex-col gap-y-3 w-full justify-center items-center mt-5">
-              {Object.keys(LangData.Buttons).map((key) => (
-                <button
-                  key={key}
-                  className="font-SolidenTrialExpanded bg-[#FF6241] rounded-lg py-3 text-white text-xs 2xl:text-base w-[90%]"
-                >
-                  {/* @ts-expect-error test */}
-                  {LangData.Buttons[key]}
-                </button>
-              ))}
+              <button
+                onClick={() => handleDownload(apartmentNumber + ".pdf")}
+                className="font-SolidenTrialExpanded bg-white border-[1px] border-[#FF6241] hover:bg-[#FF6241] hover:text-white transition-colors duration-300 text-[#FF6241] rounded-lg py-3 text-xs 2xl:text-base w-[90%]"
+              >
+                {LangData.Buttons.First}
+              </button>
+              <button
+                onClick={() => handleDownload("0.pdf")}
+                className="font-SolidenTrialExpanded bg-[#FF6241] border-[#FF6241] border-[1px] hover:bg-white hover:text-[#FF6241] transition-colors duration-300 rounded-lg py-3 text-white text-xs 2xl:text-base w-[90%]"
+              >
+                {LangData.Buttons.Second}
+              </button>
+              <button
+                onClick={() => handleDownload("facade.zip")}
+                className="font-SolidenTrialExpanded bg-white border-[1px] border-[#FF6241] hover:bg-[#FF6241] hover:text-white transition-colors duration-300 text-[#FF6241] rounded-lg py-3 text-xs 2xl:text-base w-[90%]"
+              >
+                {LangData.Buttons.Third}
+              </button>
             </div>
           </div>
         </div>

@@ -80,7 +80,6 @@ const ReviewsSection: React.FC<Props> = (props) => {
           <Review />
           <Review />
           <Review />
-          <Review />
         </div>
         <div
           className="h-fit lg:w-1/2 bg-white shadow-2xl lg:mr-[10vw] mx-4 rounded-2xl p-5 flex flex-col gap-y-3 md:text-lg"

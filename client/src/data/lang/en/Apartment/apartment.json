@@ -14,9 +14,9 @@
       "Basement"
     ],
     "Buttons": {
-      "First": "Download Property Presentation",
-      "Second": "Download Property Presentation",
-      "Third": "Download Property Presentation"
+      "First": "Download Apartment Plans",
+      "Second": "Download Basement Plans",
+      "Third": "Download Facade Photos"
     }
   },
   "Description": {
