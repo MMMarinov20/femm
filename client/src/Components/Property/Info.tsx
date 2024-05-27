@@ -4,10 +4,10 @@ import "aos/dist/aos.css";
 
 interface Props {
   Data: {
-    description: string;
-    address: string;
-    degree: string;
-    properties: string;
+    Description: string;
+    Address: string;
+    Degree: string;
+    Properties: string;
   };
 }
 
@@ -25,7 +25,7 @@ const Info: React.FC<Props> = ({ Data }) => {
         >
           <img src="../Property/Logo.svg" className="w-10/12 2xl:w-7/12" />
           <h1 className="font-GilroyRegular md:text-lg lg:text-base xl:text-lg 3xl:text-xl">
-            {Data.description}
+            {Data.Description}
           </h1>
 
           <div>
@@ -33,20 +33,20 @@ const Info: React.FC<Props> = ({ Data }) => {
               Address
             </h1>
             <h1 className="font-GilroyRegular pb-2 2xl:pb-5 md:text-lg lg:text-base xl:text-lg">
-              {Data.address}{" "}
+              {Data.Address}{" "}
               <span className="underline cursor-pointer">See Location</span>
             </h1>
             <h1 className="font-SolidenTrialBoldExpanded md:text-xl lg:text-base xl:text-xl 3xl:text-2xl">
               Degree of Completion
             </h1>
             <h1 className="font-GilroyRegular pb-2 2xl:pb-5 md:text-lg lg:text-base xl:text-lg">
-              {Data.degree}
+              {Data.Degree}
             </h1>
             <h1 className="font-SolidenTrialBoldExpanded md:text-xl lg:text-base xl:text-xl 3xl:text-2xl">
               Free Properties
             </h1>
             <h1 className="font-GilroyRegular md:text-lg lg:text-base xl:text-lg">
-              {Data.properties}
+              {Data.Properties}
             </h1>
           </div>
         </div>

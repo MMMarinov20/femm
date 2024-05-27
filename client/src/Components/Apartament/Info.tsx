@@ -8,10 +8,10 @@ interface Props {
   Data: ApartmentDetails;
   Advantages: AdvantageInterface[];
   PageLang: {
-    title: string;
-    type: string[];
-    bathrooms: string[];
-    consists: string[];
+    Title: string;
+    Type: string[];
+    Bathrooms: string[];
+    Consists: string[];
   };
   Description: string;
   SubDescription: string;
@@ -54,14 +54,14 @@ const Info: React.FC<Props> = ({
         ></h1>
 
         <ul className="font-SolidenTrialRegular list-disc list-inside xl:text-lg">
-          {PageLang.consists.map((consist, index) => (
+          {PageLang.Consists.map((consist, index) => (
             <li key={index} data-aos="fade-right">
               {consist}
             </li>
           ))}
-          <li data-aos="fade-right">{PageLang.type[Data.Bedrooms - 1]}</li>
+          <li data-aos="fade-right">{PageLang.Type[Data.Bedrooms - 1]}</li>
           <li data-aos="fade-right">
-            {PageLang.bathrooms[Data.Bathrooms - 1]}
+            {PageLang.Bathrooms[Data.Bathrooms - 1]}
           </li>
         </ul>
 
@@ -69,13 +69,13 @@ const Info: React.FC<Props> = ({
           className="font-SolidenTrialBoldExpanded text-xl xl:text-2xl 3xl:text-3xl"
           data-aos="fade-right"
         >
-          {PageLang.title}
+          {PageLang.Title}
         </h1>
 
         <ul className="font-SolidenTrialRegular list-disc list-inside xl:text-lg">
           {Advantages.map((advantage, index) => (
             <li key={index} data-aos="fade-right">
-              {advantage.title}
+              {advantage.Title}
             </li>
           ))}
         </ul>

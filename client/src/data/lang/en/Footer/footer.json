@@ -1,24 +1,24 @@
 {
-  "description": "Lorem ipsum dolor sit amet consectetur. Vitae risus ac pellentesque velit sed scelerisque. Viverra scelerisque mauris risus id. Consequat id est lacus dapibus pulvinar tortor sed.",
-  "links": [
+  "Description": "Lorem ipsum dolor sit amet consectetur. Vitae risus ac pellentesque velit sed scelerisque. Viverra scelerisque mauris risus id. Consequat id est lacus dapibus pulvinar tortor sed.",
+  "Links": [
     {
-      "title": "Home",
-      "url": "/"
+      "Title": "Home",
+      "Url": "/"
     },
     {
-      "title": "Loli's beach studio",
-      "url": "/rental/1/Loli's beach studio"
+      "Title": "Loli's beach studio",
+      "Url": "/rental/1/Loli's beach studio"
     },
     {
-      "title": "Urban Nature",
-      "url": "/property/urbannature"
+      "Title": "Urban Nature",
+      "Url": "/property/urbannature"
     },
     {
-      "title": "About",
-      "url": "/about"
+      "Title": "About",
+      "Url": "/about"
     }
   ],
-  "copyright": "All rights reserved.",
-  "privacy": "Privacy Policy",
-  "terms": "Terms of Use"
+  "Copyright": "All rights reserved.",
+  "Privacy": "Privacy Policy",
+  "Terms": "Terms of Use"
 }

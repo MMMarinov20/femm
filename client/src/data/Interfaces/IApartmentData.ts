@@ -1,8 +1,8 @@
 import { IconType } from "react-icons";
 export interface AdvantageInterface {
-  title: string;
-  description: string;
-  icon: IconType;
+  Title: string;
+  Description: string;
+  Icon: IconType;
 }
 
 export interface ApartmentDetails {

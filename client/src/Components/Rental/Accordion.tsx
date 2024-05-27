@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
 interface Props {
-  title: string;
-  surrounding: { title: string; distance: string }[];
+  Title: string;
+  Surrounding: { Title: string; Distance: string }[];
 }
 
-const Accordion: React.FC<Props> = ({ surrounding, title }) => {
+const Accordion: React.FC<Props> = ({
+  Surrounding: surrounding,
+  Title: title,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleAccordion = () => {
@@ -32,8 +35,8 @@ const Accordion: React.FC<Props> = ({ surrounding, title }) => {
             <div className="flex flex-row w-full justify-between font-SolidenTrialRegular">
               {surrounding.map((item, index) => (
                 <React.Fragment key={index}>
-                  <h1>{item.title}</h1>
-                  <h1 className="font-GilroyRegular">{item.distance}</h1>
+                  <h1>{item.Title}</h1>
+                  <h1 className="font-GilroyRegular">{item.Distance}</h1>
                 </React.Fragment>
               ))}
             </div>

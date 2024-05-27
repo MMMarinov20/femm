@@ -37,7 +37,7 @@ const Navbar: React.FC<Props> = ({ Data }) => {
         <div className="flex flex-row gap-x-5 xl:gap-x-10 xl:text-lg font-SolidenTrialRegular">
           <h1 className="font-black">Logo</h1>
           <Link to={"/"}>
-            <h1 className="cursor-pointer">{Data.home}</h1>
+            <h1 className="cursor-pointer">{Data.Home}</h1>
           </Link>
 
           <div
@@ -84,7 +84,7 @@ const Navbar: React.FC<Props> = ({ Data }) => {
             </div> */}
           </div>
           <Link to={"/about"}>
-            <h1 className="cursor-pointer">{Data.about}</h1>
+            <h1 className="cursor-pointer">{Data.About}</h1>
           </Link>
         </div>
 
@@ -92,7 +92,7 @@ const Navbar: React.FC<Props> = ({ Data }) => {
           {!user.id && (
             <Link to={"/login"}>
               <div className="cursor-pointer border-[1px] border-[#FF6241] text-[#FF6241] font-SolidenTrialRegular w-[15vw] xl:w-[10vw] 2xl:w-[8vw] py-2 xl:py-3 rounded-xl text-center transition-colors duration-300 hover:bg-[#FF6241] hover:text-white 2xl:text-xl">
-                {Data.login}
+                {Data.Login}
               </div>
             </Link>
           )}
@@ -108,7 +108,7 @@ const Navbar: React.FC<Props> = ({ Data }) => {
                     }
               }
             >
-              {user.id ? Data.logout : Data.signup}
+              {user.id ? Data.Logout : Data.Signup}
             </div>
           </Link>
           <ToastContainer />

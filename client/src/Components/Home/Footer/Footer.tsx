@@ -4,18 +4,18 @@ import { useSearchParams } from "react-router-dom";
 import QuickLinkNav from "./QuickLinkNav";
 const Footer: React.FC = () => {
   const [pageLang, setPageLang] = useState<IFooterData>({
-    description: "Loading...",
-    links: [
+    Description: "Loading...",
+    Links: [
       {
-        title: "Loading...",
-        url: "Loading...",
+        Title: "Loading...",
+        Url: "Loading...",
       },
     ],
-    copyright: "Loading...",
-    privacy: "Loading...",
-    terms: "Loading...",
+    Copyright: "Loading...",
+    Privacy: "Loading...",
+    Terms: "Loading...",
   });
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     const loadPageLang = async () => {
@@ -35,24 +35,24 @@ const Footer: React.FC = () => {
               Logo
             </h1>
             <h1 className="font-SolidenTrialRegular text-white">
-              {pageLang?.description}
+              {pageLang?.Description}
             </h1>
           </div>
           <div className="flex flex-col lg:flex-row gap-y-6 lg:gap-x-10 xl:gap-x-32">
-            <QuickLinkNav data={pageLang?.links} />
-            <QuickLinkNav data={pageLang?.links} />
-            <QuickLinkNav data={pageLang?.links} />
+            <QuickLinkNav data={pageLang?.Links} />
+            <QuickLinkNav data={pageLang?.Links} />
+            <QuickLinkNav data={pageLang?.Links} />
           </div>
         </div>
         <hr className="w-screen border-2 border-gray-500" />
         <div className="text-white underline lg:flex lg:justify-between lg:items-center lg:px-[10vw] py-5">
           <h1 className="text-center text-xs md:text-base lg:text-left">
-            © {new Date().getFullYear()} FEMM BULGARIA. {pageLang?.copyright}
+            © {new Date().getFullYear()} FEMM BULGARIA. {pageLang?.Copyright}
           </h1>
 
           <div className="flex gap-x-4 justify-center pt-2 lg:p-0 text-xs md:text-base">
-            <h1>{pageLang.privacy}</h1>
-            <h1>{pageLang.terms}</h1>
+            <h1>{pageLang.Privacy}</h1>
+            <h1>{pageLang.Terms}</h1>
           </div>
         </div>
       </div>

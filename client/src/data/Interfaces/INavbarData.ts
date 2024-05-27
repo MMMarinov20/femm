@@ -1,7 +1,7 @@
 export interface INavbarData {
-  home: string;
-  about: string;
-  login: string;
-  signup: string;
-  logout: string;
+  Home: string;
+  About: string;
+  Login: string;
+  Signup: string;
+  Logout: string;
 }

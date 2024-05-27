@@ -57,7 +57,7 @@ const BurgerNavbar: React.FC<Props> = (props) => {
 
           <div className="flex flex-col justify-center items-center font-SolidenTrialRegular gap-y-5 min-[350px]:text-xl md:text-2xl">
             <Link to={"/"}>
-              <h1 className="cursor-pointer">{props.Data.home}</h1>
+              <h1 className="cursor-pointer">{props.Data.Home}</h1>
             </Link>
             <div className="">
               <Link to={"/rental/1/Loli's beach studio"}>
@@ -96,7 +96,7 @@ const BurgerNavbar: React.FC<Props> = (props) => {
               )} */}
             </div>
             <Link to={"/about"}>
-              <h1>{props.Data.about}</h1>
+              <h1>{props.Data.About}</h1>
             </Link>
           </div>
 
@@ -104,7 +104,7 @@ const BurgerNavbar: React.FC<Props> = (props) => {
             {!user.id && (
               <Link to={"/login"}>
                 <div className="font-SolidenTrialExpanded border-[#FF6241] text-[#FF6241] border-[1px] w-[50vw] py-2 rounded-xl text-center min-[350px]:w-[55vw] md:w-[30vw] min-[350px]:text-lg transition-colors duration-300 hover:bg-[#FF6241] hover:text-white">
-                  {props.Data.login}
+                  {props.Data.Login}
                 </div>
               </Link>
             )}
@@ -120,7 +120,7 @@ const BurgerNavbar: React.FC<Props> = (props) => {
                       }
                 }
               >
-                {user.id ? props.Data.logout : props.Data.signup}
+                {user.id ? props.Data.Logout : props.Data.Signup}
               </div>
             </Link>
           </div>

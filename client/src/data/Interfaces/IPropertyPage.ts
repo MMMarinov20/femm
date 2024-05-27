@@ -1,20 +1,20 @@
 export interface IPropertyPage {
   Landing: {
-    title: string;
-    subtitle: string;
-    description: string;
+    Title: string;
+    Subtitle: string;
+    Description: string;
     CTA: string;
   };
   Info: {
-    description: string;
-    address: string;
-    degree: string;
-    properties: string;
+    Description: string;
+    Address: string;
+    Degree: string;
+    Properties: string;
   };
   Gallery: {
-    title: string;
+    Title: string;
   };
   Advantages: {
-    title: string;
+    Title: string;
   };
 }

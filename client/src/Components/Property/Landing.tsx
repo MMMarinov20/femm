@@ -6,9 +6,9 @@ import LoadingSpinner from "../LoadingSpinner";
 import { useSearchParams } from "react-router-dom";
 interface Props {
   Data: {
-    title: string;
-    subtitle: string;
-    description: string;
+    Title: string;
+    Subtitle: string;
+    Description: string;
     CTA: string;
   };
 }
@@ -43,13 +43,13 @@ const Landing: React.FC<Props> = ({ Data }) => {
       <div className="w-screen h-[90vh] lg:h-fit lg:pl-[10vw] lg:pt-10 2xl:pt-0 bg-[#F9F2DF] flex flex-col lg:flex-row justify-between 2xl:items-center">
         <div className="px-4 pt-5 lg:px-0 lg:max-w-[20rem] xl:max-w-md 2xl:max-w-xl lg:pb-[10vw]">
           <h1 className="text-[#FF6241] font-SolidenTrialBoldExpanded text-xl min-[370px]:text-2xl md:text-3xl lg:text-2xl">
-            {Data.title}
+            {Data.Title}
           </h1>
           <h1 className="font-SolidenTrialBoldExpanded text-3xl min-[370px]:text-4xl min-[410px]:text-5xl md:text-6xl lg:text-5xl xl:text-6xl overflow-hidden">
-            {Data.subtitle}
+            {Data.Subtitle}
           </h1>
           <h1 className="font-SolidenTrialExpanded py-3 min-[370px]:py-5 md:text-xl lg:text-base xl:text-lg 2xl:text-xl">
-            {Data.description}
+            {Data.Description}
           </h1>
 
           <button className="bg-[#FF6241] py-3 w-[80vw] min-[370px]:w-[60vw] md:w-[40vw] lg:w-[20vw] font-SolidenTrialRegular text-xs min-[370px]:text-base text-white rounded-lg">

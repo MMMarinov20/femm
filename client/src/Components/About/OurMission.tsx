@@ -9,8 +9,8 @@ interface Props {
     DescriptionFirst: string;
     DescriptionSecond: string;
     Boxes: {
-      title: string;
-      description: string;
+      Title: string;
+      Description: string;
     }[];
   };
 }
@@ -39,7 +39,7 @@ const OurMission: React.FC<Props> = ({ Data }) => {
 
         <div className="px-10 space-y-10 lg:space-y-0 flex flex-col justify-center items-center lg:grid lg:grid-rows-2 lg:grid-cols-2 lg:gap-x-10 lg:gap-y-10">
           {Data.Boxes.map((box, index) => (
-            <Box key={index} title={box.title} description={box.description} />
+            <Box key={index} title={box.Title} description={box.Description} />
           ))}
         </div>
       </div>

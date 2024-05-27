@@ -8,22 +8,22 @@ export interface IApartmentPage {
     };
   };
   Description: {
-    title: string;
-    type: string[];
-    bathrooms: string[];
-    consists: string[];
+    Title: string;
+    Type: string[];
+    Bathrooms: string[];
+    Consists: string[];
   };
   Advantages: {
-    title: string;
+    Title: string;
   };
   Form: {
-    title: string;
-    name: string;
-    email: string;
-    reason: string;
-    phone: string;
-    message: string;
-    agree: string;
-    button: string;
+    Title: string;
+    Name: string;
+    Email: string;
+    Reason: string;
+    Phone: string;
+    Message: string;
+    Agree: string;
+    Button: string;
   };
 }

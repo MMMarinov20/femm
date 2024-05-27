@@ -31,18 +31,18 @@ import LoadingSpinner from "../Components/LoadingSpinner";
 import { INavbarData } from "../data/Interfaces/INavbarData";
 
 interface RentalData {
-  id: number;
-  title: string;
-  location: string;
-  features: { Icon: IconType; Feature: string }[][];
-  description: string;
-  rating: number;
-  surroundings: {
-    [key: string]: { title: string; distance: string }[];
+  Id: number;
+  Title: string;
+  Location: string;
+  Features: { Icon: IconType; Feature: string }[][];
+  Description: string;
+  Rating: number;
+  Surroundings: {
+    [key: string]: { Title: string; Distance: string }[];
   };
-  faq: {
-    question: string;
-    answer: string;
+  Faq: {
+    Question: string;
+    Answer: string;
   }[];
 }
 
@@ -72,7 +72,7 @@ const Rental = () => {
         );
 
         const rental = currentRental.default.rentals.find(
-          (rental: any) => rental.id === id
+          (rental: any) => rental.Id === id
         );
 
         setNavbarData(NavbarModule.default);
@@ -87,14 +87,14 @@ const Rental = () => {
   }, [searchParams]);
 
   const [data, setData] = useState<RentalData>({
-    id: 0,
-    title: "",
-    location: "",
-    features: [],
-    description: "",
-    rating: 0,
-    surroundings: {},
-    faq: [],
+    Id: 0,
+    Title: "",
+    Location: "",
+    Features: [],
+    Description: "",
+    Rating: 0,
+    Surroundings: {},
+    Faq: [],
   });
 
   const [reservationData, setReservationData] = useState<ReservationData>({
@@ -130,14 +130,14 @@ const Rental = () => {
           />
           <div className="flex flex-col w-screen h-fit pb-32 pt-10 lg:py-32 px-4 lg:px-[10vw] lg:flex-row gap-y-20 lg:gap-x-5">
             <DescriptionContainer
-              title={data.title}
-              location={data.location}
-              features={data.features}
-              description={data.description}
-              grade={pageLangData.DescriptionContainer.Grade}
-              rating={data.rating}
-              footer={pageLangData.DescriptionContainer.Footer}
-              buttonText={pageLangData.DescriptionContainer.Button}
+              Title={data.Title}
+              Location={data.Location}
+              Features={data.Features}
+              Description={data.Description}
+              Grade={pageLangData.DescriptionContainer.Grade}
+              Rating={data.Rating}
+              Footer={pageLangData.DescriptionContainer.Footer}
+              ButtonText={pageLangData.DescriptionContainer.Button}
             />
             <SearchContainer
               setReservationData={receiveReservationData}
@@ -147,8 +147,8 @@ const Rental = () => {
 
           <ReviewsSection
             heading={pageLangData.Reviews.Heading}
-            rentalId={data.id}
-            name={data.title}
+            rentalId={data.Id}
+            name={data.Title}
             Data={pageLangData.ReviewContainer}
           />
 
@@ -169,11 +169,11 @@ const Rental = () => {
             className="w-screen grid grid-rows-6 md:grid-rows-2 md:grid-cols-3 lg:px-[10vw] pb-20"
             data-aos="fade-up"
           >
-            {Object.keys(data.surroundings).map((key, index) => (
+            {Object.keys(data.Surroundings).map((key, index) => (
               <Accordion
                 key={index}
-                title={key}
-                surrounding={data.surroundings[key]}
+                Title={key}
+                Surrounding={data.Surroundings[key]}
               />
             ))}
           </div>
@@ -184,8 +184,8 @@ const Rental = () => {
               className="overflow-hidden text-[#464646] text-center text-2xl min-[400px]:text-3xl md:text-4xl xl:text-5xl font-SolidenTrialBoldExpanded"
               data-aos="fade-right"
             ></h1>
-            {data.faq.map((faq, index) => (
-              <FaqBox key={index} question={faq.question} answer={faq.answer} />
+            {data.Faq.map((faq, index) => (
+              <FaqBox key={index} Question={faq.Question} Answer={faq.Answer} />
             ))}
           </div>
 

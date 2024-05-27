@@ -109,7 +109,7 @@ const Apartament = () => {
             <div className="min-h-fit pb-20">
               <h1
                 dangerouslySetInnerHTML={{
-                  __html: pageLangData.Advantages.title,
+                  __html: pageLangData.Advantages.Title,
                 }}
                 className="font-SolidenTrialBoldExpanded text-3xl px-4 text-center md:text-5xl 2xl:text-6xl overflow-hidden"
               ></h1>
@@ -117,9 +117,9 @@ const Apartament = () => {
                 {advantages.map((advantage, index) => (
                   <Advantage
                     key={index}
-                    title={advantage.title}
-                    description={advantage.description}
-                    icon={advantage.icon}
+                    title={advantage.Title}
+                    description={advantage.Description}
+                    icon={advantage.Icon}
                   />
                 ))}
               </div>

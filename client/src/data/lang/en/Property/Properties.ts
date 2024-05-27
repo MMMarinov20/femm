@@ -90,37 +90,37 @@ export const properties: PropertiesInterface = {
     ],
     advantages: [
       {
-        title: "Top location",
-        description:
+        Title: "Top location",
+        Description:
           "The building is located in Rousse's central district, close to the city's main street and the Danube river.",
-        icon: FaLocationArrow,
+        Icon: FaLocationArrow,
       },
       {
-        title: "Innovative building",
-        description:
+        Title: "Innovative building",
+        Description:
           "The building is designed and built with the latest technologies and materials.",
-        icon: FaBuilding,
+        Icon: FaBuilding,
       },
       {
-        title: "Modern design",
-        description: "The building has a modern and stylish design.",
-        icon: MdDesignServices,
+        Title: "Modern design",
+        Description: "The building has a modern and stylish design.",
+        Icon: MdDesignServices,
       },
       {
-        title: "Smart home ready",
-        description: "The building is ready for smart home installations.",
-        icon: CgSmartphoneChip,
+        Title: "Smart home ready",
+        Description: "The building is ready for smart home installations.",
+        Icon: CgSmartphoneChip,
       },
       {
-        title: "Privacy matters",
-        description:
+        Title: "Privacy matters",
+        Description:
           "The building is designed to provide maximum privacy for its residents with a private elevator.",
-        icon: MdPrivacyTip,
+        Icon: MdPrivacyTip,
       },
       {
-        title: "Energy efficient",
-        description: "The building is designed to be energy efficient.",
-        icon: PiLightningFill,
+        Title: "Energy efficient",
+        Description: "The building is designed to be energy efficient.",
+        Icon: PiLightningFill,
       },
     ],
     Description:

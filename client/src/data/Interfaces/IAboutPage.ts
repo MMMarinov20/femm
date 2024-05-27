@@ -1,6 +1,6 @@
-interface Box {
-  title: string;
-  description: string;
+export interface Box {
+  Title: string;
+  Description: string;
 }
 
 export interface IAboutPage {

@@ -8,35 +8,35 @@ type Feature = {
 };
 
 interface Props {
-  title: string;
-  location: string;
-  features: Feature[][];
-  description: string;
-  rating: number;
-  buttonText: string;
-  grade: string;
-  footer: string;
+  Title: string;
+  Location: string;
+  Features: Feature[][];
+  Description: string;
+  Rating: number;
+  ButtonText: string;
+  Grade: string;
+  Footer: string;
 }
 
 const DescriptionContainer: React.FC<Props> = (props) => {
   const [features, setFeatures] = useState<Feature[][]>([]);
   useEffect(() => {
-    if (props.features.length != 0) setFeatures([...props.features]);
-  }, [props.features]);
+    if (props.Features.length != 0) setFeatures([...props.Features]);
+  }, [props.Features]);
   return (
     <React.Fragment>
       <div className="w-full h-fit bg-white shadow-2xl rounded-2xl p-5 flex flex-col gap-y-3 md:text-lg">
         <h1 className="font-SolidenTrialBoldExpanded text-2xl md:text-4xl">
-          {props.title}
+          {props.Title}
         </h1>
 
         <h1 className="inline-flex">
           <FaLocationDot className="text-xl mr-1 text-[#FF6241]" />
-          {props.location}
+          {props.Location}
         </h1>
 
         <button className="w-[40%] bg-[#FF6241] py-3 text-white font-SolidenTrialRegular rounded-lg text-xs md:text-base transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]">
-          {props.buttonText}
+          {props.ButtonText}
         </button>
 
         <div className="flex flex-col gap-y-3 py-2">
@@ -52,11 +52,11 @@ const DescriptionContainer: React.FC<Props> = (props) => {
           )}
         </div>
 
-        <h1 className="font-GilroyRegular">{props.description}</h1>
+        <h1 className="font-GilroyRegular">{props.Description}</h1>
 
         <h1 className="font-GilroyExtraBold md:text-xl">
-          {props.grade}
-          <span className="text-[#FF6241]">{props.rating}</span>
+          {props.Grade}
+          <span className="text-[#FF6241]">{props.Rating}</span>
         </h1>
 
         <h1 className="font-GilroyRegular">

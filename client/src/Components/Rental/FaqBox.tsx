@@ -4,8 +4,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 interface Props {
-  question: string;
-  answer: string;
+  Question: string;
+  Answer: string;
 }
 
 const FaqBox: React.FC<Props> = (props) => {
@@ -27,7 +27,7 @@ const FaqBox: React.FC<Props> = (props) => {
           onClick={toggleAccordion}
         >
           <h2 className="text-lg font-SolidenTrialBoldExpanded">
-            {props.question}
+            {props.Question}
           </h2>
           <IoIosArrowDown
             className={`h-6 w-6 transition-transform transform ${
@@ -38,7 +38,7 @@ const FaqBox: React.FC<Props> = (props) => {
         {isOpen && (
           <div className="px-10 pb-6">
             <div className="flex flex-row w-full justify-between font-SolidenTrialRegular">
-              <h1>{props.answer}</h1>
+              <h1>{props.Answer}</h1>
             </div>
           </div>
         )}

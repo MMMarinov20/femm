@@ -25,9 +25,12 @@ const QuickLinkNav: React.FC<Props> = ({ data }) => {
           <h1 className="font-SolidenTrialRegular cursor-pointer">About</h1>
         </Link> */}
         {data.map((link) => (
-          <Link to={link.url}>
-            <h1 className="font-SolidenTrialRegular cursor-pointer">
-              {link.title}
+          <Link key={link.Url} to={link.Url}>
+            <h1
+              key={link.Title}
+              className="font-SolidenTrialRegular cursor-pointer"
+            >
+              {link.Title}
             </h1>
           </Link>
         ))}
