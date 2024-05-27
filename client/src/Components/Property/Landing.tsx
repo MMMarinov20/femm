@@ -4,6 +4,7 @@ import BurgerNavbar from "../Home/Navbar/BurgerNavbar";
 import { INavbarData } from "./../../data/Interfaces/INavbarData";
 import LoadingSpinner from "../LoadingSpinner";
 import { useSearchParams } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 interface Props {
   Data: {
     Title: string;
@@ -56,7 +57,11 @@ const Landing: React.FC<Props> = ({ Data }) => {
             {Data.CTA}
           </button>
         </div>
-        <img src="../Property/Building.png" className="w-full lg:w-[55%]" />
+        <LazyLoadImage
+          src="../Property/Building.png"
+          className="w-full lg:w-[55%]"
+          alt="Building"
+        />
       </div>
     </React.Fragment>
   );

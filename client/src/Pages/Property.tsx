@@ -104,6 +104,7 @@ const Property = () => {
                   __html: pageLangData.Advantages.Title,
                 }}
                 className="font-SolidenTrialBoldExpanded text-3xl px-4 text-center md:text-5xl 2xl:text-6xl overflow-hidden"
+                data-aos="fade-right"
               ></h1>
               <div className="w-screen py-20 px-4 lg:px-[10vw] flex flex-col gap-y-10 items-center lg:grid lg:grid-rows-2 lg:grid-cols-3 lg:place-items-center">
                 {advantages.map((advantage, index) => (

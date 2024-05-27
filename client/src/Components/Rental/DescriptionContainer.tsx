@@ -16,6 +16,10 @@ interface Props {
   ButtonText: string;
   Grade: string;
   Footer: string;
+  Showcase: {
+    Title: string;
+    Icon: IconType;
+  }[];
 }
 
 const DescriptionContainer: React.FC<Props> = (props) => {
@@ -64,11 +68,18 @@ const DescriptionContainer: React.FC<Props> = (props) => {
           OpenStreetMap
         </h1>
 
-        <div className="grid grid-cols-2 grid-rows-2 gap-3">
-          <div className="w-full h-32 border-[1px] border-[#464646] rounded-2xl"></div>
-          <div className="w-full h-32 border-[1px] border-[#464646] rounded-2xl"></div>
-          <div className="w-full h-32 border-[1px] border-[#464646] rounded-2xl"></div>
-          <div className="w-full h-32 border-[1px] border-[#464646] rounded-2xl"></div>
+        <div className="grid grid-cols-3 grid-rows-2 gap-3">
+          {props.Showcase.map((item, index) => (
+            <div
+              key={index}
+              className="w-full h-32 border-[1px] border-[#464646] rounded-2xl flex flex-col justify-center items-center"
+            >
+              <item.Icon className="text-[#FF6241] text-5xl md:text-6xl" />
+              <h1 className="font-SolidenTrialBoldExpanded text-xs md:text-base 3xl:text-lg text-center py-2">
+                {item.Title}
+              </h1>
+            </div>
+          ))}
         </div>
       </div>
     </React.Fragment>

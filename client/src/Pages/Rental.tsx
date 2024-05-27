@@ -40,6 +40,10 @@ interface RentalData {
   Surroundings: {
     [key: string]: { Title: string; Distance: string }[];
   };
+  Showcase: {
+    Title: string;
+    Icon: IconType;
+  }[];
   Faq: {
     Question: string;
     Answer: string;
@@ -94,6 +98,7 @@ const Rental = () => {
     Description: "",
     Rating: 0,
     Surroundings: {},
+    Showcase: [],
     Faq: [],
   });
 
@@ -135,6 +140,7 @@ const Rental = () => {
               Features={data.Features}
               Description={data.Description}
               Grade={pageLangData.DescriptionContainer.Grade}
+              Showcase={data.Showcase}
               Rating={data.Rating}
               Footer={pageLangData.DescriptionContainer.Footer}
               ButtonText={pageLangData.DescriptionContainer.Button}

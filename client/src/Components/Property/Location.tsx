@@ -30,7 +30,7 @@ const Location: React.FC = () => {
   if (!pageLangData) return <LoadingSpinner />;
   return (
     <React.Fragment>
-      <div>
+      <div id="location">
         <h1
           className="font-SolidenTrialBoldExpanded text-3xl px-4 text-center md:text-5xl 2xl:text-6xl"
           data-aos="fade-right"

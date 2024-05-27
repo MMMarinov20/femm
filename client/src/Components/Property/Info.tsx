@@ -16,6 +16,13 @@ const Info: React.FC<Props> = ({ Data }) => {
     AOS.init();
   }, []);
 
+  const scrollToLocation = () => {
+    const element = document.getElementById("location");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <React.Fragment>
       <div className="min-h-screen px-4 py-20 flex flex-col lg:flex-row-reverse lg:px-[10vw] lg:gap-x-5 lg:items-center 2xl:gap-x-20">
@@ -32,10 +39,13 @@ const Info: React.FC<Props> = ({ Data }) => {
             <h1 className="font-SolidenTrialBoldExpanded md:text-xl lg:text-base xl:text-xl 3xl:text-2xl">
               Address
             </h1>
-            <h1 className="font-GilroyRegular pb-2 2xl:pb-5 md:text-lg lg:text-base xl:text-lg">
-              {Data.Address}{" "}
-              <span className="underline cursor-pointer">See Location</span>
-            </h1>
+            <a href="#location">
+              <h1
+                dangerouslySetInnerHTML={{ __html: Data.Address }}
+                onClick={scrollToLocation}
+                className="font-GilroyRegular pb-2 2xl:pb-5 md:text-lg lg:text-base xl:text-lg"
+              ></h1>
+            </a>
             <h1 className="font-SolidenTrialBoldExpanded md:text-xl lg:text-base xl:text-xl 3xl:text-2xl">
               Degree of Completion
             </h1>
