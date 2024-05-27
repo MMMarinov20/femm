@@ -32,7 +32,7 @@ const Info: React.FC<Props> = ({
 
   return (
     <React.Fragment>
-      <div className="w-screen px-4 lg:px-[10vw] py-20 flex flex-col gap-y-5">
+      <div className="w-screen px-4 lg:px-[10vw] py-20 flex flex-col gap-y-5 z-0">
         <h1
           className="font-SolidenTrialBoldExpanded text-4xl xl:text-5xl 3xl:text-6xl overflow-hidden max-w-[80vw]"
           data-aos="fade-right"

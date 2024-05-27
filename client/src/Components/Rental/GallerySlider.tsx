@@ -20,6 +20,7 @@ const GallerySlider: React.FC<Props> = (props: Props) => {
 
   const closeModal = (e: any) => {
     if (e.target.tagName === "IMG") return;
+    document.body.style.overflow = "auto";
     setIsOpen(false);
   };
   return (
@@ -72,7 +73,10 @@ const GallerySlider: React.FC<Props> = (props: Props) => {
                 alt={src}
                 className="rounded-2xl z-0 cursor-pointer"
                 effect="opacity"
-                onClick={() => setIsOpen(true)}
+                onClick={() => {
+                  document.body.style.overflow = "hidden";
+                  setIsOpen(true);
+                }}
               />
             </SwiperSlide>
           ))}

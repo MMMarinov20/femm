@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Navbar from "../Home/Navbar/Navbar";
 import BurgerNavbar from "../Home/Navbar/BurgerNavbar";
 import { INavbarData } from "./../../data/Interfaces/INavbarData";
 import LoadingSpinner from "../LoadingSpinner";
 import { useSearchParams } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+
 interface Props {
   Data: {
     Title: string;
@@ -17,6 +18,8 @@ interface Props {
 const Landing: React.FC<Props> = ({ Data }) => {
   const [searchParams] = useSearchParams();
   const [navbarData, setNavbarData] = useState<INavbarData | null>(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const hero = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     const loadNavbarData = async () => {
@@ -33,7 +36,22 @@ const Landing: React.FC<Props> = ({ Data }) => {
     loadNavbarData();
   }, [searchParams]);
 
-  if (!navbarData) return <LoadingSpinner />;
+  useEffect(() => {
+    const preloadImage = (src: string) => {
+      return new Promise<void>((resolve, reject) => {
+        const img = new Image();
+        img.src = src;
+        img.onload = () => resolve();
+        img.onerror = (err) => reject(err);
+      });
+    };
+
+    preloadImage("../Property/Building.png")
+      .then(() => setImageLoaded(true))
+      .catch((err) => console.error("Error preloading the image:", err));
+  }, []);
+
+  if (!navbarData || !imageLoaded) return <LoadingSpinner />;
 
   return (
     <React.Fragment>
@@ -57,9 +75,10 @@ const Landing: React.FC<Props> = ({ Data }) => {
             {Data.CTA}
           </button>
         </div>
-        <LazyLoadImage
+        <img
           src="../Property/Building.png"
           className="w-full lg:w-[55%]"
+          ref={hero}
           alt="Building"
         />
       </div>

@@ -15,11 +15,18 @@ const Carousel: React.FC = () => {
 
   const closeModal = (e: any) => {
     if (e.target.tagName === "IMG") return;
+    document.body.style.overflow = "auto";
     setIsOpen(false);
   };
   return (
     <React.Fragment>
-      <div onClick={() => setIsOpen(true)}>
+      <div
+        onClick={() => {
+          document.body.style.overflow = "hidden";
+          setIsOpen(true);
+        }}
+        className="z-0 overflow-hidden"
+      >
         <Swiper
           slidesPerView={1}
           spaceBetween={50}
@@ -52,7 +59,7 @@ const Carousel: React.FC = () => {
       </div>
 
       <div
-        className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-90 z-100"
+        className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-90 z-100 overflow-hidden"
         style={{ display: isOpen ? "block" : "none" }}
         onClick={closeModal}
       >
@@ -101,17 +108,19 @@ const Carousel: React.FC = () => {
           }}
           navigation={true}
           modules={[Autoplay, Pagination, Navigation, A11y]}
-          className="overflow-hidden w-full h-full z-0"
+          className="overflow-hidden w-screen h-screen z-100"
         >
           {/* length: 6 .map */}
           {[0, 1, 2, 3, 4, 5].map((item) => (
             <SwiperSlide key={item} className="rounded-2xl">
-              <img
-                src={`../../Property/Carousel/${item + 1}.svg`}
-                alt="Property"
-                key={item}
-                className="rounded-2xl w-full h-full"
-              />
+              <div className="fixed top-1/4">
+                <img
+                  src={`../../Property/Carousel/${item + 1}.svg`}
+                  alt="Property"
+                  key={item}
+                  className="rounded-2xl w-full h-full"
+                />
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>

@@ -59,20 +59,9 @@ const Landing: React.FC<Props> = ({ Data, LangData }) => {
             </div>
           </div>
 
-          <div className="w-full xl:w-[70%] 2xl:w-[33%] 3xl:w-[27%] flex flex-col items-center px-7 lg:px-10">
+          <div className="w-full xl:w-[70%] 2xl:w-[33%] 3xl:w-[27%] flex flex-col items-center px-4 lg:px-10">
             <div className="p-2 h-fit rounded-xl w-full md:w-1/2 lg:w-full shadow-2xl">
               <div className="border-[1px] border-[#FF6241] px-5 py-4 grid place-items-center h-full w-full font-GilroyExtraBold gap-y-3 rounded-xl">
-                {/* {Object.keys(Data).map(
-                  (key, i) =>
-                    i !== Object.keys(Data).length - 1 && (
-                      <Benefit
-                        key={key}
-                        Title={LangData.Info[i]}
-                        // @ts-expect-error test
-                        Subtitle={Data[key]}
-                      />
-                    )
-                )} */}
                 {Object.keys(Data).map((key, i) => {
                   if (i == Object.keys(Data).length - 1) return;
                   if (i == Object.keys(Data).length - 2) return;
