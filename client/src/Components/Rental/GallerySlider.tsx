@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import { Autoplay, Pagination, Navigation, A11y } from "swiper/modules";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 interface Props {
   src: string[];
@@ -66,10 +67,11 @@ const GallerySlider: React.FC<Props> = (props: Props) => {
         >
           {props.src.map((src, index) => (
             <SwiperSlide key={index} className="pb-10">
-              <img
+              <LazyLoadImage
                 src={src}
-                alt=""
-                className="w-full rounded-xl z-0 cursor-pointer"
+                alt={src}
+                className="rounded-2xl z-0 cursor-pointer"
+                effect="opacity"
                 onClick={() => setIsOpen(true)}
               />
             </SwiperSlide>
@@ -131,7 +133,13 @@ const GallerySlider: React.FC<Props> = (props: Props) => {
             {props.src.map((src, index) => (
               <SwiperSlide key={index}>
                 <div className="fixed top-1/4">
-                  <img src={src} alt="" className="rounded-2xl z-0" />
+                  {/* <img src={src} alt="" className="rounded-2xl z-0" /> */}
+                  <LazyLoadImage
+                    src={src}
+                    alt={src}
+                    className="rounded-2xl z-0"
+                    effect="black-and-white"
+                  />
                 </div>
               </SwiperSlide>
             ))}
