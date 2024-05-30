@@ -1,0 +1,9 @@
+{
+  "Title": "Welcome",
+  "Subtitle": "Already have an account? <span style=\"color: #FF6241; text-decoration: underline; cursor: pointer;\">Log in</span>",
+  "FirstNamePlaceholder": "First Name",
+  "LastNamePlaceholder": "Last Name",
+  "EmailPlaceholder": "Email",
+  "PasswordPlaceholder": "Password",
+  "Button": "Sign Up"
+}

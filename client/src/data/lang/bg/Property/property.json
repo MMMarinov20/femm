@@ -1,0 +1,22 @@
+{
+  "urbannature": {
+    "Landing": {
+      "Title": "Urban Nature",
+      "Subtitle": "The Future of Central District",
+      "Description": "One-of-a-kind homes and rooms for rent, in the best locations, at every price point.",
+      "CTA": "Explore properties"
+    },
+    "Info": {
+      "Description": "Atlantis Aria is a residential complex located in Horizont district, the newest residential area of the city of Burgas, located next to Izgrev. The complex consists of two buildings with 5 and 8 floors each, where apartments with their own courtyard are located on the ground floor, as well as penthouses with spacious terraces and 3.2 meter high ceilings on the top floor. The complex is located in close proximity to: the main roads of the city, the largest sports complex in Bulgaria \"Arena Burgas\", hypermarkets: Kaufland, Lidl, Technopolis, Metro, shopping and business centers, bus stop, schools, kindergartens, university , cafes and restaurants, fitness centers, etc.",
+      "Address": "Angel Kanchev 32 str. | Rousse 7000, Bulgaria <span style=\"text-decoration: underline; cursor: pointer\">See Location</span>",
+      "Degree": "Building Permit Obtained",
+      "Properties": "4"
+    },
+    "Gallery": {
+      "Title": "Gallery"
+    },
+    "Advantages": {
+      "Title": "Advantages of your <span style=\"color: #FF6241;\">New</span> Home"
+    }
+  }
+}

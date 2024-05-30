@@ -1,0 +1,24 @@
+{
+  "Description": "Lorem ipsum dolor sit amet consectetur. Vitae risus ac pellentesque velit sed scelerisque. Viverra scelerisque mauris risus id. Consequat id est lacus dapibus pulvinar tortor sed.",
+  "Links": [
+    {
+      "Title": "Home",
+      "Url": "/"
+    },
+    {
+      "Title": "Loli's beach studio",
+      "Url": "/rental/1/Loli's beach studio"
+    },
+    {
+      "Title": "Urban Nature",
+      "Url": "/property/urbannature"
+    },
+    {
+      "Title": "About",
+      "Url": "/about"
+    }
+  ],
+  "Copyright": "All rights reserved.",
+  "Privacy": "Privacy Policy",
+  "Terms": "Terms of Use"
+}

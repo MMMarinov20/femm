@@ -1,0 +1,41 @@
+{
+  "Landing": {
+    "Info": [
+      "Building",
+      "Address",
+      "Floor",
+      "Floors",
+      "Bedrooms",
+      "Bathrooms",
+      "Kitchen",
+      "Area",
+      "Parking",
+      "Exposure",
+      "Basement"
+    ],
+    "Buttons": {
+      "First": "Download Apartment Plans",
+      "Second": "Download Basement Plans",
+      "Third": "Download Facade Photos"
+    }
+  },
+  "Description": {
+    "Title": "Advantages of your new home",
+    "Type": ["One Bedroom", "Two Bedrooms"],
+    "Bathrooms": ["One Bathroom with toilet", "Two Bathrooms with toilet"],
+    "Consists": ["Corridor", "Living room with kitchen", "Balcony", "Basement"]
+  },
+  "Advantages": {
+    "Title": "Advantages of your <span style=\"color: #FF6241;\">New</span> Home"
+  },
+  "Form": {
+    "Title": "Make a request",
+    "Name": "Name",
+    "Email": "Email",
+    "Reason": "Reason for request",
+    "Phone": "Phone",
+    "Message": "Your Message",
+    "Agree": "I agree to the terms and conditions",
+    "Button": "Submit"
+  }
+}
