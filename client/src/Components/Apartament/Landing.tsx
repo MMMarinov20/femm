@@ -28,7 +28,7 @@ const Landing: React.FC<Props> = ({ Data, LangData }) => {
   const [apartmentNumber, setApartmentNumber] = useState<string>("1");
   const handleDownload = async (file: string) => {
     try {
-      const res: any = apiService.download(`download/${file}`);
+      const res: any = await apiService.download(`download/${file}`);
 
       const url = window.URL.createObjectURL(new Blob([res.data]));
       const link = document.createElement("a");
