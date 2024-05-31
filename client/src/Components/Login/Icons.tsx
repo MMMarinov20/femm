@@ -17,7 +17,7 @@ const Icons = () => {
         <hr className="w-[45%] border-[#464646] border-[1px]" />
       </div>
 
-      <div className="flex items-center justify-center gap-x-5">
+      <div className="flex items-center md:w-1/2 lg:w-8/12 justify-center gap-x-5">
         <div
           onClick={() => infoToast("Feature coming soon", 2000)}
           className="flex items-center justify-center w-10 h-10 bg-[#3B5998] rounded-full cursor-pointer"

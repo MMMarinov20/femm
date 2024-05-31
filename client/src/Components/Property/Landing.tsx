@@ -69,10 +69,19 @@ const Landing: React.FC<Props> = ({ Data }) => {
           <h1 className="font-SolidenTrialExpanded py-3 min-[370px]:py-5 md:text-xl lg:text-base xl:text-lg 2xl:text-xl">
             {Data.Description}
           </h1>
-
-          <button className="bg-[#FF6241] py-3 w-[80vw] min-[370px]:w-[60vw] md:w-[40vw] lg:w-[20vw] font-SolidenTrialRegular text-xs min-[370px]:text-base text-white rounded-lg">
-            {Data.CTA}
-          </button>
+          <a
+            href="#properties"
+            onClick={(e) => {
+              e.preventDefault();
+              document
+                .getElementById("properties")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            <button className="bg-[#FF6241] py-3 w-[80vw] min-[370px]:w-[60vw] md:w-[40vw] lg:w-[20vw] font-SolidenTrialRegular text-xs min-[370px]:text-base text-white rounded-lg">
+              {Data.CTA}
+            </button>
+          </a>
         </div>
         <img
           src="../Property/Building.png"

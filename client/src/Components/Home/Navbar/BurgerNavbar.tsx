@@ -111,7 +111,7 @@ const BurgerNavbar: React.FC<Props> = (props) => {
 
             <Link to={user.id ? "/" : "/register"}>
               <div
-                className="font-SolidenTrialExpanded bg-[#FF6241] text-white w-[50vw] py-2 rounded-xl text-center min-[350px]:w-[55vw] md:w-[30vw] min-[350px]:text-lg transition-colors duration-300 hover:bg-white hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]"
+                className="font-SolidenTrialExpanded bg-[#FF6241] text-white w-[50vw] py-2 rounded-xl text-center min-[350px]:w-[55vw] md:w-[30vw] min-[350px]:text-lg transition-colors duration-300 hover:bg-white hover:text-[#FF6241] border-[#FF6241] border-[1px]"
                 onClick={
                   user.id
                     ? handleLogoutSubmission

@@ -99,7 +99,7 @@ const Navbar: React.FC<Props> = ({ Data }) => {
 
           <Link to={user.id ? "/" : "/register"}>
             <div
-              className="cursor-pointer text-white font-SolidenTrialRegular w-[15vw] xl:w-[10vw] 2xl:w-[8vw] py-2 xl:py-3 rounded-xl text-center bg-[#FF6241] transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px] 2xl:text-xl"
+              className="cursor-pointer text-white font-SolidenTrialRegular w-[15vw] xl:w-[10vw] 2xl:w-[8vw] py-2 xl:py-3 rounded-xl text-center bg-[#FF6241] transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] border-[#FF6241] border-[1px] 2xl:text-xl"
               onClick={
                 user.id
                   ? handleLogoutSubmission

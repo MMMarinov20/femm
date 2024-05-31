@@ -173,7 +173,6 @@ const Rental = () => {
 
           <div
             className="w-screen grid grid-rows-6 md:grid-rows-2 md:grid-cols-3 lg:px-[10vw] pb-20"
-            data-aos="fade-up"
           >
             {Object.keys(data.Surroundings).map((key, index) => (
               <Accordion

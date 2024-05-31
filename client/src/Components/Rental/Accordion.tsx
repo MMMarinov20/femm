@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoIosArrowDown } from "react-icons/io";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 interface Props {
   Title: string;
@@ -10,6 +12,10 @@ const Accordion: React.FC<Props> = ({
   Surrounding: surrounding,
   Title: title,
 }) => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleAccordion = () => {
@@ -17,7 +23,7 @@ const Accordion: React.FC<Props> = ({
   };
 
   return (
-    <div className="w-full px-4 py-10">
+    <div className="w-full px-4 py-10" data-aos="fade-right">
       <div className="bg-white rounded-lg shadow-xl">
         <div
           className="flex justify-between items-center p-4 cursor-pointer"

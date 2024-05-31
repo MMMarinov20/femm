@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import Navbar from "./Navbar/Navbar";
 import BurgerNavbar from "./Navbar/BurgerNavbar";
 import { INavbarData } from "../../data/Interfaces/INavbarData";
+import { Link } from "react-router-dom";
 
 interface Props {
   Data: {
@@ -47,16 +48,21 @@ const Landing: React.FC<Props> = ({ Data }) => {
             </h1>
 
             <div className="hidden lg:flex flex-row gap-x-5">
-              <button className="flex flex-row items-center justify-center w-40 h-12 mt-5 bg-transparent border-[#FF6241] border-[1px] text-[#FF6241] rounded-lg transition-colors duration-300 hover:bg-[#FF6241] hover:text-white">
-                <h1 className="font-SolidenTrialExpanded text-lg">
-                  {Data.CTA1}
-                </h1>
-              </button>
-              <button className="flex flex-row items-center justify-center w-40 h-12 mt-5 bg-[#FF6241] text-white rounded-lg transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]">
-                <h1 className="font-SolidenTrialExpanded text-lg">
-                  {Data.CTA2}
-                </h1>
-              </button>
+              <Link to="/rental/1/Loli's beach studio">
+                <button className="flex flex-row items-center justify-center w-52 h-12 mt-5 bg-transparent border-[#FF6241] border-[1px] text-[#FF6241] rounded-lg transition-colors duration-300 hover:bg-[#FF6241] hover:text-white">
+                  <h1 className="font-SolidenTrialExpanded text-lg">
+                    {Data.CTA1}
+                  </h1>
+                </button>
+              </Link>
+
+              <Link to="/property/urbannature">
+                <button className="flex flex-row items-center justify-center w-52 h-12 mt-5 bg-[#FF6241] text-white rounded-lg transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] border-[#FF6241] border-[1px]">
+                  <h1 className="font-SolidenTrialExpanded text-lg">
+                    {Data.CTA2}
+                  </h1>
+                </button>
+              </Link>
             </div>
           </div>
 

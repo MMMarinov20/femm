@@ -106,7 +106,7 @@ const SearchContainer: React.FC<Props> = (props) => {
           <button
             type="submit"
             onClick={handleSearch}
-            className="w-full bg-[#FF6241] py-3 text-white font-GilroyRegular rounded-lg text-xs mt-2 md:text-base 2xl:text-lg transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]"
+            className="w-full bg-[#FF6241] py-3 text-white font-GilroyRegular rounded-lg text-xs mt-2 md:text-base 2xl:text-lg transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] border-[#FF6241] border-[1px]"
           >
             {props.Data.Button}
           </button>

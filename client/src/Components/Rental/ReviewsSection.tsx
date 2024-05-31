@@ -123,7 +123,7 @@ const ReviewsSection: React.FC<Props> = (props) => {
 
           <button
             onClick={handleReviewSubmission}
-            className="bg-[#FF6241] text-white font-SolidenTrialRegular text-lg rounded-lg py-3 transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]"
+            className="bg-[#FF6241] text-white font-SolidenTrialRegular text-lg rounded-lg py-3 transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] border-[#FF6241] border-[1px]"
           >
             {user.id
               ? props.Data.ButtonPlaceholder2

@@ -119,7 +119,7 @@ const Register = () => {
                 <div className="w-full md:w-1/2 lg:w-8/12 pt-2">
                   <button
                     type="submit"
-                    className="w-full bg-[#FF6241] rounded-lg py-2 2xl:py-3 text-white font-SolidenTrialRegular transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] hover:border-[#FF6241] hover:border-[1px]"
+                    className="w-full bg-[#FF6241] rounded-lg py-2 2xl:py-3 text-white font-SolidenTrialRegular transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] border-[1px] border-[#FF6241]"
                   >
                     {pageLangData.Button}
                   </button>
