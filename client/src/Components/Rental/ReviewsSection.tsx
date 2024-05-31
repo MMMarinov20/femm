@@ -5,6 +5,7 @@ import StarRating from "./StarRating";
 import { useUser } from "../../hooks/useUser";
 import { submitReview } from "./../../services/reviewService";
 import { Review as ReviewModel } from "../../models/Review";
+import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -125,9 +126,11 @@ const ReviewsSection: React.FC<Props> = (props) => {
             onClick={handleReviewSubmission}
             className="bg-[#FF6241] text-white font-SolidenTrialRegular text-lg rounded-lg py-3 transition-colors duration-300 hover:bg-transparent hover:text-[#FF6241] border-[#FF6241] border-[1px]"
           >
-            {user.id
-              ? props.Data.ButtonPlaceholder2
-              : props.Data.ButtonPlaceholder}
+            <Link to={user.id ? "" : "/login"} className="w-full">
+              {user.id
+                ? props.Data.ButtonPlaceholder2
+                : props.Data.ButtonPlaceholder}
+            </Link>
           </button>
         </div>
       </div>

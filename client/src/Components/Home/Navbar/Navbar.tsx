@@ -34,8 +34,12 @@ const Navbar: React.FC<Props> = ({ Data }) => {
   return (
     <React.Fragment>
       <div className="hidden w-screen lg:flex flex-row items-center px-[10vw] justify-between h-[15vh]">
-        <div className="flex flex-row gap-x-5 xl:gap-x-10 xl:text-lg font-SolidenTrialRegular">
-          <h1 className="font-black">Logo</h1>
+        <div className="flex flex-row items-center gap-x-5 xl:gap-x-10 xl:text-lg font-SolidenTrialRegular">
+          <img
+            src="../../Logo.png"
+            alt="logo"
+            className="lg:w-[5vw] 2xl:w-[10vw]"
+          />
           <Link to={"/"}>
             <h1 className="cursor-pointer">{Data.Home}</h1>
           </Link>
