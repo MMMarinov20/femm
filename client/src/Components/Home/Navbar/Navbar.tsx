@@ -38,7 +38,7 @@ const Navbar: React.FC<Props> = ({ Data }) => {
           <img
             src="../../Logo.png"
             alt="logo"
-            className="lg:w-[5vw] 2xl:w-[10vw]"
+            className="lg:w-[7vw] 2xl:w-[10vw]"
           />
           <Link to={"/"}>
             <h1 className="cursor-pointer">{Data.Home}</h1>
