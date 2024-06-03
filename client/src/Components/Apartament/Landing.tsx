@@ -30,7 +30,7 @@ const Landing: React.FC<Props> = ({ Data, LangData }) => {
     try {
       const res: any = await apiService.download(`download/${file}`);
 
-      const url = window.URL.createObjectURL(new Blob([res.data]));
+      const url = window.URL.createObjectURL(new Blob([res]));
       const link = document.createElement("a");
       link.href = url;
 
