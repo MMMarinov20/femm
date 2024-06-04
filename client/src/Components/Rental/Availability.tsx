@@ -7,7 +7,7 @@ import { useUser } from "../../hooks/useUser";
 import { Booking } from "../../models/Booking";
 import Calendar from "./Calendar";
 import { ToastContainer } from "react-toastify";
-import { errorToast, infoToast, successToast } from "../../utils/utils";
+import { errorToast } from "../../utils/utils";
 import "react-toastify/dist/ReactToastify.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
