@@ -1,12 +1,16 @@
 import { Request, Response } from "express";
 import * as UserModel from "../models/User";
 import { jwtDecode } from "jwt-decode";
+import { parseCookies } from "../middlewares/AuthMiddleware";
 
 export const UserController = {
   async getUserById(req: Request, res: Response): Promise<void> {
     try {
-      const cookie = req.headers.cookie;
-      const token = cookie?.split("=")[1];
+      // const cookie = req.headers.cookie;
+      // const token = cookie?.split("=")[1];
+      const cookies = parseCookies(req.headers.cookie || "");
+      const token = cookies.token;
+
       if (token) {
         const id: number = (jwtDecode(token) as { id: number }).id;
         const user = await UserModel.findUserById(id);

@@ -1,13 +1,47 @@
 import { Request, Response } from "express";
 import * as BookingModel from "../models/Booking";
 import { jwtDecode } from "jwt-decode";
+import stripe from "stripe";
+import { parseCookies } from "../middlewares/AuthMiddleware";
 
 export const BookingController = {
   async createBooking(req: Request, res: Response): Promise<void> {
     try {
       const booking = req.body;
-      const newBooking = await BookingModel.createBooking(booking);
-      res.status(201).json(newBooking);
+      // const newBooking = await BookingModel.createBooking(booking);
+      // res.status(201).json(newBooking);
+      const Stripe = new stripe(
+        "sk_test_51LmA4kJflswFoq3GF9vAT5JI4nhlhpXXFgnqlWNugG8OFpCCq7UX8cKuWxCm4TzshTUlSHGFTTmEzNZwdyytdKUA00siAQiNkX"
+      );
+
+      const session = await Stripe.checkout.sessions.create({
+        payment_method_types: ["card"],
+        line_items: [
+          {
+            price_data: {
+              currency: "usd",
+              product_data: {
+                name: "Booking",
+              },
+              unit_amount: 1000,
+            },
+            quantity: 1,
+          },
+        ],
+        mode: "payment",
+        success_url: process.env.CLIENT_URL,
+        cancel_url: process.env.CLIENT_URL,
+      });
+
+      res.status(200).json(session);
+
+      //if the payment is successful, create the booking
+      // if (session.payment_status === "paid") {
+      //   const newBooking = await BookingModel.createBooking(booking);
+      //   res.status(201).json(newBooking);
+      // } else {
+      //   res.status(400).json({ error: "Payment failed" });
+      // }
     } catch (error) {
       console.error("Error creating booking:", error);
       res.status(500).json({ error: "Could not create booking" });
@@ -30,8 +64,11 @@ export const BookingController = {
 
   async getBookingsByUserId(req: Request, res: Response): Promise<void> {
     try {
-      const cookie = req.headers.cookie;
-      const token = cookie?.split("=")[1];
+      // const cookie = req.headers.cookie;
+      // const token = cookie?.split("=")[1];
+      const cookies = parseCookies(req.headers.cookie || "");
+      const token = cookies.token;
+
       if (token) {
         const userId: number = (jwtDecode(token) as { id: number }).id;
         const bookings = await BookingModel.getBookingsByUserId(userId);

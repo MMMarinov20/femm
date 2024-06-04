@@ -11,6 +11,7 @@ import { errorToast, infoToast, successToast } from "../../utils/utils";
 import "react-toastify/dist/ReactToastify.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { loadStripe } from "@stripe/stripe-js";
 
 interface Props {
   date: DateRange | undefined;
@@ -80,12 +81,7 @@ const Availability: React.FC<Props> = (props) => {
   };
 
   const handleBooking = async (e: React.FormEvent) => {
-    infoToast(
-      "We are still working on our payment system. You can find us on Airbnb/Booking! We apologize for the inconvenience.",
-      5000
-    );
     e.preventDefault();
-    return;
     if (!user.id) errorToast("Please login to book", 2000);
 
     const adultsValue = adults.current?.value;
@@ -100,11 +96,27 @@ const Availability: React.FC<Props> = (props) => {
       adults: parseInt(adultsValue!),
     };
 
-    try {
-      await createBooking(booking);
-      successToast("Booking successful!", 2000);
-    } catch (error) {
-      errorToast("Booking failed", 2000);
+    // try {
+    //   await createBooking(booking);
+    //   successToast("Booking successful!", 2000);
+    // } catch (error) {
+    //   errorToast("Booking failed", 2000);
+    // }
+    const key = import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY;
+    console.log(key);
+    const stripe = await loadStripe(key);
+
+    const response = await createBooking(booking);
+
+    const session = await response;
+
+    const result = await stripe?.redirectToCheckout({
+      sessionId: session.id,
+    });
+
+    if (result?.error) {
+      //@ts-expect-error fix this
+      errorToast(result.error.message, 2000);
     }
   };
 

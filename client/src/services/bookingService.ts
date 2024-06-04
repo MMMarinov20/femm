@@ -2,8 +2,7 @@ import { apiService } from "./apiService";
 import { Booking } from "../models/Booking";
 export const createBooking = async (Booking: Booking) => {
   try {
-    await apiService.post("bookings/createBooking", Booking);
-    alert("Booking successful");
+    return await apiService.post("bookings/createBooking", Booking);
   } catch (error) {
     throw new Error("Booking failed");
   }

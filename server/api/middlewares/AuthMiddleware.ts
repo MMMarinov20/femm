@@ -6,11 +6,26 @@ import bcrypt from "bcrypt";
 
 const JWT_SECRET = process.env.JWT_SECRET || "";
 
+export const parseCookies = (cookieString: string): Record<string, string> => {
+  return cookieString
+    .split(";")
+    .map((cookie) => cookie.trim().split("="))
+    .reduce((acc, [key, value]) => {
+      acc[key] = value;
+      return acc;
+    }, {} as Record<string, string>);
+};
+
 export const AuthMiddleware = {
   authenticate: (req: Request, res: Response, next: Function) => {
     //const token = req.headers.authorization?.split(" ")[1];
-    console.log("Cookies:", req.headers.cookie);
-    const token = req.headers.cookie?.split("=")[1];
+    // const token = req.headers.cookie?.split("token=")[1];
+
+    const cookies = parseCookies(req.headers.cookie || "");
+    const token = cookies.token;
+
+    console.log("Token:", token);
+
     if (!token) return res.status(401).json({ error: "Unauthorized" });
 
     jwt.verify(token, JWT_SECRET, (err: any, decoded: any) => {
