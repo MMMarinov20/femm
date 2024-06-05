@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
-import { jwtDecode } from "jwt-decode";
-import stripe from "stripe";
-import { parseCookies } from "../middlewares/AuthMiddleware";
+import Stripe from "stripe";
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: "2024-04-10",
+});
 
 export const PaymentController = {
   async paymentWebhook(req: Request, res: Response): Promise<void> {
@@ -21,7 +23,6 @@ export const PaymentController = {
     switch (event.type) {
       case "checkout.session.completed":
         const session = event.data.object;
-
         console.log(session);
         break;
       default:
