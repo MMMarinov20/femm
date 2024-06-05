@@ -103,7 +103,6 @@ const Availability: React.FC<Props> = (props) => {
     //   errorToast("Booking failed", 2000);
     // }
     const key = import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY;
-    console.log(key);
     const stripe = await loadStripe(key);
 
     const response = await createBooking(booking);
