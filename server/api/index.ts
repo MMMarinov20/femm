@@ -11,13 +11,30 @@ import PaymentRoutes from "./routes/PaymentRoutes";
 
 const app: Application = express();
 
-app.use(express.json());
+// app.use(express.json());
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: process.env.CLIENT_URL, // Use CLIENT_URL from environment variables
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders:
+      "Origin, X-Requested-With, Content-Type, Accept, Authorization",
     credentials: true,
   })
+);
+
+app.use(
+  (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ): void => {
+    if (req.originalUrl === "/api/webhook") {
+      next();
+    } else {
+      express.json()(req, res, next);
+    }
+  }
 );
 
 app.use((req: Request, res: Response, next: NextFunction) => {
@@ -27,6 +44,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   );
   if (req.method === "OPTIONS") {
     res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+    res.header("Access-Control-Allow-Origin", process.env.CLIENT_URL); // Use CLIENT_URL from environment variables
+    res.header("Access-Control-Allow-Credentials", "true");
     return res.status(200).json({});
   }
   next();
@@ -44,6 +63,6 @@ app.use("/api", ReviewRoutes);
 app.use("/api", FileRoutes);
 app.use("/api", PaymentRoutes);
 
-app.listen(8080, () => console.log("Server running on port 3000!"));
+app.listen(8080, () => console.log("Server running on port 8080!"));
 
 module.exports = app;
