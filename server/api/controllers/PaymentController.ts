@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { Booking } from "../models/Booking";
 import { getRentalById } from "../models/Rentals";
 import { createBooking } from "../models/Booking";
+import { MailController } from "./MailController";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -32,15 +33,18 @@ export const PaymentController = {
           }
         );
 
-        if (session && session.line_items && session.amount_total) {
+        if (
+          session &&
+          session.line_items &&
+          session.amount_total &&
+          session.metadata
+        ) {
           console.log(
             `🔔  Payment for ${session.amount_total / 100}$ was successful.`
           );
           const booking: Booking = {
-            userId: 1,
-            rentalId: parseInt(
-              session.line_items.data[0].description.split("id: ")[1]
-            ),
+            userId: parseInt(session.metadata.userId),
+            rentalId: parseInt(session.metadata.rentalId),
             startDate: new Date(
               session.line_items.data[0].description
                 .split("from ")[1]
@@ -59,7 +63,13 @@ export const PaymentController = {
             ),
             createdAt: new Date(),
           };
-          await createBooking(booking);
+
+          if (booking.id) {
+            await createBooking(booking);
+            await MailController.sendBookingConfirmationEmail(
+              booking.id.toString()
+            );
+          }
         }
 
         break;
@@ -92,9 +102,7 @@ export const PaymentController = {
             price_data: {
               currency: "usd",
               product_data: {
-                name: `Reservation for ${rental?.title}(id: ${
-                  rental?.id
-                }) from ${new Date(
+                name: `Reservation for ${rental?.title} from ${new Date(
                   booking.startDate
                 ).toLocaleDateString()} to ${new Date(
                   booking.endDate
@@ -110,6 +118,10 @@ export const PaymentController = {
         mode: "payment",
         success_url: `${process.env.CLIENT_URL}/`,
         cancel_url: `${process.env.CLIENT_URL}/`,
+        metadata: {
+          rentalId: booking.rentalId.toString(),
+          userId: booking.userId.toString(),
+        },
       });
 
       res.status(200).json(session);

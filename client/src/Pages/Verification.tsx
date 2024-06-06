@@ -3,6 +3,8 @@ import { useUser } from "../hooks/useUser";
 import { apiService } from "../services/apiService";
 import { errorToast, successToast } from "../utils/utils";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Verification = () => {
   const { user } = useUser();
@@ -17,7 +19,6 @@ const Verification = () => {
     }
 
     const verifyUser = async () => {
-      console.log(user);
       if (!user.verified && token) {
         try {
           const response = await apiService.post(`verify/${token}`);
@@ -41,7 +42,12 @@ const Verification = () => {
     verifyUser();
   }, [user, navigate]);
 
-  return <React.Fragment>Verification</React.Fragment>;
+  return (
+    <React.Fragment>
+      <ToastContainer />
+      Verifying...
+    </React.Fragment>
+  );
 };
 
 export default Verification;

@@ -18,13 +18,13 @@ export const createBooking = async (booking: Booking) => {
   });
 };
 
-// export const getBookingById = async (id: number) => {
-//   return await prisma.bookings.findUnique({
-//     where: {
-//       id: id,
-//     },
-//   });
-// };
+export const getBookingById = async (id: number) => {
+  return await prisma.bookings.findUnique({
+    where: {
+      id: id,
+    },
+  });
+};
 
 export const getBookingsByUserId = async (userId: number) => {
   return await prisma.bookings.findMany({

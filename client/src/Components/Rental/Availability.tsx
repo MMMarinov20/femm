@@ -82,7 +82,17 @@ const Availability: React.FC<Props> = (props) => {
 
   const handleBooking = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!user.id) errorToast("Please login to book", 2000);
+    if (!user.id) {
+      errorToast("Please login to book", 2000);
+      return;
+    }
+    if (!user.verified) {
+      errorToast(
+        "Please verify your email to book. Check your spam folder!",
+        2000
+      );
+      return;
+    }
 
     const adultsValue = adults.current?.value;
     const startDate = range?.from;
@@ -96,12 +106,6 @@ const Availability: React.FC<Props> = (props) => {
       adults: parseInt(adultsValue!),
     };
 
-    // try {
-    //   await createBooking(booking);
-    //   successToast("Booking successful!", 2000);
-    // } catch (error) {
-    //   errorToast("Booking failed", 2000);
-    // }
     const key = import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY;
     const stripe = await loadStripe(key);
 

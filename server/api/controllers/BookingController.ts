@@ -21,8 +21,6 @@ export const BookingController = {
 
   async getBookingsByUserId(req: Request, res: Response): Promise<void> {
     try {
-      // const cookie = req.headers.cookie;
-      // const token = cookie?.split("=")[1];
       const cookies = parseCookies(req.headers.cookie || "");
       const token = cookies.token;
 
