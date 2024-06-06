@@ -43,7 +43,7 @@ model Reviews {
 }
 
 model Bookings {
-  id           Int       @id @default(autoincrement())
+  id           String       @id @default("")
   rental       Rentals   @relation(fields: [rentalId], references: [id])
   rentalId     Int
   user         Users     @relation(fields: [userId], references: [id])

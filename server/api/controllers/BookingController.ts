@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import * as BookingModel from "../models/Booking";
 import { jwtDecode } from "jwt-decode";
 import { parseCookies } from "../middlewares/AuthMiddleware";
-
 export const BookingController = {
   // async getBookingById(req: Request, res: Response): Promise<void> {
   //   try {
@@ -48,7 +47,7 @@ export const BookingController = {
 
   async deleteBooking(req: Request, res: Response): Promise<void> {
     try {
-      const bookingId: number = parseInt(req.params.bookingId, 10);
+      const bookingId: string = req.params.bookingId;
       await BookingModel.deleteBooking(bookingId);
       res.status(204).end();
     } catch (error) {
@@ -59,7 +58,7 @@ export const BookingController = {
 
   async updateBooking(req: Request, res: Response): Promise<void> {
     try {
-      const bookingId: number = parseInt(req.params.bookingId, 10);
+      const bookingId: string = req.params.bookingId;
       const booking = req.body;
       const updatedBooking = await BookingModel.updateBooking(
         bookingId,

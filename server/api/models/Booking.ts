@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export interface Booking {
-  id?: number;
+  id?: string;
   userId: number;
   rentalId: number;
   startDate: Date;
@@ -18,7 +18,7 @@ export const createBooking = async (booking: Booking) => {
   });
 };
 
-export const getBookingById = async (id: number) => {
+export const getBookingById = async (id: string) => {
   return await prisma.bookings.findUnique({
     where: {
       id: id,
@@ -42,7 +42,7 @@ export const getBookingsByRentalId = async (rentalId: number) => {
   });
 };
 
-export const deleteBooking = async (id: number) => {
+export const deleteBooking = async (id: string) => {
   return await prisma.bookings.delete({
     where: {
       id: id,
@@ -50,7 +50,7 @@ export const deleteBooking = async (id: number) => {
   });
 };
 
-export const updateBooking = async (id: number, booking: Booking) => {
+export const updateBooking = async (id: string, booking: Booking) => {
   return await prisma.bookings.update({
     where: {
       id: id,

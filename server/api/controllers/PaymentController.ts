@@ -4,6 +4,7 @@ import { getRentalById } from "../models/Rentals";
 import { createBooking } from "../models/Booking";
 import { MailController } from "./MailController";
 import Stripe from "stripe";
+import Crypto from "crypto";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2024-04-10",
@@ -43,6 +44,7 @@ export const PaymentController = {
             `🔔  Payment for ${session.amount_total / 100}$ was successful.`
           );
           const booking: Booking = {
+            id: session.metadata.bookingId,
             userId: parseInt(session.metadata.userId),
             rentalId: parseInt(session.metadata.rentalId),
             startDate: new Date(
@@ -83,6 +85,7 @@ export const PaymentController = {
   async createCheckoutSession(req: Request, res: Response): Promise<void> {
     try {
       const booking: Booking = req.body;
+      booking.id = Crypto.randomBytes(16).toString("hex");
       booking.createdAt = new Date();
 
       new Date(booking.startDate).setHours(0, 0, 0, 0);
@@ -121,6 +124,7 @@ export const PaymentController = {
         metadata: {
           rentalId: booking.rentalId.toString(),
           userId: booking.userId.toString(),
+          bookingId: booking.id,
         },
       });
 
