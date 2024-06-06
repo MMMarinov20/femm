@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
 });
 
 export const MailController = {
-  async sendVerificationEmail(recipient: string): Promise<void> {
+  async sendVerificationEmail(recipient: string, token: string): Promise<void> {
     const email = `
         <!DOCTYPE html>
         <html lang="en">
@@ -28,7 +28,7 @@ export const MailController = {
                         <p style="color: #666666; line-height: 1.6;">Thank you for joining Femm Bulgaria! We're thrilled to have you as a part of our community.</p>
                         <p style="color: #666666; line-height: 1.6;">If you want to have the full experience of our website, please verify your account by clicking the button below:</p>
                         <div style="text-align: center; margin-top: 30px;">
-                            <a href="https://femmbulgaria.com/" style="display: inline-block; padding: 10px 20px; background-color: #FF6241; color: #fff; text-decoration: none; border-radius: 5px;">Verify Your Account</a>
+                            <a href="https://femmbulgaria.com/verification/${token}" style="display: inline-block; padding: 10px 20px; background-color: #FF6241; color: #fff; text-decoration: none; border-radius: 5px;">Verify Your Account</a>
                         </div>
                     </td>
                 </tr>

@@ -17,7 +17,7 @@ model Users {
   password     String
   nationality  String    @default("Unknown")
   verified    Boolean   @default(false)
-  verificationToken String?
+  verificationToken String @unique @default("")
   reviews    Reviews[]
   bookings   Bookings[]
 }

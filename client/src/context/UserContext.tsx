@@ -8,6 +8,7 @@ interface User {
   email: string;
   nationality: string;
   bookings: any[];
+  verified?: boolean;
 }
 
 interface UserContextType {
@@ -18,7 +19,8 @@ interface UserContextType {
     username: string,
     email: string,
     nationality: string,
-    bookings: any[]
+    bookings: any[],
+    verified?: boolean
   ) => void;
 }
 
@@ -38,12 +40,13 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     email: "",
     nationality: "",
     bookings: [],
+    verified: false,
   });
 
   useEffect(() => {
     getUserInfo()
       .then(async (userInfo) => {
-        const { id, username, email } = userInfo;
+        const { id, username, email, verified } = userInfo;
         const userBookings = await getBookingsByUserId();
         setUser({
           isLogged: true,
@@ -52,6 +55,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
           email,
           nationality: "",
           bookings: userBookings,
+          verified,
         });
       })
       .catch((error) => {
@@ -65,7 +69,8 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     username: string,
     email: string,
     nationality: string,
-    bookings: any[]
+    bookings: any[],
+    verified?: boolean
   ) => {
     setUser({
       ...user,
@@ -75,6 +80,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
       email,
       nationality,
       bookings,
+      verified,
     });
   };
 

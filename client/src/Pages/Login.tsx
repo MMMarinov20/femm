@@ -61,7 +61,7 @@ const Login: React.FC = () => {
       const token = await handleLogin(email, password);
       if (token) {
         setTimeout(() => {
-          updateUser(true, null, "", "", "", []);
+          updateUser(true, null, "", "", "", [], false);
           window.location.href = "/";
         }, 2000);
       }

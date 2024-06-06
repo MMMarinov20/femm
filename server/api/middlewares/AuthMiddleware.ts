@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken";
 import * as UserModel from "../models/User";
 import { User } from "../models/User";
 import bcrypt from "bcrypt";
+import { MailController } from "../controllers/MailController";
+import Crypto from "crypto";
 
 const JWT_SECRET = process.env.JWT_SECRET || "";
 
@@ -18,9 +20,6 @@ export const parseCookies = (cookieString: string): Record<string, string> => {
 
 export const AuthMiddleware = {
   authenticate: (req: Request, res: Response, next: Function) => {
-    //const token = req.headers.authorization?.split(" ")[1];
-    // const token = req.headers.cookie?.split("token=")[1];
-
     const cookies = parseCookies(req.headers.cookie || "");
     const token = cookies.token;
 
@@ -88,6 +87,8 @@ export const AuthMiddleware = {
         name,
         password,
         nationality,
+        verified: false,
+        verificationToken: Crypto.randomBytes(16).toString("hex"),
       };
 
       const saltRounds = 10;
@@ -99,9 +100,12 @@ export const AuthMiddleware = {
           expiresIn: "30m",
         });
 
-        //Cookies.set("token", token, { expires: 30 });
         res.cookie("token", token, { httpOnly: true, secure: true });
 
+        await MailController.sendVerificationEmail(
+          user.email,
+          user.verificationToken
+        );
         res.status(201).json({ token });
       } else res.status(400).json({ error: "Could not create user" });
     } catch (error) {

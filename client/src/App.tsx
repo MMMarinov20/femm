@@ -8,6 +8,7 @@ import Property from "./Pages/Property";
 import Apartament from "./Pages/Apartament";
 import About from "./Pages/About";
 import { useUser } from "./hooks/useUser";
+import Verification from "./Pages/Verification";
 
 function App() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -32,6 +33,7 @@ function App() {
         <Route path="/property/:name" element={<Property />} />
         <Route path="/property/:name/:id" element={<Apartament />} />
         <Route path="/about" element={<About />} />
+        <Route path="/verification/:token" element={<Verification />} />
         {!user.id && <Route path="/login" element={<Login />} />}
         {!user.id && <Route path="/register" element={<Register />} />}
       </Routes>

@@ -71,4 +71,19 @@ export const UserController = {
       res.status(500).json({ error: "Could not fetch users" });
     }
   },
+
+  async verifyUser(req: Request, res: Response): Promise<void> {
+    try {
+      const token: string = req.params.token;
+      const user = await UserModel.verifyUser(token);
+      if (user) {
+        res.status(200).json(user);
+      } else {
+        res.status(500).json({ error: "User not found" });
+      }
+    } catch (error) {
+      console.error("Error verifying user:", error);
+      res.status(500).json({ error: "Could not verify user" });
+    }
+  },
 };

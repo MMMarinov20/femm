@@ -4,6 +4,7 @@ import { AuthMiddleware } from "../middlewares/AuthMiddleware";
 
 const router = express.Router();
 
+router.post("/verify/:token", UserController.verifyUser);
 router.use("/users", AuthMiddleware.authenticate);
 router.post("/logout", AuthMiddleware.logout);
 router.get("/users/getInfo", UserController.getUserById);

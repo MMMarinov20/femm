@@ -9,6 +9,8 @@ export interface User {
   name: string;
   password: string;
   nationality: string;
+  verified: boolean;
+  verificationToken: string;
 }
 
 export const createUser = async (user: User) => {
@@ -62,4 +64,23 @@ export const login = async (email: string, password: string) => {
   });
 
   return user && (await bcrypt.compare(password, user.password)) ? user : null;
+};
+
+export const verifyUser = async (token: string) => {
+  const user = await prisma.users.findUnique({
+    where: {
+      verificationToken: token,
+    },
+  });
+
+  if (!user) return null;
+
+  return await prisma.users.update({
+    where: {
+      verificationToken: token,
+    },
+    data: {
+      verified: true,
+    },
+  });
 };
