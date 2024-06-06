@@ -88,6 +88,7 @@ const Register = () => {
                 <Header
                   heading={pageLangData.Title}
                   subheading={pageLangData.Subtitle}
+                  alternative="/login"
                 />
 
                 <Input

@@ -39,7 +39,7 @@ export const handleRegister = async (
     successToast("Registration successful", 2000);
 
     setTimeout(() => {
-      window.location.href = "/login";
+      window.location.href = "/";
     }, 2000);
   } catch (error) {
     throw new Error("Registration failed");

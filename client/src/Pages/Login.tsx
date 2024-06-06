@@ -86,6 +86,7 @@ const Login: React.FC = () => {
                 <Header
                   heading={pageLangData.Title}
                   subheading={pageLangData.Subtitle}
+                  alternative="/register"
                 />
 
                 <Input
