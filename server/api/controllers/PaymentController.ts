@@ -25,9 +25,42 @@ export const PaymentController = {
 
     switch (event.type) {
       case "checkout.session.completed":
-        const session = event.data.object;
-        console.log(`🔔  Payment for ${session.amount_total} was successful.`);
-        console.log(session);
+        const session = await stripe.checkout.sessions.retrieve(
+          event.data.object.id,
+          {
+            expand: ["line_items"],
+          }
+        );
+
+        if (session && session.line_items && session.amount_total) {
+          console.log(
+            `🔔  Payment for ${session.amount_total / 100}$ was successful.`
+          );
+          const booking: Booking = {
+            userId: 1,
+            rentalId: parseInt(
+              session.line_items.data[0].description.split("id: ")[1]
+            ),
+            startDate: new Date(
+              session.line_items.data[0].description
+                .split("from ")[1]
+                .split(" to ")[0]
+            ),
+            endDate: new Date(
+              session.line_items.data[0].description
+                .split("to ")[1]
+                .split(", ")[0]
+            ),
+            adults: parseInt(
+              session.line_items.data[0].description
+                .split(", ")[1]
+                .split(" adults")[0]
+            ),
+            createdAt: new Date(),
+          };
+          await createBooking(booking);
+        }
+
         break;
       default:
         console.log(`Unhandled event type ${event.type}`);
@@ -58,12 +91,15 @@ export const PaymentController = {
             price_data: {
               currency: "usd",
               product_data: {
-                name: `Reservation for ${(rental?.title, rental?.location)}`,
-                description: `Booking from ${new Date(
+                name: `Reservation for ${rental?.title}(id: ${
+                  rental?.id
+                }) from ${new Date(
                   booking.startDate
                 ).toLocaleDateString()} to ${new Date(
                   booking.endDate
-                ).toLocaleDateString()}`,
+                ).toLocaleDateString()}, ${nights} for ${
+                  booking.adults
+                } adults`,
               },
               unit_amount: nightlyRate,
             },
@@ -71,8 +107,8 @@ export const PaymentController = {
           },
         ],
         mode: "payment",
-        success_url: `${process.env.CLIENT_URL}/success`,
-        cancel_url: `${process.env.CLIENT_URL}/cancel`,
+        success_url: `${process.env.CLIENT_URL}/`,
+        cancel_url: `${process.env.CLIENT_URL}/`,
       });
 
       res.status(200).json(session);
