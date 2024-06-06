@@ -53,8 +53,9 @@ export const PaymentController = {
             ),
             adults: parseInt(
               session.line_items.data[0].description
-                .split(", ")[1]
                 .split(" adults")[0]
+                .split(" ")
+                .pop()!
             ),
             createdAt: new Date(),
           };
@@ -97,7 +98,7 @@ export const PaymentController = {
                   booking.startDate
                 ).toLocaleDateString()} to ${new Date(
                   booking.endDate
-                ).toLocaleDateString()}, ${nights} for ${
+                ).toLocaleDateString()}, ${nights} nights for ${
                   booking.adults
                 } adults`,
               },
