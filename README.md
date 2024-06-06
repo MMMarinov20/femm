@@ -1,7 +1,7 @@
 # To be implemented
 
-### Booking with real STRIPE checkout (Now it's mock)
+### Implement dashboard
 ### Add real data for different languages
-### Add email verification
+### Add email verification and booking confirmation with emails
 ### Optimize loading times
 ### SEO
