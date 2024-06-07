@@ -26,7 +26,7 @@ export const getAllBookings = async () => {
 
 export const getBookingsByUserId = async () => {
   try {
-    return await apiService.get(`bookings/user`);
+    return await apiService.get(`bookingsUser`);
   } catch (error) {
     throw new Error("Failed to get bookings");
   }

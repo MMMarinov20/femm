@@ -168,7 +168,9 @@ export const MailController = {
                 </tr>
             </table>
             <div style="text-align: center; margin-top: 30px;">
-                <a href="https://femmbulgaria.com" class="button">View Booking (to be implemented)</a>
+                <a href="https://femmbulgaria.com/success/${
+                  booking.id
+                }" class="button">View Booking</a>
             </div>
         </div>
         <div class="footer">
