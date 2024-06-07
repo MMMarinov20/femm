@@ -57,7 +57,7 @@ export const MailController = {
   },
 
   async sendBookingConfirmationEmail(bookingId: string): Promise<void> {
-    const booking = await getBookingById(parseInt(bookingId));
+    const booking = await getBookingById(bookingId);
     if (!booking) {
       throw new Error("Booking not found");
     }
@@ -87,7 +87,7 @@ export const MailController = {
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .header {
-            background-color: #007bff;
+            background-color: #FF6241;
             color: #fff;
             padding: 20px;
             text-align: center;
@@ -98,7 +98,7 @@ export const MailController = {
         .button {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: #FF6241;
             color: #fff;
             text-decoration: none;
             border-radius: 5px;
@@ -136,15 +136,15 @@ export const MailController = {
                 </tr>
                 <tr>
                     <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Start Date:</strong></td>
-                    <td style="padding: 10px; border-bottom: 1px solid #ddd;">${
-                      new Date(booking.startDate).toLocaleString
-                    }</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;">${new Date(
+                      booking.startDate
+                    ).toLocaleString()}</td>
                 </tr>
                 <tr>
                     <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>End Date:</strong></td>
-                    <td style="padding: 10px; border-bottom: 1px solid #ddd;">${
-                      new Date(booking.endDate).toLocaleString
-                    }</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;">${new Date(
+                      booking.endDate
+                    ).toLocaleString()}</td>
                 </tr>
                 <tr>
                     <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Adults:</strong></td>
@@ -154,8 +154,16 @@ export const MailController = {
                 </tr>
                 <tr>
                     <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Created At:</strong></td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;">${new Date(
+                      booking.createdAt
+                    ).toLocaleString()}</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Nights</strong></td>
                     <td style="padding: 10px; border-bottom: 1px solid #ddd;">${
-                      new Date(booking.createdAt).toLocaleString
+                      (new Date(booking.endDate).getTime() -
+                        new Date(booking.startDate).getTime()) /
+                      (1000 * 60 * 60 * 24)
                     }</td>
                 </tr>
             </table>

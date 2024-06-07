@@ -30,7 +30,7 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, Props> = (
             ref={ref}
             type={type}
             placeholder={placeholder}
-            className="pl-2 pt-1 w-full outline-none border-none text-[#464646] text-xs 2xl:text-lg font-SolidenTrialRegular placeholder:text-[#464646] 2xl:placeholder:text-base"
+            className="pl-2 pt-1 w-full outline-none border-none text-[#464646] text-xs 2xl:text-lg font-GilroyRegular placeholder:text-[#464646] 2xl:placeholder:text-base"
           />
         )}
       </div>
