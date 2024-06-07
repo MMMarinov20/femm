@@ -20,7 +20,6 @@ export const BookingController = {
 
   async getBookingsByUserId(req: Request, res: Response): Promise<void> {
     try {
-      console.log("in getBookingsByUserId");
       const cookies = parseCookies(req.headers.cookie || "");
       const token = cookies.token;
       if (token) {

@@ -138,13 +138,13 @@ export const MailController = {
                     <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Start Date:</strong></td>
                     <td style="padding: 10px; border-bottom: 1px solid #ddd;">${new Date(
                       booking.startDate
-                    ).toLocaleString()}</td>
+                    ).toLocaleDateString()}</td>
                 </tr>
                 <tr>
                     <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>End Date:</strong></td>
                     <td style="padding: 10px; border-bottom: 1px solid #ddd;">${new Date(
                       booking.endDate
-                    ).toLocaleString()}</td>
+                    ).toLocaleDateString()}</td>
                 </tr>
                 <tr>
                     <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Adults:</strong></td>
@@ -156,7 +156,7 @@ export const MailController = {
                     <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Created At:</strong></td>
                     <td style="padding: 10px; border-bottom: 1px solid #ddd;">${new Date(
                       booking.createdAt
-                    ).toLocaleString()}</td>
+                    ).toLocaleDateString()}</td>
                 </tr>
                 <tr>
                     <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Nights</strong></td>

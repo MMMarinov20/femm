@@ -65,7 +65,7 @@ const Success = () => {
   return (
     <React.Fragment>
       <div className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-lg shadow-lg">
+        <div className="max-w-lg w-full space-y-8 bg-white p-8 rounded-lg shadow-lg">
           <div className="text-center">
             <h2 className="mt-6 text-3xl font-SolidenTrialBoldExpanded text-gray-900">
               {pageLangData.Title}
@@ -77,7 +77,7 @@ const Success = () => {
           <ul className="mt-6 space-y-4">
             <li className="flex justify-between">
               <span className="font-medium text-gray-900 font-SolidenTrialRegular">
-                {pageLangData.Id}
+                {pageLangData.Id}:
               </span>
               <span className="text-gray-700 font-GilroyRegular">
                 {booking.id}
@@ -85,7 +85,7 @@ const Success = () => {
             </li>
             <li className="flex justify-between">
               <span className="font-medium text-gray-900 font-SolidenTrialRegular">
-                {pageLangData.RentalName}
+                {pageLangData.RentalName}:
               </span>
               <span className="text-gray-700 font-SolidenTrialRegular">
                 {rentalName}
@@ -93,15 +93,15 @@ const Success = () => {
             </li>
             <li className="flex justify-between">
               <span className="font-medium text-gray-900 font-SolidenTrialRegular">
-                {pageLangData.Location}
+                {pageLangData.Location}:
               </span>
-              <span className="text-gray-700 font-SolidenTrialRegular">
+              <span className="text-gray-700 font-GilroyRegular">
                 {location}
               </span>
             </li>
             <li className="flex justify-between">
               <span className="font-medium text-gray-900 font-SolidenTrialRegular">
-                {pageLangData.StartDate}
+                {pageLangData.StartDate}:
               </span>
               <span className="text-gray-700 font-GilroyRegular">
                 {new Date(booking.startDate).toLocaleDateString()}
@@ -109,7 +109,7 @@ const Success = () => {
             </li>
             <li className="flex justify-between">
               <span className="font-medium text-gray-900 font-SolidenTrialRegular">
-                {pageLangData.EndDate}
+                {pageLangData.EndDate}:
               </span>
               <span className="text-gray-700 font-GilroyRegular">
                 {new Date(booking.endDate).toLocaleDateString()}
@@ -117,7 +117,7 @@ const Success = () => {
             </li>
             <li className="flex justify-between">
               <span className="font-medium text-gray-900 font-SolidenTrialRegular">
-                {pageLangData.NumberOfNights}
+                {pageLangData.NumberOfNights}:
               </span>
               <span className="text-gray-700 font-GilroyRegular">
                 {Math.floor(
@@ -129,7 +129,7 @@ const Success = () => {
             </li>
             <li className="flex justify-between">
               <span className="font-medium text-gray-900 font-SolidenTrialRegular">
-                {pageLangData.NumberOfPeople}
+                {pageLangData.NumberOfPeople}:
               </span>
               <span className="text-gray-700 font-GilroyRegular">
                 {booking.adults}
@@ -138,7 +138,7 @@ const Success = () => {
 
             <li className="flex justify-between">
               <span className="font-medium text-gray-900 font-SolidenTrialRegular">
-                {pageLangData.PaymentMethod}
+                {pageLangData.PaymentMethod}:
               </span>
               <span className="text-gray-700 font-SolidenTrialRegular">
                 Stripe payment
