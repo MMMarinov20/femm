@@ -119,15 +119,14 @@ export const PaymentController = {
           },
         ],
         mode: "payment",
-        success_url: `${process.env.CLIENT_URL}/`,
-        cancel_url: `${process.env.CLIENT_URL}/`,
+        success_url: `${process.env.CLIENT_URL}/success/${booking.id}`,
+        cancel_url: `${process.env.CLIENT_URL}/payment-failed`,
         metadata: {
           rentalId: booking.rentalId.toString(),
           userId: booking.userId.toString(),
           bookingId: booking.id,
         },
       });
-
       res.status(200).json(session);
     } catch (error) {
       console.error("Error creating booking:", error);

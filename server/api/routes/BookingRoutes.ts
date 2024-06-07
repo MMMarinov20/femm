@@ -5,9 +5,8 @@ import { AuthMiddleware } from "../middlewares/AuthMiddleware";
 const router = express.Router();
 
 router.get("/bookings", BookingController.getBookings);
-
+router.get("/bookings/:bookingId", BookingController.getBookingById);
 router.use("/bookings", AuthMiddleware.authenticate);
-//router.get("/bookings/:bookingId", BookingController.getBookingById);
 router.get("/bookings/user", BookingController.getBookingsByUserId);
 router.get(
   "/bookings/rental/:rentalId",

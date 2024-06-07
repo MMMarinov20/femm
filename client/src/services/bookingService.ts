@@ -8,6 +8,14 @@ export const createBooking = async (Booking: Booking) => {
   }
 };
 
+export const getBookingById = async (bookingId: string) => {
+  try {
+    return await apiService.get(`bookings/${bookingId}`);
+  } catch (error) {
+    throw new Error("Failed to get booking");
+  }
+};
+
 export const getAllBookings = async () => {
   try {
     return await apiService.get("bookings");

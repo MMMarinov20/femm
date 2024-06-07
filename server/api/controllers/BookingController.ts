@@ -3,20 +3,20 @@ import * as BookingModel from "../models/Booking";
 import { jwtDecode } from "jwt-decode";
 import { parseCookies } from "../middlewares/AuthMiddleware";
 export const BookingController = {
-  // async getBookingById(req: Request, res: Response): Promise<void> {
-  //   try {
-  //     const bookingId: number = parseInt(req.params.bookingId, 10);
-  //     const booking = await BookingModel.getBookingById(bookingId);
-  //     if (booking) {
-  //       res.status(200).json(booking);
-  //     } else {
-  //       res.status(404).json({ error: "Booking not found" });
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching booking:", error);
-  //     res.status(500).json({ error: "Could not fetch booking" });
-  //   }
-  // },
+  async getBookingById(req: Request, res: Response): Promise<void> {
+    try {
+      const bookingId: string = req.params.bookingId;
+      const booking = await BookingModel.getBookingById(bookingId);
+      if (booking) {
+        res.status(200).json(booking);
+      } else {
+        res.status(404).json({ error: "Booking not found" });
+      }
+    } catch (error) {
+      console.error("Error fetching booking:", error);
+      res.status(500).json({ error: "Could not fetch booking" });
+    }
+  },
 
   async getBookingsByUserId(req: Request, res: Response): Promise<void> {
     try {

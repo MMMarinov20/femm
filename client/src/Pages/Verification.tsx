@@ -2,19 +2,17 @@ import React, { useEffect } from "react";
 import { useUser } from "../hooks/useUser";
 import { apiService } from "../services/apiService";
 import { errorToast, successToast } from "../utils/utils";
-import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Verification = () => {
   const { user } = useUser();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const token = window.location.pathname.split("/")[2];
     if (!token) {
       errorToast("Invalid token", 1500);
-      navigate("/", { replace: true });
+      window.location.href = "/";
       return;
     }
 
@@ -25,22 +23,22 @@ const Verification = () => {
           if (response.status === 200) {
             successToast("Verification successful", 1500);
             setTimeout(() => {
-              navigate("/", { replace: true });
+              window.location.href = "/";
             }, 1500);
           }
         } catch (error: any) {
           errorToast(error.response.data.error, 1500);
           setTimeout(() => {
-            navigate("/", { replace: true });
+            window.location.href = "/";
           }, 1500);
         }
       } else {
-        navigate("/", { replace: true });
+        window.location.href = "/";
       }
     };
 
     verifyUser();
-  }, [user, navigate]);
+  }, [user]);
 
   return (
     <React.Fragment>
