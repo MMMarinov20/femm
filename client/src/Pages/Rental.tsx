@@ -59,6 +59,7 @@ const Rental = () => {
   const [searchParams] = useSearchParams();
   const [pageLangData, setPageLangData] = useState<IRentalPage | null>(null);
   const [navbarData, setNavbarData] = useState<INavbarData | null>(null);
+  const [images, setImages] = useState<string[]>([]);
 
   useEffect(() => {
     const loadRentalData = async () => {
@@ -114,9 +115,16 @@ const Rental = () => {
   useEffect(() => {
     AOS.init();
     window.scrollTo(0, 0);
+
+    const src = Array.from({ length: 10 }, (_, i) => i + 1).map(
+      (i) => `../../Rental/Carousel/${i}.jpg`
+    );
+
+    setImages(src);
   }, []);
 
-  if (!pageLangData || !data || !navbarData) return <LoadingSpinner />;
+  if (!pageLangData || !data || !navbarData || !images)
+    return <LoadingSpinner />;
 
   return (
     <React.Fragment>
@@ -124,15 +132,7 @@ const Rental = () => {
         <div className="overflow-hidden">
           <Navbar Data={navbarData} />
           <BurgerNavbar Data={navbarData} color={"#FFFFFF"} />
-          <GallerySlider
-            src={[
-              "../../Rental/Room1.jpg",
-              "../../Rental/Room1.jpg",
-              "../../Rental/Room1.jpg",
-              "../../Rental/Room1.jpg",
-              "../../Rental/Room1.jpg",
-            ]}
-          />
+          <GallerySlider src={images} />
           <div className="flex flex-col w-screen h-fit pb-32 pt-10 lg:py-32 px-4 lg:px-[10vw] lg:flex-row gap-y-20 lg:gap-x-5">
             <DescriptionContainer
               Title={data.Title}
@@ -171,9 +171,7 @@ const Rental = () => {
             {pageLangData.Surroundings.Heading}
           </h1>
 
-          <div
-            className="w-screen grid grid-rows-6 md:grid-rows-2 md:grid-cols-3 lg:px-[10vw] pb-20"
-          >
+          <div className="w-screen grid grid-rows-6 md:grid-rows-2 md:grid-cols-3 lg:px-[10vw] pb-20">
             {Object.keys(data.Surroundings).map((key, index) => (
               <Accordion
                 key={index}

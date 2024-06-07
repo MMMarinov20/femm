@@ -19,9 +19,10 @@ function App() {
 
   useEffect(() => {
     if (!lang) {
-      const language = navigator.language.split("-")[0];
-      // if (language !== "en") language = "en";
-      searchParams.set("lang", language);
+      // const language = navigator.language.split("-")[0];
+
+      //TESTING PURPOSES
+      searchParams.set("lang", "en");
       setSearchParams(searchParams, { replace: true });
     }
   }, [lang, searchParams, setSearchParams]);
