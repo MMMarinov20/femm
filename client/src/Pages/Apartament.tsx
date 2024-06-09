@@ -94,7 +94,7 @@ const Apartament = () => {
             Facilities
           </h1>
           <h1 className="font-SolidenTrialRegular text-center md:text-xl">
-            Like all complexes of Atlantis Bulgaria, the complex will provide a
+            Like all complexes of FEMM Bulgaria Bulgaria, the complex will provide a
             number of amenities to its customers
           </h1>
 

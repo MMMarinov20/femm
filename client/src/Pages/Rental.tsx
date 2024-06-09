@@ -29,6 +29,9 @@ import { useSearchParams } from "react-router-dom";
 import { IRentalPage } from "../data/Interfaces/IRentalPage";
 import LoadingSpinner from "../Components/LoadingSpinner";
 import { INavbarData } from "../data/Interfaces/INavbarData";
+import { infoToast } from "../utils/utils";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface RentalData {
   Id: number;
@@ -115,6 +118,10 @@ const Rental = () => {
   useEffect(() => {
     AOS.init();
     window.scrollTo(0, 0);
+    infoToast(
+      "Payment is currently in TESTING MODE! Real credit cards will be declined! Booking is woking in TEST MODE!",
+      3000
+    );
 
     const src = Array.from({ length: 10 }, (_, i) => i + 1).map(
       (i) => `../../Rental/Carousel/${i}.jpg`
@@ -195,6 +202,7 @@ const Rental = () => {
           <Footer />
         </div>
       </Suspense>
+      <ToastContainer />
     </React.Fragment>
   );
 };

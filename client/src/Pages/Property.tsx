@@ -74,7 +74,7 @@ const Property = () => {
               className="font-SolidenTrialRegular text-center md:text-xl"
               data-aos="fade-right"
             >
-              Like all complexes of Atlantis Bulgaria, the complex will provide
+              Like all complexes of FEMM Bulgaria Bulgaria, the complex will provide
               a number of amenities to its customers
             </h1>
 

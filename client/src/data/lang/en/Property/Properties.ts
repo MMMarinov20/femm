@@ -124,6 +124,6 @@ export const properties: PropertiesInterface = {
       },
     ],
     Description:
-      "FEMM offers to your attention a beautiful two-bedroom apartment in the Atlantis Aria complex. The complex is located in the Izgrev district, in close proximity to the main roads of the city, the largest sports complex in Bulgaria - Arena Burgas, hypermarkets Kaufland, Lidl, Technopolis, Metro, shopping and business centers, a bus stop, schools, kindergartens , university, cafes and restaurants, fitness centers, etc.",
+      "FEMM offers to your attention a beautiful two-bedroom apartment in the Urban Nature complex. The complex is located in the Izgrev district, in close proximity to the main roads of the city, the largest sports complex in Bulgaria - Arena Burgas, hypermarkets Kaufland, Lidl, Technopolis, Metro, shopping and business centers, a bus stop, schools, kindergartens , university, cafes and restaurants, fitness centers, etc.",
   },
 };

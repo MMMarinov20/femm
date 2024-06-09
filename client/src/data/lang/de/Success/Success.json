@@ -1,0 +1,14 @@
+{
+  "Title": "Order Successful",
+  "SubTitle": "Thank you for your booking! You should have received an email. If you don't see it check the spam folder. Here are the details of your reservation:",
+  "Id": "Order ID",
+  "RentalName": "Place of Accommodation",
+  "Location": "Location",
+  "StartDate": "Start Date",
+  "EndDate": "End Date",
+  "NumberOfNights": "Number of Nights",
+  "NumberOfPeople": "Number of People",
+  "PaymentMethod": "Payment Method",
+  "HomeButton": "Home page",
+  "OrderButton": "View Reservation"
+}

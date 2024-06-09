@@ -7,7 +7,7 @@ import { useUser } from "../../hooks/useUser";
 import { Booking } from "../../models/Booking";
 import Calendar from "./Calendar";
 import { ToastContainer } from "react-toastify";
-import { errorToast } from "../../utils/utils";
+import { errorToast, infoToast } from "../../utils/utils";
 import "react-toastify/dist/ReactToastify.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -54,6 +54,10 @@ const Availability: React.FC<Props> = (props) => {
   };
 
   const handleSubmit = (e: React.FormEvent) => {
+    infoToast(
+      "Payment is currently in TESTING MODE! Real credit cards will be declined! Booking is woking in TEST MODE!",
+      3000
+    );
     e.preventDefault();
     const startDate = range?.from;
     const endDate = range?.to;

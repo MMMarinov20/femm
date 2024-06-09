@@ -58,7 +58,7 @@ const rentalsData = {
         ],
       ],
       Description:
-        "Located in the Sarafovo district of Burgas, Loli's Beach Studio offers accommodation with a private pool, free WiFi, 24-hour security and an ATM. The air-conditioned accommodation is 300 meters from Sarafovo Central Beach. The apartment has 1 bedroom, 1 bathroom, bed linen, towels, a flat-screen TV with streaming access, a fully equipped kitchenette, and a balcony with garden views. Guests can make use of the sun terrace or enjoy fishing in the area. Atlantis Beach is 400 meters from Loli's Beach Studio, while Aviation Museum is 1.7 km away. The nearest airport is Burgas, located 2 km away.",
+        "Located in the Sarafovo district of Burgas, Loli's Beach Studio offers accommodation with a private pool, free WiFi, 24-hour security and an ATM. The air-conditioned accommodation is 300 meters from Sarafovo Central Beach. The apartment has 1 bedroom, 1 bathroom, bed linen, towels, a flat-screen TV with streaming access, a fully equipped kitchenette, and a balcony with garden views. Guests can make use of the sun terrace or enjoy fishing in the area. FEMM Bulgaria Beach is 400 meters from Loli's Beach Studio, while Aviation Museum is 1.7 km away. The nearest airport is Burgas, located 2 km away.",
       Rating: 9.4,
       Showcase: [
         {
