@@ -29,7 +29,6 @@ import { useSearchParams } from "react-router-dom";
 import { IRentalPage } from "../data/Interfaces/IRentalPage";
 import LoadingSpinner from "../Components/LoadingSpinner";
 import { INavbarData } from "../data/Interfaces/INavbarData";
-import { infoToast } from "../utils/utils";
 
 interface RentalData {
   Id: number;
