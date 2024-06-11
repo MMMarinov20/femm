@@ -53,3 +53,13 @@ model Bookings {
   adults       Int
   createdAt    DateTime  @default(now())
 }
+
+model Requests {
+  id           String      @id @default("")
+  name         String
+  email       String
+  reason       String
+  phone       String
+  message      String
+  createdAt    DateTime  @default(now())
+}

@@ -8,6 +8,7 @@ import AuthenticationRoutes from "./routes/AuthenticationRoutes";
 import ReviewRoutes from "./routes/ReviewRoutes";
 import FileRoutes from "./routes/FileRoutes";
 import PaymentRoutes from "./routes/PaymentRoutes";
+import RequestFormRoutes from "./routes/RequestFormRoutes";
 
 const app: Application = express();
 
@@ -62,7 +63,8 @@ app.use("/api", BookingRoutes);
 app.use("/api", ReviewRoutes);
 app.use("/api", FileRoutes);
 app.use("/api", PaymentRoutes);
+app.use("/api", RequestFormRoutes);
 
-app.listen(8081, () => console.log("Server running on port 8080!"));
+app.listen(8080, () => console.log("Server running on port 8080!"));
 
 module.exports = app;

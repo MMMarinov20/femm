@@ -1,6 +1,7 @@
 import nodemailer from "nodemailer";
 import { getRentalById } from "../models/Rentals";
 import { getBookingById } from "../models/Booking";
+import { getRequestById } from "../models/Request";
 import { findUserById } from "../models/User";
 
 const transporter = nodemailer.createTransport({
@@ -185,6 +186,133 @@ export const MailController = {
       from: "femmbulgaria@gmail.com",
       to: user?.email,
       subject: "Booking Confirmation - Femm Bulgaria",
+      html: email,
+    };
+
+    transporter.sendMail(mailOptions, (error: any, info: any) => {
+      if (error) {
+        console.error("Error sending email:", error);
+      } else {
+        console.log("Email sent: " + info.response);
+      }
+    });
+  },
+
+  async sendFormRequestEmail(requestId: string): Promise<void> {
+    const request = await getRequestById(requestId);
+    if (!request) {
+      throw new Error("Request not found");
+    }
+
+    const email = `
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request submitted - Femm Bulgaria</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #FF6241;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #FF6241;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .footer {
+            background-color: #f4f4f4;
+            color: #666;
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Request submitted</h1>
+        </div>
+        <div class="content">
+            <p>Thank you for your request, ${
+              request.name
+            }. We will contact you shortly. Here are the details:</p>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                <tr>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Name:</strong></td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;">${
+                      request.name
+                    }</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Email:</strong></td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;">${
+                      request.email
+                    }</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Reason:</strong></td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;">${
+                      request.reason
+                    }</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Phone:</strong></td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;">${
+                      request.phone
+                    }</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Message:</strong></td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;">${
+                      request.message
+                    }</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Created At:</strong></td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;">${new Date(
+                      request.createdAt
+                    ).toLocaleTimeString()}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="footer">
+            <p>&copy; 2024 FemmBulgaria. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+`;
+
+    const mailOptions = {
+      from: "femmbulgaria@gmail.com",
+      to: request.email,
+      subject: "New Request - Femm Bulgaria",
       html: email,
     };
 
