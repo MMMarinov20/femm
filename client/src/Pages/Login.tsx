@@ -114,6 +114,7 @@ const Login: React.FC = () => {
 
               <div className="hidden lg:block w-1/2">
                 <img
+                  loading="lazy"
                   src="./Home/Login.png"
                   alt="login"
                   className="w-full h-full"

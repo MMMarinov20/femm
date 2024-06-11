@@ -68,6 +68,7 @@ const Landing: React.FC<Props> = ({ Data }) => {
 
           <div className="flex flex-col items-center lg:w-auto pt-16 lg:pt-0">
             <img
+              loading="lazy"
               src="./Home/HeroBackgroundDesktop.png"
               alt="hero"
               className="lg:w-[50vw] 2xl:w-[40vw] overflow-x-hidden"

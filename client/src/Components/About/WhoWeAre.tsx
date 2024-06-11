@@ -47,6 +47,7 @@ const WhoWeAre: React.FC<Props> = ({ Data }) => {
           </h1>
         </div>
         <img
+          loading="lazy"
           src="../About/Hero.svg"
           alt="About Us"
           className="xl:w-[40%] 3xl:w-[30%]"

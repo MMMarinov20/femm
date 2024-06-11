@@ -36,6 +36,7 @@ const Navbar: React.FC<Props> = ({ Data }) => {
       <div className="hidden w-screen lg:flex flex-row items-center px-[10vw] justify-between h-[15vh]">
         <div className="flex flex-row items-center gap-x-5 xl:gap-x-10 xl:text-lg font-SolidenTrialRegular">
           <img
+            loading="lazy"
             src="../../Logo.png"
             alt="logo"
             className="lg:w-[7vw] 2xl:w-[10vw]"

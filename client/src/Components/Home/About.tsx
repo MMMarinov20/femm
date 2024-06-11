@@ -49,6 +49,7 @@ const About: React.FC<Props> = ({ Data }) => {
           data-aos="fade-right"
         >
           <img
+            loading="lazy"
             src="./Home/About.svg"
             alt=""
             className="w-screen md:w-1/2 lg:w-full object-cover 2xl:w-10/12 3xl:w-[70%]"

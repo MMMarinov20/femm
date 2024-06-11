@@ -37,6 +37,7 @@ const WhatWeDo: React.FC<Props> = ({ Data }) => {
           </div>
 
           <img
+            loading="lazy"
             src="../About/WhatWeDo.svg"
             alt="What We Do"
             className="w-full md:w-1/2 xl:w-[40%] 2xl:w-[40%]"

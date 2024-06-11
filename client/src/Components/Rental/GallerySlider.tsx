@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import CarouselSlider from "../Property/CarouselSlider";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -24,16 +23,6 @@ const GallerySlider: React.FC<Props> = (props: Props) => {
   };
   return (
     <React.Fragment>
-      {/* <div className="w-screen px-0 overflow-hidden text-center">
-        <CarouselSlider
-          src={[
-            "../../Rental/Room1.jpg.png",
-            "../../Rental/Room1.jpg.png",
-            "../../Rental/Room1.jpg.png",
-          ]}
-          centerPadding="20%"
-        />
-      </div> */}
       <div className="w-full px-[10vw] overflow-hidden">
         <Swiper
           breakpoints={{
@@ -68,6 +57,7 @@ const GallerySlider: React.FC<Props> = (props: Props) => {
           {props.src.map((src, index) => (
             <SwiperSlide key={index} className="pb-10">
               <img
+                loading="lazy"
                 src={src}
                 alt={src}
                 className="rounded-2xl z-0 cursor-pointer"
@@ -135,7 +125,12 @@ const GallerySlider: React.FC<Props> = (props: Props) => {
             {props.src.map((src, index) => (
               <SwiperSlide key={index}>
                 <div className="fixed top-1/4">
-                  <img src={src} alt="" className="rounded-2xl z-0" />
+                  <img
+                    loading="lazy"
+                    src={src}
+                    alt=""
+                    className="rounded-2xl z-0"
+                  />
                 </div>
               </SwiperSlide>
             ))}

@@ -48,7 +48,12 @@ const BurgerNavbar: React.FC<Props> = (props) => {
           }`}
         >
           <div className="flex items-center justify-between w-full h-[10vh]">
-            <img src="../../Logo.png" alt="logo" className="w-[25vw]" />
+            <img
+              loading="lazy"
+              src="../../Logo.png"
+              alt="logo"
+              className="w-[25vw]"
+            />
             <RxHamburgerMenu
               className="text-3xl cursor-pointer"
               onClick={handleMenu}
@@ -133,7 +138,12 @@ const BurgerNavbar: React.FC<Props> = (props) => {
         style={{ backgroundColor: props.color }}
       >
         <div>
-          <img src="../../Logo.png" alt="logo" className="w-[25vw]" />
+          <img
+            loading="lazy"
+            src="../../Logo.png"
+            alt="logo"
+            className="w-[25vw]"
+          />
         </div>
         <div>
           <RxHamburgerMenu

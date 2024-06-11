@@ -84,6 +84,7 @@ const Landing: React.FC<Props> = ({ Data }) => {
           </a>
         </div>
         <img
+          loading="lazy"
           src="../Property/Building.png"
           className="w-full lg:w-[55%]"
           ref={hero}

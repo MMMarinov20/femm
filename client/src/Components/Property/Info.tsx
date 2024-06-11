@@ -30,7 +30,11 @@ const Info: React.FC<Props> = ({ Data }) => {
           className="flex flex-col gap-y-5 2xl:gap-y-10 lg:w-1/2"
           data-aos="fade-left"
         >
-          <img src="../Property/Logo1.png" className="w-10/12 2xl:w-7/12" />
+          <img
+            loading="lazy"
+            src="../Property/Logo1.png"
+            className="w-10/12 2xl:w-7/12"
+          />
           <h1 className="font-GilroyRegular md:text-lg lg:text-base xl:text-lg 3xl:text-xl">
             {Data.Description}
           </h1>
@@ -62,6 +66,7 @@ const Info: React.FC<Props> = ({ Data }) => {
         </div>
 
         <img
+          loading="lazy"
           src="../Property/Building.svg"
           className="w-full pt-5 lg:pt-0 2xl:w-1/2"
           data-aos="fade-right"

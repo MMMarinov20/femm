@@ -49,6 +49,7 @@ const Offer: React.FC<Props> = ({ Data }) => {
 
           <div className="row-span-1 bg-white w-fit min-h-fit rounded-2xl px-5 py-5 min-[380px]:py-4 min-[380px]:px-2 md:p-6 shadow-xl lg:shadow-none 2xl:shadow-xl">
             <img
+              loading="lazy"
               src="./Home/Affordable.jpg"
               className="w-[20vw] min-[380px]:w-[10vw] md:w-[5vw] 2xl:w-[3vw]"
             />
@@ -62,6 +63,7 @@ const Offer: React.FC<Props> = ({ Data }) => {
 
           <div className="row-span-1 bg-white w-fit min-h-fit rounded-2xl px-5 py-5 min-[380px]:py-4 min-[380px]:px-2 md:p-6 shadow-xl lg:shadow-none 2xl:shadow-xl">
             <img
+              loading="lazy"
               src="./Home/Work.jpg"
               className="w-[20vw] min-[380px]:w-[10vw] md:w-[5vw] 2xl:w-[3vw]"
             />
