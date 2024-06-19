@@ -18,16 +18,10 @@ const Verification = () => {
 
     const verifyUser = async () => {
       if (!user.verified && token) {
-        try {
-          const response = await apiService.post(`verify/${token}`);
-          if (response.status === 200) {
-            successToast("Verification successful", 1500);
-            setTimeout(() => {
-              window.location.href = "/";
-            }, 1500);
-          }
-        } catch (error: any) {
-          errorToast(error.response.data.error, 1500);
+        const response = await apiService.post(`verify/${token}`);
+        console.log(response);
+        if (response && response.id && response.verified === false) {
+          successToast("Verification successful", 1500);
           setTimeout(() => {
             window.location.href = "/";
           }, 1500);
