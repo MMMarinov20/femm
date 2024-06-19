@@ -1,26 +1,72 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay, Pagination, Navigation, A11y } from "swiper/modules";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import LoadingSpinner from "../LoadingSpinner";
+import ImageSpinner from "../ImageSpinner";
 
 interface Props {
   src: string[];
 }
+
 const GallerySlider: React.FC<Props> = (props: Props) => {
   useEffect(() => {
     AOS.init();
   }, []);
 
   const [isOpen, setIsOpen] = useState(false);
+  const [loading, setLoading] = useState<boolean[]>(
+    Array(props.src.length).fill(true)
+  );
+  const imgRefs = useRef<(HTMLImageElement | null)[]>([]);
+
+  const handleImageLoad = (index: number) => {
+    setLoading((prevLoading) => {
+      const newLoading = [...prevLoading];
+      newLoading[index] = false;
+      return newLoading;
+    });
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const img = entry.target as HTMLImageElement;
+            img.src = img.dataset.src!;
+            console.log(entry);
+            observer.unobserve(img);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1,
+      }
+    );
+
+    imgRefs.current.forEach((img) => {
+      if (img) {
+        observer.observe(img);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [imgRefs]);
 
   const closeModal = (e: any) => {
     if (e.target.tagName === "IMG") return;
     document.body.style.overflow = "auto";
     setIsOpen(false);
   };
+
   return (
     <React.Fragment>
       <div className="w-full px-[10vw] overflow-hidden">
@@ -56,11 +102,15 @@ const GallerySlider: React.FC<Props> = (props: Props) => {
         >
           {props.src.map((src, index) => (
             <SwiperSlide key={index} className="pb-10">
+              {loading[index] && <ImageSpinner />}{" "}
               <img
+                ref={(el) => (imgRefs.current[index] = el)}
                 loading="lazy"
-                src={src}
+                data-src={src}
                 alt={src}
                 className="rounded-2xl z-0 cursor-pointer"
+                style={{ display: loading[index] ? "hidden" : "block" }}
+                onLoad={() => handleImageLoad(index)}
                 onClick={() => {
                   document.body.style.overflow = "hidden";
                   setIsOpen(true);
