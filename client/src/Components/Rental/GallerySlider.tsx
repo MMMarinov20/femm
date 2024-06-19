@@ -5,7 +5,7 @@ import "swiper/css/pagination";
 import { Autoplay, Pagination, Navigation, A11y } from "swiper/modules";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import LoadingSpinner from "../LoadingSpinner";
+// import LoadingSpinner from "../LoadingSpinner";
 import ImageSpinner from "../ImageSpinner";
 
 interface Props {
